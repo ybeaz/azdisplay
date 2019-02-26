@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": false,
+    "module": "esnext",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "sourceMap": true,
+    "lib": ["es2015", "dom"],
+    "typeRoots": [
+      "./node_modules/@types/"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
+  "exclude": [
+    "./node_modules/**/*"
+  ],
+  "defaultSeverity": "warning",
+   "linterOptions": {
+     "exclude": [
+       "config/**/*.js",
+       "node_modules/**/*.ts"
+     ]
+   }
+}

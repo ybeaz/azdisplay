@@ -1,0 +1,307 @@
+
+/* Import stylesLib - standard styles */
+  @import "./stylesLib.less";
+
+/* Import stylesImg - used background images */
+  @import "./stylesImg.less";
+
+  /* Import Bootstrap css */
+  @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+
+/* Import Fontawsome css */
+  @import url('https://use.fontawesome.com/releases/v5.4.1/css/all.css');
+  
+  @import (css) url('https://fonts.googleapis.com/css?family=BlinkMacSystemFont|San+Francisco|HelveticaNeue-Light|Helvetica+Neue+Light|Helvetica+Neue|Segoe+UI|Fira+Sans|Roboto|Oxygen|Ubuntu|Droid+Sans|Arial|sans-serif');
+  
+@color0: #fff;
+@color1: #333;
+@color2: lighten(@color1, 20%);
+@color3: lighten(@color1, 75%);
+@color4: #4ac144;
+@color5: #0ca940;
+@color6: linear-gradient(45deg, @color4, @color5);
+@color7: #f6f6f6;
+@color8: rgba(51,51,51,.5);
+
+/*
+Зеленый основной - #4ac144
+Зеленый при наведении на кнопку - #0ca940
+Серый цвет шрифта: #333
+Серый внутри поля поиска #ececec
+Буквы внутри поля поиска при наведении #8f8f8f
+Светло серый цвет фона раздела #f6f6f6
+*/
+
+
+@fontSize_a: 1rem;
+@fontSize_b: 0.9rem;
+@fontSize_c: 3.5rem;
+@fontSize_d: 1.2rem;
+@fontSize_e: 0.5rem;
+
+@font-family: -apple-system,BlinkMacSystemFont,San Francisco,HelveticaNeue-Light,Helvetica Neue Light,Helvetica Neue,Segoe UI,Fira Sans,Roboto,Oxygen,Ubuntu,Droid Sans,Arial,sans-serif;
+
+
+.App {
+  font-size: @fontSize_a;
+  font-family: @font-family;
+  background-color: @color0;
+  color: @color1;
+  box-sizing: border-box;
+
+
+  .newSection {
+    &:extend(.p_t_2_rem, .p_b_2_rem);
+  }
+  .descSection {
+    padding: 6rem 1.5rem 2rem;
+  }
+  .bg_grey {
+    background-color: @color7;
+  }
+  .c_green {
+    color: @color5;
+  }
+  .titleSection {
+    &:extend(.t_tr_uc);
+    font-weight: 700;
+  }
+}
+
+.Header {
+  background-color: @color0;
+  ul {
+    padding-bottom: 20px;
+  }
+  a {
+    color: @color2;
+    font-size: @fontSize_b;
+    line-height: 30px;
+    text-transform: capitalize;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity .25s ease;
+    i {
+      font-size: 30px;
+    }
+  }
+  .nav-actions{
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    height: 50px;
+    display: flex;
+    a {
+      text-transform: initial;
+    }
+  }
+
+  .logoNav {
+    height: 4rem;
+    width: 4rem;
+  }
+
+  .navbarBrend {
+    &:extend(.p_l_4_rem);
+  }
+
+}
+
+.Descriptors {
+
+  .transitionPrevDesc {
+    opacity: 0;
+    -webkit-clip-path: inset(49% 0 50% 0);
+    clip-path: inset(49% 0 50% 0);
+    -webkit-transform: scaleY(.7);
+    transform: scaleY(.7);
+
+    -webkit-transition: .5s ease-out;
+    -moz-transition: .5s ease-out;
+    -o-transition: .5s ease-out;
+    transition: .5s ease-out;
+    transform-origin: center;
+    transition-property: all;
+    transition-timing-function: ease-out;
+    transition-duration: .5s;
+    transition-delay: 800ms;
+  }
+
+  .transitionNextDesc {
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    transform: none;
+  }
+  
+  .descriptorRow1 {
+    &:extend(.t_tr_uc);
+    letter-spacing: -2px;
+    font-size: @fontSize_c;
+    font-weight: 700;
+  }
+
+  .descriptorRow2 {
+    &:extend(.t_tr_uc);
+    font-size: @fontSize_b;
+    color: @color2;
+  }
+
+}
+
+.SearchForm {
+
+  .transitionPrevSearch {
+    opacity: 0;
+    -webkit-transform-origin: left bottom;
+    transform-origin: left bottom;
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+
+    -webkit-transition: .5s ease-out;
+    -moz-transition: .5s ease-out;
+    -o-transition: .5s ease-out;
+    transition: .5s ease-out;
+    transition-property: all;
+    transition-timing-function: ease-out;
+    transition-duration: .5s;
+    transition-delay: 1000ms;
+  }
+
+  .transitionNextSearch {
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+
+  .hoverFocusActive {
+    &:hover {
+      background-color: @color3;
+      border-color: @color4;
+      box-shadow: 0 0 0 0;
+    }
+    &:focus {
+      background-color: @color3;
+      border-color: @color4;
+      box-shadow: 0 0 0 0;
+    }
+    &:active {
+      background-color: @color3;
+      border-color: @color4;
+      box-shadow: 0 0 0 0;
+    }
+  }
+
+  .form-control {
+    .hoverFocusActive;
+  }
+
+  .buttonColor {
+    background: @color6;
+    color: @color0;
+  }
+
+  .buttonNoncolor {
+    background: @color0;
+    color: @color1;
+  }
+
+  .searchRow {
+    &:extend(.p_b_2_rem);
+    
+    div {
+      &:extend(.p_x_0);
+    }
+ 
+    input {
+      &:extend(.b_r_0, .h_100);
+      font-size: @fontSize_d;
+      background-color: @color3;
+      padding: 20px 30px;
+    }
+    .searchButton {
+      &:extend(.b_r_0, .h_100, .w_100);
+      .buttonColor;
+    }
+  }
+
+  .categoryRow {
+    .categoryButton {
+      &:extend(.w_8_rem, .m_r_0p5_rem, .b_r_3_rem);
+      .buttonNoncolor;
+      .hoverFocusActive;
+      &:focus {
+        .buttonColor;
+      }
+    }
+  }
+
+}
+
+.CatalogTags {
+  div, ul {
+    &:extend(.p_x_0);
+  }
+  ul {
+    -webkit-column-count: 5;
+    -moz-column-count: 5;
+    column-count: 5;
+    list-style-type: none;
+  }
+  .tagListLi { 
+    &:extend(.p_l_1_rem, .pos_r);
+    padding-top: 0.3rem;
+    .name {
+      font-size: @fontSize_b;
+    }
+    .num {
+      &:extend(.pos_a);
+      padding-left: 0.3rem;
+      padding-bottom: 5.3rem;
+      margin-top: -0.3rem;
+      position: absolute;
+      font-size: @fontSize_e;
+      color: @color2;
+    }
+  }
+}
+
+.ItHelps {
+  .itHelps__manWorks {
+    height: -webkit-fill-available;
+  }
+  .itHelps__capture {
+    font-size: @fontSize_a;
+    margin-top: -1.5rem;
+  }
+  .itHelps__details {
+    &:extend(.p_y_0p4_rem);
+    font-size: @fontSize_b;
+    color: @color8;
+    line-height: 1.3rem;
+  }
+  h2 {
+    padding-left: 2.5rem;
+    padding-bottom: 1rem;
+  }
+  ul {
+    list-style: none;
+    li::before {
+      content: "\2022";
+      color: @color5;
+      font-weight: bold;
+      display: inline-block; 
+      width: 1rem;
+      margin-left: -2rem;
+    }
+  }
+  .itHelps__manWorks_wrapper {
+    &:extend(.p_t_4_rem);
+  }
+}
