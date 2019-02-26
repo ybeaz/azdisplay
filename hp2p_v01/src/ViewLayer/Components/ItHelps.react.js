@@ -17,7 +17,7 @@ class ItHelps extends React.PureComponent {
     setTimeout(() => {
       let elem = document.querySelectorAll('.itHelps__ul_wrapper')[0]
       const { height } =  serviceFunc.getElementSize(elem)
-      // console.info('ItHelps->componentDidMount() [5]', { height })
+      // console.info('ItHelps->componentDidMount() [7]', { height })
       elem = document.querySelectorAll('.itHelps__manWorks_wrapper')[0]
       elem.style.height = `${height}px`
     }, 500)
