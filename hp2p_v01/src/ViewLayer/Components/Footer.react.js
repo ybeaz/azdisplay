@@ -6,11 +6,41 @@ import PropTypes from 'prop-types'
 class Footer extends React.PureComponent {
 
 
-  render() {
-    // console.info('Footer->render() [10]',{});
+
+  getListItems = arr => arr.map((item, i) => {
+
+    const { capture, level01 } = item
+
+    const listItems = level01.map((item, i) => {
+      const { name, href } = item
+      return <li className=''><a className='' href={href}>{name}</a></li>
+    })
+
     return (
-      <div className='Footer'>
-        FooterReact
+      <div key={i} className='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
+        <div className='Footer__capture'>{capture}</div>
+        <ul>
+          {listItems}
+        </ul>
+      </div>
+    )
+  })
+
+  render() {
+    const { propsScope } = this.props
+    const { captureSection, listArr } = propsScope
+    // console.info('Footer->render() [10]', { captureSection, listArr })
+
+    const listItems = this.getListItems(listArr)
+
+    return (
+      <div id='Footer' className='container-fluid form-group Footer'>
+        <div className='row'>
+          <div className='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
+            <h2 className='titleSection' dangerouslySetInnerHTML={{ __html: captureSection }} />
+          </div>
+          {listItems}
+        </div>
       </div>
     )
   }
