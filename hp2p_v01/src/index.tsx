@@ -9,6 +9,7 @@ import SearchForm from './ViewLayer/Components/SearchForm.react'
 import CatalogTags from './ViewLayer/Components/CatalogTags.react'
 import ImgListTable from './ViewLayer/Components/ImgListTable.react'
 import WorkFlow from './ViewLayer/Components/WorkFlow.react'
+import UserReviews from './ViewLayer/Components/UserReviews.react'
 import Footer from './ViewLayer/Components/Footer.react'
 
 
@@ -101,7 +102,7 @@ const tree = {
     ],
     sequence: {a: 'list', b: 'img'},
   },
-  review: {
+  userReviews: {
     captureSection: 'Впечатления',
     listArr: [
       {
@@ -127,29 +128,29 @@ const tree = {
     ],
   },
   footer: {
-    captureSection: '',
+    captureSection: '<span class="c_white">User</span><span class="c_green">To</span>',
     listArr: [
       {
         imgClass: '',
         capture: 'About',
         level01: [
-          {name: 'Business model', href: ''},
-          {name: 'Out team', href: ''},
+          {name: 'Business model', href: '#Footer'},
+          {name: 'Out team', href: '#Footer'},
         ],
       },
       {
         imgClass: '',
         capture: 'Products',
         level01: [
-          {name: 'Search', href: ''},
+          {name: 'Search', href: '#Footer'},
         ],
       },
       {
         imgClass: '',
         capture: 'Support',
         level01: [
-          {name: 'FAQ', href: ''},
-          {name: 'Contact us', href: ''},
+          {name: 'FAQ', href: '#Footer'},
+          {name: 'Contact us', href: '#Footer'},
         ],
       },
     ],
@@ -161,7 +162,7 @@ function App(tree) {
   const title: String = 'Title for tsx'
 
   // console.info('index->app [10]', { tree });
-  const { descriptors, catatogTag, itHelps, workFlow, keyFeatures } = tree
+  const { descriptors, catatogTag, itHelps, workFlow, keyFeatures, userReviews, footer } = tree
 
 
 
@@ -175,20 +176,27 @@ function App(tree) {
         <SectionWrapper classStyle={'SearchFormSection newSection'}>
           <SearchForm />
         </SectionWrapper>
-        <SectionWrapper classStyle={'CatalogTagsSection newSection bg_grey'}>
+        <SectionWrapper classStyle={'CatalogTagsSection newSection bg_greyLight'}>
           <CatalogTags { ... { propsScope: catatogTag }} />
         </SectionWrapper>
         <SectionWrapper classStyle={'ImgListTableSection newSection'}>
           <ImgListTable { ... { propsScope: itHelps }} />
         </SectionWrapper>
-        <SectionWrapper classStyle={'WorkFlowSection newSection bg_grey'}>
+        <SectionWrapper classStyle={'WorkFlowSection newSection bg_greyLight'}>
           <WorkFlow { ... { propsScope: workFlow }} />
         </SectionWrapper>
         <SectionWrapper classStyle={'KeyFeaturesSection newSection'}>
           <ImgListTable { ... { propsScope: keyFeatures }} />
         </SectionWrapper>
+        <SectionWrapper classStyle={'UserReviewSection newSection'}>
+          <UserReviews { ... { propsScope: userReviews }} />
+        </SectionWrapper>
       </main>
-      <footer><Footer /></footer>
+      <footer>
+        <SectionWrapper classStyle={'FooterSection newSection bg_greyDark'}>
+          <Footer { ... { propsScope: footer }} />
+        </SectionWrapper>
+      </footer>
     </div>
   )
 }
