@@ -1,12 +1,12 @@
 
 
-export const updateTransition = (classElem: String, stylePrev: String, styleNext: String) => {
-  const elem = document.querySelector(`.${classElem}.${stylePrev}`)
+export const updateTransition = (selector: String, classAdd: String) => {
+  const elem = document.querySelector(selector)
   if (elem) {
     // elem.classList.remove(stylePrev)
-    elem.classList.add(styleNext)
+    elem.classList.add(classAdd)
   }
-  // console.info('serviceFunc->updateTransition', { elem, classElem, stylePrev, styleNext })
+  // console.info('serviceFunc->updateTransition', { elem, selector, classAdd })
   return elem
 }
 
