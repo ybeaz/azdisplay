@@ -1,0 +1,52 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+
+// eslint-disable-next-line react/prefer-stateless-function
+class UserReviews extends React.PureComponent {
+
+  getUserReviews = arr => {
+
+    return arr.map((item, i) => {
+      const { imgClass, capture, details } = item
+      return (
+        <div key={i} className='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
+          <div className='container-fluid'>
+            <div className='row'>
+              <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
+                <div className={`UserReviews__img ${imgClass}`} />
+              </div>
+              <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6 UserReviews__capture'>
+                {capture}
+              </div>
+            </div>
+            <div className='row UserReviews__underscoreTop'>
+              <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 UserReviews__details'>
+                {details}
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    })
+  }
+
+  render() {
+
+    const { propsScope } = this.props
+    const { captureSection, listArr } = propsScope
+    const UserReviews = this.getUserReviews(listArr)
+
+    return (
+      <div className='container-fluid UserReviews'>
+        <div className='row'>
+          {UserReviews}
+        </div>
+      </div>
+    )
+  }
+}
+
+UserReviews.propTypes = {
+}
+
+export default UserReviews
