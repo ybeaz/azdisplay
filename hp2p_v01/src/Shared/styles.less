@@ -9,9 +9,12 @@
   @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
 
 /* Import Fontawsome css */
-  @import url('https://use.fontawesome.com/releases/v5.4.1/css/all.css');
-  
-  @import (css) url('https://fonts.googleapis.com/css?family=BlinkMacSystemFont|San+Francisco|HelveticaNeue-Light|Helvetica+Neue+Light|Helvetica+Neue|Segoe+UI|Fira+Sans|Roboto|Oxygen|Ubuntu|Droid+Sans|Arial|sans-serif');
+  //@import url('https://use.fontawesome.com/releases/v5.4.1/css/all.css');
+  //@import '../Assets/fontawesome-free-5.7.2-web/less/fontawesome';
+  //@import '../Assets/fontawesome-free-5.7.2-web/less/solid';
+  //@import '../Assets/fontawesome-free-5.7.2-web/less/brands';
+
+  //@import (css) url('https://fonts.googleapis.com/css?family=BlinkMacSystemFont|San+Francisco|HelveticaNeue-Light|Helvetica+Neue+Light|Helvetica+Neue|Segoe+UI|Fira+Sans|Roboto|Oxygen|Ubuntu|Droid+Sans|Arial|sans-serif');
   
 @color0: #fff;
 @color1: #333;
@@ -38,6 +41,7 @@
 @fontSize_c: 3.5rem;
 @fontSize_d: 1.2rem;
 @fontSize_e: 0.5rem;
+@fontSize_f: 0.75rem;
 
 @font-family: -apple-system,BlinkMacSystemFont,San Francisco,HelveticaNeue-Light,Helvetica Neue Light,Helvetica Neue,Segoe UI,Fira Sans,Roboto,Oxygen,Ubuntu,Droid Sans,Arial,sans-serif;
 
@@ -272,6 +276,50 @@
   }
 }
 
+.ImgList {
+  .ImgList__manWorks {
+    height: -webkit-fill-available;
+  }
+  .ImgList__capture {
+    font-size: @fontSize_a;
+    margin-top: -1.5rem;
+  }
+  .ImgList__details {
+    &:extend(.p_y_0p4_rem);
+    font-size: @fontSize_b;
+    color: @color8;
+    line-height: 1.3rem;
+  }
+  h2 {
+    padding-left: 2.5rem;
+    padding-bottom: 1rem;
+  }
+  ul {
+    list-style: none;
+    li::before {
+      content: "\2022";
+      color: @color5;
+      font-weight: bold;
+      display: inline-block; 
+      width: 1rem;
+      margin-left: -2rem;
+      transform: scale(1.5);
+    }
+  }
+  .ImgList__manWorks_wrapper {
+    &:extend(.p_t_4_rem);
+    height: min-content;
+    max-height: min-content;
+  }
+  .bgImgSizeManWorks {
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+  }
+}
+
+
 .ItHelps {
   .itHelps__manWorks {
     height: -webkit-fill-available;
@@ -299,9 +347,35 @@
       display: inline-block; 
       width: 1rem;
       margin-left: -2rem;
+      transform: scale(1.5);
     }
   }
   .itHelps__manWorks_wrapper {
     &:extend(.p_t_4_rem);
+  }
+  .bgImgSizeManWorks {
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+  }
+}
+
+.WorkFlow {
+  .WorkFlow__img {
+    width: 6rem;
+    height: 6rem;
+    padding-top: 1rem;
+  }
+  .WorkFlow__capture {
+    font-size: @fontSize_f;
+    color: @color2;
+    padding-top: 1rem;
+  }
+  .WorkFlow__details {
+    font-size: @fontSize_b;
+    color: @color8;
+    line-height: 1.3rem;
+    padding-top: 1rem;
   }
 }

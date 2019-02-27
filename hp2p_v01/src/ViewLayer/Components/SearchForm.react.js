@@ -8,8 +8,8 @@ class SearchForm extends React.PureComponent {
 
   componentDidMount() {
     setTimeout(() => {
-      serviceFunc.updateTransition('searchRow', 'transitionPrevSearch', 'transitionNextSearch')
-      serviceFunc.updateTransition('categoryRow', 'transitionPrevSearch', 'transitionNextSearch')  
+      serviceFunc.updateTransition('.searchRow.transitionPrevSearch', 'transitionNextSearch')
+      serviceFunc.updateTransition('.categoryRow.transitionPrevSearch', 'transitionNextSearch')  
     }, 0)
   }
 

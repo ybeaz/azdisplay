@@ -8,21 +8,19 @@ class Descriptors extends React.PureComponent {
 
   componentDidMount() {
     setTimeout(() =>
-      serviceFunc.updateTransition('descWrapper', 'transitionPrevDesc', 'transitionNextDesc'),
+      serviceFunc.updateTransition('.descWrapper.transitionPrevDesc', 'transitionNextDesc'),
     0)
   }
 
   render() {
+    const { propsScope } = this.props
+    const { h1, h2 } = propsScope
     // console.info('Descriptors->render() [10]',{});
     return (
       <div className='Descriptors'>
         <div className='descWrapper transitionPrevDesc'>
-          <h1 className='descriptorRow1'>
-            Воспользуйтесь знаниями специалистов
-          </h1>
-          <h2 className='descriptorRow2'>
-            Совместно найдите решение вашего вопроса
-          </h2>
+          <h1 className='descriptorRow1'>{h1}</h1>
+          <h2 className='descriptorRow2'>{h2}</h2>
         </div>
       </div>
     )
