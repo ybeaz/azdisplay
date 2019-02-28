@@ -14,7 +14,7 @@ var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlug
 
 module.exports = {
   entry: {
-    hp2p01:   ['./src/index.tsx'], //['babel-polyfill', './index.js', './index.tsx']
+    hp2p01: ['./src/index.js'], //['babel-polyfill', './index.js', './index.tsx']
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
