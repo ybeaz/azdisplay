@@ -9,26 +9,22 @@ class ImgListTable extends React.PureComponent {
     setTimeout(() => {
       const { propsScope } = this.props
       const { sid } = propsScope
-      
-      const element01 = document.querySelectorAll(`.${sid} .ImgList__ul_wrapper`)[0]
-      const { height: heightUl } = serviceFunc.getElementSize(element01)
-      
-      const element02 = document.querySelectorAll(`.${sid} .ImgList__imgWrapper`)[0]
-      element02.style.height = `${height}px`
-      element02.style.maxHeight = `${height}px`
-      
-      const element03 = document.querySelectorAll(`.${sid} .ImgList__img`)[0]
-      const { height: heightImg } = serviceFunc.getElementSize(element03)
-      
-      let height = heightImg
-      if (heightUl > heightImg) {
-        height = heightUl
-      }
-      element03.style.height = `${height}px`
-      element03.style.maxHeight = `${height}px`
 
-      // console.info('ImgListTable->componentDidMount() [5]', { height, element01, element02, element03 })
-      serviceFunc.updateTransition(`.${sid} .ImgList__img`, 'bgImgSizeManWorks')
+      const element01 = document.querySelectorAll(`.${sid} .ImgList__ul_wrapper`)[0]
+      const { width: widthUl, height: heightUl } = serviceFunc.getElementSize(element01)
+
+      const element03 = document.querySelectorAll(`.${sid} .ImgList__img`)[0]
+      const { width: widthImg, height: heightImg } = serviceFunc.getElementSize(element03)
+
+      if (heightUl > widthUl) {
+        element03.style.height = `${heightUl}px`
+      }
+      else {
+        element03.style.width = `${widthUl}px` //'-webkit-fill-available'
+        element03.style.height = `${widthUl * 0.65}px`
+      }
+
+      // console.info('ImgListTable->componentDidMount() [5]', { widthImg, heightImg, widthUl, heightUl, element01, element02, element03 })
     }, 500)
   }
 

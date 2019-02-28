@@ -15,15 +15,21 @@
 }
 
 .imgManWorks {
+  @width: image-width('../Assets/illustration01.jpg');
+  @height: image-height('../Assets/illustration01.jpg');
   background-image: data-uri('../Assets/illustration01.jpg');
   position: relative;
+  background-size: @width @height;
   background-repeat: no-repeat;
   background-position-x: left;
 }
 
 .imgWomanPhone {
+  @width: image-width('../Assets/illustration03.png');
+  @height: image-height('../Assets/illustration03.png');
   background-image: data-uri('../Assets/illustration03.png');
   position: relative;
+  background-size: @width @height;
   background-repeat: no-repeat;
   background-position-x: left;
 }
