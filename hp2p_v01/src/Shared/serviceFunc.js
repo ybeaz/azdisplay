@@ -6,7 +6,7 @@ export const updateTransition = (selector: String, classAdd: String) => {
     // elem.classList.remove(stylePrev)
     elem.classList.add(classAdd)
   }
-  // console.info('serviceFunc->updateTransition', { elem, selector, classAdd })
+  //console.info('serviceFunc->updateTransition', { elem, selector, classAdd })
   return elem
 }
 

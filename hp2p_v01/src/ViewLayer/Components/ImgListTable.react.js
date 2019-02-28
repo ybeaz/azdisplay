@@ -9,20 +9,25 @@ class ImgListTable extends React.PureComponent {
     setTimeout(() => {
       const { propsScope } = this.props
       const { sid } = propsScope
-      let element = document.querySelectorAll(`.${sid} .ImgList__ul_wrapper`)[0]
-      const { heightUl } = serviceFunc.getElementSize(element)
-      element = document.querySelectorAll(`.${sid} .ImgList__imgWrapper`)[0]
-      element.style.height = `${height}px`
-      element.style.maxHeight = `${height}px`
-      element = document.querySelectorAll(`.${sid} .ImgList__img`)[0]
-      const { heightImg } = serviceFunc.getElementSize(element)
+      
+      const element01 = document.querySelectorAll(`.${sid} .ImgList__ul_wrapper`)[0]
+      const { height: heightUl } = serviceFunc.getElementSize(element01)
+      
+      const element02 = document.querySelectorAll(`.${sid} .ImgList__imgWrapper`)[0]
+      element02.style.height = `${height}px`
+      element02.style.maxHeight = `${height}px`
+      
+      const element03 = document.querySelectorAll(`.${sid} .ImgList__img`)[0]
+      const { height: heightImg } = serviceFunc.getElementSize(element03)
+      
       let height = heightImg
       if (heightUl > heightImg) {
         height = heightUl
       }
-      element.style.height = `${height}px`
-      element.style.maxHeight = `${height}px`
-      // console.info('ImgListTable->componentDidMount() [5]', { height, element })
+      element03.style.height = `${height}px`
+      element03.style.maxHeight = `${height}px`
+
+      // console.info('ImgListTable->componentDidMount() [5]', { height, element01, element02, element03 })
       serviceFunc.updateTransition(`.${sid} .ImgList__img`, 'bgImgSizeManWorks')
     }, 500)
   }
