@@ -4,10 +4,13 @@ import PropTypes from 'prop-types'
 // eslint-disable-next-line react/prefer-stateless-function
 class CatalogTags extends React.PureComponent {
 
-  getTags = arr => {
+  getTags = (arr, id) => {
+
     return arr.map((item, i) => {
       return <li key={i} className={`tagListLi ${item.iconClass}`}>
-        <span className='name'>{item.nameRus}</span>
+        <a href={`#${id}`}>
+          <span className='name'>{item.nameRus}</span>
+        </a>
         <span className='num'>{item.num}</span>
       </li>
     })
@@ -17,7 +20,7 @@ class CatalogTags extends React.PureComponent {
     const { propsScope } = this.props
     const { sid, captureSection, catatogtagArr } = propsScope
 
-    const tags = this.getTags(catatogtagArr)
+    const tags = this.getTags(catatogtagArr, sid)
 
     return (
       <div id={sid} className={sid}>
