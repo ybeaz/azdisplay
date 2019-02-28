@@ -15,10 +15,12 @@ import Footer from './ViewLayer/Components/Footer.react'
 
 const tree = {
   descriptors : {
+    sid: 'Descriptors',
     h1: 'Совместное решение вашего вопроса',
     h2: 'Получите необходимые знания от специалиста через чат, аудио или видеосвязь', 
   },
-  catatogTag: {
+  catatogTags: {
+    sid: 'CatalogTags',
     captureSection: 'Разделы',
     catatogtagArr: [
       { nameRus: 'Ремонт и строительство', iconClass: 'iconFire', num: 319 },
@@ -54,6 +56,7 @@ const tree = {
     ]
   },
   workFlow: {
+    sid: 'WorkFlow',
     captureSection: '',
     workFlowArr: [
       {
@@ -83,6 +86,7 @@ const tree = {
     ]
   },
   itHelps: {
+    sid: 'ItHelps',
     captureSection: '<span>User</span><span class="c_green">To</span>&nbsp;<span>помогает</span>',
     imgClass: 'imgManWorks',
     listArr: [
@@ -93,6 +97,7 @@ const tree = {
     sequence: {a: 'img', b: 'list'},
   },
   keyFeatures: {
+    sid: 'KeyFeatures',
     captureSection: 'Ключевые особенности',
     imgClass: 'imgWomanPhone',
     listArr: [
@@ -103,6 +108,7 @@ const tree = {
     sequence: {a: 'list', b: 'img'},
   },
   userReviews: {
+    sid: 'UserReviews',
     captureSection: 'Впечатления',
     listArr: [
       {
@@ -128,6 +134,7 @@ const tree = {
     ],
   },
   footer: {
+    sid: 'Footer',
     captureSection: '<span class="c_white">User</span><span class="c_green">To</span>',
     listArr: [
       {
@@ -162,7 +169,7 @@ function App(tree) {
   const title: String = 'Title for tsx'
 
   // console.info('index->app [10]', { tree });
-  const { descriptors, catatogTag, itHelps, workFlow, keyFeatures, userReviews, footer } = tree
+  const { descriptors, catatogTags, itHelps, workFlow, keyFeatures, userReviews, footer } = tree
 
 
 
@@ -177,7 +184,7 @@ function App(tree) {
           <SearchForm />
         </SectionWrapper>
         <SectionWrapper classStyle={'CatalogTagsSection newSection bg_greyLight'}>
-          <CatalogTags { ... { propsScope: catatogTag }} />
+          <CatalogTags { ... { propsScope: catatogTags }} />
         </SectionWrapper>
         <SectionWrapper classStyle={'ImgListTableSection newSection'}>
           <ImgListTable { ... { propsScope: itHelps }} />

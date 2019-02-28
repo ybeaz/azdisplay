@@ -9,7 +9,7 @@ class Header extends React.PureComponent {
   render() {
     // console.info('Header->render() [10]',{});
     return (
-      <div className='Header'>
+      <div id='Header' className='Header'>
         <nav id='navbar' className='navbar navbar-expand-sm initial'>
           <a className='navbar-brand navbarBrend' href='#navbar'>
             <div className='logoNav iconLogo' />

@@ -35,11 +35,11 @@ class WorkFlow extends React.PureComponent {
   render() {
 
     const { propsScope } = this.props
-    const { captureSection, workFlowArr } = propsScope
+    const { sid, captureSection, workFlowArr } = propsScope
     const workFlow = this.getWorkFlow(workFlowArr)
 
     return (
-      <div className='container-fluid WorkFlow'>
+      <div id={sid} className={`container-fluid ${WorkFlow}`}>
         <div className='row'>
           {workFlow}
         </div>

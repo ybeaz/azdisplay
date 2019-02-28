@@ -33,11 +33,11 @@ class UserReviews extends React.PureComponent {
   render() {
 
     const { propsScope } = this.props
-    const { captureSection, listArr } = propsScope
+    const { sid, captureSection, listArr } = propsScope
     const UserReviews = this.getUserReviews(listArr)
 
     return (
-      <div className='container-fluid UserReviews'>
+      <div id={sid} className={`container-fluid UserReviews ${sid}`}>
         <div className='row'>
           {UserReviews}
         </div>

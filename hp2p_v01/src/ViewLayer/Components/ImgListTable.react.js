@@ -7,15 +7,23 @@ class ImgListTable extends React.PureComponent {
 
   componentDidMount() {
     setTimeout(() => {
-      let element = document.querySelectorAll('.ImgList__ul_wrapper')[0]
-      const { height } = serviceFunc.getElementSize(element)
-      element = document.querySelectorAll('.ImgList__manWorks_wrapper')[0]
+      const { propsScope } = this.props
+      const { sid } = propsScope
+      let element = document.querySelectorAll(`.${sid} .ImgList__ul_wrapper`)[0]
+      const { heightUl } = serviceFunc.getElementSize(element)
+      element = document.querySelectorAll(`.${sid} .ImgList__imgWrapper`)[0]
       element.style.height = `${height}px`
       element.style.maxHeight = `${height}px`
-      element = document.querySelectorAll('.ImgList__manWorks')[0]
+      element = document.querySelectorAll(`.${sid} .ImgList__img`)[0]
+      const { heightImg } = serviceFunc.getElementSize(element)
+      let height = heightImg
+      if (heightUl > heightImg) {
+        height = heightUl
+      }
       element.style.height = `${height}px`
       element.style.maxHeight = `${height}px`
-      serviceFunc.updateTransition('.ImgList__manWorks', 'bgImgSizeManWorks')
+      // console.info('ImgListTable->componentDidMount() [5]', { height, element })
+      serviceFunc.updateTransition(`.${sid} .ImgList__img`, 'bgImgSizeManWorks')
     }, 500)
   }
 
@@ -47,8 +55,8 @@ class ImgListTable extends React.PureComponent {
   getImgBlock = imgClass => {
     return (
       <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
-        <div className='ImgList__manWorks_wrapper'>
-          <div className={`ImgList__manWorks ${imgClass}`} />
+        <div className='ImgList__imgWrapper'>
+          <div className={`${imgClass} ImgList__img`} />
         </div>
       </div>
     )
@@ -57,12 +65,12 @@ class ImgListTable extends React.PureComponent {
   render() {
     const { propsScope } = this.props
     // console.info('ImgListTable->render() [10]', { propsScope, props: this.props })
-    const { listArr, captureSection, imgClass, sequence } = propsScope
+    const { sid, listArr, captureSection, imgClass, sequence } = propsScope
     const listBlock = this.getListBlock(listArr, captureSection)
     const imgBlock = this.getImgBlock(imgClass)
 
     return (
-      <div className='container-fluid form-group ImgList'>
+      <div id={sid} className={`container-fluid form-group ImgList ${sid}`}>
         <div className='row'>
           {sequence.a === 'img' ? imgBlock : listBlock}
           {sequence.b === 'list' ? listBlock : imgBlock}

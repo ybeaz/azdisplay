@@ -284,9 +284,6 @@
 }
 
 .ImgList {
-  .ImgList__manWorks {
-    height: -webkit-fill-available;
-  }
   .ImgList__capture {
     font-size: @fontSize_a;
     margin-top: -1.5rem;
@@ -313,10 +310,14 @@
       transform: scale(1.5);
     }
   }
-  .ImgList__manWorks_wrapper {
+  .ImgList__imgWrapper {
     &:extend(.p_t_4_rem);
     height: min-content;
     max-height: min-content;
+  }
+  .ImgList__img {
+    .bgImgSizeManWorks;
+    height: -webkit-fill-available;
   }
   .bgImgSizeManWorks {
     -webkit-background-size: contain;

@@ -28,13 +28,13 @@ class Footer extends React.PureComponent {
 
   render() {
     const { propsScope } = this.props
-    const { captureSection, listArr } = propsScope
+    const { sid, captureSection, listArr } = propsScope
     // console.info('Footer->render() [10]', { captureSection, listArr })
 
     const listItems = this.getListItems(listArr)
 
     return (
-      <div id='Footer' className='container-fluid form-group Footer'>
+      <div id={sid} className={`container-fluid form-group ${sid}`}>
         <div className='row'>
           <div className='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
             <h2 className='titleSection' dangerouslySetInnerHTML={{ __html: captureSection }} />
