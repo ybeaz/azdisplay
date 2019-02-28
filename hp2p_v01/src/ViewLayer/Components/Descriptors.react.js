@@ -14,10 +14,10 @@ class Descriptors extends React.PureComponent {
 
   render() {
     const { propsScope } = this.props
-    const { h1, h2 } = propsScope
+    const { sid, h1, h2 } = propsScope
     // console.info('Descriptors->render() [10]',{});
     return (
-      <div className='Descriptors'>
+      <div id={sid} className={sid}>
         <div className='descWrapper transitionPrevDesc'>
           <h1 className='descriptorRow1'>{h1}</h1>
           <h2 className='descriptorRow2'>{h2}</h2>

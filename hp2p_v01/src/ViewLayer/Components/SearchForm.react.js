@@ -16,7 +16,7 @@ class SearchForm extends React.PureComponent {
   render() {
     // console.info('SearchForm->render() [10]',{});
     return (
-      <div className='container-fluid form-group SearchForm'>
+      <div id='SearchForm' className='container-fluid form-group SearchForm'>
         <div className='row searchRow transitionPrevSearch'>
           <div className='col-lg-10 col-md-10 col-sm-10 col-xs-10'>
             <input type='text' className='form-control' placeholder='Сфера в которой нужен профессионал...' />
