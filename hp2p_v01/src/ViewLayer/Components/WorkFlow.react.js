@@ -39,7 +39,7 @@ class WorkFlow extends React.PureComponent {
     const workFlow = this.getWorkFlow(workFlowArr)
 
     return (
-      <div id={sid} className={`container-fluid ${WorkFlow}`}>
+      <div id={sid} className={`container-fluid ${sid}`}>
         <div className='row'>
           {workFlow}
         </div>
