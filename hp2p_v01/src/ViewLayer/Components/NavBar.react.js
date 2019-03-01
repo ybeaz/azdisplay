@@ -3,14 +3,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Header extends React.PureComponent {
+class NavBar extends React.PureComponent {
 
 
   render() {
-    // console.info('Header->render() [10]',{});
+    const { propsScope } = this.props
+    const { sid, login } = propsScope
+    // console.info('NavBar->render() [10]',{});
     return (
-      <div id='Header' className='Header'>
-        <nav id='navbar' className='navbar navbar-expand-sm initial'>
+      <div id={sid} className={sid}>
+        <nav id='navbarNav' className='navbar navbar-expand-sm'>
           <a className='navbar-brand navbarBrend' href='#navbar'>
             <div className='logoNav iconLogo' />
           </a>
@@ -31,7 +33,7 @@ class Header extends React.PureComponent {
 
         <ul className='nav-actions'>
           <li className='nav-item has-auth-popup'>
-            <a className='nav-link' href='#'>Регистрация и вход</a>
+            <a className='nav-link' href='#'>{login}</a>
           </li>
           <li className='nav-item has-lang-popup'>
             <a className='nav-link' href='#'>Язык</a>
@@ -43,7 +45,7 @@ class Header extends React.PureComponent {
   }
 }
 
-Header.propTypes = {
+NavBar.propTypes = {
 }
 
-export default Header
+export default NavBar
