@@ -9,7 +9,7 @@
   @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
 
 /* Import Fontawsome css */
-  //@import url('https://use.fontawesome.com/releases/v5.4.1/css/all.css');
+  @import url('https://use.fontawesome.com/releases/v5.4.1/css/all.css');
   //@import '../Assets/fontawesome-free-5.7.2-web/less/fontawesome';
   //@import '../Assets/fontawesome-free-5.7.2-web/less/solid';
   //@import '../Assets/fontawesome-free-5.7.2-web/less/brands';
@@ -79,7 +79,7 @@
   }
 }
 
-.Header {
+.NavBar {
   background-color: @color0;
   ul {
     padding-bottom: 20px;
@@ -149,16 +149,22 @@
     transform: none;
   }
   
-  .descriptorRow1 {
-    &:extend(.t_tr_uc);
-    letter-spacing: -2px;
-    font-size: @fontSize_c;
-    font-weight: 700;
+  .descWrapper1 {
+    &:extend(.p_x_0);
+    .descriptorRow1 {
+      &:extend(.t_tr_uc);
+      letter-spacing: -2px;
+      font-size: @fontSize_c;
+      font-weight: 700;
+    }
   }
 
-  .descriptorRow2 {
-    &:extend(.t_tr_uc);
-    font-size: @fontSize_b;
+  .descWrapper2 {
+    &:extend(.p_x_0);
+    .descriptorRow2 {
+      &:extend(.t_tr_uc);
+      font-size: @fontSize_b;
+    }
   }
 
 }
@@ -242,12 +248,16 @@
   }
 
   .categoryRow {
-    .categoryButton {
-      &:extend(.w_8_rem, .m_r_0p5_rem, .b_r_3_rem);
-      .buttonNoncolor;
-      .hoverFocusActive;
-      &:focus {
-        .buttonColor;
+    div {
+      &:extend(.p_x_0);
+      .categoryButton {
+        &:extend(.w_8_rem, .m_r_0p5_rem, .b_r_3_rem);
+        .buttonNoncolor;
+        .hoverFocusActive;
+        font-size: @fontSize_a;
+        &:focus {
+          .buttonColor;
+        }
       }
     }
   }
@@ -401,6 +411,20 @@
     font-size: @fontSize_f;
     color: @color2;
     padding-top: 1rem;
+  }
+}
+
+.RegistrationButton {
+  button {
+    &:extend(.p_x_2_rem, .b_r_3_rem);
+    background: @color6;
+    color: @color0;
+    width: max-content;
+    &:focus, &:hover {
+      background: @color6;
+      color: @color0;
+    }
+
   }
 }
 

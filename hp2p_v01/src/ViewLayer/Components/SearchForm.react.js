@@ -55,12 +55,19 @@ class SearchForm extends React.PureComponent {
             <input id={searchInputId} type='text' className='form-control' placeholder={searchPlaceholder} />
           </div>
           <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2'>
-            <button id={buttonInputId} type='submit' className='btn searchButton'>{searchButton}</button>
+            <button id={buttonInputId} type='submit' className='btn searchButton'>
+              {searchButton}
+            </button>
           </div>
         </div>
         <div className='row categoryRow transitionPrevSearch'>
           <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
             {fieldButtons}
+            {/*
+            <button type='button' className='btn categoryButton'>
+              <i class="fas fa-video"></i>
+            </button>
+            */}
           </div>
         </div>
       </div>

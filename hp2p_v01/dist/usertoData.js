@@ -3,6 +3,10 @@
 /* eslint no-var: off */
 var USERTO = {
   treeDefault: {
+    navBar: {
+      sid: 'NavBar',
+      login: 'Регистрация и вход',
+    },
     descriptors: {
       sid: 'Descriptors',
       h1: 'Вместе решим ваш вопрос',
@@ -114,6 +118,10 @@ var USERTO = {
         { imgClass: 'icon06', capture: 'Безопасная оплата' },
         { imgClass: 'icon07', capture: 'Достоверные пользователи' },
       ],
+    },
+    registrationButton: {
+      sid: 'RegistrationButton',
+      login: 'Пройдите быструю регистрацию',
     },
     userReviews: {
       sid: 'UserReviews',
