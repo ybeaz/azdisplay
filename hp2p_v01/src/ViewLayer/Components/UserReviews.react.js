@@ -13,7 +13,9 @@ class UserReviews extends React.PureComponent {
           <div className='container-fluid'>
             <div className='row'>
               <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
-                <div className={`UserReviews__img ${imgClass}`} />
+                <div className='UserReviews__imgWrapper' >
+                  <div className={`UserReviews__img ${imgClass}`} />
+                </div>
               </div>
               <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6 UserReviews__capture'>
                 {capture}

@@ -2,8 +2,19 @@ var USERTO = {
   treeDefault: {
     descriptors : {
       sid: 'Descriptors',
-      h1: 'Совместное решение вашего вопроса',
-      h2: 'Получите необходимые знания от специалиста через чат, аудио или видеосвязь', 
+      h1: 'Вместе решим ваш вопрос',
+      h2: 'Получите необходимые знания уже сейчас через чат, аудио или видеосвязь', 
+    },
+    searchForm: {
+      sid: 'SearchForm',
+      searchPlaceholder: 'Сфера в которой нужен специалист...',
+      searchButton: 'Найти',
+      fieldButtonArr: [
+        {name: 'Все', autoFocus: true},
+        {name: 'Конультация', autoFocus: false},
+        {name: 'Обучение', autoFocus: false},
+        {name: 'Фриланс', autoFocus: false},
+      ]
     },
     catatogTags: {
       sid: 'CatalogTags',
@@ -47,25 +58,25 @@ var USERTO = {
       workFlowArr: [
         {
           step: 1,
-          imgClass: 'step01',
+          imgClass: 'icon01',
           capture: 'Выбирайте специалиста',
           details: 'В поле поиска сделайте запрос по необходимой теме. Сервис преложит варианты',
         },
         {
           step: 2,
-          imgClass: 'step02',
+          imgClass: 'icon02',
           capture: 'Удобное время',
           details: 'Обратитесь к специалисту прямо сейчас или по графику, который подходит вам',
         },
         {
           step: 3,
-          imgClass: 'step03',
+          imgClass: 'icon03',
           capture: 'Способ связи',
           details: 'Выбирайте способ и формат общения. Чат аудио или видеосвязь',
         },
         {
           step: 4,
-          imgClass: 'step04',
+          imgClass: 'icon04',
           capture: 'Решите ваш вопрос',
           details: 'Специалист поможет найти верный подход к решению вопроса',
         },
@@ -84,12 +95,12 @@ var USERTO = {
     },
     keyFeatures: {
       sid: 'KeyFeatures',
-      captureSection: 'Ключевые особенности',
+      captureSection: '<span>На</span>&nbsp;<span>User</span><span class="c_green">To</span>',
       imgClass: 'imgWomanPhone',
       listArr: [
-        { capture: 'Первые минуты бесплатно', details: ''},
-        { capture: 'Оплаты за время общения', details: ''},
-        { capture: 'Смотрите на рейтинг', details: ''},
+        { capture: 'Общайтесь бесплатно', details: 'Чтобы вы смогли уточнить детали по решению вашего вопроса, первые минуты разговора со специалистом бесплатно'},
+        { capture: 'Удобный канал связи', details: 'Решить вопрос по видеосвяи или общаться только голосом, уточнить детали в чате? Выбирайте как удобно вам.'},
+        { capture: 'Как определяется стоимость', details: 'Специалист это делает самостоятельно. Среднее время решения вопроса - 14 минут. Если в профиле указано 5 рубн минута, и 2 минуты бесплатно, стоимость обращения составит всего 60 руб. Узнайте подробности, введите запрос в поиск. Многие готовы помочь бесплатно.'},
       ],
       sequence: {a: 'list', b: 'img'},
     },

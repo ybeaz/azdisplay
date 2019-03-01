@@ -159,7 +159,6 @@
   .descriptorRow2 {
     &:extend(.t_tr_uc);
     font-size: @fontSize_b;
-    color: @color2;
   }
 
 }
@@ -374,8 +373,8 @@
 
 .WorkFlow {
   .WorkFlow__img {
-    width: 6rem;
-    height: 6rem;
+    width: 5rem;
+    height: 5rem;
     padding-top: 1rem;
   }
   .WorkFlow__capture {
@@ -392,16 +391,18 @@
 }
 
 .UserReviews {
-  .UserReviews__img {
-    width: 6rem;
-    height: 6rem;
-    top: -1rem;
-    left: -1rem;
+  .UserReviews__imgWrapper {
+    height: 4rem;
+    .UserReviews__img {
+      top: -1rem;
+      left: -0.5rem;
+    }
   }
   .UserReviews__capture {
     font-size: @fontSize_a;
     color: @color1;
-    padding-top: 1rem;   
+    padding-left: 0;
+    top: -0.5rem; 
   }
   .UserReviews__details {
     font-size: @fontSize_b;
