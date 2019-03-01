@@ -9,7 +9,7 @@
   @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
 
 /* Import Fontawsome css */
-  //@import url('https://use.fontawesome.com/releases/v5.4.1/css/all.css');
+  @import url('https://use.fontawesome.com/releases/v5.4.1/css/all.css');
   //@import '../Assets/fontawesome-free-5.7.2-web/less/fontawesome';
   //@import '../Assets/fontawesome-free-5.7.2-web/less/solid';
   //@import '../Assets/fontawesome-free-5.7.2-web/less/brands';
@@ -59,7 +59,7 @@
     &:extend(.p_t_2_rem, .p_b_2_rem);
   }
   .descSection {
-    padding: 6rem 1.5rem 2rem;
+    padding: 4rem 1.5rem 2rem;
   }
   .bg_greyLight {
     background-color: @color7;
@@ -79,7 +79,7 @@
   }
 }
 
-.Header {
+.NavBar {
   background-color: @color0;
   ul {
     padding-bottom: 20px;
@@ -149,17 +149,22 @@
     transform: none;
   }
   
-  .descriptorRow1 {
-    &:extend(.t_tr_uc);
-    letter-spacing: -2px;
-    font-size: @fontSize_c;
-    font-weight: 700;
+  .descWrapper1 {
+    &:extend(.p_x_0);
+    .descriptorRow1 {
+      &:extend(.t_tr_uc);
+      letter-spacing: -2px;
+      font-size: @fontSize_c;
+      font-weight: 700;
+    }
   }
 
-  .descriptorRow2 {
-    &:extend(.t_tr_uc);
-    font-size: @fontSize_b;
-    color: @color2;
+  .descWrapper2 {
+    &:extend(.p_x_0);
+    .descriptorRow2 {
+      &:extend(.t_tr_uc);
+      font-size: @fontSize_b;
+    }
   }
 
 }
@@ -243,12 +248,16 @@
   }
 
   .categoryRow {
-    .categoryButton {
-      &:extend(.w_8_rem, .m_r_0p5_rem, .b_r_3_rem);
-      .buttonNoncolor;
-      .hoverFocusActive;
-      &:focus {
-        .buttonColor;
+    div {
+      &:extend(.p_x_0);
+      .categoryButton {
+        &:extend(.w_8_rem, .m_r_0p5_rem, .b_r_3_rem);
+        .buttonNoncolor;
+        .hoverFocusActive;
+        font-size: @fontSize_a;
+        &:focus {
+          .buttonColor;
+        }
       }
     }
   }
@@ -374,8 +383,8 @@
 
 .WorkFlow {
   .WorkFlow__img {
-    width: 6rem;
-    height: 6rem;
+    width: 5rem;
+    height: 5rem;
     padding-top: 1rem;
   }
   .WorkFlow__capture {
@@ -391,17 +400,47 @@
   }
 }
 
+.ShortAdvantages {
+  .ShortAdvantages__img {
+    width: 5rem;
+    height: 5rem;
+    padding-top: 1rem;
+    margin: auto;
+  }
+  .ShortAdvantages__capture {
+    font-size: @fontSize_f;
+    color: @color2;
+    padding-top: 1rem;
+  }
+}
+
+.RegistrationButton {
+  button {
+    &:extend(.p_x_2_rem, .b_r_3_rem);
+    background: @color6;
+    color: @color0;
+    width: max-content;
+    &:focus, &:hover {
+      background: @color6;
+      color: @color0;
+    }
+
+  }
+}
+
 .UserReviews {
-  .UserReviews__img {
-    width: 6rem;
-    height: 6rem;
-    top: -1rem;
-    left: -1rem;
+  .UserReviews__imgWrapper {
+    height: 4rem;
+    .UserReviews__img {
+      top: -1rem;
+      left: -0.5rem;
+    }
   }
   .UserReviews__capture {
     font-size: @fontSize_a;
     color: @color1;
-    padding-top: 1rem;   
+    padding-left: 0;
+    top: -0.5rem; 
   }
   .UserReviews__details {
     font-size: @fontSize_b;

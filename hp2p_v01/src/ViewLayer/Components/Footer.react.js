@@ -12,8 +12,8 @@ class Footer extends React.PureComponent {
     const { capture, level01 } = item
 
     const listItems = level01.map((item, i) => {
-      const { name, href } = item
-      return <li className=''><a className='' href={href}>{name}</a></li>
+      const { capture, href } = item
+      return <li key={i} className=''><a className='' href={href}>{capture}</a></li>
     })
 
     return (

@@ -7,11 +7,12 @@ class CatalogTags extends React.PureComponent {
   getTags = (arr, id) => {
 
     return arr.map((item, i) => {
-      return <li key={i} className={`tagListLi ${item.iconClass}`}>
+      const { iconClass, capture, num } = item
+      return <li key={i} className={`tagListLi ${iconClass}`}>
         <a href={`#${id}`}>
-          <span className='name'>{item.nameRus}</span>
+          <span className='name'>{capture}</span>
         </a>
-        <span className='num'>{item.num}</span>
+        <span className='num'>{num}</span>
       </li>
     })
   }
