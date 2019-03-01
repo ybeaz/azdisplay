@@ -1,6 +1,9 @@
+
+// eslint no-var: off
+/* eslint no-var: off */
 var USERTO = {
   treeDefault: {
-    descriptors : {
+    descriptors: {
       sid: 'Descriptors',
       h1: 'Вместе решим ваш вопрос',
       h2: 'Получите необходимые знания уже сейчас через чат, аудио или видеосвязь', 
@@ -10,46 +13,46 @@ var USERTO = {
       searchPlaceholder: 'Сфера в которой нужен специалист...',
       searchButton: 'Найти',
       fieldButtonArr: [
-        {name: 'Все', autoFocus: true},
-        {name: 'Конультация', autoFocus: false},
-        {name: 'Обучение', autoFocus: false},
-        {name: 'Фриланс', autoFocus: false},
+        {capture: 'Все', autoFocus: true},
+        {capture: 'Конcультация', autoFocus: false},
+        {capture: 'Обучение', autoFocus: false},
+        {capture: 'Фриланс', autoFocus: false},
       ]
     },
     catatogTags: {
       sid: 'CatalogTags',
       captureSection: 'Разделы',
       catatogtagArr: [
-        { nameRus: 'Ремонт и строительство', iconClass: 'iconFire', num: 319 },
-        { nameRus: 'Ремонт и установка техники', iconClass: '', num:  160 },
-        { nameRus: 'Ремонт авто', iconClass: 'iconFire', num: 92 },
-        { nameRus: 'Репетиторы и обучение', iconClass: '', num: 460 },
-        { nameRus: 'Красота', iconClass: '', num: 711 },
-        { nameRus: 'Мистика', iconClass: 'iconFire', num: 263 },
-        { nameRus: 'Компьютеры и IT', iconClass: 'iconFire', num: 917 },
-        { nameRus: 'Работа и карьера', iconClass: '', num: 1307 },
-        { nameRus: 'Саморазвитие', iconClass: 'iconFire', num: 452 },
-        { nameRus: 'Юридические вопросы', iconClass: '', num: 688 },
-        { nameRus: 'ЗОЖ', iconClass: '', num: 3166 },
-        { nameRus: 'Фото', iconClass: '', num: 447 },
-        { nameRus: 'Аудио', iconClass: 'iconFire', num: 417 },
-        { nameRus: 'Творчество и хобби', iconClass: '', num: 1344 },
-        { nameRus: 'Медицинские вопросы', iconClass: '', num: 927 },
-        { nameRus: 'Путешествия', iconClass: '', num: 401 },
-        { nameRus: 'Вопросы бизнеса', iconClass: '', num: 639 },
-        { nameRus: 'Животные', iconClass: '', num: 401 },
-        { nameRus: 'Религия', iconClass: '', num: 838 },
-        { nameRus: 'Искусство', iconClass: '', num: 2162 },
-        { nameRus: 'Недвижимость', iconClass: '', num: 4304 },
-        { nameRus: 'Покупка авто', iconClass: '', num: 579 },
-        { nameRus: 'Работа с текстом', iconClass: '', num: 431 },
-        { nameRus: 'Реклама', iconClass: '', num: 211 },
-        { nameRus: 'Работа в программах', iconClass: '', num: 2239 },
-        { nameRus: 'Психология', iconClass: '', num: 995 },
-        { nameRus: 'Видео', iconClass: '', num: 1819 },
-        { nameRus: 'Дети', iconClass: '', num: 1607 },
-        { nameRus: 'Спорт', iconClass: '', num: 3132 },
-        { nameRus: 'Вопросы по профессии', iconClass: 'iconFire', num: 185 },
+        { capture: 'Ремонт и строительство', iconClass: 'iconFire', num: 319 },
+        { capture: 'Ремонт и установка техники', iconClass: '', num:  160 },
+        { capture: 'Ремонт авто', iconClass: 'iconFire', num: 92 },
+        { capture: 'Репетиторы и обучение', iconClass: '', num: 460 },
+        { capture: 'Красота', iconClass: '', num: 711 },
+        { capture: 'Мистика', iconClass: 'iconFire', num: 263 },
+        { capture: 'Компьютеры и IT', iconClass: 'iconFire', num: 917 },
+        { capture: 'Работа и карьера', iconClass: '', num: 1307 },
+        { capture: 'Саморазвитие', iconClass: 'iconFire', num: 452 },
+        { capture: 'Юридические вопросы', iconClass: '', num: 688 },
+        { capture: 'ЗОЖ', iconClass: '', num: 3166 },
+        { capture: 'Фото', iconClass: '', num: 447 },
+        { capture: 'Аудио', iconClass: 'iconFire', num: 417 },
+        { capture: 'Творчество и хобби', iconClass: '', num: 1344 },
+        { capture: 'Медицинские вопросы', iconClass: '', num: 927 },
+        { capture: 'Путешествия', iconClass: '', num: 401 },
+        { capture: 'Вопросы бизнеса', iconClass: '', num: 639 },
+        { capture: 'Животные', iconClass: '', num: 401 },
+        { capture: 'Религия', iconClass: '', num: 838 },
+        { capture: 'Искусство', iconClass: '', num: 2162 },
+        { capture: 'Недвижимость', iconClass: '', num: 4304 },
+        { capture: 'Покупка авто', iconClass: '', num: 579 },
+        { capture: 'Работа с текстом', iconClass: '', num: 431 },
+        { capture: 'Реклама', iconClass: '', num: 211 },
+        { capture: 'Работа в программах', iconClass: '', num: 2239 },
+        { capture: 'Психология', iconClass: '', num: 995 },
+        { capture: 'Видео', iconClass: '', num: 1819 },
+        { capture: 'Дети', iconClass: '', num: 1607 },
+        { capture: 'Спорт', iconClass: '', num: 3132 },
+        { capture: 'Вопросы по профессии', iconClass: 'iconFire', num: 185 },
       ]
     },
     workFlow: {
@@ -104,6 +107,14 @@ var USERTO = {
       ],
       sequence: {a: 'list', b: 'img'},
     },
+    shortAdvantages: {
+      sid: 'ShortAdvantages',
+      shortAdvantagesArr: [
+        { imgClass: 'icon05', capture: 'Проверенные пользователи' },
+        { imgClass: 'icon06', capture: 'Безопасная оплата' },
+        { imgClass: 'icon07', capture: 'Достоверные пользователи' },
+      ],
+    },
     userReviews: {
       sid: 'UserReviews',
       captureSection: 'Впечатления',
@@ -138,26 +149,26 @@ var USERTO = {
           imgClass: '',
           capture: 'About',
           level01: [
-            {name: 'Business model', href: '#Footer'},
-            {name: 'Out team', href: '#Footer'},
+            {capture: 'Business model', href: '#Footer'},
+            {capture: 'Out team', href: '#Footer'},
           ],
         },
         {
           imgClass: '',
           capture: 'Products',
           level01: [
-            {name: 'Search', href: '#Footer'},
+            {capture: 'Search', href: '#Footer'},
           ],
         },
         {
           imgClass: '',
           capture: 'Support',
           level01: [
-            {name: 'FAQ', href: '#Footer'},
-            {name: 'Contact us', href: '#Footer'},
+            {capture: 'FAQ', href: '#Footer'},
+            {capture: 'Contact us', href: '#Footer'},
           ],
         },
       ],
-    }
-  }
+    },
+  },
 }
