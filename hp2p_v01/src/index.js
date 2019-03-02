@@ -6,19 +6,17 @@ import { BrowserRouter, Route, Switch, Redirect  } from 'react-router-dom';
 import './Shared/styles.less'
 // Object.assign(styles, customStyles, ...)
 import FacePage326 from './ViewLayer/Pages/FacePage326.react'
-import FacePage326_ from './ViewLayer/Pages/FacePage326_.react'
 import Error404 from './ViewLayer/Pages/Error404.react'
 
 const PAGES = {
   FacePage326,
-  FacePage326_,
   Error404,
 }
 
 // Setup language
 const lang = 'rus'
-const { treeDefault, routes } = USERTO[lang]
-const { routes, redirects } = routes
+const { treeDefault, router } = USERTO[lang]
+const { routes, redirects } = router
 
 // console.info('index.js->treeDefault', { USERTO })
 

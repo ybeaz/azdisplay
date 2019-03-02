@@ -180,7 +180,7 @@ var USERTO = {
         ],
       },
     },
-    routes: {
+    router: {
       routes: [
         { path: '/', exact: true, page: 'FacePage326' },
         { path: '/326_HP2P_v01/enter', exact: true, page: 'FacePage326' },
@@ -192,7 +192,7 @@ var USERTO = {
   }
 }
 
-var to = USERTO.rus.routes.redirects[0].to;
+var to = USERTO.rus.router.redirects[0].to;
 var utm_content = '326_HP2P_v01';
 if (location.pathname === '/') {
   // console.info('location.pathname', { pathname: location.pathname });
