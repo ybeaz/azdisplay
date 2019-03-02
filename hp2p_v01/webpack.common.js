@@ -104,10 +104,11 @@ module.exports = {
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',
       generateStatsFile: true,
-      statsOptions: { source: false }
+      statsOptions: { source: false },
     }),
     new HtmlWebpackPlugin({
-      template: 'dist/index.html',
+      title: 'Production',
+      template: 'template.html',
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ],  
