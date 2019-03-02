@@ -179,4 +179,12 @@ var USERTO = {
       ],
     },
   },
+  userRoutes: [
+    { path: '/dist/index_dev.html', exact: true, reactPage: 'FacePage326' },
+    { path: '/dist/index.html', exact: true, reactPage: 'FacePage326' },
+    { path: '/', exact: true, reactPage: 'FacePage326'},
+    { path: '/dist/1', exact: true, reactPage: 'FacePage326_'},
+    { path: '/326_HP2P_v01/enter', exact: true, reactPage: 'FacePage326' },
+    { path: '/dist/index_dev1.html', exact: true, reactPage: 'FacePage326_'},
+  ]
 }
