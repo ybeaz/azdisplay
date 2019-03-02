@@ -18,7 +18,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].min.js'  
+    filename: '[name].min.js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -103,17 +104,20 @@ module.exports = {
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',
       generateStatsFile: true,
-      statsOptions: { source: false }
+      statsOptions: { source: false },
     }),
-    new HtmlWebpackPlugin(),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),  
+    new HtmlWebpackPlugin({
+      title: 'Production',
+      template: 'template.html',
+    }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ],  
   resolve: {
-     extensions: ['.tsx', '.ts', '.js', '.es6', '.jsx', 'less', 'css', 'config', 'variables', 'overrides']
+    extensions: ['.tsx', '.ts', '.js', '.es6', '.jsx', 'less', 'css', 'config', 'variables', 'overrides']
   },
   performance: {
     hints: false,
-  },   
+  },
   watch: false,
   target: 'web',
   externals: [
