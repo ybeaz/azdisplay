@@ -1,6 +1,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import LogoElem from './LogoElem.react'
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Footer extends React.PureComponent {
@@ -37,7 +38,7 @@ class Footer extends React.PureComponent {
       <div id={sid} className={`container-fluid form-group ${sid}`}>
         <div className='row'>
           <div className='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-            <h2 className='titleSection' dangerouslySetInnerHTML={{ __html: captureSection }} />
+            <LogoElem inverted />
           </div>
           {listItems}
         </div>
