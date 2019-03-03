@@ -41,7 +41,7 @@ class FacePage326 extends React.PureComponent {
       <div className='App'>
         <header><NavBar {... { propsScope: navBar }} /></header>
         <main>
-          <CombineWrapper classStyle='CombineSection newSection background01'>
+          <CombineWrapper classStyle='CombineWrapper newSection background01'>
             <SectionWrapper classStyle='DescriptorsSection descSection'>
               <Descriptors {... { propsScope: descriptors }} />
             </SectionWrapper>
@@ -61,7 +61,7 @@ class FacePage326 extends React.PureComponent {
           <SectionWrapper classStyle='KeyFeaturesSection newSection'>
             <ImgListTable {... { propsScope: keyFeatures }} />
           </SectionWrapper>
-          <CombineWrapper classStyle='CombineSection background03 newSection'>
+          <CombineWrapper classStyle='CombineWrapper background03 newSection'>
             <SectionWrapper classStyle='ShortAdvantagesSection'>
               <ShortAdvantages {... { propsScope: shortAdvantages }} />
             </SectionWrapper>

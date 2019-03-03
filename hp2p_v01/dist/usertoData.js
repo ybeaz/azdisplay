@@ -10,8 +10,8 @@ var USERTO = {
       },
       descriptors: {
         sid: 'Descriptors',
-        h1: 'Решим ваш вопрос вместе',
-        h2: 'Получите необходимые знания уже сейчас через чат, аудио или видеосвязь', 
+        h1: 'Решим ваш вопрос<br />вместе',
+        h2: 'Получите необходимые знания уже сейчас<br />через чат, аудио или видеосвязь', 
       },
       searchForm: {
         sid: 'SearchForm',
@@ -94,6 +94,7 @@ var USERTO = {
         sid: 'ItHelps',
         captureSection: '<span>User</span><span class="c_green">To</span>&nbsp;<span>помогает</span>',
         imgClass: 'imgManWorks',
+        imgSrc: 'https://userto.com/img/illustration04.jpg',
         listArr: [
           { capture: 'Быстро разобраться в вопросе', details: 'Не нужно куда-то идти или ехать, искать людей, сидеть в очередях. Найдите специалиста на сайте'},
           { capture: 'Не переплачивать', details: 'Для решения многих вопросов не требуется присутствия специалиста. Зачем за это платить, если вопрос легко решить в чате, по аудио или видеосвязи?! Специалист экономит свое время, вы выигрываете в деньгах'},
@@ -105,6 +106,7 @@ var USERTO = {
         sid: 'KeyFeatures',
         captureSection: '<span>На</span>&nbsp;<span>User</span><span class="c_green">To</span>',
         imgClass: 'imgWomanPhone',
+        imgSrc: 'https://userto.com/img/illustration02.jpg',
         listArr: [
           { capture: 'Общайтесь бесплатно', details: 'Чтобы вы смогли уточнить детали по решению вашего вопроса, первые минуты разговора со специалистом бесплатно'},
           { capture: 'Удобный канал связи', details: 'Решить вопрос по видеосвяи или общаться только голосом, уточнить детали в чате? Выбирайте как удобно вам.'},
@@ -152,7 +154,7 @@ var USERTO = {
       },
       footer: {
         sid: 'Footer',
-        captureSection: '<span class="c_white">User</span><span class="c_green">To</span>',
+        captureSection: '',
         listArr: [
           {
             imgClass: '',

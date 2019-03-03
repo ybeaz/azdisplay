@@ -1,6 +1,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import LogoElem from './LogoElem.react'
 
 // eslint-disable-next-line react/prefer-stateless-function
 class NavBar extends React.PureComponent {
@@ -14,7 +15,7 @@ class NavBar extends React.PureComponent {
       <div id={sid} className={sid}>
         <nav id='navbarNav' className='navbar navbar-expand-sm'>
           <a className='navbar-brand navbarBrend' href='#navbar'>
-            <div className='logoNav iconLogo' />
+            <LogoElem />
           </a>
           {/*
           <ul className='navbar-nav'>
