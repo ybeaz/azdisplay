@@ -36,7 +36,6 @@ class ImgListTable extends React.PureComponent {
       <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
         <div className='ImgList__imgWrapper'>
           <img className='img-fluid' src={imgSrc} alt='Chania' />
-          {/* <div className={`${imgClass} ImgList__img`} /> */}
         </div>
       </div>
     )
@@ -45,7 +44,7 @@ class ImgListTable extends React.PureComponent {
   render() {
     const { propsScope } = this.props
     // console.info('ImgListTable->render() [10]', { propsScope, props: this.props })
-    const { sid, listArr, captureSection, imgClass, imgSrc, sequence } = propsScope
+    const { sid, listArr, captureSection, imgSrc, sequence } = propsScope
     const listBlock = this.getListBlock(listArr, captureSection)
     const imgBlock = this.getImgBlock(imgSrc)
 

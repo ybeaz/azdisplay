@@ -26,9 +26,11 @@ class CatalogTags extends React.PureComponent {
     return (
       <div id={sid} className={sid}>
         <h2 className='titleSection'>{captureSection}</h2>
-        <ul>
-          {tags}
-        </ul>
+        <div className='CatalogTags__columns'>
+          <ul>
+            {tags}
+          </ul>
+        </div>
       </div>
     )
   }

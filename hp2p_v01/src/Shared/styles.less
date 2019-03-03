@@ -306,34 +306,38 @@
   div, ul {
     &:extend(.p_x_0);
   }
-  ul {
+  .CatalogTags__columns {
     margin-left: -1rem;
     -webkit-column-count: 5;
     -moz-column-count: 5;
     column-count: 5;
-    list-style-type: none;
-
-    .tagListLi { 
-      &:extend(.p_l_1_rem, .pos_r);
-      padding-top: 0.3rem;
-      a {
-        text-decoration: none;
-        color: @color1;
-      }
-      .name {
-        font-size: @fontSize_a;
-      }
-      .num {
-        &:extend(.pos_a);
-        padding-left: 0.3rem;
-        padding-bottom: 5.3rem;
-        margin-top: -0.3rem;
-        position: absolute;
-        font-size: @fontSize_e;
-        color: @color2;
+    ul {
+      list-style-type: none;
+  
+      .tagListLi { 
+        &:extend(.p_l_1_rem, .pos_u);
+        padding-top: 0.3rem;
+        
+        a {
+          text-decoration: none;
+          color: @color1;
+        }
+        .name {
+          font-size: @fontSize_a;
+        }
+        .num {
+          &:extend(.pos_a);
+          padding-left: 0.3rem;
+          padding-bottom: 5.3rem;
+          margin-top: -0.3rem;
+          position: absolute;
+          font-size: @fontSize_e;
+          color: @color2;
+        }
       }
     }
   }
+
 }
 
 .ImgList {
@@ -460,7 +464,7 @@
 .Footer {
   color: @color7;
   ul {
-    &:extend(.p_t_0p8_rem);
+    &:extend(.p_t_0p8_rem, .p_l_0);
     padding-inline-start: 0;
     li {
       list-style-type: none;

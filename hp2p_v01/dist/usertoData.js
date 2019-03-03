@@ -93,7 +93,6 @@ var USERTO = {
       itHelps: {
         sid: 'ItHelps',
         captureSection: '<span>User</span><span class="c_green">To</span>&nbsp;<span>помогает</span>',
-        imgClass: 'imgManWorks',
         imgSrc: 'https://userto.com/img/illustration04.jpg',
         listArr: [
           { capture: 'Быстро разобраться в вопросе', details: 'Не нужно куда-то идти или ехать, искать людей, сидеть в очередях. Найдите специалиста на сайте'},
@@ -105,7 +104,6 @@ var USERTO = {
       keyFeatures: {
         sid: 'KeyFeatures',
         captureSection: '<span>На</span>&nbsp;<span>User</span><span class="c_green">To</span>',
-        imgClass: 'imgWomanPhone',
         imgSrc: 'https://userto.com/img/illustration02.jpg',
         listArr: [
           { capture: 'Общайтесь бесплатно', details: 'Чтобы вы смогли уточнить детали по решению вашего вопроса, первые минуты разговора со специалистом бесплатно'},
