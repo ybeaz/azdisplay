@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import uuidv4 from 'uuid/v4'
+import uuid from 'uuidv4'
 import * as serviceFunc from '../../Shared/serviceFunc'
 
 import FieldButtons from './FieldButtons.react'
@@ -12,7 +12,7 @@ class SearchForm extends React.PureComponent {
     super(props)
     const { propsScope } = this.props
     const { sid } = propsScope
-    this.cid = `${sid}-${uuidv4()}`
+    this.cid = `${sid}-${uuid()}`
   }
 
   componentDidMount() {
@@ -34,20 +34,20 @@ class SearchForm extends React.PureComponent {
     const { propsScope } = this.props
     const { sid, searchPlaceholder, searchButton, typeRequest, typeMedia } = propsScope
 
-    let cid = `FieldButtons-${uuidv4()}`
+    let cid = `FieldButtons-${uuid()}`
     const typeRequestProps = { cid, typeRequest }
-    cid = `Dropdown-${uuidv4()}`
+    cid = `Dropdown-${uuid()}`
     const classNames = 'p_l_2_rem'
     const typeMediaProps = { cid, classNames, typeMedia }
 
     const searchInputId = `${this.cid}-searchInput`
     const buttonInputId = `${this.cid}-buttonInput`
 
-    // console.info('SearchForm->render() [10]',{});
+    // console.info('SearchForm->render() [10]',{ });
     return (
       <div id={this.cid} className={`container-fluid form-group ${sid}`}>
         <div className='row SearchForm__searchRow transitionPrevSearch'>
-          <div className='col-lg-10 col-md-10 col-sm-10 col-xs-10 SearchForm__inputCol'>
+          <div className='col-lg-8 col-md-8 col-sm-8 col-xs-8 SearchForm__inputCol'>
             <input id={searchInputId} type='text' className='form-control' 
               placeholder={searchPlaceholder} />
           </div>
@@ -56,6 +56,7 @@ class SearchForm extends React.PureComponent {
               {searchButton}
             </button>
           </div>
+          <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2' />
         </div>
         <div className='row SearchForm__categoryRow transitionPrevSearch'>
           <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 SearchForm__categoryCol'>

@@ -2,6 +2,9 @@
 // eslint no-var: off
 /* eslint no-var: off */
 var USERTO = {
+  favicon: {
+    href: 'https://userto.com/img/favicon.ico',
+  },
   rus: {
     treeDefault: {
       navBar: {
@@ -196,11 +199,21 @@ var USERTO = {
       ],
     },
   }
-}
+};
 
-var to = USERTO.rus.router.redirects[0].to;
-var utm_content = '326_HP2P_v01';
-if (location.pathname === '/') {
-  // console.info('location.pathname', { pathname: location.pathname });
-  history.pushState(null, null, to + '?utm_content=' + utm_content);
-}
+(function(USERTO) {
+  var to = USERTO.rus.router.redirects[0].to;
+  var utm_content = '326_HP2P_v01';
+  if (location.pathname === '/') {
+    // console.info('location.pathname', { pathname: location.pathname });
+    history.pushState(null, null, to + '?utm_content=' + utm_content);
+  }
+})(USERTO);
+
+(function(USERTO) {
+  var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+  link.type = 'image/x-icon';
+  link.rel = 'shortcut icon';
+  link.href = USERTO.favicon.href;
+  document.getElementsByTagName('head')[0].appendChild(link);
+})(USERTO);
