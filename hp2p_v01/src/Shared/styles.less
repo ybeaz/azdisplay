@@ -66,13 +66,15 @@
 }
 
 .buttonColor {
-  border-color: @color5;
+  border-color: @color2;
   box-shadow: 0 0 0 0;
   background: @color6;
   color: @color0;
 }
 
 .buttonColorReverse {
+  border-color: @color0;
+  box-shadow: 0 0 0 0;
   background: @color0;
   color: @color1;
 }
@@ -499,6 +501,7 @@
 
   .Dropdown__button {
     &:extend(.m_r_0p5_rem, .b_r_3_rem);
+    .hoverFocusActive;
     min-width: 8rem;
     .buttonColor;
   }
@@ -511,20 +514,30 @@
     &:extend(.p_r_1_rem);
   }
 
-  .Dropdown__dropdownMenu {
+  .Dropdown__dropdownMenu_show {
     display: block;
+  }
+
+  .Dropdown__dropdownMenu_hide {
+    display: none;
   }
 
   .Dropdown__item {
     cursor: pointer;
   }
 
-  .Dropdown__item.active {
+  .Dropdown__item_selected {
     background-color: @color2;
+    color: @color0; 
+  }
+
+  .Dropdown__item_notSelected {
+    background-color: @color0;
+    color: @color2;
   }
 
   .Dropdown__item > div .iconFa {
-    color: @color2;
+    //color: @color2;
   }
 
   .Dropdown__item > span {
