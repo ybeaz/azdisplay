@@ -5,8 +5,10 @@ var USERTO = {
   favicon: {
     href: 'https://userto.com/img/favicon.ico',
   },
+  titleTag: 'UserTo',
   rus: {
     treeDefault: {
+      
       navBar: {
         sid: 'NavBar',
         login: 'Регистрация и вход',
@@ -201,6 +203,7 @@ var USERTO = {
   }
 };
 
+// Set path
 (function(USERTO) {
   var to = USERTO.rus.router.redirects[0].to;
   var utm_content = '326_HP2P_v01';
@@ -210,10 +213,18 @@ var USERTO = {
   }
 })(USERTO);
 
+
+// Set favicon
 (function(USERTO) {
   var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
   link.type = 'image/x-icon';
   link.rel = 'shortcut icon';
   link.href = USERTO.favicon.href;
   document.getElementsByTagName('head')[0].appendChild(link);
+})(USERTO);
+
+
+// Set page title
+(function(USERTO) {
+  document.title = USERTO.titleTag;
 })(USERTO);
