@@ -17,12 +17,18 @@ var USERTO = {
         sid: 'SearchForm',
         searchPlaceholder: 'Сфера в которой нужен специалист...',
         searchButton: 'Найти',
-        fieldButtonArr: [
-          {capture: 'Все', autoFocus: true},
-          {capture: 'Конcультация', autoFocus: false},
-          {capture: 'Обучение', autoFocus: false},
-          {capture: 'Фриланс', autoFocus: false},
-        ]
+        typeRequest: [
+          { capture: 'Все', autoFocus: true },
+          { capture: 'Конcультация', autoFocus: false },
+          { capture: 'Обучение', autoFocus: false },
+          { capture: 'Фриланс', autoFocus: false },
+        ],
+        typeMedia: [
+          { capture: 'Все виды', classNameArr: ['fas fa-video', 'fas fa-phone', 'fas fa-comments'], autoFocus: true },
+          { capture: 'Видео', classNameArr: ['fas fa-video'], autoFocus: false },
+          { capture: 'Аудио', classNameArr: ['fas fa-phone'], autoFocus: false },
+          { capture: 'Мессенджер', classNameArr: ['fas fa-comments'], autoFocus: false },
+        ],
       },
       catatogTags: {
         sid: 'CatalogTags',

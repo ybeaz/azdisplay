@@ -3,59 +3,43 @@ import PropTypes from 'prop-types'
 import uuidv4 from 'uuid/v4'
 import * as serviceFunc from '../../Shared/serviceFunc'
 
+import FieldButtons from './FieldButtons.react'
+import Dropdown from './Dropdown.react'
+
 // eslint-disable-next-line react/prefer-stateless-function
 class SearchForm extends React.PureComponent {
-  constructor(props){
+  constructor(props) {
     super(props)
     const { propsScope } = this.props
-    const { sid } = propsScope    
+    const { sid } = propsScope
     this.cid = `${sid}-${uuidv4()}`
-    this.firstButtonFieldId = ''
   }
 
   componentDidMount() {
-    
     setTimeout(() => {
       let selector = `#${this.cid} > div.row.SearchForm__searchRow.transitionPrevSearch`
       serviceFunc.updateTransition(selector, 'transitionNextSearch')
       selector = `#${this.cid} > div.row.SearchForm__categoryRow.transitionPrevSearch`
       serviceFunc.updateTransition(selector, 'transitionNextSearch')
-      selector = `#${this.firstButtonFieldId}`
-      const element = document.querySelectorAll(selector)[0]
-      element.style.color = '#fff'
-      element.style.backgroundColor = '#0ca940'
     }, 0)
-
-    
-    //document.getElementById(frmObj.id).focus();
-    //document.getElementById(frmObj.id).select();
 
     setTimeout(() => {
       const elementsInput = document.querySelectorAll('input')
       elementsInput[0].focus()
       elementsInput[0].select()
     }, 1500)
-
   }
-
-  getFieldButtons = arr => arr.map((item, i) => {
-    const { capture, autoFocus } = item
-    const buttonFieldId = `${this.cid}-buttonField`
-    if (i === 0) {
-      this.firstButtonFieldId = buttonFieldId
-    }
-    return (
-      <button id={buttonFieldId} key={i} type='button' className='btn categoryButton' autofocus={autoFocus}>
-        {capture}
-      </button>
-    )
-  })
 
   render() {
     const { propsScope } = this.props
-    const { sid, searchPlaceholder, searchButton, fieldButtonArr } = propsScope
+    const { sid, searchPlaceholder, searchButton, typeRequest, typeMedia } = propsScope
 
-    const fieldButtons = this.getFieldButtons(fieldButtonArr)
+    let cid = `FieldButtons-${uuidv4()}`
+    const typeRequestProps = { cid, typeRequest }
+    cid = `Dropdown-${uuidv4()}`
+    const classNames = 'p_l_2_rem'
+    const typeMediaProps = { cid, classNames, typeMedia }
+
     const searchInputId = `${this.cid}-searchInput`
     const buttonInputId = `${this.cid}-buttonInput`
 
@@ -75,7 +59,8 @@ class SearchForm extends React.PureComponent {
         </div>
         <div className='row SearchForm__categoryRow transitionPrevSearch'>
           <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 SearchForm__categoryCol'>
-            {fieldButtons}
+            <FieldButtons {...typeRequestProps} />
+            <Dropdown {...typeMediaProps} />
             {/*
             <button type='button' className='btn categoryButton'>
               <i class="fas fa-video"></i>
