@@ -46,6 +46,39 @@
 
 @font-family: -apple-system,BlinkMacSystemFont,San Francisco,HelveticaNeue-Light,Helvetica Neue Light,Helvetica Neue,Segoe UI,Fira Sans,Roboto,Oxygen,Ubuntu,Droid Sans,Arial,sans-serif;
 
+// Themes
+.hoverFocusActive {
+  &:hover {
+    background-color: @color3;
+    border-color: @color4;
+    box-shadow: 0 0 0 0;
+  }
+  &:focus {
+    background-color: @color3;
+    border-color: @color4;
+    box-shadow: 0 0 0 0;
+  }
+  &:active {
+    background-color: @color3;
+    border-color: @color4;
+    box-shadow: 0 0 0 0;
+  }
+}
+
+.buttonColor {
+  border-color: @color2;
+  box-shadow: 0 0 0 0;
+  background: @color6;
+  color: @color0;
+}
+
+.buttonColorReverse {
+  border-color: @color0;
+  box-shadow: 0 0 0 0;
+  background: @color0;
+  color: @color1;
+}
+
 
 .App {
   font-size: @fontSize_a;
@@ -221,43 +254,15 @@
   }
 
   .transitionNextSearch {
-    -webkit-clip-path: inset(0 0 0 0);
-    clip-path: inset(0 0 0 0);
+    // -webkit-clip-path: inset(0 0 0 0);
+    // clip-path: inset(0 0 0 0);
     opacity: 1;
     -webkit-transform: none;
     transform: none;
   }
 
-  .hoverFocusActive {
-    &:hover {
-      background-color: @color3;
-      border-color: @color4;
-      box-shadow: 0 0 0 0;
-    }
-    &:focus {
-      background-color: @color3;
-      border-color: @color4;
-      box-shadow: 0 0 0 0;
-    }
-    &:active {
-      background-color: @color3;
-      border-color: @color4;
-      box-shadow: 0 0 0 0;
-    }
-  }
-
   .form-control {
     .hoverFocusActive;
-  }
-
-  .buttonColor {
-    background: @color6;
-    color: @color0;
-  }
-
-  .buttonNoncolor {
-    background: @color0;
-    color: @color1;
   }
 
   .SearchForm__searchRow {
@@ -288,15 +293,7 @@
   .SearchForm__categoryRow {
     .SearchForm__categoryCol {
       &:extend(.p_l_0p5_rem, .p_r_0);
-      .categoryButton {
-        &:extend(.w_8_rem, .m_r_0p5_rem, .b_r_3_rem);
-        .buttonNoncolor;
-        .hoverFocusActive;
-        font-size: @fontSize_a;
-        &:focus {
-          .buttonColor;
-        }
-      }
+
     }
   }
 
@@ -478,4 +475,76 @@
   .Footer__capture {
    font-weight: 700;   
   }
+}
+
+.FieldButtons {
+  &:extend(.d_i_b);
+
+  .FieldButtons__button {
+    &:extend(.w_8_rem, .m_r_0p5_rem, .b_r_3_rem);
+    .buttonColorReverse;
+    .hoverFocusActive;
+    font-size: @fontSize_a;
+    &:focus {
+      .buttonColor;
+    }
+  }
+
+  .FieldButtons__button_active {
+    .buttonColor;
+  }
+
+}
+
+.Dropdown {
+  &:extend(.d_i_b);
+
+  .Dropdown__button {
+    &:extend(.m_r_0p5_rem, .b_r_3_rem);
+    .hoverFocusActive;
+    min-width: 8rem;
+    .buttonColor;
+  }
+
+  .Dropdown__button > div .iconFa:not(:first-of-type) {
+    &:extend(.p_l_1_rem);
+  }
+
+  .Dropdown__button > div .iconFa:last-of-type {
+    &:extend(.p_r_1_rem);
+  }
+
+  .Dropdown__dropdownMenu_show {
+    display: block;
+  }
+
+  .Dropdown__dropdownMenu_hide {
+    display: none;
+  }
+
+  .Dropdown__item {
+    cursor: pointer;
+  }
+
+  .Dropdown__item_selected {
+    background-color: @color2;
+    color: @color0; 
+  }
+
+  .Dropdown__item_notSelected {
+    background-color: @color0;
+    color: @color2;
+  }
+
+  .Dropdown__item > div .iconFa {
+    //color: @color2;
+  }
+
+  .Dropdown__item > span {
+    &:extend(.p_l_1_rem);
+  }
+
+  .Dropdown__item:first-of-type > span {
+    .p_l_2_rem;
+  } 
 }
