@@ -15,7 +15,7 @@ import Footer from '../Components/Footer.react'
 
 // eslint-disable-next-line react/prefer-stateless-function
 class FacePage326 extends React.PureComponent {
-  constructor(props){
+  constructor(props) {
     super(props)
   }
 

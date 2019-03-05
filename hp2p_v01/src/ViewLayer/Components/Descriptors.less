@@ -33,6 +33,11 @@
       letter-spacing: -2px;
       font-size: @fontSize_c;
       font-weight: 700;
+     
+      @media @phone {
+        text-align: center;
+        font-size: 6.5vw;
+      }
     }
   }
 
@@ -41,9 +46,12 @@
     .descriptorRow2 {
       &:extend(.t_tr_uc);
       font-size: @fontSize_b;
+      @media @phone {
+        text-align: center;
+        font-size: 3vw;
+      }
     }
   }
-
 }
 
 

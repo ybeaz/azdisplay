@@ -10,9 +10,18 @@
 
   .newSection {
     &:extend(.p_t_2_rem, .p_b_2_rem);
+    @media @phone {
+      padding: 0;
+    }
   }
   .descSection {
     padding: 4rem 1.5rem 2rem;
+
+    @media @phone {
+      padding: 1rem 1rem 1rem;
+    }
+
+
   }
   .bg_greyLight {
     background-color: @color7;
