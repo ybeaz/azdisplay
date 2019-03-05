@@ -20,9 +20,6 @@ class FacePage326 extends React.PureComponent {
   }
 
   render() {
-
-    // console.info('FacePage326->render() [10]',{ props: this.props });
-
     const {
       navBar,
       descriptors,
@@ -36,9 +33,10 @@ class FacePage326 extends React.PureComponent {
       userReviews,
       footer,
     } = this.props.treeDefault
+    // console.info('FacePage326->render() [10]', { props: this.props })
 
     return (
-      <div className='App'>
+      <div className='FacePage326'>
         <header><NavBar {... { propsScope: navBar }} /></header>
         <main>
           <CombineWrapper classStyle='CombineWrapper newSection background01'>

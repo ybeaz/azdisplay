@@ -1,6 +1,6 @@
-
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import LogoElem from './LogoElem.react'
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -29,7 +29,7 @@ class Footer extends React.PureComponent {
 
   render() {
     const { propsScope } = this.props
-    const { sid, captureSection, listArr } = propsScope
+    const { sid, listArr } = propsScope
     // console.info('Footer->render() [10]', { captureSection, listArr })
 
     const listItems = this.getListItems(listArr)

@@ -1,0 +1,61 @@
+
+/* Import style constants */
+  @import './constants.less';
+
+/* Import stylesLib - standard styles */
+  @import './stylesStd.less';
+
+/* Import stylesImg - used background images */
+  @import './stylesImg.less';
+
+  /* Import Bootstrap css */
+  @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+
+/* Import Fontawsome css */
+  @import url('https://use.fontawesome.com/releases/v5.4.1/css/all.css');
+  //@import '../Assets/fontawesome-free-5.7.2-web/less/fontawesome';
+  //@import '../Assets/fontawesome-free-5.7.2-web/less/solid';
+  //@import '../Assets/fontawesome-free-5.7.2-web/less/brands';
+
+  //@import (css) url('https://fonts.googleapis.com/css?family=BlinkMacSystemFont|San+Francisco|HelveticaNeue-Light|Helvetica+Neue+Light|Helvetica+Neue|Segoe+UI|Fira+Sans|Roboto|Oxygen|Ubuntu|Droid+Sans|Arial|sans-serif');
+
+
+// Themes
+.hoverFocusActive {
+  &:hover {
+    background-color: @color3;
+    border-color: @color4;
+    box-shadow: 0 0 0 0;
+  }
+  &:focus {
+    background-color: @color3;
+    border-color: @color4;
+    box-shadow: 0 0 0 0;
+  }
+  &:active {
+    background-color: @color3;
+    border-color: @color4;
+    box-shadow: 0 0 0 0;
+  }
+}
+
+.buttonColor {
+  border-color: @color2;
+  box-shadow: 0 0 0 0;
+  background: @color6;
+  color: @color0;
+}
+
+.buttonColorReverse {
+  border-color: @color0;
+  box-shadow: 0 0 0 0;
+  background: @color0;
+  color: @color1;
+}
+
+
+@import '../Pages/Error404.less';
+@import '../Pages/FacePage326.less';
+
+
+

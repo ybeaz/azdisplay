@@ -1,6 +1,6 @@
-
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import LogoElem from './LogoElem.react'
 
 // eslint-disable-next-line react/prefer-stateless-function

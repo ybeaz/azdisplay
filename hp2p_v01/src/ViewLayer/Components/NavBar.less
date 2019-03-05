@@ -1,0 +1,46 @@
+
+
+.NavBar {
+  background-color: @color0;
+  ul {
+    padding-bottom: 20px;
+  }
+  a {
+    color: @color2;
+    font-size: @fontSize_b;
+    line-height: 30px;
+    text-transform: capitalize;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity .25s ease;
+    i {
+      font-size: 30px;
+    }
+  }
+  .nav-actions{
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    height: 50px;
+    display: flex;
+    a {
+      text-transform: initial;
+    }
+  }
+
+  .logoNav {
+    height: 4rem;
+    width: 4rem;
+  }
+
+  .navbarBrend {
+    &:extend(.p_l_4_rem);
+  }
+
+}
+
+

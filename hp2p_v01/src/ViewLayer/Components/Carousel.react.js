@@ -1,44 +1,67 @@
-
 import React from 'react'
 import PropTypes from 'prop-types'
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Carousel extends React.PureComponent {
-  constructor(props) {
-    super(props)
-  }
+class Carousel extends React.Component {
 
-  render() {
+  carouselRender = (source, activeItem, handleEvent) => {
+    // console.info('Carousel->carouselRender [0]', { source, state: this.state })
 
-    // console.info('Carousel->render() [10]',{});
-    return (
-      <div id='demo' className='carousel slide' >
-        <ul className='carousel-indicators'>
-          <li data-target='#demo' data-slide-to='0' className='active' />
-          <li data-target='#demo' data-slide-to='1' />
-          <li data-target='#demo' data-slide-to='2' />
-        </ul>
+    const indicators = source.map((item, i) => {
+      let itemClass = ''
+      if (item.id === activeItem) {
+        itemClass += ' active'
+      }
+      // console.info('Carousel->carouselRender [3]', { id: item.id, item, pageItemClass, activeItem: activeItem })
+      return (
+        <li key={i} data-target='#demo' data-slide-to='1' className={itemClass}
+          onClick={e => handleEvent(e, 'clickItem', item)}
+        />
+      )
+    })
 
-        <div className='carousel-inner'>
-          <div className='carousel-item active'>
-            <img src='https://www.w3schools.com/bootstrap4/la.jpg' alt='Los Angeles' width='1100' height='500' />
-          </div>
-          <div className='carousel-item'>
-            <img src='https://www.w3schools.com/bootstrap4/chicago.jpg' alt='Chicago' width='1100' height='500' />
-          </div>
-          <div className='carousel-item'>
-            <img src='https://www.w3schools.com/bootstrap4/ny.jpg' alt='New York' width='1100' height='500' />
-          </div>
+    const imgs = source.map((item, i) => {
+      let itemClass = 'carousel-item'
+      if (item.id === activeItem) {
+        itemClass += ' active'
+      }
+      // console.info('Carousel->carouselRender [5]', { id: item.id, item, pageItemClass, activeItem: activeItem })
+      return (
+        <div key={i} className={itemClass}>
+          <img src={item.src} className='img-fluid' alt='New York' />
         </div>
+      )
+    })
 
+    // console.info('Carousel->carouselRender [7]', { })
+    return (
+      <div id='demo' className='carousel slide' data-ride='carousel'>
+        <ul className='carousel-indicators'>
+          {indicators}
+        </ul>
+        <div className='carousel-inner'>
+          {imgs}
+        </div>
         <a className='carousel-control-prev' href='#demo' data-slide='prev'>
-          <span className='carousel-control-prev-icon' />
+          <span className='carousel-control-prev-icon'
+            onClick={e => handleEvent(e, 'prevItem', {}, source)}
+          />
         </a>
         <a className='carousel-control-next' href='#demo' data-slide='next'>
-          <span className='carousel-control-next-icon' />
+          <span
+            className='carousel-control-next-icon'
+            onClick={e => handleEvent(e, 'nextItem', {}, source)}
+          />
         </a>
       </div>
     )
+  }
+
+  render() {
+    const { itemsSrc, activeItem, handleEvent } = this.props
+    // console.info('MenuContent->render()', { source })
+
+    return <div>{this.carouselRender(itemsSrc, activeItem, handleEvent)}</div>
   }
 }
 
