@@ -1,0 +1,68 @@
+
+
+.SearchForm {
+
+  .transitionPrevSearch {
+    opacity: 0;
+    -webkit-transform-origin: left bottom;
+    transform-origin: left bottom;
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+
+    -webkit-transition: .5s ease-out;
+    -moz-transition: .5s ease-out;
+    -o-transition: .5s ease-out;
+    transition: .5s ease-out;
+    transition-property: all;
+    transition-timing-function: ease-out;
+    transition-duration: .5s;
+    transition-delay: 1000ms;
+  }
+
+  .transitionNextSearch {
+    // -webkit-clip-path: inset(0 0 0 0);
+    // clip-path: inset(0 0 0 0);
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+
+  .form-control {
+    .hoverFocusActive;
+  }
+
+  .SearchForm__searchRow {
+    &:extend(.p_b_2_rem);
+    
+    .SearchForm__inputCol {
+      &:extend(.p_l_0p5_rem, .p_r_0);
+    }
+ 
+    .SearchForm__searchButtonCol {
+      &:extend(.p_x_0);
+    }
+    input {
+      &:extend(.b_r_0, .h_100);
+      font-size: @fontSize_d;
+      background-color: @color0;
+      padding: 20px 30px;
+      &:focus, &:hover {
+        background-color: @color0;
+      }
+    }
+    .SearchForm__searchButton {
+      &:extend(.b_r_0, .h_100, .w_100);
+      .buttonColor;
+    }
+  }
+
+  .SearchForm__categoryRow {
+    .SearchForm__categoryCol {
+      &:extend(.p_l_0p5_rem, .p_r_0);
+
+    }
+  }
+
+}
+
+

@@ -1,0 +1,49 @@
+
+.ImgList {
+  h2 {
+    padding-left: 2.5rem;
+    padding-bottom: 1rem;
+  }
+  ul {
+    list-style: none;
+    li::before {
+      content: "\2022";
+      color: @color5;
+      font-weight: bold;
+      display: inline-block; 
+      width: 1rem;
+      margin-left: -2rem;
+      transform: scale(1.5);
+    }
+    .ImgList_li {
+      &:extend(.p_b_2_rem);
+      .ImgList__capture {
+        font-size: @fontSize_a;
+        margin-top: -1.5rem;
+      }
+      .ImgList__details {
+        &:extend(.p_y_0p4_rem);
+        font-size: @fontSize_b;
+        color: @color8;
+        line-height: 1.3rem;
+      }
+    }
+  }
+  .ImgList__imgWrapper {
+    &:extend(.p_t_4_rem);
+    //height: min-content;
+    //max-height: min-content;
+  }
+  .ImgList__img {
+    .bgImgSizeManWorks;
+    //height: -webkit-fill-available;
+  }
+  .bgImgSizeManWorks {
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+  }
+}
+
+

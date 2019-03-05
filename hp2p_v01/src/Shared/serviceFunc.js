@@ -18,3 +18,14 @@ export const getElementSize = element => {
   //console.info('serviceFunc.getElementSize', { x, y, width, height, element })
   return { x, y, width, height }
 }
+
+/* Function to override default object properties with new ones
+export const getDefaultOveride = (defaultObj = {}, overideObj = {}) => {
+  return new Proxy(defaultObj, {
+    get: function (defaultObj, propName) {
+      if (!overideObj) { return defaultObj[propName] }
+      return propName in overideObj ? overideObj[propName] : defaultObj[propName]
+    }
+  })
+}
+*/

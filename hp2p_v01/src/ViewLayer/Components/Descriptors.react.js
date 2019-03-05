@@ -1,6 +1,6 @@
-
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import * as serviceFunc from '../../Shared/serviceFunc'
 import Markup from './Markup.react'
 

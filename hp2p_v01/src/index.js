@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Switch, Redirect  } from 'react-router-dom'; 
+import { BrowserRouter, Route, Switch, Redirect  } from 'react-router-dom'
+import './ViewLayer/CssStyles/index.less'
+// import './Shared/styles.less' 
 
-
-import './Shared/styles.less'
 // Object.assign(styles, customStyles, ...)
 import FacePage326 from './ViewLayer/Pages/FacePage326.react'
 import Error404 from './ViewLayer/Pages/Error404.react'

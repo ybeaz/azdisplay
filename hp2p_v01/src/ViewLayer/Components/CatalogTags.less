@@ -1,0 +1,42 @@
+
+
+
+.CatalogTags {
+  div, ul {
+    &:extend(.p_x_0);
+  }
+  .CatalogTags__columns {
+    margin-left: -1rem;
+    -webkit-column-count: 5;
+    -moz-column-count: 5;
+    column-count: 5;
+    ul {
+      list-style-type: none;
+  
+      .tagListLi { 
+        &:extend(.p_l_1_rem, .pos_u);
+        padding-top: 0.3rem;
+        
+        a {
+          text-decoration: none;
+          color: @color1;
+        }
+        .name {
+          font-size: @fontSize_a;
+        }
+        .num {
+          &:extend(.pos_a);
+          padding-left: 0.3rem;
+          padding-bottom: 5.3rem;
+          margin-top: -0.3rem;
+          position: absolute;
+          font-size: @fontSize_e;
+          color: @color2;
+        }
+      }
+    }
+  }
+
+}
+
+
