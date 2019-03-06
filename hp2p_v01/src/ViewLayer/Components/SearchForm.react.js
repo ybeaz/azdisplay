@@ -81,12 +81,6 @@ class SearchForm extends React.PureComponent {
           </div>
           <div className='col-lg-2 col-md-2 col-sm-2 col-0' />
         </div>
-        <div className='row SearchForm__dropdownsRow'>
-          <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center'>
-            <Dropdown {...typeRequestProps2} />
-            <Dropdown {...typeMediaProps4} />
-          </div>
-        </div>
       </div>
     )
   }
