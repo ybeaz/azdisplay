@@ -63,19 +63,42 @@ class FieldButtons extends React.PureComponent {
   })
 
   render() {
-
+    const { prefix } = this.props
     const { dataArr } = this.state
     const fieldButtons = this.getFieldButtons(dataArr)
 
     return (
-      <div className='FieldButtons'>
+      <div className={`FieldButtons ${prefix}`}>
         {fieldButtons}
       </div>
     )
   }
 }
 
+
+FieldButtons.defaultProps = {
+  cid: '',
+  classNames: '',
+  displayType: 'icon',
+}
+
+/* eslint-disable indent */
 FieldButtons.propTypes = {
+  cid: PropTypes.string,
+    // component id
+  prefix: PropTypes.string,
+    // For each prefix styles tree can be created in Dropdown.less file
+  classNames: PropTypes.string,
+    // affect the "main button"
+  displayType: PropTypes.string,
+    // Possible values: 'icon', 'text'
+  dataArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+    /* Example
+      [ 
+        { capture: 'Все виды', classNameArr: ['fas fa-video'], autoFocus: true },
+        ...
+      ],
+    */
 }
 
 export default FieldButtons

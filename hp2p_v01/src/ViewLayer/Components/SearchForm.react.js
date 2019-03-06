@@ -36,12 +36,23 @@ class SearchForm extends React.PureComponent {
     const { sid, searchPlaceholder, searchButton, typeRequest, typeMedia } = propsScope
 
     let cid = `typeRequest-${uuid()}`
-    const classNames1 = 'Dropdown_typeRequestSecondRow'
-    const typeRequestProps = { cid, dataArr: typeRequest, displayType: 'text' }
+    const prefix1 = 'FieldButtons_typeRequestFirstRow'
+    const classNames1 = 'Dropdown_typeRequestFirstRow'
+    const typeRequestProps1 = { cid, prefix: prefix1, dataArr: typeRequest, displayType: 'text', classNames: classNames1 }
+
+    cid = `typeRequest-${uuid()}`
+    const prefix2 = 'Dropdown_typeRequestSecondRow'
+    const classNames2 = 'Dropdown_typeRequestSecondRow'
+    const typeRequestProps2 = { cid, prefix: prefix2, dataArr: typeRequest, displayType: 'text', classNames: classNames2 }
+    
     cid = `typeMedia-${uuid()}`
-    const classNames2 = 'Dropdown_typeMediaFirstRow p_l_2_rem'
-    const classNames3 = 'Dropdown_typeMediaSecondRow p_l_2_rem'
-    const typeMediaProps = { cid, dataArr: typeMedia, displayType: 'icon' }
+    const prefix3 = 'Dropdown_typeMediaFirstRow'
+    const classNames3 = 'Dropdown_typeMediaFirstRow'
+    const typeMediaProps3 = { cid, prefix: prefix3, dataArr: typeMedia, displayType: 'icon', classNames: classNames3 }
+
+    const prefix4 = 'Dropdown_typeMediaSecondRow'
+    const classNames4 = 'Dropdown_typeMediaSecondRow'
+    const typeMediaProps4 = { cid, prefix: prefix4, dataArr: typeMedia, displayType: 'icon', classNames: classNames4 }
 
     const searchInputId = `${this.cid}-searchInput`
     const buttonInputId = `${this.cid}-buttonInput`
@@ -62,20 +73,18 @@ class SearchForm extends React.PureComponent {
           <div className='col-lg-2 col-md-2 col-sm-2 col-0' />
         </div>
         <div className='row SearchForm__categoryRow transitionPrevSearch'>
-          <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 SearchForm__categoryCol'>
-            <FieldButtons {...typeRequestProps} />
-            <Dropdown {...typeMediaProps} classNames={classNames2} />
-            {/*
-            <button type='button' className='btn categoryButton'>
-              <i class="fas fa-video"></i>
-            </button>
-            */}
+          <div className='col-lg-8 col-md-8 col-sm-8 col-12 SearchForm__categoryCol'>
+            <FieldButtons {...typeRequestProps1} />
           </div>
+          <div className='col-lg-2 col-md-2 col-sm-2 col-0 SearchForm__categoryCol'>
+            <Dropdown {...typeMediaProps3} />
+          </div>
+          <div className='col-lg-2 col-md-2 col-sm-2 col-0' />
         </div>
         <div className='row SearchForm__dropdownsRow'>
           <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center'>
-            <Dropdown {...typeRequestProps} classNames={classNames1} />
-            <Dropdown {...typeMediaProps} classNames={classNames3} />
+            <Dropdown {...typeRequestProps2} />
+            <Dropdown {...typeMediaProps4} />
           </div>
         </div>
       </div>

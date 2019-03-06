@@ -6,18 +6,16 @@ class Dropdown extends React.PureComponent {
   constructor(props) {
     super(props)
     const { dataArr } = this.props
-    this.prefix = 'Dropdown'
     this.state = {
       dataArr,
-      toggle: `${this.prefix}__dropdownMenu_hide`,
+      toggle: `Dropdown__dropdownMenu_hide`,
     }
   }
 
-  getDropdownItems = (arr, prefix) => arr.map((item, i) => {
+  getDropdownItems = arr => arr.map((item, i) => {
     const { capture, classNameArr, autoFocus } = item
     
-    const prefixNext = `${prefix}__item_icon`
-    let icons = this.getFontAwsomeIcons(classNameArr, prefixNext)
+    let icons = this.getFontAwsomeIcons(classNameArr)
 
     if (i === 0) {
       icons = null
@@ -34,7 +32,7 @@ class Dropdown extends React.PureComponent {
     return (
       <div
         key={i}
-        className={`${prefix}__item dropdown-item ${autoFocusClass}`}
+        className={`Dropdown__item dropdown-item ${autoFocusClass}`}
         onClickCapture={e => this.eventHandle(e, action)}
       >
         {icons}
@@ -106,7 +104,7 @@ class Dropdown extends React.PureComponent {
 
   render() {
 
-    const { cid, classNames, displayType } = this.props
+    const { cid, prefix, displayType } = this.props
     const { dataArr, toggle } = this.state
     const activeItem = dataArr.filter(item => item.autoFocus === true)[0]
     const { classNameArr } = activeItem
@@ -115,13 +113,13 @@ class Dropdown extends React.PureComponent {
     const { capture } = activeItem
     const buttonFace = this.getButtonFace(displayType, icons, capture)
 
-    // console.info('Dropdown->render()', { cid, activeItem, classNames, dataArr })
+    // console.info('Dropdown->render()', { cid, activeItem, dataArr })
 
-    const dropdownItems = this.getDropdownItems(dataArr, this.prefix)
+    const dropdownItems = this.getDropdownItems(dataArr)
     const action = { type: 'toggleDropdownMenu' }
 
     return (
-      <div className={`${this.prefix} dropdown ${cid} ${classNames}`}>
+      <div id={cid} className={`Dropdown dropdown ${prefix}`}>
         <button
           type='button'
           className='btn btn-success dropdown-toggle Dropdown__button'
@@ -129,7 +127,7 @@ class Dropdown extends React.PureComponent {
         >
           {buttonFace}
         </button>
-        <div className={`${this.prefix}__dropdownMenu dropdown-menu dropdown-menu-right ${toggle}`}>
+        <div className={`Dropdown__dropdownMenu dropdown-menu dropdown-menu-right ${toggle}`}>
           {dropdownItems}
         </div>
       </div>
@@ -139,14 +137,25 @@ class Dropdown extends React.PureComponent {
 
 Dropdown.defaultProps = {
   cid: '',
-  classNames: '',
-  dataArr: [],
+  prefix: '',
+  displayType: 'icon',
 }
 
+/* eslint-disable indent */
 Dropdown.propTypes = {
   cid: PropTypes.string,
-  classNames: PropTypes.string,
-  dataArr: PropTypes.arrayOf(PropTypes.object),
+    // component id
+  prefix: PropTypes.string,
+    // For each prefix styles tree can be created in Dropdown.less file
+  displayType: PropTypes.string,
+    // Possible values: 'icon', 'text'
+  dataArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+    /* Example
+      [ 
+        { capture: 'Все виды', classNameArr: ['fas fa-video'], autoFocus: true },
+        ...
+      ],
+    */
 }
 
 export default Dropdown
