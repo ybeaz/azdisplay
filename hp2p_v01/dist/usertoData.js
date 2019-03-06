@@ -20,7 +20,7 @@ var USERTO = {
       },
       searchForm: {
         sid: 'SearchForm',
-        searchPlaceholder: 'Сфера в которой нужен специалист...',
+        searchPlaceholder: 'Сфера специалиста...',
         searchButton: 'Найти',
         typeRequest: [
           { capture: 'Все', autoFocus: true },

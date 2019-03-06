@@ -36,13 +36,14 @@ class FacePage326 extends React.PureComponent {
     // console.info('FacePage326->render() [10]', { props: this.props })
 
     return (
-      <div className='FacePage326'>
+      <div className='FacePage326 globalStyle'>
         <header><NavBar {... { propsScope: navBar }} /></header>
         <main>
-          <CombineWrapper classStyle='CombineWrapper newSection background01'>
-            <SectionWrapper classStyle='DescriptorsSection descSection'>
+          <CombineWrapper classStyle='CombineWrapper CombineWrapper_jumbotron newSection'>
+            <SectionWrapper classStyle='SectionWrapper SectionWrapper_desc'>
               <Descriptors {... { propsScope: descriptors }} />
             </SectionWrapper>
+            <SectionWrapper classStyle='SectionWrapper SectionWrapper_mobileImage' />
             <SectionWrapper classStyle='SearchFormSection'>
               <SearchForm {... { propsScope: searchForm }} />
             </SectionWrapper>

@@ -27,30 +27,35 @@ module.exports = {
         test: /\.(js[\S]{0,1}|ts[\S]{0,1})$/i,
         exclude: /node_modules/,
         use: [
-          { loader: 'babel-loader',
+          {
+            loader: 'babel-loader',
             query: {
               presets: ['@babel/preset-react', '@babel/preset-env'],
               plugins: ['@babel/proposal-class-properties']
-            }
+            },
           },
-          { loader: 'ts-loader' }
-        ]
+          { loader: 'ts-loader' },
+        ],
       },
       {
         test: /\.(css|less)$/i,
         exclude: [/node_modules/],
         use: [{
           loader: 'style-loader' // creates style nodes from JS strings
-        }, 
+        },
         {
           loader: 'css-loader' // translates CSS into CommonJS
-        }, 
+        },
         {
-          loader: 'less-loader' // compiles Less to CSS
+          loader: 'less-loader', // compiles Less to CSS
+          options: {
+            javascriptEnabled: true,
+          },
         }],
       },
       // this rule handles images
-      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader',
       },
       {

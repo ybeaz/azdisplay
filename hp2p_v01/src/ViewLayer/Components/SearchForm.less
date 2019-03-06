@@ -63,6 +63,29 @@
     }
   }
 
+  @media @phone {
+    .p_t_1_rem;
+    
+    .SearchForm__searchRow {
+      &:extend(.p_l_1_rem, .p_r_1_rem);
+      padding-bottom+: 1rem;
+
+      .SearchForm__inputCol {
+        &:extend(.p_l_0, .p_r_0);
+      }
+
+      input {
+        .p_a_1_rem;
+        font-size+: @fontSize_a;
+      }
+    }
+
+    .SearchForm__dropdownsRow {
+      .p_t_1_rem;
+    }
+
+  }
+
 }
 
 

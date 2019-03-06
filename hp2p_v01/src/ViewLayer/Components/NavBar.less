@@ -16,6 +16,12 @@
     i {
       font-size: 30px;
     }
+
+    @media @phone {
+      .p_r_0;
+    }
+
+
   }
   .nav-actions{
     margin-top: 0;
@@ -41,11 +47,16 @@
     &:extend(.p_l_4_rem);
 
     @media @phone {
-      padding-left: 0;
+      .p_l_0;
     }
 
   }
 
+  .navbar {
+    @media @phone {
+      .p_b_0;
+    }
+  }
 }
 
 

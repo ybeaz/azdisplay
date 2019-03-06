@@ -6,23 +6,23 @@ import uuid from 'uuidv4'
 class FieldButtons extends React.PureComponent {
   constructor(props) {
     super(props)
-    const { typeRequest } = this.props
+    const { dataArr } = this.props
     this.state = {
-      typeRequest,
+      dataArr,
     }
   }
 
 
   eventHandle = (e, action) => {
     switch (action.type) {
-      case 'changeTypeRequest': {
+      case 'changeDataItem': {
 
-        const { typeRequest } = this.state
+        const { dataArr } = this.state
         const { payload } = action
         const { capture: capturePayload } = payload
         // console.info(`action.type ${action.type}`, { action, state: this.state })
 
-        const typeRequestNext = typeRequest.map(item => {
+        const dataArrNext = dataArr.map(item => {
           const { capture } = item
           let autoFocus = false
           if (capture === capturePayload) {
@@ -31,7 +31,7 @@ class FieldButtons extends React.PureComponent {
           return { ...item, autoFocus }
         })
 
-        this.setState({ typeRequest: typeRequestNext })
+        this.setState({ dataArr: dataArrNext })
       } break
 
       default: {
@@ -48,7 +48,7 @@ class FieldButtons extends React.PureComponent {
     }
     const eid = `FieldButtons__button-${uuid()}`
     const payload = { eid, capture }
-    const action = { type: 'changeTypeRequest', payload }
+    const action = { type: 'changeDataItem', payload }
     return (
       <button
         id={eid}
@@ -64,8 +64,8 @@ class FieldButtons extends React.PureComponent {
 
   render() {
 
-    const { typeRequest } = this.state
-    const fieldButtons = this.getFieldButtons(typeRequest)
+    const { dataArr } = this.state
+    const fieldButtons = this.getFieldButtons(dataArr)
 
     return (
       <div className='FieldButtons'>

@@ -5,10 +5,10 @@ import PropTypes from 'prop-types'
 class Dropdown extends React.PureComponent {
   constructor(props) {
     super(props)
-    const { typeMedia } = this.props
+    const { dataArr } = this.props
     this.prefix = 'Dropdown'
     this.state = {
-      typeMedia,
+      dataArr,
       toggle: `${this.prefix}__dropdownMenu_hide`,
     }
   }
@@ -29,7 +29,7 @@ class Dropdown extends React.PureComponent {
     }
 
     const payload = { capture }
-    const action = { type: 'selectTypeMedia', payload }
+    const action = { type: 'selectDataItem', payload }
 
     return (
       <div
@@ -44,23 +44,35 @@ class Dropdown extends React.PureComponent {
   })
 
   getFontAwsomeIcons = arr => {
-    const icons = arr.map((item, i) => {
-      return <i key={i} className={`iconFa ${item}`} />
-    })
-    return <div className='d_i_b'>{icons}</div>
+    let iconHtml = null
+    if (arr) {
+      const icons = arr.map((item, i) => {
+        return <i key={i} className={`iconFa ${item}`} />
+      })
+      iconHtml = <div className='d_i_b'>{icons}</div>
+    }
+    return iconHtml
+  }
+
+  getButtonFace = (displayType, icons, capture) => {
+    let buttonFace = icons
+    if (displayType === 'text') {
+      buttonFace = <span>{capture}</span>
+    }
+    return buttonFace
   }
 
   eventHandle = (e, action) => {
     switch (action.type) {
 
-      case 'selectTypeMedia': {
+      case 'selectDataItem': {
         // console.info( 'Dropdown->eventHandle() [1]', action)
 
-        const { typeMedia } = this.state
+        const { dataArr } = this.state
         const { payload } = action
         const { capture: capturePayload } = payload
 
-        const typeMediaNext = typeMedia.map(item => {
+        const dataArrNext = dataArr.map(item => {
           const { capture } = item
           let autoFocus = false
           if (capture === capturePayload) {
@@ -69,15 +81,11 @@ class Dropdown extends React.PureComponent {
           return { ...item, autoFocus }
         })
 
-        this.setState({ typeMedia: typeMediaNext })
+        this.setState({ dataArr: dataArrNext })
 
         setTimeout(() => {
           this.setState({ toggle: 'Dropdown__dropdownMenu_hide' })
         }, 1000)
-        
-
-
-
       } break
 
       case 'toggleDropdownMenu': {
@@ -98,15 +106,18 @@ class Dropdown extends React.PureComponent {
 
   render() {
 
-    const { cid, classNames } = this.props
-    const { typeMedia, toggle } = this.state
-    const activeItem = typeMedia.filter(item => item.autoFocus === true)[0]
+    const { cid, classNames, displayType } = this.props
+    const { dataArr, toggle } = this.state
+    const activeItem = dataArr.filter(item => item.autoFocus === true)[0]
     const { classNameArr } = activeItem
 
     const icons = this.getFontAwsomeIcons(classNameArr)
-    // console.info('Dropdown->render()', { cid, activeItem, classNames, typeMedia })
+    const { capture } = activeItem
+    const buttonFace = this.getButtonFace(displayType, icons, capture)
 
-    const dropdownItems = this.getDropdownItems(typeMedia, this.prefix)
+    // console.info('Dropdown->render()', { cid, activeItem, classNames, dataArr })
+
+    const dropdownItems = this.getDropdownItems(dataArr, this.prefix)
     const action = { type: 'toggleDropdownMenu' }
 
     return (
@@ -116,7 +127,7 @@ class Dropdown extends React.PureComponent {
           className='btn btn-success dropdown-toggle Dropdown__button'
           onClickCapture={e => this.eventHandle(e, action)}
         >
-          {icons}
+          {buttonFace}
         </button>
         <div className={`${this.prefix}__dropdownMenu dropdown-menu dropdown-menu-right ${toggle}`}>
           {dropdownItems}
@@ -129,13 +140,13 @@ class Dropdown extends React.PureComponent {
 Dropdown.defaultProps = {
   cid: '',
   classNames: '',
-  typeMedia: [],
+  dataArr: [],
 }
 
 Dropdown.propTypes = {
   cid: PropTypes.string,
   classNames: PropTypes.string,
-  typeMedia: PropTypes.arrayOf(PropTypes.object),
+  dataArr: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default Dropdown

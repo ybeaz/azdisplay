@@ -35,11 +35,13 @@ class SearchForm extends React.PureComponent {
     const { propsScope } = this.props
     const { sid, searchPlaceholder, searchButton, typeRequest, typeMedia } = propsScope
 
-    let cid = `FieldButtons-${uuid()}`
-    const typeRequestProps = { cid, typeRequest }
-    cid = `Dropdown-${uuid()}`
-    const classNames = 'p_l_2_rem'
-    const typeMediaProps = { cid, classNames, typeMedia }
+    let cid = `typeRequest-${uuid()}`
+    const classNames1 = 'Dropdown_typeRequestSecondRow'
+    const typeRequestProps = { cid, dataArr: typeRequest, displayType: 'text' }
+    cid = `typeMedia-${uuid()}`
+    const classNames2 = 'Dropdown_typeMediaFirstRow p_l_2_rem'
+    const classNames3 = 'Dropdown_typeMediaSecondRow p_l_2_rem'
+    const typeMediaProps = { cid, dataArr: typeMedia, displayType: 'icon' }
 
     const searchInputId = `${this.cid}-searchInput`
     const buttonInputId = `${this.cid}-buttonInput`
@@ -48,26 +50,32 @@ class SearchForm extends React.PureComponent {
     return (
       <div id={this.cid} className={`container-fluid form-group ${sid}`}>
         <div className='row SearchForm__searchRow transitionPrevSearch'>
-          <div className='col-lg-8 col-md-8 col-sm-8 col-xs-8 SearchForm__inputCol'>
+          <div className='col-lg-8 col-md-8 col-sm-8 col-9 SearchForm__inputCol'>
             <input id={searchInputId} type='text' className='form-control' 
               placeholder={searchPlaceholder} />
           </div>
-          <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2 SearchForm__searchButtonCol'>
+          <div className='col-lg-2 col-md-2 col-sm-2 col-3 SearchForm__searchButtonCol'>
             <button id={buttonInputId} type='submit' className='btn SearchForm__searchButton'>
               {searchButton}
             </button>
           </div>
-          <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2' />
+          <div className='col-lg-2 col-md-2 col-sm-2 col-0' />
         </div>
         <div className='row SearchForm__categoryRow transitionPrevSearch'>
           <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 SearchForm__categoryCol'>
             <FieldButtons {...typeRequestProps} />
-            <Dropdown {...typeMediaProps} />
+            <Dropdown {...typeMediaProps} classNames={classNames2} />
             {/*
             <button type='button' className='btn categoryButton'>
               <i class="fas fa-video"></i>
             </button>
             */}
+          </div>
+        </div>
+        <div className='row SearchForm__dropdownsRow'>
+          <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center'>
+            <Dropdown {...typeRequestProps} classNames={classNames1} />
+            <Dropdown {...typeMediaProps} classNames={classNames3} />
           </div>
         </div>
       </div>
