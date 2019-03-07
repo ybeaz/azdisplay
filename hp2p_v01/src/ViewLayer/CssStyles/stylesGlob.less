@@ -19,8 +19,34 @@
 
   //@import (css) url('https://fonts.googleapis.com/css?family=BlinkMacSystemFont|San+Francisco|HelveticaNeue-Light|Helvetica+Neue+Light|Helvetica+Neue|Segoe+UI|Fira+Sans|Roboto|Oxygen|Ubuntu|Droid+Sans|Arial|sans-serif');
 
+// Testing less @plugin feature
+  @plugin 'lessPlugins';
+  .red {
+    color: red('red !important');
+  }
 
 // Themes
+.globalStyle {
+  font-size: @fontSize_a;
+  font-family: @font-family;
+  background-color: @color0;
+  color: @color1;
+  box-sizing: border-box;
+}
+
+.bg_greyLight {
+  background-color: @color7;
+}
+.bg_greyDark {
+  background-color: @color2;
+}
+.c_green {
+  color: @color5;
+}
+.c_white {
+  color: @color7;
+}
+
 .hoverFocusActive {
   &:hover {
     background-color: @color3;
@@ -40,7 +66,7 @@
 }
 
 .buttonColor {
-  border-color: @color2;
+  border-color: @color5;
   box-shadow: 0 0 0 0;
   background: @color6;
   color: @color0;
@@ -53,6 +79,17 @@
   color: @color1;
 }
 
+.newSection {
+  &:extend(.p_t_2_rem, .p_b_2_rem);
+  @media @phone {
+    padding: 0;
+  }
+}
+
+.titleSection {
+  &:extend(.t_tr_uc);
+  font-weight: 700;
+}
 
 @import '../Pages/Error404.less';
 @import '../Pages/FacePage326.less';

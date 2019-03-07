@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Switch, Redirect  } from 'react-router-dom'
+import { Provider } from 'react-redux'
 import './ViewLayer/CssStyles/index.less'
 // import './Shared/styles.less' 
 
-// Object.assign(styles, customStyles, ...)
+import store from './DataLayer/store'
 import FacePage326 from './ViewLayer/Pages/FacePage326.react'
 import Error404 from './ViewLayer/Pages/Error404.react'
 
@@ -54,13 +55,15 @@ function App() {
     })
 
   return (
-    <BrowserRouter>
-      <Switch>
-        {getRedirects()}
-        {getRoutes()}
-        <Route component={Error404} />
-      </Switch>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          {getRedirects()}
+          {getRoutes()}
+          <Route component={Error404} />
+        </Switch>
+      </BrowserRouter>
+    </Provider>
   )
 }
 

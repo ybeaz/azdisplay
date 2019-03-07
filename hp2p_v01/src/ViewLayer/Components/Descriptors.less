@@ -29,18 +29,25 @@
   .descWrapper1 {
     &:extend(.p_x_0);
     .descriptorRow1 {
-      &:extend(.t_tr_uc);
       letter-spacing: -2px;
       font-size: @fontSize_c;
       font-weight: 700;
+     
+      @media @phone {
+        text-align: center;
+        font-size: 8vw;
+      }
     }
   }
 
   .descWrapper2 {
     &:extend(.p_x_0);
     .descriptorRow2 {
-      &:extend(.t_tr_uc);
       font-size: @fontSize_b;
+      @media @phone {
+        text-align: center;
+        font-size: 4vw;
+      }
     }
   }
 

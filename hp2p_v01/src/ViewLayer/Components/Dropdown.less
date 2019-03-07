@@ -5,38 +5,46 @@
   .Dropdown__button {
     &:extend(.m_r_0p5_rem, .b_r_3_rem);
     .hoverFocusActive;
-    min-width: 8rem;
+    min-width+: 8rem;
     .buttonColor;
   }
 
-  .Dropdown__button > div .iconFa:not(:first-of-type) {
-    &:extend(.p_l_1_rem);
+  .Dropdown__button > span {
+    padding-right+: 0.2rem;
   }
 
-  .Dropdown__button > div .iconFa:last-of-type {
-    &:extend(.p_r_1_rem);
+  .Dropdown__button >  div .iconFa:not(:first-of-type) {
+    &:extend(.p_l_0p5_rem);
+  }
+
+  .Dropdown__button > div .iconFa:not(:first-of-type) {
+    &:extend(.p_l_0p5_rem);
+  }
+
+  .Dropdown__button >  div .iconFa:last-of-type {
+    &:extend(.p_r_0p5_rem);
   }
 
   .Dropdown__dropdownMenu_show {
-    display: block;
+    display+: block;
   }
 
   .Dropdown__dropdownMenu_hide {
-    display: none;
+    display+: none;
   }
 
   .Dropdown__item {
-    cursor: pointer;
+    cursor+: pointer;
   }
 
   .Dropdown__item_selected {
-    background-color: @color2;
-    color: @color0; 
+    background-color+: @color2;
+    color+: @color0; 
   }
 
   .Dropdown__item_notSelected {
-    background-color: @color0;
-    color: @color2;
+    background-color+: @color0;
+    color+: @color2;
   }
 
   .Dropdown__item > div .iconFa {
@@ -49,6 +57,29 @@
 
   .Dropdown__item:first-of-type > span {
     .p_l_2_rem;
-  } 
+  }
 }
 
+@media @large {
+  .Dropdown_typeRequestSecondRow, .Dropdown_typeMediaSecondRow {
+    .d_n;
+  }
+}
+@media @desktop {
+  .Dropdown_typeRequestSecondRow, .Dropdown_typeMediaSecondRow {
+    .d_n;
+  }
+}
+@media @tablet {
+  .Dropdown_typeRequestSecondRow, .Dropdown_typeMediaSecondRow {
+    .d_n;
+  }
+}
+@media @phone {
+  .Dropdown_typeMediaFirstRow {
+    .d_n;
+  }
+  .Dropdown_typeRequestSecondRow, .Dropdown_typeMediaSecondRow {
+    .d_i_b;
+  }
+}
