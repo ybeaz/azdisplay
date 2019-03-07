@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import uuid from 'uuidv4'
+import uuidv4 from 'uuid/v4'
 import * as serviceFunc from '../../Shared/serviceFunc'
 
 import FieldButtons from './FieldButtons.react'
@@ -11,9 +11,8 @@ import Dropdown from './Dropdown.react'
 class SearchForm extends React.PureComponent {
   constructor(props) {
     super(props)
-    const { propsScope } = this.props
-    const { sid } = propsScope
-    this.cid = `${sid}-${uuid()}`
+    const { sid } = this.props
+    this.cid = `${sid}-${uuidv4()}`
   }
 
   componentDidMount() {
@@ -32,27 +31,17 @@ class SearchForm extends React.PureComponent {
   }
 
   render() {
-    const { propsScope } = this.props
-    const { sid, searchPlaceholder, searchButton, typeRequest, typeMedia } = propsScope
+    const { sid, searchPlaceholder, searchButton, typeRequest, typeMedia } = this.props
 
-    let cid = `typeRequest-${uuid()}`
+    let cid = `typeRequest-${uuidv4()}`
     const prefix1 = 'FieldButtons_typeRequestFirstRow'
     const classNames1 = 'Dropdown_typeRequestFirstRow'
-    const typeRequestProps1 = { cid, prefix: prefix1, dataArr: typeRequest, displayBtnType: 'text', classNames: classNames1 }
+    const typeRequestProps1 = { cid, prefix: prefix1, listArr: typeRequest, displayBtnType: 'text', classNames: classNames1 }
 
-    cid = `typeRequest-${uuid()}`
-    const prefix2 = 'Dropdown_typeRequestSecondRow'
-    const classNames2 = 'Dropdown_typeRequestSecondRow'
-    const typeRequestProps2 = { cid, prefix: prefix2, dataArr: typeRequest, displayBtnType: 'text', classNames: classNames2 }
-    
-    cid = `typeMedia-${uuid()}`
+    cid = `typeMedia-${uuidv4()}`
     const prefix3 = 'Dropdown_typeMediaFirstRow'
     const classNames3 = 'Dropdown_typeMediaFirstRow'
-    const typeMediaProps3 = { cid, prefix: prefix3, dataArr: typeMedia, displayBtnType: 'icon', classNames: classNames3 }
-
-    const prefix4 = 'Dropdown_typeMediaSecondRow'
-    const classNames4 = 'Dropdown_typeMediaSecondRow'
-    const typeMediaProps4 = { cid, prefix: prefix4, dataArr: typeMedia, displayBtnType: 'icon', classNames: classNames4 }
+    const typeMediaProps3 = { cid, prefix: prefix3, listArr: typeMedia, displayBtnType: 'icon', classNames: classNames3 }
 
     const searchInputId = `${this.cid}-searchInput`
     const buttonInputId = `${this.cid}-buttonInput`

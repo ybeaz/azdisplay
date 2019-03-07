@@ -18,8 +18,7 @@ class CatalogTags extends React.PureComponent {
   }
 
   render() {
-    const { propsScope } = this.props
-    const { sid, captureSection, catatogtagArr } = propsScope
+    const { sid, captureSection, catatogtagArr } = this.props
 
     const tags = this.getTags(catatogtagArr, sid)
 

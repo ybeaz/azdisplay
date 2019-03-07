@@ -43,9 +43,8 @@ class ImgListTable extends React.PureComponent {
   }
 
   render() {
-    const { propsScope } = this.props
-    // console.info('ImgListTable->render() [10]', { propsScope, props: this.props })
-    const { sid, listArr, captureSection, imgSrc, sequence } = propsScope
+    // console.info('ImgListTable->render() [10]', { props: this.props })
+    const { sid, listArr, captureSection, imgSrc, sequence } = this.props
     const listBlock = this.getListBlock(listArr, captureSection)
     const imgBlock = this.getImgBlock(imgSrc)
 

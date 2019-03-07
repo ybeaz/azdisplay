@@ -1,4 +1,5 @@
 import React from 'react'
+import uuidv4 from 'uuid/v4'
 
 import CommonContainer from '../Containers/CommonContainer.react'
 import CombineWrapper from '../Components/CombineWrapper.react'
@@ -21,16 +22,12 @@ class FacePage326 extends React.PureComponent {
     super(props)
   }
 
-  handleActions = (e, payload) => {
-    console.info('FacePage326->handleActions', { e, payload })
-
-  }
-
   render() {
+    
+    const { treeDefault } = this.props
     const {
       navBar,
       descriptors,
-      carousel,
       searchForm,
       catatogTags,
       itHelps,
@@ -40,59 +37,62 @@ class FacePage326 extends React.PureComponent {
       registrationButton,
       userReviews,
       footer,
-    } = this.props.treeDefault
+    } = treeDefault
+    let { carousel } = treeDefault
+
     // console.info('FacePage326->render() [10]', { carousel, props: this.props })
-    const payload = {type: '1'}
-    this.props.handleActions({}, payload)
+
+    const cidCarousel = `Carousel-${uuidv4()}`
+    carousel = { ...carousel, cid: cidCarousel }
 
     return (
       <div className='FacePage326 globalStyle'>
-        <header><NavBar {... { propsScope: navBar }} /></header>
+        <header><NavBar { ...navBar } /></header>
         <main>
           <CombineWrapper classStyle='CombineWrapper CombineWrapper_jumbotron newSection'>
             <SectionWrapper classStyle='SectionWrapper SectionWrapper_desc'>
-              <Descriptors {... { propsScope: descriptors }} />
+              <Descriptors { ...descriptors } />
             </SectionWrapper>
             <SectionWrapper classStyle='SectionWrapper SectionWrapper_mobileImage'>
-              {/* <Carousel {... { propsScope: carousel }} /> */}
+              {/* <Carousel { ...carousel } /> */}
             </SectionWrapper>
             <SectionWrapper classStyle='SearchFormSection'>
-              <SearchForm {... { propsScope: searchForm }} />
+              <SearchForm { ...searchForm } />
             </SectionWrapper>
           </CombineWrapper>
     <SectionWrapper classStyle='SectionWrapper'>
-        <Carousel {... { propsScope: carousel }} />
+        <Carousel { ...carousel } />
     </SectionWrapper>
           <SectionWrapper classStyle='CatalogTagsSection p_t_2_rem'>
-            <CatalogTags {... { propsScope: catatogTags }} />
+            <CatalogTags {... catatogTags } />
           </SectionWrapper>
           <SectionWrapper classStyle='ImgListTableSection p_t_4_rem'>
-            <ImgListTable {... { propsScope: itHelps }} />
+            <ImgListTable { ...itHelps } />
           </SectionWrapper>
           <SectionWrapper classStyle='WorkFlowSection newSection m_t_2_rem bg_greyLight'>
-            <WorkFlow {... { propsScope: workFlow }} />
+            <WorkFlow { ...workFlow } />
           </SectionWrapper>
           <SectionWrapper classStyle='KeyFeaturesSection newSection'>
-            <ImgListTable {... { propsScope: keyFeatures }} />
+            <ImgListTable { ...keyFeatures } />
           </SectionWrapper>
           <CombineWrapper classStyle='CombineWrapper background03 newSection'>
             <SectionWrapper classStyle='ShortAdvantagesSection'>
-              <ShortAdvantages {... { propsScope: shortAdvantages }} />
+              <ShortAdvantages { ...shortAdvantages } />
             </SectionWrapper>
             <SectionWrapper classStyle='SearchFormSection p_t_2_rem'>
-              <SearchForm {... { propsScope: searchForm }} />
+              <SearchForm { ...searchForm } />
             </SectionWrapper>
           </CombineWrapper>
           <SectionWrapper classStyle='UserReviewSection newSection m_t_4_rem'>
-            <UserReviews {... { propsScope: userReviews }} />
+            <UserReviews { ...userReviews } />
           </SectionWrapper>
           <SectionWrapper classStyle='RegistrationButtonSection newSection'>
-            <RegistrationButton {... { propsScope: registrationButton }} />
+            <RegistrationButton { ...registrationButton } />
           </SectionWrapper>
         </main>
         <footer>
           <SectionWrapper classStyle='FooterSection newSection bg_greyDark'>
-            <Footer {... { propsScope: footer }} />
+            <Footer { ...footer } />
           </SectionWrapper>
         </footer>
       </div>

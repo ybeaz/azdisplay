@@ -5,15 +5,30 @@ import PropTypes from 'prop-types'
 class Carousel extends React.Component {
   constructor(props) {
     super(props)
-    const { propsScope } = this.props
-    const { listArr } = propsScope
+    const { listArr } = this.props
+    const totimeZone =	new Date()
+    //console.info('Carousel->constructor', { props: this.props })
+
     this.state = {
       listArr,
+      date: totimeZone,
     }
   }
 
+  componentDidMount() {
+    const actionNextItem = {
+      type: 'nextItem',
+      payload: {},
+    }
+
+    // this.tickID	=	setInterval(() => this.handleEvent({}, actionNextItem), 2000)
+  }
+
+  tick = () => this.setState({	date:	new Date() })
+  
   carouselRender = source => {
     // console.info('Carousel->carouselRender [0]', { source, state: this.state })
+    const { cid, prefix } = this.props
 
     const indicators = source.map((item, i) => {
       const { active } = item
@@ -31,7 +46,7 @@ class Carousel extends React.Component {
 
       // console.info('Carousel->carouselRender [3]', { id: item.id, item, pageItemClass, activeItem: activeItem })
       return (
-        <li key={i} data-target='#demo' data-slide-to='1' className={itemClass}
+        <li key={i} className={itemClass}
           onClick={e => this.handleEvent(e, action)}
         />
       )
@@ -63,24 +78,24 @@ class Carousel extends React.Component {
 
     // console.info('Carousel->carouselRender [7]', { })
     return (
-      <div id='demo' className='carousel slide' data-ride='carousel'>
+      <div id={cid} className={`carousel slide ${prefix}`}>
         <ul className='carousel-indicators'>
           {indicators}
         </ul>
         <div className='carousel-inner'>
           {imgs}
         </div>
-        <a className='carousel-control-prev' href='#demo' data-slide='prev'>
+        <div className='carousel-control-prev'>
           <span className='carousel-control-prev-icon'
             onClick={e => this.handleEvent(e, actionPrevItem)}
           />
-        </a>
-        <a className='carousel-control-next' href='#demo' data-slide='next'>
+        </div>
+        <div className='carousel-control-next'>
           <span
             className='carousel-control-next-icon'
             onClick={e => this.handleEvent(e, actionNextItem)}
           />
-        </a>
+        </div>
       </div>
     )
   }
@@ -154,11 +169,39 @@ class Carousel extends React.Component {
     const { listArr } = this.state
     // console.info('Carousel->render()', { listArr })
 
-    return <div>{this.carouselRender(listArr)}</div>
+    return (
+      <div>
+        {this.carouselRender(listArr)}
+      </div>
+    )
   }
 }
 
+Carousel.defaultProps = {
+  cid: '',
+  prefix: '',
+  displayArrows: true,
+}
+
+/* eslint-disable indent */
 Carousel.propTypes = {
+  cid: PropTypes.string,
+    // component id
+  prefix: PropTypes.string,
+    // For each prefix styles tree can be created in Dropdown.less file
+  displayArrows: PropTypes.bool,
+    // Possible values: 'icon', 'text'
+  listArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+    /* Example
+      listArr: [
+          {
+            capture: 'Los Angeles',
+            src: 'https://www.w3schools.com/bootstrap4/la.jpg',
+            active: true,
+          },
+        ...
+      ]
+    */
 }
 
 export default Carousel

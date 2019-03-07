@@ -28,9 +28,7 @@ class ShortAdvantages extends React.PureComponent {
   }
 
   render() {
-
-    const { propsScope } = this.props
-    const { sid, shortAdvantagesArr } = propsScope
+    const { sid, shortAdvantagesArr } = this.props
     const shortAdvantages = this.getShortAdvantagesList(shortAdvantagesArr)
 
     return (
