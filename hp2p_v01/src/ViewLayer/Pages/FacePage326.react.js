@@ -1,5 +1,6 @@
 import React from 'react'
 
+import CommonContainer from '../Containers/CommonContainer.react'
 import CombineWrapper from '../Components/CombineWrapper.react'
 import SectionWrapper from '../Components/SectionWrapper.react'
 import NavBar from '../Components/NavBar.react'
@@ -44,6 +45,8 @@ class FacePage326 extends React.PureComponent {
       footer,
     } = this.props.treeDefault
     console.info('FacePage326->render() [10]', { carousel, props: this.props })
+    const payload = {type: '1'}
+    this.props.handleActions({}, payload)
 
     return (
       <div className='FacePage326 globalStyle'>
@@ -102,5 +105,5 @@ class FacePage326 extends React.PureComponent {
 
 FacePage326.propTypes = {
 }
-
-export default FacePage326
+//export default FacePage326
+export default CommonContainer(FacePage326)
