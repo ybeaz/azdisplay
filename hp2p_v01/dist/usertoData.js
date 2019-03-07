@@ -22,23 +22,17 @@ var USERTO = {
         sid: 'Carousel',
         listArr: [
           {
-            id: 0,
             capture: 'Los Angeles',
-            level: 'basic',
             src: 'https://www.w3schools.com/bootstrap4/la.jpg',
             active: true,
           },
           {
-            id: 1,
             capture: 'Chicago',
-            level: 'basic',
             src: 'https://www.w3schools.com/bootstrap4/chicago.jpg',
             active: false,
           },
           {
-            id: 2,
             capture: 'New York',
-            level: 'advanced',
             src: 'https://www.w3schools.com/bootstrap4/ny.jpg',
             active: false,
           },

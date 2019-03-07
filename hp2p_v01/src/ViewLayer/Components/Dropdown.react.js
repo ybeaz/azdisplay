@@ -33,7 +33,7 @@ class Dropdown extends React.PureComponent {
       <div
         key={i}
         className={`Dropdown__item dropdown-item ${activeClass}`}
-        onClickCapture={e => this.eventHandle(e, action)}
+        onClickCapture={e => this.handleEvent(e, action)}
       >
         {icons}
         <span>{capture}</span>
@@ -60,11 +60,11 @@ class Dropdown extends React.PureComponent {
     return buttonFace
   }
 
-  eventHandle = (e, action) => {
+  handleEvent = (e, action) => {
     switch (action.type) {
 
       case 'selectDataItem': {
-        // console.info( 'Dropdown->eventHandle() [1]', action)
+        // console.info( 'Dropdown->handleEvent() [1]', action)
 
         const { dataArr } = this.state
         const { payload } = action
@@ -96,9 +96,8 @@ class Dropdown extends React.PureComponent {
       } break
 
       default: {
-        console.info( 'Dropdown->eventHandle() [10]','I have never heard of that ... ', action)
+        console.info( 'Dropdown->handleEvent() [10]','I have never heard of that ... ', action)
       } break
-
     }
   }
 
@@ -123,7 +122,7 @@ class Dropdown extends React.PureComponent {
         <button
           type='button'
           className='btn btn-success dropdown-toggle Dropdown__button'
-          onClickCapture={e => this.eventHandle(e, action)}
+          onClickCapture={e => this.handleEvent(e, action)}
         >
           {buttonFace}
         </button>

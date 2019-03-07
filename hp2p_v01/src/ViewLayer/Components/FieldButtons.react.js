@@ -13,7 +13,7 @@ class FieldButtons extends React.PureComponent {
   }
 
 
-  eventHandle = (e, action) => {
+  handleEvent = (e, action) => {
     switch (action.type) {
       case 'changeDataItem': {
 
@@ -35,7 +35,7 @@ class FieldButtons extends React.PureComponent {
       } break
 
       default: {
-        console.info( 'FieldButtons->eventHandle() [10]','I have never heard of that ... ', action)
+        console.info( 'FieldButtons->handleEvent() [10]','I have never heard of that ... ', action)
       } break
     }
   }
@@ -55,7 +55,7 @@ class FieldButtons extends React.PureComponent {
         key={eid}
         type='button'
         className={`btn btn-success FieldButtons__button ${activeClass}`}
-        onClickCapture={e => this.eventHandle(e, action)}
+        onClickCapture={e => this.handleEvent(e, action)}
       >
         {capture}
       </button>

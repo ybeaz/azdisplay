@@ -24,9 +24,6 @@ class FacePage326 extends React.PureComponent {
   handleActions = (e, payload) => {
     console.info('FacePage326->handleActions', { e, payload })
 
-
-
-
   }
 
   render() {
@@ -44,7 +41,7 @@ class FacePage326 extends React.PureComponent {
       userReviews,
       footer,
     } = this.props.treeDefault
-    console.info('FacePage326->render() [10]', { carousel, props: this.props })
+    // console.info('FacePage326->render() [10]', { carousel, props: this.props })
     const payload = {type: '1'}
     this.props.handleActions({}, payload)
 
