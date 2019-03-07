@@ -38,21 +38,21 @@ class SearchForm extends React.PureComponent {
     let cid = `typeRequest-${uuid()}`
     const prefix1 = 'FieldButtons_typeRequestFirstRow'
     const classNames1 = 'Dropdown_typeRequestFirstRow'
-    const typeRequestProps1 = { cid, prefix: prefix1, dataArr: typeRequest, displayType: 'text', classNames: classNames1 }
+    const typeRequestProps1 = { cid, prefix: prefix1, dataArr: typeRequest, displayBtnType: 'text', classNames: classNames1 }
 
     cid = `typeRequest-${uuid()}`
     const prefix2 = 'Dropdown_typeRequestSecondRow'
     const classNames2 = 'Dropdown_typeRequestSecondRow'
-    const typeRequestProps2 = { cid, prefix: prefix2, dataArr: typeRequest, displayType: 'text', classNames: classNames2 }
+    const typeRequestProps2 = { cid, prefix: prefix2, dataArr: typeRequest, displayBtnType: 'text', classNames: classNames2 }
     
     cid = `typeMedia-${uuid()}`
     const prefix3 = 'Dropdown_typeMediaFirstRow'
     const classNames3 = 'Dropdown_typeMediaFirstRow'
-    const typeMediaProps3 = { cid, prefix: prefix3, dataArr: typeMedia, displayType: 'icon', classNames: classNames3 }
+    const typeMediaProps3 = { cid, prefix: prefix3, dataArr: typeMedia, displayBtnType: 'icon', classNames: classNames3 }
 
     const prefix4 = 'Dropdown_typeMediaSecondRow'
     const classNames4 = 'Dropdown_typeMediaSecondRow'
-    const typeMediaProps4 = { cid, prefix: prefix4, dataArr: typeMedia, displayType: 'icon', classNames: classNames4 }
+    const typeMediaProps4 = { cid, prefix: prefix4, dataArr: typeMedia, displayBtnType: 'icon', classNames: classNames4 }
 
     const searchInputId = `${this.cid}-searchInput`
     const buttonInputId = `${this.cid}-buttonInput`

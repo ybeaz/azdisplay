@@ -13,7 +13,7 @@ class Dropdown extends React.PureComponent {
   }
 
   getDropdownItems = arr => arr.map((item, i) => {
-    const { capture, classNameArr, autoFocus } = item
+    const { capture, classNameArr, active } = item
     
     let icons = this.getFontAwsomeIcons(classNameArr)
 
@@ -21,9 +21,9 @@ class Dropdown extends React.PureComponent {
       icons = null
     }
 
-    let autoFocusClass = 'Dropdown__item_notSelected'
-    if (autoFocus === true) {
-      autoFocusClass = 'Dropdown__item_selected'
+    let activeClass = 'Dropdown__item_notSelected'
+    if (active === true) {
+      activeClass = 'Dropdown__item_selected'
     }
 
     const payload = { capture }
@@ -32,7 +32,7 @@ class Dropdown extends React.PureComponent {
     return (
       <div
         key={i}
-        className={`Dropdown__item dropdown-item ${autoFocusClass}`}
+        className={`Dropdown__item dropdown-item ${activeClass}`}
         onClickCapture={e => this.eventHandle(e, action)}
       >
         {icons}
@@ -52,9 +52,9 @@ class Dropdown extends React.PureComponent {
     return iconHtml
   }
 
-  getButtonFace = (displayType, icons, capture) => {
+  getButtonFace = (displayBtnType, icons, capture) => {
     let buttonFace = icons
-    if (displayType === 'text') {
+    if (displayBtnType === 'text') {
       buttonFace = <span>{capture}</span>
     }
     return buttonFace
@@ -72,11 +72,11 @@ class Dropdown extends React.PureComponent {
 
         const dataArrNext = dataArr.map(item => {
           const { capture } = item
-          let autoFocus = false
+          let active = false
           if (capture === capturePayload) {
-            autoFocus = true
+            active = true
           }
-          return { ...item, autoFocus }
+          return { ...item, active }
         })
 
         this.setState({ dataArr: dataArrNext })
@@ -104,14 +104,14 @@ class Dropdown extends React.PureComponent {
 
   render() {
 
-    const { cid, prefix, displayType } = this.props
+    const { cid, prefix, displayBtnType } = this.props
     const { dataArr, toggle } = this.state
-    const activeItem = dataArr.filter(item => item.autoFocus === true)[0]
+    const activeItem = dataArr.filter(item => item.active === true)[0]
     const { classNameArr } = activeItem
 
     const icons = this.getFontAwsomeIcons(classNameArr)
     const { capture } = activeItem
-    const buttonFace = this.getButtonFace(displayType, icons, capture)
+    const buttonFace = this.getButtonFace(displayBtnType, icons, capture)
 
     // console.info('Dropdown->render()', { cid, activeItem, dataArr })
 
@@ -138,7 +138,7 @@ class Dropdown extends React.PureComponent {
 Dropdown.defaultProps = {
   cid: '',
   prefix: '',
-  displayType: 'icon',
+  displayBtnType: 'icon',
 }
 
 /* eslint-disable indent */
@@ -147,12 +147,12 @@ Dropdown.propTypes = {
     // component id
   prefix: PropTypes.string,
     // For each prefix styles tree can be created in Dropdown.less file
-  displayType: PropTypes.string,
+  displayBtnType: PropTypes.string,
     // Possible values: 'icon', 'text'
   dataArr: PropTypes.arrayOf(PropTypes.object).isRequired,
     /* Example
       [ 
-        { capture: 'Все виды', classNameArr: ['fas fa-video'], autoFocus: true },
+        { capture: 'Все виды', classNameArr: ['fas fa-video'], active: true },
         ...
       ],
     */

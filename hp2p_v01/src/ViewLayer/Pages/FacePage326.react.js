@@ -4,6 +4,7 @@ import CombineWrapper from '../Components/CombineWrapper.react'
 import SectionWrapper from '../Components/SectionWrapper.react'
 import NavBar from '../Components/NavBar.react'
 import Descriptors from '../Components/Descriptors.react'
+import Carousel from '../Components/Carousel.react'
 import SearchForm from '../Components/SearchForm.react'
 import CatalogTags from '../Components/CatalogTags.react'
 import ImgListTable from '../Components/ImgListTable.react'
@@ -19,10 +20,19 @@ class FacePage326 extends React.PureComponent {
     super(props)
   }
 
+  handleActions = (e, payload) => {
+    console.info('FacePage326->handleActions', { e, payload })
+
+
+
+
+  }
+
   render() {
     const {
       navBar,
       descriptors,
+      carousel,
       searchForm,
       catatogTags,
       itHelps,
@@ -33,7 +43,7 @@ class FacePage326 extends React.PureComponent {
       userReviews,
       footer,
     } = this.props.treeDefault
-    // console.info('FacePage326->render() [10]', { props: this.props })
+    console.info('FacePage326->render() [10]', { carousel, props: this.props })
 
     return (
       <div className='FacePage326 globalStyle'>
@@ -43,11 +53,16 @@ class FacePage326 extends React.PureComponent {
             <SectionWrapper classStyle='SectionWrapper SectionWrapper_desc'>
               <Descriptors {... { propsScope: descriptors }} />
             </SectionWrapper>
-            <SectionWrapper classStyle='SectionWrapper SectionWrapper_mobileImage' />
+            <SectionWrapper classStyle='SectionWrapper SectionWrapper_mobileImage'>
+              {/* <Carousel {... { propsScope: carousel }} /> */}
+            </SectionWrapper>
             <SectionWrapper classStyle='SearchFormSection'>
               <SearchForm {... { propsScope: searchForm }} />
             </SectionWrapper>
           </CombineWrapper>
+    <SectionWrapper classStyle='SectionWrapper'>
+        <Carousel {... { propsScope: carousel }} />
+    </SectionWrapper>
           <SectionWrapper classStyle='CatalogTagsSection p_t_2_rem'>
             <CatalogTags {... { propsScope: catatogTags }} />
           </SectionWrapper>

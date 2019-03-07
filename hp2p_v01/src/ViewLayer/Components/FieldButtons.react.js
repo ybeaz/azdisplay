@@ -24,11 +24,11 @@ class FieldButtons extends React.PureComponent {
 
         const dataArrNext = dataArr.map(item => {
           const { capture } = item
-          let autoFocus = false
+          let active = false
           if (capture === capturePayload) {
-            autoFocus = true
+            active = true
           }
-          return { ...item, autoFocus }
+          return { ...item, active }
         })
 
         this.setState({ dataArr: dataArrNext })
@@ -41,10 +41,10 @@ class FieldButtons extends React.PureComponent {
   }
 
   getFieldButtons = arr => arr.map((item, i) => {
-    const { capture, autoFocus } = item
-    let autoFocusClass = ''
-    if (autoFocus === true) {
-      autoFocusClass = 'FieldButtons__button_active'
+    const { capture, active } = item
+    let activeClass = ''
+    if (active === true) {
+      activeClass = 'FieldButtons__button_active'
     }
     const eid = `FieldButtons__button-${uuid()}`
     const payload = { eid, capture }
@@ -54,7 +54,7 @@ class FieldButtons extends React.PureComponent {
         id={eid}
         key={eid}
         type='button'
-        className={`btn btn-success FieldButtons__button ${autoFocusClass}`}
+        className={`btn btn-success FieldButtons__button ${activeClass}`}
         onClickCapture={e => this.eventHandle(e, action)}
       >
         {capture}
@@ -79,7 +79,7 @@ class FieldButtons extends React.PureComponent {
 FieldButtons.defaultProps = {
   cid: '',
   classNames: '',
-  displayType: 'icon',
+  displayBtnType: 'icon',
 }
 
 /* eslint-disable indent */
@@ -90,12 +90,12 @@ FieldButtons.propTypes = {
     // For each prefix styles tree can be created in Dropdown.less file
   classNames: PropTypes.string,
     // affect the "main button"
-  displayType: PropTypes.string,
+  displayBtnType: PropTypes.string,
     // Possible values: 'icon', 'text'
   dataArr: PropTypes.arrayOf(PropTypes.object).isRequired,
     /* Example
       [ 
-        { capture: 'Все виды', classNameArr: ['fas fa-video'], autoFocus: true },
+        { capture: 'Все виды', classNameArr: ['fas fa-video'], active: true },
         ...
       ],
     */
