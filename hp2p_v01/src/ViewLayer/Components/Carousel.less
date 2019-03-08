@@ -1,2 +1,36 @@
 
+.CarouselDesc {
 
+  .transitionPrevDesc {
+    opacity: 0;
+    -webkit-clip-path: inset(49% 0 50% 0);
+    clip-path: inset(49% 0 50% 0);
+    -webkit-transform: scaleY(.7);
+    transform: scaleY(.7);
+
+    -webkit-transition: .5s ease-out;
+    -moz-transition: .5s ease-out;
+    -o-transition: .5s ease-out;
+    transition: .5s ease-out;
+    transform-origin: center;
+    transition-property: all;
+    transition-timing-function: ease-out;
+    transition-duration: .5s;
+    transition-delay: 800ms;
+  }
+
+  .transitionNextDesc {
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    transform: none;
+  }
+
+  .Carousel__item {
+    .d_b;
+
+    .Carousel__item-img {
+      height: 10rem;
+    }
+  }
+} 

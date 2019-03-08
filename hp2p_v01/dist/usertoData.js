@@ -19,24 +19,40 @@ var USERTO = {
         h2: 'Получите необходимые знания уже сейчас<br />через чат, аудио или видеосвязь', 
       },
       carousel: {
-        sid: 'Carousel',
+        sid: 'CarouselDesc',
         listArr: [
           {
-            capture: 'Los Angeles',
-            src: 'https://www.w3schools.com/bootstrap4/la.jpg',
+            capture: 'background01.jpg',
+            src: 'https://userto.com/img/background01.jpg',
             active: true,
           },
           {
-            capture: 'Chicago',
-            src: 'https://www.w3schools.com/bootstrap4/chicago.jpg',
+            capture: 'background02.jpg',
+            src: 'https://userto.com/img/background02.jpg',
             active: false,
           },
           {
-            capture: 'New York',
-            src: 'https://www.w3schools.com/bootstrap4/ny.jpg',
+            capture: 'background03.jpg',
+            src: 'https://userto.com/img/background03.jpg',
+            active: false,
+          },
+          {
+            capture: 'background04.jpg',
+            src: 'https://userto.com/img/background04.jpg',
+            active: false,
+          },
+          {
+            capture: 'background05.jpg',
+            src: 'https://userto.com/img/background05.jpg',
             active: false,
           },
         ],
+        displayArrows: true,
+        displayIndicators: false,
+        autoCarousel: false,
+        autoCarouselInterval: 2000,
+        scrollInterval: 1000,
+        scrollPeriodEnd: 2000,
       },
       searchForm: {
         sid: 'SearchForm',

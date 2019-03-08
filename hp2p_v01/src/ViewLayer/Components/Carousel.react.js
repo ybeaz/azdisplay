@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Swipeable } from 'react-swipeable'
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Carousel extends React.Component {
@@ -8,6 +9,7 @@ class Carousel extends React.Component {
     const { listArr } = this.props
     const totimeZone =	new Date()
     //console.info('Carousel->constructor', { props: this.props })
+    this.preventSwipeTwice = false
 
     this.state = {
       listArr,
@@ -16,95 +18,120 @@ class Carousel extends React.Component {
   }
 
   componentDidMount() {
+    const {
+      autoCarousel,
+      autoCarouselInterval,
+    } = this.props
+
     const actionNextItem = {
       type: 'nextItem',
       payload: {},
     }
 
-    // this.tickID	=	setInterval(() => this.handleEvent({}, actionNextItem), 2000)
+    if (autoCarousel) {
+      this.tickID	=	setInterval(() => this.handleEvent({}, actionNextItem), autoCarouselInterval)
+    }
   }
 
-  tick = () => this.setState({	date:	new Date() })
-  
-  carouselRender = source => {
-    // console.info('Carousel->carouselRender [0]', { source, state: this.state })
-    const { cid, prefix } = this.props
-
-    const indicators = source.map((item, i) => {
-      const { active } = item
-      let itemClass = ''
-      if (active === true) {
-        itemClass += ' active'
-      }
-
-      const action = {
-        type: 'clickItem',
-        payload: {
-          item,
-        },
-      }
-
-      // console.info('Carousel->carouselRender [3]', { id: item.id, item, pageItemClass, activeItem: activeItem })
-      return (
-        <li key={i} className={itemClass}
-          onClick={e => this.handleEvent(e, action)}
-        />
-      )
-    })
-
-    const imgs = source.map((item, i) => {
-      const { capture, src, active } = item
-      let itemClass = 'carousel-item'
-      if (active === true) {
-        itemClass += ' active'
-      }
-      // console.info('Carousel->carouselRender [5]', { item, pageItemClass, activeItem: activeItem })
-      return (
-        <div key={i} className={itemClass}>
-          <img src={src} className='img-fluid' alt={capture} />
-        </div>
-      )
-    })
-
-    const actionPrevItem = {
-      type: 'prevItem',
-      payload: {},
+  const indicators = listArr => listArr.map((item, i) => {
+    const { active } = item
+    let itemClass = ''
+    if (active === true) {
+      itemClass += ' active'
     }
 
-    const actionNextItem = {
-      type: 'nextItem',
-      payload: {},
+    const action = {
+      type: 'clickItem',
+      payload: {
+        item,
+      },
     }
 
-    // console.info('Carousel->carouselRender [7]', { })
+    // console.info('Carousel->carouselRender [3]', { id: item.id, item, pageItemClass, activeItem: activeItem })
     return (
-      <div id={cid} className={`carousel slide ${prefix}`}>
-        <ul className='carousel-indicators'>
-          {indicators}
-        </ul>
-        <div className='carousel-inner'>
-          {imgs}
-        </div>
-        <div className='carousel-control-prev'>
-          <span className='carousel-control-prev-icon'
-            onClick={e => this.handleEvent(e, actionPrevItem)}
-          />
-        </div>
-        <div className='carousel-control-next'>
-          <span
-            className='carousel-control-next-icon'
-            onClick={e => this.handleEvent(e, actionNextItem)}
-          />
-        </div>
+      <li key={i} className={itemClass}
+        onClick={e => this.handleEvent(e, action)}
+      />
+    )
+  })
+
+  const imgs = listArr => listArr.map((item, i) => {
+    const { capture, src, active } = item
+    let itemClass = 'carousel-item Carousel__item transitionPrevDesc'
+    if (active === true) {
+      itemClass = 'carousel-item Carousel__item transitionNextDesc'
+    }
+
+    /*
+    const actionOnTouchStart = {
+      type: 'onTouchStart',
+      payload: {},
+    }
+
+    const actionOnTouchStart = {
+      type: 'onTouchStart',
+      payload: {},
+    }
+    onTouchStart={e => this.handleEvent({}, actionOnTouchStart)}
+    */
+
+    // console.info('Carousel->carouselRender [5]', { item, pageItemClass, activeItem: activeItem })
+    return (
+      <div
+        key={i}
+        className={itemClass}
+      >
+        <img
+          src={src}
+          className='Carousel__item-img img-fluid'
+          alt={capture}
+        />
       </div>
     )
-  }
+  })
 
   handleEvent = (e, action) => {
     const { listArr } = this.state
 
     // console.info('Carousel->handleEvent', { e, listArr, action })
     switch (action.type) {
+
+      case 'onTouchStart': {
+        alert('We onTap')
+        const actionOnTouchStopMove = {
+          type: 'onTouchStopMove',
+          payload: {},
+        }
+        this.handleEvent({}, actionOnTouchStopMove)
+      }
+
+      case 'onTouchMove': {
+        // console.info( 'Dropdown->handleEvent() [1]', action)
+
+        if (this.preventSwipeTwice === false) {
+          const { payload } = action
+          const { scrollInterval, scrollPeriodEnd } = payload
+          const actionNextItem = {
+            type: 'nextItem',
+            payload: {},
+          }
+          // console.info( 'Dropdown->handleEvent() [5]', { delay, action })
+          this.tickID	=	setInterval(() => this.handleEvent({}, actionNextItem), scrollInterval)
+          this.preventSwipeTwice = !this.preventSwipeTwice
+
+          setTimeout(() => {
+            clearInterval(this.tickID)
+            this.preventSwipeTwice = false
+          }, scrollPeriodEnd);
+        }
+
+      } break
+
+      case 'onTouchStopMove': {
+        // console.info( 'Dropdown->handleEvent() [1]', action)
+        clearInterval(this.tickID);
+        this.preventSwipeTwice = false
+      } break
 
       case 'nextItem': {
         // console.info( 'Dropdown->handleEvent() [1]', action)
@@ -166,12 +193,82 @@ class Carousel extends React.Component {
   }
 
   render() {
+    const {
+      cid,
+      prefix,
+      displayArrows,
+      displayIndicators,
+      scrollInterval,
+      scrollPeriodEnd
+    } = this.props
     const { listArr } = this.state
     // console.info('Carousel->render()', { listArr })
 
+    const actionPrevItem = {
+      type: 'prevItem',
+      payload: {},
+    }
+
+    const actionNextItem = {
+      type: 'nextItem',
+      payload: {},
+    }
+
+    const actionOnTouchMove = {
+      type: 'onTouchMove',
+      payload: {
+        scrollInterval, 
+        scrollPeriodEnd,
+      },
+    }
+
+    const actionOnTouchStopMove = {
+      type: 'onTouchStopMove',
+      payload: {},
+    }
+
+    // react-swipeable https://www.npmjs.com/package/react-swipeable
+    const swipeConfig = {
+      delta: 10,                             // min distance(px) before a swipe starts
+      preventDefaultTouchmoveEvent: false,   // preventDefault on touchmove, *See Details*
+      trackTouch: true,                      // track touch input
+      trackMouse: false,                     // track mouse input
+      rotationAngle: 0,
+      onSwipedLeft: () => this.handleEvent({}, actionOnTouchMove),
+      onSwipedRight: () => this.handleEvent({}, actionOnTouchStopMove),
+    }
+
     return (
-      <div>
-        {this.carouselRender(listArr)}
+      <div id={cid} className={`carousel slide ${prefix}`}>
+        { displayIndicators ? (
+          <ul className='carousel-indicators'>
+            {this.indicators(listArr)}
+          </ul>
+        )
+          : null
+        }
+        <div className='carousel-inner'>
+          <Swipeable { ...swipeConfig } >
+          {this.imgs(listArr)}
+          </ Swipeable>
+        </div>
+        { displayArrows ? (
+          <div>
+            <div className='carousel-control-prev'>
+              <span className='carousel-control-prev-icon'
+                onClick={e => this.handleEvent(e, actionPrevItem)}
+              />
+            </div>
+            <div className='carousel-control-next'>
+              <span
+                className='carousel-control-next-icon'
+                onClick={e => this.handleEvent(e, actionNextItem)}
+              />
+            </div>
+          </div>
+        )
+          : null
+        }
       </div>
     )
   }
@@ -181,6 +278,11 @@ Carousel.defaultProps = {
   cid: '',
   prefix: '',
   displayArrows: true,
+  displayIndicators: true,
+  autoCarousel: false,
+  autoCarouselInterval: 2000,
+  scrollInterval: 500,
+  scrollPeriodEnd: 1000,
 }
 
 /* eslint-disable indent */
@@ -190,7 +292,13 @@ Carousel.propTypes = {
   prefix: PropTypes.string,
     // For each prefix styles tree can be created in Dropdown.less file
   displayArrows: PropTypes.bool,
-    // Possible values: 'icon', 'text'
+    // Allows or bans right, left arrows for listing items
+  displayIndicators: PropTypes.bool,
+    // Allows or bans underscore indicators for listing items
+  autoCarousel: PropTypes.any,
+    // If it equals number, than it works with number delay automatically
+  autoCarouselInterval: PropTypes.number,
+    // Interval of changing images in miliseconds
   listArr: PropTypes.arrayOf(PropTypes.object).isRequired,
     /* Example
       listArr: [
@@ -202,6 +310,10 @@ Carousel.propTypes = {
         ...
       ]
     */
+   scrollInterval: PropTypes.number,
+    // Set the interval of changing the img in miliseconds
+   scrollPeriodEnd: PropTypes.number,
+    // Set the period withing the images will be changing in miliseconds
 }
 
 export default Carousel

@@ -42,8 +42,10 @@ class FacePage326 extends React.PureComponent {
 
     // console.info('FacePage326->render() [10]', { carousel, props: this.props })
 
-    const cidCarousel = `Carousel-${uuidv4()}`
-    carousel = { ...carousel, cid: cidCarousel }
+    const { sid: carouselSid } = carousel
+    const carouselCid = `${carouselSid}-${uuidv4()}`
+    const carouselPrefix = 'CarouselDesc'
+    carousel = { ...carousel, cid: carouselCid, prefix: carouselPrefix }
 
     return (
       <div className='FacePage326 globalStyle'>
@@ -54,15 +56,12 @@ class FacePage326 extends React.PureComponent {
               <Descriptors { ...descriptors } />
             </SectionWrapper>
             <SectionWrapper classStyle='SectionWrapper SectionWrapper_mobileImage'>
-              {/* <Carousel { ...carousel } /> */}
+              <Carousel { ...carousel } />
             </SectionWrapper>
             <SectionWrapper classStyle='SearchFormSection'>
               <SearchForm { ...searchForm } />
             </SectionWrapper>
           </CombineWrapper>
-    <SectionWrapper classStyle='SectionWrapper'>
-        <Carousel { ...carousel } />
-    </SectionWrapper>
           <SectionWrapper classStyle='CatalogTagsSection p_t_2_rem'>
             <CatalogTags {... catatogTags } />
           </SectionWrapper>
