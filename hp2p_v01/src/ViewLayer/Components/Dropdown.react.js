@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 class Dropdown extends React.PureComponent {
   constructor(props) {
     super(props)
-    const { dataArr } = this.props
+    const { listArr } = this.props
     this.state = {
-      dataArr,
+      listArr,
       toggle: `Dropdown__dropdownMenu_hide`,
     }
   }
@@ -33,7 +33,7 @@ class Dropdown extends React.PureComponent {
       <div
         key={i}
         className={`Dropdown__item dropdown-item ${activeClass}`}
-        onClickCapture={e => this.eventHandle(e, action)}
+        onClickCapture={e => this.handleEvent(e, action)}
       >
         {icons}
         <span>{capture}</span>
@@ -60,17 +60,17 @@ class Dropdown extends React.PureComponent {
     return buttonFace
   }
 
-  eventHandle = (e, action) => {
+  handleEvent = (e, action) => {
     switch (action.type) {
 
       case 'selectDataItem': {
-        // console.info( 'Dropdown->eventHandle() [1]', action)
+        // console.info( 'Dropdown->handleEvent() [1]', action)
 
-        const { dataArr } = this.state
+        const { listArr } = this.state
         const { payload } = action
         const { capture: capturePayload } = payload
 
-        const dataArrNext = dataArr.map(item => {
+        const listArrNext = listArr.map(item => {
           const { capture } = item
           let active = false
           if (capture === capturePayload) {
@@ -79,7 +79,7 @@ class Dropdown extends React.PureComponent {
           return { ...item, active }
         })
 
-        this.setState({ dataArr: dataArrNext })
+        this.setState({ listArr: listArrNext })
 
         setTimeout(() => {
           this.setState({ toggle: 'Dropdown__dropdownMenu_hide' })
@@ -96,26 +96,25 @@ class Dropdown extends React.PureComponent {
       } break
 
       default: {
-        console.info( 'Dropdown->eventHandle() [10]','I have never heard of that ... ', action)
+        console.info( 'Dropdown->handleEvent() [10]','I have never heard of that ... ', action)
       } break
-
     }
   }
 
   render() {
 
     const { cid, prefix, displayBtnType } = this.props
-    const { dataArr, toggle } = this.state
-    const activeItem = dataArr.filter(item => item.active === true)[0]
+    const { listArr, toggle } = this.state
+    const activeItem = listArr.filter(item => item.active === true)[0]
     const { classNameArr } = activeItem
 
     const icons = this.getFontAwsomeIcons(classNameArr)
     const { capture } = activeItem
     const buttonFace = this.getButtonFace(displayBtnType, icons, capture)
 
-    // console.info('Dropdown->render()', { cid, activeItem, dataArr })
+    // console.info('Dropdown->render()', { cid, activeItem, listArr })
 
-    const dropdownItems = this.getDropdownItems(dataArr)
+    const dropdownItems = this.getDropdownItems(listArr)
     const action = { type: 'toggleDropdownMenu' }
 
     return (
@@ -123,7 +122,7 @@ class Dropdown extends React.PureComponent {
         <button
           type='button'
           className='btn btn-success dropdown-toggle Dropdown__button'
-          onClickCapture={e => this.eventHandle(e, action)}
+          onClickCapture={e => this.handleEvent(e, action)}
         >
           {buttonFace}
         </button>
@@ -149,7 +148,7 @@ Dropdown.propTypes = {
     // For each prefix styles tree can be created in Dropdown.less file
   displayBtnType: PropTypes.string,
     // Possible values: 'icon', 'text'
-  dataArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+  listArr: PropTypes.arrayOf(PropTypes.object).isRequired,
     /* Example
       [ 
         { capture: 'Все виды', classNameArr: ['fas fa-video'], active: true },

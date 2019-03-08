@@ -28,8 +28,7 @@ class Footer extends React.PureComponent {
   })
 
   render() {
-    const { propsScope } = this.props
-    const { sid, listArr } = propsScope
+    const { sid, listArr } = this.props
     // console.info('Footer->render() [10]', { captureSection, listArr })
 
     const listItems = this.getListItems(listArr)

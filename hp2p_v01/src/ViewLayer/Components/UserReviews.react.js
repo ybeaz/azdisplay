@@ -33,9 +33,7 @@ class UserReviews extends React.PureComponent {
   }
 
   render() {
-
-    const { propsScope } = this.props
-    const { sid, listArr } = propsScope
+    const { sid, listArr } = this.props
     const userReviews = this.getUserReviews(listArr)
 
     return (

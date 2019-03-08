@@ -8,8 +8,7 @@ import Markup from './Markup.react'
 class Descriptors extends React.PureComponent {
   constructor(props) {
     super(props)
-    const { propsScope } = this.props
-    const { h1 } = propsScope
+    const { h1 } = this.props
     this.state = {
       h1,
     }
@@ -41,8 +40,7 @@ class Descriptors extends React.PureComponent {
   }
 
   render() {
-    const { propsScope } = this.props
-    const { sid, h2 } = propsScope
+    const { sid, h2 } = this.props
     const { h1 } = this.state
     // console.info('Descriptors->render() [10]',{});
     return (

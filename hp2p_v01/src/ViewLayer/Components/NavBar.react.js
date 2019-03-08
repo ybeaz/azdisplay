@@ -8,8 +8,7 @@ class NavBar extends React.PureComponent {
 
 
   render() {
-    const { propsScope } = this.props
-    const { sid, login } = propsScope
+    const { sid, login } = this.props
     // console.info('NavBar->render() [10]',{});
     return (
       <div id={sid} className={sid}>

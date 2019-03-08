@@ -1,28 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import uuid from 'uuidv4'
+import uuidv4 from 'uuid/v4'
 
 // eslint-disable-next-line react/prefer-stateless-function
 class FieldButtons extends React.PureComponent {
   constructor(props) {
     super(props)
-    const { dataArr } = this.props
+    const { listArr } = this.props
     this.state = {
-      dataArr,
+      listArr,
     }
   }
 
 
-  eventHandle = (e, action) => {
+  handleEvent = (e, action) => {
     switch (action.type) {
       case 'changeDataItem': {
 
-        const { dataArr } = this.state
+        const { listArr } = this.state
         const { payload } = action
         const { capture: capturePayload } = payload
         // console.info(`action.type ${action.type}`, { action, state: this.state })
 
-        const dataArrNext = dataArr.map(item => {
+        const listArrNext = listArr.map(item => {
           const { capture } = item
           let active = false
           if (capture === capturePayload) {
@@ -31,11 +31,11 @@ class FieldButtons extends React.PureComponent {
           return { ...item, active }
         })
 
-        this.setState({ dataArr: dataArrNext })
+        this.setState({ listArr: listArrNext })
       } break
 
       default: {
-        console.info( 'FieldButtons->eventHandle() [10]','I have never heard of that ... ', action)
+        console.info( 'FieldButtons->handleEvent() [10]','I have never heard of that ... ', action)
       } break
     }
   }
@@ -46,7 +46,7 @@ class FieldButtons extends React.PureComponent {
     if (active === true) {
       activeClass = 'FieldButtons__button_active'
     }
-    const eid = `FieldButtons__button-${uuid()}`
+    const eid = `FieldButtons__button-${uuidv4()}`
     const payload = { eid, capture }
     const action = { type: 'changeDataItem', payload }
     return (
@@ -55,7 +55,7 @@ class FieldButtons extends React.PureComponent {
         key={eid}
         type='button'
         className={`btn btn-success FieldButtons__button ${activeClass}`}
-        onClickCapture={e => this.eventHandle(e, action)}
+        onClickCapture={e => this.handleEvent(e, action)}
       >
         {capture}
       </button>
@@ -64,8 +64,8 @@ class FieldButtons extends React.PureComponent {
 
   render() {
     const { prefix } = this.props
-    const { dataArr } = this.state
-    const fieldButtons = this.getFieldButtons(dataArr)
+    const { listArr } = this.state
+    const fieldButtons = this.getFieldButtons(listArr)
 
     return (
       <div className={`FieldButtons ${prefix}`}>
@@ -92,7 +92,7 @@ FieldButtons.propTypes = {
     // affect the "main button"
   displayBtnType: PropTypes.string,
     // Possible values: 'icon', 'text'
-  dataArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+  listArr: PropTypes.arrayOf(PropTypes.object).isRequired,
     /* Example
       [ 
         { capture: 'Все виды', classNameArr: ['fas fa-video'], active: true },
