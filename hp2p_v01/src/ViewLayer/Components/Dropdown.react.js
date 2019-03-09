@@ -26,8 +26,7 @@ class Dropdown extends React.PureComponent {
       activeClass = 'Dropdown__item_selected'
     }
 
-    const payload = { capture }
-    const action = { type: 'selectDataItem', payload }
+    const action = { type: 'selectDataItem', capture }
 
     return (
       <div
@@ -67,8 +66,7 @@ class Dropdown extends React.PureComponent {
         // console.info( 'Dropdown->handleEvent() [1]', action)
 
         const { listArr } = this.state
-        const { payload } = action
-        const { capture: capturePayload } = payload
+        const { capture: capturePayload } = action
 
         const listArrNext = listArr.map(item => {
           const { capture } = item
@@ -103,7 +101,7 @@ class Dropdown extends React.PureComponent {
 
   render() {
 
-    const { cid, prefix, displayBtnType } = this.props
+    const { cid, sid, displayBtnType } = this.props
     const { listArr, toggle } = this.state
     const activeItem = listArr.filter(item => item.active === true)[0]
     const { classNameArr } = activeItem
@@ -118,7 +116,7 @@ class Dropdown extends React.PureComponent {
     const action = { type: 'toggleDropdownMenu' }
 
     return (
-      <div id={cid} className={`Dropdown dropdown ${prefix}`}>
+      <div id={cid} className={`Dropdown dropdown ${sid}`}>
         <button
           type='button'
           className='btn btn-success dropdown-toggle Dropdown__button'
@@ -136,16 +134,15 @@ class Dropdown extends React.PureComponent {
 
 Dropdown.defaultProps = {
   cid: '',
-  prefix: '',
   displayBtnType: 'icon',
 }
 
 /* eslint-disable indent */
 Dropdown.propTypes = {
+  sid: PropTypes.string.isRequired,
+    // section class for Less(css)
   cid: PropTypes.string,
     // component id
-  prefix: PropTypes.string,
-    // For each prefix styles tree can be created in Dropdown.less file
   displayBtnType: PropTypes.string,
     // Possible values: 'icon', 'text'
   listArr: PropTypes.arrayOf(PropTypes.object).isRequired,

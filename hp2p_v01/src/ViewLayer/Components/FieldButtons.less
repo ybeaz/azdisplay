@@ -20,22 +20,35 @@
   @media @large {
 
   }
-  @media @desktop {
+  @media @desktop, @desktop-strict {
 
   }
-  @media @tablet {
+  @media @tablet, @tablet-strict {
+
+      .FieldButtons__button {
+        &:nth-child(n+3) {
+          margin-top: 1rem;
+        }
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+      }
 
   }
-  @media @phone {
+  @media @phone, @phone-strict {
     .FieldButtons__button {
-      .w_5_rem;
+      .w_6_rem;
+      border-color+: @color5;
       padding+: 0.275rem 0;
       font-size+: 0.85rem;
+    }
+    .FieldButtons__button_general {
+      .d_n;
     }
   }
 }
 
 
-.FieldButtons_typeRequestFirstRow {
+.FieldButtons_typeReques {
 
 }

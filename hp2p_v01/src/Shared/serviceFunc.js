@@ -3,6 +3,7 @@
 
 /* Function to return width of the DOM object's in crossbrowser style */
 export const mediaSizeCrossBrowser = w => {
+  // Use serviceFunc.mediaSizeCrossBrowser(global)
   const mediaSize = {}
   const d = w.document
   const e = d.documentElement

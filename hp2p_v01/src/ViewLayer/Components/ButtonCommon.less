@@ -1,5 +1,6 @@
 
-.RegistrationButton {
+.ButtonCommon {
+
   button {
     &:extend(.p_x_2_rem, .b_r_3_rem);
     background: @color6;
@@ -9,8 +10,20 @@
       background: @color6;
       color: @color0;
     }
+  }
+
+
+  @media @large {
 
   }
-}
-
-
+  @media @desktop, @desktop-strict {
+  
+  }
+  @media @tablet, @tablet-strict {
+  
+  
+  }
+  @media @phone, @phone-strict {
+  
+  }
+} 

@@ -33,15 +33,15 @@ class SearchForm extends React.PureComponent {
   render() {
     const { sid, searchPlaceholder, searchButton, typeRequest, typeMedia } = this.props
 
-    let cid = `typeRequest-${uuidv4()}`
-    const prefix1 = 'FieldButtons_typeRequestFirstRow'
+    const { sid: typeRequestSid } = typeRequest
+    let cid = `${typeRequestSid}-${uuidv4()}`
     const classNames1 = 'Dropdown_typeRequestFirstRow'
-    const typeRequestProps1 = { cid, prefix: prefix1, listArr: typeRequest, displayBtnType: 'text', classNames: classNames1 }
+    const typeRequestProps1 = { ...typeRequest, cid, displayBtnType: 'text', classNames: classNames1 }
 
-    cid = `typeMedia-${uuidv4()}`
-    const prefix3 = 'Dropdown_typeMediaFirstRow'
+    const { sid: typeMediaSid } = typeMedia
+    cid = `${typeMediaSid}-${uuidv4()}`
     const classNames3 = 'Dropdown_typeMediaFirstRow'
-    const typeMediaProps3 = { cid, prefix: prefix3, listArr: typeMedia, displayBtnType: 'icon', classNames: classNames3 }
+    const typeMediaProps3 = { ...typeMedia, cid, displayBtnType: 'icon', classNames: classNames3 }
 
     const searchInputId = `${this.cid}-searchInput`
     const buttonInputId = `${this.cid}-buttonInput`
@@ -62,10 +62,10 @@ class SearchForm extends React.PureComponent {
           <div className='col-lg-2 col-md-2 col-sm-2 col-0' />
         </div>
         <div className='row SearchForm__categoryRow transitionPrevSearch'>
-          <div className='col-lg-8 col-md-8 col-sm-8 col-12 SearchForm__categoryCol'>
+          <div className='col-lg-8 col-md-8 col-sm-8 col-12 SearchForm__typeRequestCol'>
             <FieldButtons {...typeRequestProps1} />
           </div>
-          <div className='col-lg-2 col-md-2 col-sm-2 col-0 SearchForm__categoryCol'>
+          <div className='col-lg-2 col-md-2 col-sm-2 col-0 SearchForm__typeMediaCol'>
             <Dropdown {...typeMediaProps3} />
           </div>
           <div className='col-lg-2 col-md-2 col-sm-2 col-0' />

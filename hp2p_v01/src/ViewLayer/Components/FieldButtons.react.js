@@ -12,23 +12,60 @@ class FieldButtons extends React.PureComponent {
     }
   }
 
+  getFieldButtons = arr => arr.map((item, i) => {
+    const { capture, active, general } = item
+    let classForGeneral = ''
+    if (general) {
+      classForGeneral = 'FieldButtons__button_general'
+    }
+
+    let activeClass = ''
+    if (active === true) {
+      activeClass = 'FieldButtons__button_active'
+    }
+    const eid = `FieldButtons__button-${uuidv4()}`
+    const action = { type: 'selectItem', ...item, eid }
+    return (
+      <button
+        id={eid}
+        key={eid}
+        type='button'
+        className={`btn btn-success FieldButtons__button ${activeClass} ${classForGeneral}`}
+        onClickCapture={e => this.handleEvent(e, action)}
+      >
+        {capture}
+      </button>
+    )
+  })
 
   handleEvent = (e, action) => {
     switch (action.type) {
-      case 'changeDataItem': {
+      case 'selectItem': {
 
         const { listArr } = this.state
-        const { payload } = action
-        const { capture: capturePayload } = payload
-        // console.info(`action.type ${action.type}`, { action, state: this.state })
+        const { capture: capturePayload, general: generalPayload } = action
 
         const listArrNext = listArr.map(item => {
-          const { capture } = item
-          let active = false
-          if (capture === capturePayload) {
-            active = true
+          const { capture, active, general } = item
+          let activeNext
+
+          if (generalPayload) {
+            activeNext = false
+            if (capture === capturePayload) {
+              activeNext = true
+            }
           }
-          return { ...item, active }
+          else {
+            activeNext = active
+            if (general) {
+              activeNext = false
+            }
+            else if (capture === capturePayload) {
+              activeNext = !active
+            }
+          }
+
+          return { ...item, active: activeNext }
         })
 
         this.setState({ listArr: listArrNext })
@@ -40,35 +77,13 @@ class FieldButtons extends React.PureComponent {
     }
   }
 
-  getFieldButtons = arr => arr.map((item, i) => {
-    const { capture, active } = item
-    let activeClass = ''
-    if (active === true) {
-      activeClass = 'FieldButtons__button_active'
-    }
-    const eid = `FieldButtons__button-${uuidv4()}`
-    const payload = { eid, capture }
-    const action = { type: 'changeDataItem', payload }
-    return (
-      <button
-        id={eid}
-        key={eid}
-        type='button'
-        className={`btn btn-success FieldButtons__button ${activeClass}`}
-        onClickCapture={e => this.handleEvent(e, action)}
-      >
-        {capture}
-      </button>
-    )
-  })
-
   render() {
-    const { prefix } = this.props
+    const { sid } = this.props
     const { listArr } = this.state
     const fieldButtons = this.getFieldButtons(listArr)
 
     return (
-      <div className={`FieldButtons ${prefix}`}>
+      <div className={`FieldButtons ${sid}`}>
         {fieldButtons}
       </div>
     )
@@ -84,10 +99,10 @@ FieldButtons.defaultProps = {
 
 /* eslint-disable indent */
 FieldButtons.propTypes = {
+  sid: PropTypes.string.isRequired,
+    // section class for Less(css)
   cid: PropTypes.string,
     // component id
-  prefix: PropTypes.string,
-    // For each prefix styles tree can be created in Dropdown.less file
   classNames: PropTypes.string,
     // affect the "main button"
   displayBtnType: PropTypes.string,

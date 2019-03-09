@@ -1,7 +1,9 @@
 
 .Dropdown {
   &:extend(.d_i_b);
-
+  display: flex;
+  justify-content: space-evenly;
+  
   .Dropdown__button {
     &:extend(.m_r_0p5_rem, .b_r_3_rem);
     .hoverFocusActive;
@@ -58,28 +60,22 @@
   .Dropdown__item:first-of-type > span {
     .p_l_2_rem;
   }
+
 }
 
+
 @media @large {
-  .Dropdown_typeRequestSecondRow, .Dropdown_typeMediaSecondRow {
-    .d_n;
-  }
+
 }
-@media @desktop {
-  .Dropdown_typeRequestSecondRow, .Dropdown_typeMediaSecondRow {
-    .d_n;
-  }
+@media @desktop, @desktop-strict {
+
 }
-@media @tablet {
-  .Dropdown_typeRequestSecondRow, .Dropdown_typeMediaSecondRow {
-    .d_n;
-  }
+@media @tablet, @tablet-strict {
+
+
 }
-@media @phone {
-  .Dropdown_typeMediaFirstRow {
+@media @phone, @phone-strict {
+  .Dropdown_typeMedia {
     .d_n;
-  }
-  .Dropdown_typeRequestSecondRow, .Dropdown_typeMediaSecondRow {
-    .d_i_b;
   }
 }
