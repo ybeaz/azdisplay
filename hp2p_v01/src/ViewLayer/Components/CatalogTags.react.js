@@ -20,6 +20,8 @@ class CatalogTags extends React.PureComponent {
       numItemsBeforeButton,
       toggleShowHideButton: false,
     }
+
+    this.mode = this.getMode()
   }
 
   componentDidMount() {
@@ -30,30 +32,42 @@ class CatalogTags extends React.PureComponent {
 
   }
 
+  getMode = () => {
+    const {
+      isCompactAlways,
+      isCompactPhone,
+    } = this.props
+
+    const { width } = serviceFunc.mediaSizeCrossBrowser(global)
+    let mode = 'tagsListData'
+    if (isCompactAlways) {
+      mode = 'tagsIconsFa'
+    }
+    else if (isCompactPhone && width <= 480) {
+      mode = 'tagsIconsFa'
+    }
+    else {
+      let mode = 'tagsListData'
+    }
+
+    return mode
+  }
+
   updateTagsWithConditions = () => {
     const {
       sid,
       listArr,
-      isCompactAlways,
-      isCompactPhone,
     } = this.props
     const { numItemsBeforeButton } = this.state
     // const tags = this.getTags(listArr, sid, numItemsBeforeButton)
 
-    const { width } = serviceFunc.mediaSizeCrossBrowser(global)
-    // console.info('CatalogTags->componentDidMount()', { width, props: this.props })
-  
     let tags
-    if (isCompactAlways) {
+    if (this.mode === 'tagsIconsFa') {
       tags = this.getTagsIconsFa(listArr, sid, numItemsBeforeButton)
     }
-    else if (isCompactPhone && width <= 480) {
-      tags = this.getTagsIconsFa(listArr, sid, numItemsBeforeButton)
-    }
-    else {
+    else if (this.mode === 'tagsListData') {
       tags = this.getTagsListData(listArr, sid)
     }
-
     this.setState({ tags })
   }
 
@@ -153,9 +167,6 @@ class CatalogTags extends React.PureComponent {
       action,
     }
 
-
-
-
     // const tags = this.getTags(listArr, sid, numItemsBeforeButton)
 
     return (
@@ -164,7 +175,10 @@ class CatalogTags extends React.PureComponent {
         <div className='CatalogTags__columns'>
           {tags}
         </div>
-        <ButtonCommon {...buttonProps} />
+        {this.mode === 'tagsIconsFa'
+          ? <ButtonCommon {...buttonProps} />
+          : null
+        }
       </div>
     )
   }
