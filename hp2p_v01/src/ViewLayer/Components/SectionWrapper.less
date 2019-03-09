@@ -7,13 +7,13 @@
     @media @large {
       
     }
-    @media @desktop {
+    @media @desktop, @desktop-strict {
       
     }
-    @media @tablet {
+    @media @tablet, @tablet-strict {
       
     }
-    @media @phone {
+    @media @phone, @phone-strict {
       .t_tr_i;
       padding: 0.5rem 1rem 0rem 1rem;
     }
@@ -24,20 +24,55 @@
     @media @large {
       .d_n;
     }
-    @media @desktop {
+    @media @desktop, @desktop-strict {
       .d_n;
     }
-    @media @tablet {
+    @media @tablet, @tablet-strict {
       .d_n;
     }
-    @media @phone {
+    @media @phone, @phone-strict {
       .d_b;
       .t_tr_i;
       padding: 0.5rem 1rem 0rem 1rem;
     }
-
-    @media @phone {
-      padding: 0.5rem 0rem 0rem 0rem;
-    }
   }
 
+  .SectionWrapper_searchFormSection {
+
+    @media @large {
+      .bg_greyLight;
+    }
+    @media @desktop, @desktop-strict {
+      .bg_greyLight;
+    }
+    @media @tablet, @tablet-strict {
+      .bg_greyLight;
+    }
+    @media @phone, @phone-strict {
+      
+    }
+
+  }
+
+  .SectionWrapper_catalogTags {
+    .p_t_2_rem;
+
+    @media @large {
+      
+    }
+    @media @desktop, @desktop-strict {
+      
+    }
+    @media @tablet, @tablet-strict {
+      
+    }
+    @media @phone, @phone-strict {
+      
+    }
+
+    @media @phone, @phone-strict {
+      .bg_greyLight;
+      .p_t_1_rem;
+    }
+
+  }

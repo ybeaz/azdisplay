@@ -1,15 +1,15 @@
 
 
-export const handleActions = (e, payload) => {
-  // console.info(`handleActions.js type->${payload.type}`, { e, payload })
+export const handleActions = (e, action) => {
+  // console.info(`handleActions.js type->${action.type}`, { e, action })
 
-  switch (payload.type) {
-    case '0': {
-      return payload
-    }
+  switch (action.type) {
+    case 'registrationQuick': {
+      console.info(`handleActions.js type->${action.type}`, { e, action })
+    } break
 
     default: {
-      // console.info('handleActions.js unexpected payload', { payload })
+      console.info('handleActions.js unexpected action', { action })
     }
   }
 

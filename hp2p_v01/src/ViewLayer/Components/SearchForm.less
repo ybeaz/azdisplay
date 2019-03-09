@@ -57,13 +57,15 @@
   }
 
   .SearchForm__categoryRow {
-    .SearchForm__categoryCol {
+    .SearchForm__typeRequestCol {
       &:extend(.p_l_0p5_rem, .p_r_0);
-
+    }
+    .SearchForm__typeMediaCol {
+      .p_l_0;
     }
   }
 
-  @media @phone {
+  @media @phone, @phone-strict {
     .p_t_1_rem;
     
     .SearchForm__searchRow {
@@ -83,6 +85,8 @@
     .SearchForm__dropdownsRow {
       .p_t_1_rem;
     }
+
+
 
   }
 

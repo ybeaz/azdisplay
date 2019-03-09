@@ -19,21 +19,20 @@ class Carousel extends React.Component {
 
   componentDidMount() {
     const {
-      autoCarousel,
+      isAutoCarousel,
       autoCarouselInterval,
     } = this.props
 
     const actionNextItem = {
       type: 'nextItem',
-      payload: {},
     }
 
-    if (autoCarousel) {
+    if (isAutoCarousel) {
       this.tickID	=	setInterval(() => this.handleEvent({}, actionNextItem), autoCarouselInterval)
     }
   }
 
-  const indicators = listArr => listArr.map((item, i) => {
+  indicators = listArr => listArr.map((item, i) => {
     const { active } = item
     let itemClass = ''
     if (active === true) {
@@ -42,9 +41,7 @@ class Carousel extends React.Component {
 
     const action = {
       type: 'clickItem',
-      payload: {
-        item,
-      },
+      item,
     }
 
     // console.info('Carousel->carouselRender [3]', { id: item.id, item, pageItemClass, activeItem: activeItem })
@@ -55,25 +52,12 @@ class Carousel extends React.Component {
     )
   })
 
-  const imgs = listArr => listArr.map((item, i) => {
+  imgs = listArr => listArr.map((item, i) => {
     const { capture, src, active } = item
     let itemClass = 'carousel-item Carousel__item transitionPrevDesc'
     if (active === true) {
       itemClass = 'carousel-item Carousel__item transitionNextDesc'
     }
-
-    /*
-    const actionOnTouchStart = {
-      type: 'onTouchStart',
-      payload: {},
-    }
-
-    const actionOnTouchStart = {
-      type: 'onTouchStart',
-      payload: {},
-    }
-    onTouchStart={e => this.handleEvent({}, actionOnTouchStart)}
-    */
 
     // console.info('Carousel->carouselRender [5]', { item, pageItemClass, activeItem: activeItem })
     return (
@@ -100,7 +84,6 @@ class Carousel extends React.Component {
         alert('We onTap')
         const actionOnTouchStopMove = {
           type: 'onTouchStopMove',
-          payload: {},
         }
         this.handleEvent({}, actionOnTouchStopMove)
       }
@@ -109,11 +92,9 @@ class Carousel extends React.Component {
         // console.info( 'Dropdown->handleEvent() [1]', action)
 
         if (this.preventSwipeTwice === false) {
-          const { payload } = action
-          const { scrollInterval, scrollPeriodEnd } = payload
+          const { scrollInterval, scrollPeriodEnd } = action
           const actionNextItem = {
             type: 'nextItem',
-            payload: {},
           }
           // console.info( 'Dropdown->handleEvent() [5]', { delay, action })
           this.tickID	=	setInterval(() => this.handleEvent({}, actionNextItem), scrollInterval)
@@ -170,8 +151,7 @@ class Carousel extends React.Component {
       } break
 
       case 'clickItem': {
-        const { payload } = action
-        const { item } = payload
+        const { item } = action
         const { capture } = item
 
         const listArrNext = listArr.map((item, i) => {
@@ -196,8 +176,8 @@ class Carousel extends React.Component {
     const {
       cid,
       prefix,
-      displayArrows,
-      displayIndicators,
+      isDisplayArrows,
+      isDisplayIndicators,
       scrollInterval,
       scrollPeriodEnd
     } = this.props
@@ -206,25 +186,20 @@ class Carousel extends React.Component {
 
     const actionPrevItem = {
       type: 'prevItem',
-      payload: {},
     }
 
     const actionNextItem = {
       type: 'nextItem',
-      payload: {},
     }
 
     const actionOnTouchMove = {
       type: 'onTouchMove',
-      payload: {
-        scrollInterval, 
-        scrollPeriodEnd,
-      },
+      scrollInterval,
+      scrollPeriodEnd,
     }
 
     const actionOnTouchStopMove = {
       type: 'onTouchStopMove',
-      payload: {},
     }
 
     // react-swipeable https://www.npmjs.com/package/react-swipeable
@@ -240,7 +215,7 @@ class Carousel extends React.Component {
 
     return (
       <div id={cid} className={`carousel slide ${prefix}`}>
-        { displayIndicators ? (
+        { isDisplayIndicators ? (
           <ul className='carousel-indicators'>
             {this.indicators(listArr)}
           </ul>
@@ -252,7 +227,7 @@ class Carousel extends React.Component {
           {this.imgs(listArr)}
           </ Swipeable>
         </div>
-        { displayArrows ? (
+        { isDisplayArrows ? (
           <div>
             <div className='carousel-control-prev'>
               <span className='carousel-control-prev-icon'
@@ -277,9 +252,9 @@ class Carousel extends React.Component {
 Carousel.defaultProps = {
   cid: '',
   prefix: '',
-  displayArrows: true,
-  displayIndicators: true,
-  autoCarousel: false,
+  isDisplayArrows: true,
+  isDisplayIndicators: true,
+  isAutoCarousel: false,
   autoCarouselInterval: 2000,
   scrollInterval: 500,
   scrollPeriodEnd: 1000,
@@ -291,11 +266,11 @@ Carousel.propTypes = {
     // component id
   prefix: PropTypes.string,
     // For each prefix styles tree can be created in Dropdown.less file
-  displayArrows: PropTypes.bool,
+  isDisplayArrows: PropTypes.bool,
     // Allows or bans right, left arrows for listing items
-  displayIndicators: PropTypes.bool,
+  isDisplayIndicators: PropTypes.bool,
     // Allows or bans underscore indicators for listing items
-  autoCarousel: PropTypes.any,
+  isAutoCarousel: PropTypes.any,
     // If it equals number, than it works with number delay automatically
   autoCarouselInterval: PropTypes.number,
     // Interval of changing images in miliseconds
