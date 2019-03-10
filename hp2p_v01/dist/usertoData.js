@@ -93,7 +93,7 @@ var USERTO = {
           { capture: 'Дети', iconClass: '', num: 1607, iconFa: 'fas fa-child' },
           { capture: 'Репетиторы и обучение', iconClass: '', num: 460, iconFa: 'fas fa-graduation-cap' },
           { capture: 'Работа и карьера', iconClass: '', num: 1307, iconFa: 'fas fa-briefcase' },
-          { capture: 'ЗОЖ', iconClass: '', num: 3166, iconFa: 'fas fa-hiking' },
+          { capture: 'ЗОЖ', iconClass: '', num: 3166, iconFa: 'fas fa-dumbbell' },
           { capture: 'Животные', iconClass: '', num: 401, iconFa: 'fas fa-paw' },
           { capture: 'Ремонт и установка техники', iconClass: '', num: 160, iconFa: 'fas fa-blender-phone' },
           { capture: 'Мистика', iconClass: 'iconFire', num: 263, iconFa: 'fas fa-hat-wizard' },

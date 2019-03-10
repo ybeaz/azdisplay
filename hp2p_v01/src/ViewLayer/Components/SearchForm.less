@@ -39,7 +39,7 @@
     }
  
     .SearchForm__searchButtonCol {
-      &:extend(.p_r_0p5_rem, .p_l_0);
+      &:extend(.p_l_0);
     }
     input {
       &:extend(.b_r_0, .h_100);
@@ -58,7 +58,7 @@
 
   .SearchForm__categoryRow {
     .SearchForm__typeRequestCol {
-      &:extend(.p_l_0p5_rem, .p_r_0);
+      &:extend(.p_r_0);
     }
     .SearchForm__typeMediaCol {
       .p_l_0;
@@ -66,14 +66,14 @@
   }
 
   @media @phone, @phone-strict {
-    .p_t_1_rem;
     
     .SearchForm__searchRow {
       &:extend(.p_l_1_rem, .p_r_1_rem);
       padding-bottom+: 1rem;
 
-      .SearchForm__inputCol {
-        &:extend(.p_l_0, .p_r_0);
+      .SearchForm__inputCol, .SearchForm__searchButtonCol {
+        .p_l_0;
+        .p_r_0;
       }
 
       input {
