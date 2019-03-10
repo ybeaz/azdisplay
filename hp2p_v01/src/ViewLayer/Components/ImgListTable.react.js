@@ -21,23 +21,19 @@ class ImgListTable extends React.PureComponent {
     ))
 
     return (
-      <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
-        <Markup el='h2' content={listCapture} className='titleSection' />
-        <div className='ImgList__ul_wrapper'>
-          <ul className='ImgList__ul'>
-            {listLi}
-          </ul>
-        </div>
+      <div className='col-lg-6 col-md-6 col-sm-6 col-12 ImgList__capture'>
+        <Markup el='h2' content={listCapture} className='ImgList__capture titleSection' />
+        <ul className='ImgList__ul'>
+          {listLi}
+        </ul>
       </div>
     )
   }
 
   getImgBlock = imgSrc => {
     return (
-      <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
-        <div className='ImgList__imgWrapper'>
-          <img className='img-fluid' src={imgSrc} alt='Chania' />
-        </div>
+      <div className='col-lg-6 col-md-6 col-sm-6 col-0 ImgList__imgWrapper'>
+        <img className='img-fluid' src={imgSrc} alt='Chania' />
       </div>
     )
   }

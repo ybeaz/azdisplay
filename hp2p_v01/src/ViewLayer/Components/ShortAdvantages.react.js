@@ -9,15 +9,15 @@ class ShortAdvantages extends React.PureComponent {
     return arr.map((item, i) => {
       const { imgClass, capture } = item
       return (
-        <div key={i} className='col-lg-4 col-md-4 col-sm-4 col-xs-4'>
+        <div key={i} className='col-lg-4 col-md-4 col-sm-4 col-12'>
           <div className='container-fluid'>
             <div className='row'>
-              <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center'>
+              <div className='col-lg-12 col-md-12 col-sm-12 col-12 text-center'>
                 <div className={`ShortAdvantages__img ${imgClass}`} />
               </div>
             </div>
             <div className='row'>
-              <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center ShortAdvantages__capture titleSection'>
+              <div className='col-lg-12 col-md-12 col-sm-12 col-12 text-center ShortAdvantages__capture titleSection'>
                 {capture}
               </div>
             </div>

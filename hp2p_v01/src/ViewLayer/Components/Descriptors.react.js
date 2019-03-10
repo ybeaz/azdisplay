@@ -46,16 +46,16 @@ class Descriptors extends React.PureComponent {
     return (
       <div id={sid} className={`container-fluid ${sid}`}>
         <div className='row'>
-          <div className='col-lg-10 col-md-10 col-sm-10 col-xs-12 descWrapper1 transitionPrevDesc column'>
+          <div className='col-lg-10 col-md-10 col-sm-10 col-12 descWrapper1 transitionPrevDesc column'>
             <Markup el='h1' content={h1} className='descriptorRow1' />
           </div>
-          <div className='col-lg-2 col-md-2 col-sm-2 col-xs-0 column' />
+          <div className='col-lg-2 col-md-2 col-sm-2 col-0 column' />
         </div>
         <div className='row'>
-          <div className='col-lg-10 col-md-10 col-sm-10 col-xs-12 descWrapper2 transitionPrevDesc column'>
+          <div className='col-lg-10 col-md-10 col-sm-10 col-12 descWrapper2 transitionPrevDesc column'>
             <Markup el='h2' content={h2} className='descriptorRow2' />
           </div>
-          <div className='col-lg-2 col-md-2 col-sm-2 col-xs-0 column' />
+          <div className='col-lg-2 col-md-2 col-sm-2 col-0 column' />
         </div>
       </div>
     )

@@ -60,36 +60,38 @@ class FacePage326 extends React.PureComponent {
             <SectionWrapper classStyle='SectionWrapper_mobileImage'>
               <Carousel {...carousel} />
             </SectionWrapper>
-          </CombineWrapper>
-          <SectionWrapper classStyle='SectionWrapper_searchFormSection newSection'>
-            <SearchForm {...searchForm} />
-          </SectionWrapper>
-          <SectionWrapper classStyle='SectionWrapper_catalogTags p_t_2_rem'>
-            <CatalogTags {...catatogTags} />
-          </SectionWrapper>
-          <SectionWrapper classStyle='SectionWrapper_imgListTable p_t_4_rem'>
-            <ImgListTable {...itHelps} />
-          </SectionWrapper>
-          <SectionWrapper classStyle='SectionWrapper_workFlow newSection m_t_2_rem bg_greyLight'>
-            <WorkFlow {...workFlow} />
-          </SectionWrapper>
-          <SectionWrapper classStyle='SectionWrapper_keyFeatures newSection'>
-            <ImgListTable {...keyFeatures} />
-          </SectionWrapper>
-          <CombineWrapper classStyle='CombineWrapper background03 newSection'>
-            <SectionWrapper classStyle='SectionWrapper_shortAdvantages'>
-              <ShortAdvantages {...shortAdvantages} />
-            </SectionWrapper>
-            <SectionWrapper classStyle='SectionWrapper_searchForm p_t_2_rem'>
+            <SectionWrapper classStyle='SectionWrapper_searchFormSection newSection'>
               <SearchForm {...searchForm} />
             </SectionWrapper>
           </CombineWrapper>
-          <SectionWrapper classStyle='SectionWrapper_userReview newSection m_t_4_rem'>
-            <UserReviews {...userReviews} />
-          </SectionWrapper>
-          <SectionWrapper classStyle='SectionWrapper_registrationButton newSection'>
-            <ButtonCommon {...registrationButton} />
-          </SectionWrapper>
+          <CombineWrapper classStyle='CombineWrapper'>
+            <SectionWrapper classStyle='SectionWrapper_catalogTags p_t_2_rem'>
+              <CatalogTags {...catatogTags} />
+            </SectionWrapper>
+            <SectionWrapper classStyle='SectionWrapper_imgListTable p_t_4_rem'>
+              <ImgListTable {...itHelps} />
+            </SectionWrapper>
+            <SectionWrapper classStyle='SectionWrapper_workFlow newSection m_t_2_rem bg_greyLight'>
+              <WorkFlow {...workFlow} />
+            </SectionWrapper>
+            <SectionWrapper classStyle='SectionWrapper_keyFeatures newSection'>
+              <ImgListTable {...keyFeatures} />
+            </SectionWrapper>
+            <CombineWrapper classStyle='CombineWrapper background03 newSection'>
+              <SectionWrapper classStyle='SectionWrapper_shortAdvantages'>
+                <ShortAdvantages {...shortAdvantages} />
+              </SectionWrapper>
+              <SectionWrapper classStyle='SectionWrapper_searchForm p_t_2_rem'>
+                <SearchForm {...searchForm} />
+              </SectionWrapper>
+            </CombineWrapper>
+            <SectionWrapper classStyle='SectionWrapper_userReview newSection m_t_4_rem'>
+              <UserReviews {...userReviews} />
+            </SectionWrapper>
+            <SectionWrapper classStyle='SectionWrapper_registrationButton newSection'>
+              <ButtonCommon {...registrationButton} />
+            </SectionWrapper>
+          </CombineWrapper>
         </main>
         <footer>
           <SectionWrapper classStyle='SectionWrapper_footerSection newSection bg_greyDark'>

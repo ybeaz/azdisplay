@@ -51,8 +51,8 @@ var USERTO = {
         isDisplayIndicators: true,
         isAutoCarousel: false,
         autoCarouselInterval: 2000,
-        scrollInterval: 1000,
-        scrollPeriodEnd: 2000,
+        scrollInterval: 100,
+        scrollPeriodEnd: 100,
       },
       searchForm: {
         sid: 'SearchForm',
@@ -66,6 +66,8 @@ var USERTO = {
             { capture: 'Обучение', active: false, general: false },
             { capture: 'Фриланс', active: false, general: false },
           ],
+          isGenaralShowAlways: false,
+          isGeneralShowPhone: false,
         },
         typeMedia: {
           sid: 'Dropdown_typeMedia',
@@ -151,7 +153,7 @@ var USERTO = {
       },
       itHelps: {
         sid: 'ItHelps',
-        captureSection: '<span>User</span><span class="c_green">To</span>&nbsp;<span>помогает</span>',
+        captureSection: '<span>User</span><span class="c_green">To</span>&nbsp;<span style="display: inline;">помогает</span>',
         imgSrc: 'https://userto.com/img/illustration04.jpg',
         listArr: [
           { capture: 'Быстро разобраться в вопросе', details: 'Не нужно куда-то идти или ехать, искать людей, сидеть в очередях. Найдите специалиста на сайте'},

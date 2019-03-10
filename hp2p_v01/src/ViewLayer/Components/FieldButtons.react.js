@@ -12,30 +12,35 @@ class FieldButtons extends React.PureComponent {
     }
   }
 
-  getFieldButtons = arr => arr.map((item, i) => {
-    const { capture, active, general } = item
-    let classForGeneral = ''
-    if (general) {
-      classForGeneral = 'FieldButtons__button_general'
-    }
+  getFieldButtons = (listArr, isGenaralShowAlways, isGeneralShowPhone) => listArr
+    .map(item => {
+      const { capture, active, general } = item
+      let classDisplayNone = ''
+      
+      if (general && isGenaralShowAlways === false) {
+        classDisplayNone = 'd_n'
+      }
+      else if (general && isGeneralShowPhone === false) {
+        classDisplayNone = 'd_n_phone'
+      }
 
-    let activeClass = ''
-    if (active === true) {
-      activeClass = 'FieldButtons__button_active'
-    }
-    const eid = `FieldButtons__button-${uuidv4()}`
-    const action = { type: 'selectItem', ...item, eid }
-    return (
-      <button
-        id={eid}
-        key={eid}
-        type='button'
-        className={`btn btn-success FieldButtons__button ${activeClass} ${classForGeneral}`}
-        onClickCapture={e => this.handleEvent(e, action)}
-      >
-        {capture}
-      </button>
-    )
+      let activeClass = ''
+      if (active === true) {
+        activeClass = 'FieldButtons__button_active'
+      }
+      const eid = `FieldButtons__button-${uuidv4()}`
+      const action = { type: 'selectItem', ...item, eid }
+      return (
+        <button
+          id={eid}
+          key={eid}
+          type='button'
+          className={`btn btn-success FieldButtons__button ${activeClass} ${classDisplayNone}`}
+          onClickCapture={e => this.handleEvent(e, action)}
+        >
+          {capture}
+        </button>
+      )
   })
 
   handleEvent = (e, action) => {
@@ -78,9 +83,9 @@ class FieldButtons extends React.PureComponent {
   }
 
   render() {
-    const { sid } = this.props
+    const { sid, isGenaralShowAlways, isGeneralShowPhone } = this.props
     const { listArr } = this.state
-    const fieldButtons = this.getFieldButtons(listArr)
+    const fieldButtons = this.getFieldButtons(listArr, isGenaralShowAlways, isGeneralShowPhone )
 
     return (
       <div className={`FieldButtons ${sid}`}>
