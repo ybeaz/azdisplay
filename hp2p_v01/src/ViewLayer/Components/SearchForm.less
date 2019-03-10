@@ -39,7 +39,7 @@
     }
  
     .SearchForm__searchButtonCol {
-      &:extend(.p_x_0);
+      &:extend(.p_r_0p5_rem, .p_l_0);
     }
     input {
       &:extend(.b_r_0, .h_100);
@@ -79,6 +79,12 @@
       input {
         .p_a_1_rem;
         font-size+: @fontSize_a;
+      }
+    }
+
+    .SearchForm__categoryRow {
+      .SearchForm__typeRequestCol {
+        text-align: center;
       }
     }
 

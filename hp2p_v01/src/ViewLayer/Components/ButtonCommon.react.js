@@ -12,7 +12,7 @@ class ButtonCommon extends React.PureComponent {
     return (
       <div id={sid} className={`container-fluid form-group ButtonCommon ${sid}`}>
         <div className='row'>
-          <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center'>
+          <div className='col-lg-12 col-md-12 col-sm-12 col-12 text-center'>
             <button 
               type='button'
               className='btn'

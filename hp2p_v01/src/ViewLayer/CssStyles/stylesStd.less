@@ -48,7 +48,18 @@
 .m_t_2_rem { margin-top: 2rem; }
 .m_t_4_rem { margin-top: 4rem; }
 
+.m_t_0 { margin-top: 0; }
+
+.m_r_0 { margin-right: 0; }
 .m_r_0p5_rem { margin-right: 0.5rem; }
+
+.m_l_0 { margin-left: 0; }
+
+.m_b_0 { margin-bottom: 0; }
+
+.m_x_0 { .m_l_0; .m_r_0; }
+.m_y_0 { .m_t_0; .m_b_0; }
+.m_a_0 { .m_x_0; .m_y_0; }
 
 .b_r_0 { border-radius: 0 }
 .b_r_3_rem { border-radius: 3rem; }
@@ -70,4 +81,23 @@
   -o-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
+}
+
+
+
+@media @large {
+
+}
+@media @desktop, @desktop-strict {
+
+}
+@media @tablet, @tablet-strict {
+
+}
+@media @phone, @phone-strict {
+
+  .d_n_phone {
+    display: none;
+  }
+
 }
