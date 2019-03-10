@@ -77,7 +77,7 @@ class FacePage326 extends React.PureComponent {
             <SectionWrapper classStyle='SectionWrapper_keyFeatures newSection'>
               <ImgListTable {...keyFeatures} />
             </SectionWrapper>
-            <CombineWrapper classStyle='CombineWrapper background03 newSection'>
+            <CombineWrapper classStyle='CombineWrapper bg_greyLight newSection'>
               <SectionWrapper classStyle='SectionWrapper_shortAdvantages'>
                 <ShortAdvantages {...shortAdvantages} />
               </SectionWrapper>

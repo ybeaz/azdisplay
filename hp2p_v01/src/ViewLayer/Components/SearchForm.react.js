@@ -62,13 +62,10 @@ class SearchForm extends React.PureComponent {
           <div className='col-lg-2 col-md-2 col-sm-2 col-0' />
         </div>
         <div className='row SearchForm__categoryRow transitionPrevSearch'>
-          <div className='col-lg-8 col-md-8 col-sm-8 col-12 SearchForm__typeRequestCol'>
+          <div className='col-lg-12 col-md-12 col-sm-12 col-12 SearchForm__typeRequestCol'>
             <FieldButtons {...typeRequestProps1} />
-          </div>
-          <div className='col-lg-2 col-md-2 col-sm-2 col-0 SearchForm__typeMediaCol'>
             <Dropdown {...typeMediaProps3} />
           </div>
-          <div className='col-lg-2 col-md-2 col-sm-2 col-0' />
         </div>
       </div>
     )
