@@ -11,7 +11,7 @@ class ImgListTable extends React.PureComponent {
   
     const listLi = listArr.map((item, i) => (
       <li key={i} className='ImgList_li'>
-        <div className='ImgList__capture'>
+        <div className='ImgList__liCapture'>
           {item.capture}
         </div>
         <div className='ImgList__details'>

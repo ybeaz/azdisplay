@@ -10,9 +10,8 @@ import Carousel from '../Components/Carousel.react'
 import SearchForm from '../Components/SearchForm.react'
 import CatalogTags from '../Components/CatalogTags.react'
 import ImgListTable from '../Components/ImgListTable.react'
-import WorkFlow from '../Components/WorkFlow.react'
-import ShortAdvantages from '../Components/ShortAdvantages.react'
-import ButtonCommon  from '../Components/ButtonCommon.react'
+import IconCaptDesc from '../Components/IconCaptDesc.react'
+import ButtonCommon from '../Components/ButtonCommon.react'
 import UserReviews from '../Components/UserReviews.react'
 import Footer from '../Components/Footer.react'
 
@@ -37,6 +36,7 @@ class FacePage326 extends React.PureComponent {
       keyFeatures,
       shortAdvantages,
       userReviews,
+      userReviews_,
       footer,
     } = treeDefault
     let { carousel, registrationButton } = treeDefault
@@ -53,7 +53,7 @@ class FacePage326 extends React.PureComponent {
       <div className='FacePage326 globalStyle'>
         <header><NavBar {...navBar} /></header>
         <main>
-          <CombineWrapper classStyle='CombineWrapper CombineWrapper_jumbotron newSection'>
+          <CombineWrapper classStyle='CombineWrapper CombineWrapper_jumbotron'>
             <SectionWrapper classStyle='SectionWrapper_desc'>
               <Descriptors {...descriptors} />
             </SectionWrapper>
@@ -72,29 +72,29 @@ class FacePage326 extends React.PureComponent {
               <ImgListTable {...itHelps} />
             </SectionWrapper>
             <SectionWrapper classStyle='SectionWrapper_workFlow'>
-              <WorkFlow {...workFlow} />
+              <IconCaptDesc {...workFlow} />
             </SectionWrapper>
             <SectionWrapper classStyle='SectionWrapper_keyFeatures'>
               <ImgListTable {...keyFeatures} />
             </SectionWrapper>
-            <CombineWrapper classStyle='CombineWrapper bg_greyLight newSection'>
+            <CombineWrapper classStyle='CombineWrapper CombineWrapper_advantagesAndSearchForm'>
               <SectionWrapper classStyle='SectionWrapper_shortAdvantages'>
-                <ShortAdvantages {...shortAdvantages} />
+                <IconCaptDesc {...shortAdvantages} />
               </SectionWrapper>
-              <SectionWrapper classStyle='SectionWrapper_searchForm p_t_2_rem'>
+              <SectionWrapper classStyle='SectionWrapper_searchForm'>
                 <SearchForm {...searchForm} />
               </SectionWrapper>
             </CombineWrapper>
-            <SectionWrapper classStyle='SectionWrapper_userReview newSection m_t_4_rem'>
-              <UserReviews {...userReviews} />
-            </SectionWrapper>
-            <SectionWrapper classStyle='SectionWrapper_registrationButton newSection'>
+            <SectionWrapper classStyle='SectionWrapper_userReviews'>
+              <IconCaptDesc {...userReviews} />
+            </SectionWrapper> 
+            <SectionWrapper classStyle='SectionWrapper_registrationButton'>
               <ButtonCommon {...registrationButton} />
             </SectionWrapper>
           </CombineWrapper>
         </main>
         <footer>
-          <SectionWrapper classStyle='SectionWrapper_footerSection newSection bg_greyDark'>
+          <SectionWrapper classStyle='SectionWrapper_footerSection bg_greyDark'>
             <Footer {...footer} />
           </SectionWrapper>
         </footer>

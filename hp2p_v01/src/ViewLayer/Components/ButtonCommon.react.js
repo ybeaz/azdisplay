@@ -10,18 +10,14 @@ class ButtonCommon extends React.PureComponent {
     // console.info('RegistrationButton->render() [10]', { })
 
     return (
-      <div id={sid} className={`container-fluid form-group ButtonCommon ${sid}`}>
-        <div className='row'>
-          <div className='col-lg-12 col-md-12 col-sm-12 col-12 text-center'>
-            <button 
-              type='button'
-              className='btn'
-              onClick={e => handleFunction(e, action)}
-            >
-              {capture}
-            </button>
-          </div>
-        </div>
+      <div id={sid} className={`ButtonCommon ${sid}`}>
+        <button 
+          type='button'
+          className='btn'
+          onClick={e => handleFunction(e, action)}
+        >
+          {capture}
+        </button>
       </div>
     )
   }

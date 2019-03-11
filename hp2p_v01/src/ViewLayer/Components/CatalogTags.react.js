@@ -95,8 +95,8 @@ class CatalogTags extends React.PureComponent {
         return (
           <div key={i} className='CatalogTags__item'>
             <a href={`#${id}`}>
-              <div><i className={iconFa} /></div>
-              <div className='name'>{capture}</div>
+              <div className='CatalogTags__itemIcon'><i className={iconFa} /></div>
+              <div className='CatalogTags__itemCapture'>{capture}</div>
             </a>
           </div>
         )

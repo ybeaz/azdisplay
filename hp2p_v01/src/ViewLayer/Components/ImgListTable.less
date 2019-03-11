@@ -19,10 +19,10 @@
       transform: scale(1.5);
     }
     .ImgList_li {
-      &:extend(.p_b_2_rem);
-      .ImgList__capture {
+      &:extend(.p_b_1_rem);
+      .ImgList__liCapture {
         font-size: @fontSize_origin;
-        margin-top: -1.5rem;
+        margin-top: -1.9rem;
       }
       .ImgList__details {
         &:extend(.p_y_0p4_rem);
@@ -33,7 +33,7 @@
     }
   }
   .ImgList__imgWrapper {
-    &:extend(.p_t_4_rem);
+    &:extend(.p_t_5_rem);
     //height: min-content;
     //max-height: min-content;
   }
@@ -61,11 +61,17 @@
     .ImgList__imgWrapper {
       .d_n;
     }
+    ul {
+      li::before {
+      
+      }
+      .ImgList_li {
+        .ImgList__liCapture {
+          margin-top: -1.5rem;
+        }
+      }
+    }
   }
-
-
-
-  
 }
 
 
