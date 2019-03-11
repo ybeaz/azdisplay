@@ -1,0 +1,235 @@
+
+.IconCaptDesc {
+
+  .IconCaptDesc__img {
+    width: 5rem;
+    height: 5rem;
+    padding-top: 1rem;
+    margin-left: 15%;
+  }
+  
+  .IconCaptDesc__captureRow {
+    .p_b_2_rem;
+    .IconCaptDesc__captureCol {
+      .IconCaptDesc__capture {
+        font-size: @fontSize_h2;
+      }
+    }  
+  }
+
+  .IconCaptDesc__itemRow {
+
+    .IconCaptDesc__itemCol {
+      column-count: 4;
+      -webkit-column-count: 4;
+      -moz-column-count: 4;
+      display: flex;
+
+      .IconCaptDesc__itemCell {
+        .p_x_2_rem;
+        
+        .IconCaptDesc__itemIcon {
+          .p_b_1_rem;
+          padding-left: 15%;
+          i {
+            color: @color2;
+            font-size: 3rem;
+          }
+        }
+
+        .IconCaptDesc__itemCapture {
+          .p_b_1_rem;
+          color: @color2;
+        }
+
+        .IconCaptDesc__itemDetails {
+          font-size: @fontSize_b;
+          color: @color8;
+          line-height: 1.3rem;
+        }
+      }
+    }
+  }
+
+  @media @large {
+      
+  }
+  @media @desktop, @desktop-strict {
+    
+  }
+  @media @tablet, @tablet-strict {
+    
+  }
+  @media @phone, @phone-strict {
+    .IconCaptDesc__captureRow {
+      .p_b_1_rem;
+        .IconCaptDesc__captureCol {
+        .IconCaptDesc__capture {
+          font-size: @fontSize_h2_phone;
+        }
+      }
+    }
+
+    .IconCaptDesc__itemRow {
+      .p_l_1_rem;
+
+      .IconCaptDesc__itemCol{
+        display: block;
+        column-count: 2;
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+    
+        .IconCaptDesc__itemCell {
+          .p_x_0;
+          min-height: 16rem;
+          
+          .IconCaptDesc__itemIcon {
+
+            i {
+              font-size: 3rem;
+            }
+          }
+    
+          .IconCaptDesc__itemCapture {
+            .titleSection;
+          }
+    
+          .IconCaptDesc__itemDetails {
+
+          }
+        }
+      }
+    }
+  }
+}
+
+.IconCaptDesc_ShortAdvantages {
+
+  .IconCaptDesc__itemRow {
+
+    .IconCaptDesc__itemCol {
+      column-count: 3;
+      -webkit-column-count: 3;
+      -moz-column-count: 3;
+
+
+      .IconCaptDesc__itemCell {
+        .p_r_6_rem;
+
+        .IconCaptDesc__itemCapture {
+          .hyphenation;
+        }
+      }
+    }
+  }
+
+
+  @media @large {
+      
+  }
+  @media @desktop, @desktop-strict {
+    
+  }
+  @media @tablet, @tablet-strict {
+    
+  }
+  @media @phone, @phone-strict {
+
+    .IconCaptDesc__itemRow {
+
+      .IconCaptDesc__itemCol {
+        column-count: 3;
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+
+        .IconCaptDesc__itemCell {
+          .p_r_0;
+          min-height: unset;
+          .IconCaptDesc__itemCapture {
+            font-size: 3.5vw;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+.IconCaptDesc_UserReviews {
+
+  .IconCaptDesc__itemRow {
+
+    .IconCaptDesc__itemCol {
+      column-count: 4;
+      -webkit-column-count: 4;
+      -moz-column-count: 4;
+
+      .IconCaptDesc__itemCell {
+        .p_l_1_rem;
+        .p_r_1_rem;
+        width: 15rem;
+
+        .IconCaptDesc__itemIcon {
+          .d_i_b;
+          .p_l_0;
+          img {
+            height: 3.5rem;
+          }
+        }
+
+        .IconCaptDesc__itemCapture {
+          .d_i_b;
+          .t_tr_i;
+          .p_l_1_rem;
+        }
+
+        .IconCaptDesc__itemDetails {
+          .p_t_1_rem;
+          border-top: 1px solid;
+          border-top-color: #b3b3b3;
+        }
+
+
+      }
+    }
+  }
+
+  @media @large {
+      
+  }
+  @media @desktop, @desktop-strict {
+    
+  }
+  @media @tablet, @tablet-strict {
+    
+  }
+  @media @phone, @phone-strict {
+
+    .IconCaptDesc__itemRow {
+
+      .IconCaptDesc__itemCol {
+        column-count: 1;
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+    
+        .IconCaptDesc__itemCell {
+          width: unset;
+          min-height: unset;
+          &:not(:first-child) {
+            .p_t_2_rem;
+          }
+
+          .IconCaptDesc__itemCapture {
+
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+
+
