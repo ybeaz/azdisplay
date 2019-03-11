@@ -17,11 +17,6 @@
       font-size: 30px;
     }
 
-    @media @phone, @phone-strict {
-      .p_r_0;
-    }
-
-
   }
   .nav-actions{
     margin-top: 0;
@@ -43,18 +38,33 @@
     width: 4rem;
   }
 
-  .navbarBrend {
-    &:extend(.p_l_4_rem);
-
-    @media @phone, @phone-strict {
-      .p_l_0;
-    }
-
+  .NavbarBrend {
+    //.p_l_4_rem;
   }
 
-  .navbar {
-    @media @phone, @phone-strict {
+
+  @media @large {
+      
+  }
+  @media @desktop, @desktop-strict {
+    
+  }
+  @media @tablet, @tablet-strict {
+    
+  }
+  @media @phone, @phone-strict {
+    .navbar {
+      justify-content: left;
       .p_b_0;
+
+      .NavbarBrend {
+        .p_l_0;
+        font-size: @fontSize_h0_phone;
+      }
+    }
+
+    a {
+      .p_r_0;
     }
   }
 }

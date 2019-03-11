@@ -11,7 +11,7 @@ class ImgListTable extends React.PureComponent {
   
     const listLi = listArr.map((item, i) => (
       <li key={i} className='ImgList_li'>
-        <div className='ImgList__capture'>
+        <div className='ImgList__liCapture'>
           {item.capture}
         </div>
         <div className='ImgList__details'>
@@ -33,7 +33,7 @@ class ImgListTable extends React.PureComponent {
   getImgBlock = imgSrc => {
     return (
       <div className='col-lg-6 col-md-6 col-sm-6 col-0 ImgList__imgWrapper'>
-        <img className='img-fluid' src={imgSrc} alt='Chania' />
+        <img className='img-fluid' src={imgSrc} alt='No text' />
       </div>
     )
   }

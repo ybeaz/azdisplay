@@ -27,12 +27,13 @@
 
 // Themes
 .globalStyle {
-  font-size: @fontSize_a;
+  font-size: @fontSize_origin;
   font-family: @font-family;
   background-color: @color0;
   color: @color1;
   box-sizing: border-box;
 }
+
 
 .bg_greyLight {
   background-color: @color7;
@@ -91,10 +92,6 @@
   font-weight: 700;
 }
 
-@import '../Pages/Error404.less';
-@import '../Pages/FacePage326.less';
-
-
 
 @media @large {
 
@@ -108,5 +105,12 @@
 @media @phone, @phone-strict {
 
 }
+
+@import '../Pages/Error404.less';
+@import '../Pages/FacePage326.less';
+
+
+
+
 
 

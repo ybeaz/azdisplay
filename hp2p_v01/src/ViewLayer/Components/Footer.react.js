@@ -18,7 +18,7 @@ class Footer extends React.PureComponent {
     })
 
     return (
-      <div key={i} className='col-lg-3 col-md-3 col-sm-3 col-3'>
+      <div key={i} className='col-lg-3 col-md-3 col-sm-3 col-4'>
         <div className='Footer__capture'>{capture}</div>
         <ul>
           {listItems}
@@ -36,7 +36,7 @@ class Footer extends React.PureComponent {
     return (
       <div id={sid} className={`container-fluid form-group ${sid}`}>
         <div className='row'>
-          <div className='col-lg-3 col-md-3 col-sm-3 col-3'>
+          <div className='col-lg-3 col-md-3 col-sm-3 col-12 Footer__logoCol'>
             <LogoElem inverted />
           </div>
           {listItems}

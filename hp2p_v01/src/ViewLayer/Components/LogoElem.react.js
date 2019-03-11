@@ -16,7 +16,7 @@ const LogoElem = props => {
   // console.info('LogoElem [0]', { fontSizeArg, fontSize })
 
   return (
-    <span className='LogoElem' style={{ fontSize }}>
+    <span className='LogoElem'>
       <span className={logoElemPart1}>User</span>
       <span className={logoElemPart2}>To</span>
     </span>
