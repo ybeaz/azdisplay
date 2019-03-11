@@ -11,9 +11,9 @@ class NavBar extends React.PureComponent {
     const { sid, login } = this.props
     // console.info('NavBar->render() [10]',{});
     return (
-      <div id={sid} className={sid}>
+      <div id={sid} className={`Navbar ${sid}`}>
         <nav id='navbarNav' className='navbar navbar-expand-sm'>
-          <a className='navbar-brand navbarBrend' href='#navbar'>
+          <a className='navbar-brand NavbarBrend' href='#navbar'>
             <LogoElem />
           </a>
           {/*

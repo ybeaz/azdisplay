@@ -11,7 +11,7 @@ var USERTO = {
       
       navBar: {
         sid: 'NavBar',
-        login: 'Регистрация и вход',
+        login: 'Вход',
       },
       descriptors: {
         sid: 'Descriptors',
@@ -123,29 +123,33 @@ var USERTO = {
       },
       workFlow: {
         sid: 'WorkFlow',
-        captureSection: '',
+        captureSection: 'Как это работает?',
         workFlowArr: [
           {
             step: 1,
             imgClass: 'icon01',
+            iconFa: 'fas fa-search',
             capture: 'Выбирайте специалиста',
             details: 'В поле поиска сделайте запрос по необходимой теме. Сервис преложит варианты',
           },
           {
             step: 2,
             imgClass: 'icon02',
+            iconFa: 'fas fa-calendar-check',
             capture: 'Удобное время',
             details: 'Обратитесь к специалисту прямо сейчас или по графику, который подходит вам',
           },
           {
             step: 3,
             imgClass: 'icon03',
+            iconFa: 'fas fa-video',
             capture: 'Способ связи',
             details: 'Выбирайте способ и формат общения. Чат аудио или видеосвязь',
           },
           {
             step: 4,
             imgClass: 'icon04',
+            iconFa: 'far fa-smile-wink',
             capture: 'Решите ваш вопрос',
             details: 'Специалист поможет найти верный подход к решению вопроса',
           },

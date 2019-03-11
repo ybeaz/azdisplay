@@ -60,21 +60,21 @@ class FacePage326 extends React.PureComponent {
             <SectionWrapper classStyle='SectionWrapper_mobileImage'>
               <Carousel {...carousel} />
             </SectionWrapper>
-            <SectionWrapper classStyle='SectionWrapper_searchFormSection newSection'>
+            <SectionWrapper classStyle='SectionWrapper_searchFormSection'>
               <SearchForm {...searchForm} />
             </SectionWrapper>
           </CombineWrapper>
           <CombineWrapper classStyle='CombineWrapper'>
-            <SectionWrapper classStyle='SectionWrapper_catalogTags p_t_2_rem'>
+            <SectionWrapper classStyle='SectionWrapper_catalogTags'>
               <CatalogTags {...catatogTags} />
             </SectionWrapper>
-            <SectionWrapper classStyle='SectionWrapper_imgListTable p_t_4_rem'>
+            <SectionWrapper classStyle='SectionWrapper_imgListTable'>
               <ImgListTable {...itHelps} />
             </SectionWrapper>
-            <SectionWrapper classStyle='SectionWrapper_workFlow newSection m_t_2_rem bg_greyLight'>
+            <SectionWrapper classStyle='SectionWrapper_workFlow'>
               <WorkFlow {...workFlow} />
             </SectionWrapper>
-            <SectionWrapper classStyle='SectionWrapper_keyFeatures newSection'>
+            <SectionWrapper classStyle='SectionWrapper_keyFeatures'>
               <ImgListTable {...keyFeatures} />
             </SectionWrapper>
             <CombineWrapper classStyle='CombineWrapper bg_greyLight newSection'>

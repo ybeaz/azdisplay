@@ -1,5 +1,8 @@
 
 .ImgList {
+  .ImgList__capture {
+    font-size: @fontSize_h2;
+  }
   h2 {
     padding-left: 2.5rem;
     padding-bottom: 1rem;
@@ -18,7 +21,7 @@
     .ImgList_li {
       &:extend(.p_b_2_rem);
       .ImgList__capture {
-        font-size: @fontSize_a;
+        font-size: @fontSize_origin;
         margin-top: -1.5rem;
       }
       .ImgList__details {
@@ -44,6 +47,25 @@
     -o-background-size: contain;
     background-size: contain;
   }
+
+  @media @large {
+  }
+  @media @desktop, @desktop-strict {
+  }
+  @media @tablet, @tablet-strict {
+  }
+  @media @phone, @phone-strict {
+    .ImgList__capture {
+      font-size: @fontSize_h2_phone;
+    }
+    .ImgList__imgWrapper {
+      .d_n;
+    }
+  }
+
+
+
+  
 }
 
 

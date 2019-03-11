@@ -27,12 +27,28 @@
 
 // Themes
 .globalStyle {
-  font-size: @fontSize_a;
+  font-size: @fontSize_origin;
   font-family: @font-family;
   background-color: @color0;
   color: @color1;
   box-sizing: border-box;
 }
+
+@media @large {
+
+}
+@media @desktop, @desktop-strict {
+
+}
+@media @tablet, @tablet-strict {
+
+}
+@media @phone, @phone-strict {
+
+}
+
+
+
 
 .bg_greyLight {
   background-color: @color7;
@@ -86,6 +102,7 @@
   }
 }
 
+
 .titleSection {
   &:extend(.t_tr_uc);
   font-weight: 700;
@@ -96,17 +113,6 @@
 
 
 
-@media @large {
 
-}
-@media @desktop, @desktop-strict {
-
-}
-@media @tablet, @tablet-strict {
-
-}
-@media @phone, @phone-strict {
-
-}
 
 

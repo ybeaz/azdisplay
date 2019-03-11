@@ -1,8 +1,8 @@
 
 
 .LogoElem {
-  &:extend(.t_tr_uc);
-  font-weight: 700;
+  .titleSection;
+  font-size: @fontSize_h0;
 
   .LogoElem__part1 {
     color: @color1;
@@ -20,6 +20,18 @@
     color: @color4;
   }
 
+  @media @large {
+      
+  }
+  @media @desktop, @desktop-strict {
+    
+  }
+  @media @tablet, @tablet-strict {
+    
+  }
+  @media @phone, @phone-strict {
+    font-size: @fontSize_h0_phone;
+  }
 }
 
 
