@@ -6,7 +6,7 @@
     &:extend(.p_x_0);
   }
   .CatalogTags__columns {
-    margin-left: -1rem;
+    //margin-left: -1rem;
     -webkit-column-count: 5;
     -moz-column-count: 5;
     column-count: 5;
@@ -14,7 +14,10 @@
       .CatalogTags__item { 
         &:extend(.p_l_1_rem, .pos_u);
         padding-top: 0.3rem;
-        
+        -webkit-column-break-inside: avoid;
+        page-break-inside: avoid;
+        break-inside: avoid-column;
+
         a {
           text-decoration: none;
           color: @color1;
@@ -51,13 +54,12 @@
     }
     
     .CatalogTags__columns {
-      .p_l_1_rem;
+      .p_r_1_rem;
       -webkit-column-count: 3;
       -moz-column-count: 3;
       column-count: 3;
 
       .CatalogTags__item {
-        .p_l_0;
         height: 7rem;
         padding-bottom: 7rem;
         text-align: center;

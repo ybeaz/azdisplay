@@ -1,11 +1,29 @@
+import { bindActionCreators } from 'redux'
+import * as actionSet from '../actions/index'
+import store from '../store'
+import * as serviceFunc from '../../Shared/serviceFunc'
 
+const { dispatch } = store
+const actions = bindActionCreators(actionSet, dispatch)
 
 export const handleActions = (e, action) => {
   // console.info(`handleActions.js type->${action.type}`, { e, action })
 
   switch (action.type) {
-    case 'registrationQuick': {
-      console.info(`handleActions.js type->${action.type}`, { e, action })
+
+    case 'closeModalRegistrationNavBar': {
+      actions.CLOSE_MODAL_REGISTRATION()
+      console.info(`handleActions.js type: ${action.type}`, { e, action, })
+    } break
+
+    case 'openModalRegistrationNavBar': {
+      actions.OPEN_MODAL_REGISTRATION_NAV_BAR()
+      // console.info(`handleActions.js type: ${action.type}`, { e, action })
+    } break
+
+    case 'openModalRegistrationQuick': {
+      actions.OPEN_MODAL_REGISTRATION_QUICK()
+      // console.info(`handleActions.js type: ${action.type}`, { e, action })
     } break
 
     default: {

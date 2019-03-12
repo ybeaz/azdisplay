@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-export const user = (state = {}, action) => {
+const user = (state = {}, action) => {
 
   switch (action.type) {
     case 'REG_LOGIN_CHECK_USER': {
@@ -17,10 +17,33 @@ export const user = (state = {}, action) => {
   }
 }
 
+const modalWindow = (state = false, action) => {
+
+  switch (action.type) {
+
+    case 'OPEN_MODAL_REGISTRATION_NAV_BAR':
+    case 'OPEN_MODAL_REGISTRATION_QUICK': {
+      return true
+    }
+
+    case 'CLOSE_MODAL_REGISTRATION': {
+      return false
+    }
+
+    default: {
+      return state
+    }
+  }
+}
+
+
+
+
 //Main application reducers
 const appCombineReducers = combineReducers(
   {
     user,
+    modalWindow,
   },
 )
 
