@@ -8,7 +8,7 @@ class Dropdown extends React.PureComponent {
     const { listArr } = this.props
     this.state = {
       listArr,
-      toggle: `Dropdown__dropdownMenu_hide`,
+      toggle: 'Dropdown__dropdownMenu_hide',
     }
   }
 
