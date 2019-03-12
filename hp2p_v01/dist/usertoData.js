@@ -106,7 +106,7 @@ var USERTO = {
           { capture: 'Работа и карьера', iconClass: '', num: 1307, iconFa: 'fas fa-briefcase' },
           { capture: 'ЗОЖ', iconClass: '', num: 3166, iconFa: 'fas fa-dumbbell' },
           { capture: 'Животные', iconClass: '', num: 401, iconFa: 'fas fa-paw' },
-          { capture: 'Ремонт и установка техники', iconClass: '', num: 160, iconFa: 'fas fa-blender"></i>' },
+          { capture: 'Работа техники', iconClass: '', num: 160, iconFa: 'fas fa-blender' },
           { capture: 'Мистика', iconClass: 'iconFire', num: 263, iconFa: 'fas fa-hat-wizard' },
           { capture: 'Ремонт и строительство', iconClass: 'iconFire', num: 319, iconFa: 'fas fa-hammer' },
           { capture: 'Красота', iconClass: '', num: 711, iconFa: 'far fa-grin-hearts' },
@@ -114,11 +114,11 @@ var USERTO = {
           { capture: 'Фото', iconClass: '', num: 447, iconFa: 'fas fa-camera-retro' },
           { capture: 'Аудио', iconClass: 'iconFire', num: 417, iconFa: 'fas fa-sliders-h' },
           { capture: 'Творчество и хобби', iconClass: '', num: 1344, iconFa: 'fas fa-paint-brush' },
-          { capture: 'Медицинские вопросы', iconClass: '', num: 927, iconFa: 'fas fa-comment-medical' },
+          { capture: 'Медицинские вопросы', iconClass: '', num: 927, iconFa: 'fas fa-first-aid' },
           { capture: 'Путешествия', iconClass: '', num: 401, iconFa: 'fas fa-plane-departure' },
           { capture: 'Религия', iconClass: '', num: 838, iconFa: 'fas fa-praying-hands' },
           { capture: 'Искусство', iconClass: '', num: 2162, iconFa: 'fas fa-square-full' },
-          { capture: 'Недвижимость', iconClass: '', num: 4304, iconFa: 'fas fa-city'},
+          { capture: 'Недвижи- мость', iconClass: '', num: 4304, iconFa: 'fas fa-city'},
           { capture: 'Покупка авто', iconClass: '', num: 579, iconFa: 'fas fa-car-side' },
           { capture: 'Работа с текстом', iconClass: '', num: 431, iconFa: 'fas fa-align-left' },
           { capture: 'Реклама', iconClass: '', num: 211, iconFa: 'fas fa-bullhorn' },
@@ -246,6 +246,21 @@ var USERTO = {
           },
         ],
       },
+      modals: {
+        sid: 'Modal',
+        registration: {
+          sid: 'RegistrationDev',
+          capture: 'Приносим извинения',
+          message: 'Сервис сейчас находится в разработке. Но вы можете оставить ваш email и получить бонус 500 руб. в момент запуска. Ждите новостей в ближайшем будущем',
+          inputPlaceHolder: 'ваш email...',
+          buttonCapture: 'Послать',
+        },
+        farewell: {
+          sid: 'FarewellDev',
+          capture: 'Рады были узнать в Вашем интересе',
+          message: 'О запуске сервиса дадим знать в ближайшем будущем'
+        }
+      }
     },
     router: {
       routes: [

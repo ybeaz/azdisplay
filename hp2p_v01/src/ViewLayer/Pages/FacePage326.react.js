@@ -12,10 +12,9 @@ import CatalogTags from '../Components/CatalogTags.react'
 import ImgListTable from '../Components/ImgListTable.react'
 import IconCaptDesc from '../Components/IconCaptDesc.react'
 import ButtonCommon from '../Components/ButtonCommon.react'
-import UserReviews from '../Components/UserReviews.react'
 import Footer from '../Components/Footer.react'
-
-import handleActions from '../../DataLayer/reduces/handleActions'
+import Modal from '../Components/Modal.react'
+import ModalBackdrop from '../Components/ModalBackdrop.react'
 
 // eslint-disable-next-line react/prefer-stateless-function
 class FacePage326 extends React.PureComponent {
@@ -25,30 +24,37 @@ class FacePage326 extends React.PureComponent {
 
   render() {
     
-    const { treeDefault } = this.props
-    const {
+    const { treeDefault, reduxState, handleActions } = this.props
+    let {
       navBar,
       descriptors,
       searchForm,
+      carousel,
       catatogTags,
       itHelps,
       workFlow,
       keyFeatures,
       shortAdvantages,
       userReviews,
-      userReviews_,
+      registrationButton,
       footer,
+      modals,
     } = treeDefault
-    let { carousel, registrationButton } = treeDefault
+    const { modalWindow } = reduxState
+
+    navBar = {...navBar, handleActions}
+    modals = { ...modals, modalWindow, handleActions } 
+    const modalBackdropProps = { modalWindow }
 
     const { sid: carouselSid } = carousel
     const carouselCid = `${carouselSid}-${uuidv4()}`
     const carouselPrefix = 'CarouselDesc'
     carousel = { ...carousel, cid: carouselCid, prefix: carouselPrefix }
-    // console.info('FacePage326->render() [10]', { catatogTags, props: this.props })
-    const action = { type: 'registrationQuick' }
+
+    const action = { type: 'openModalRegistrationQuick' }
     registrationButton = { ...registrationButton, handleFunction: handleActions, action }
 
+    console.info('FacePage326->render() [10]', { props: this.props })
     return (
       <div className='FacePage326 globalStyle'>
         <header><NavBar {...navBar} /></header>
@@ -98,6 +104,8 @@ class FacePage326 extends React.PureComponent {
             <Footer {...footer} />
           </SectionWrapper>
         </footer>
+        <Modal {...modals} />
+        <ModalBackdrop {...modalBackdropProps} />
       </div>
     )
   }
