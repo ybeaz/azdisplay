@@ -8,16 +8,22 @@ class Dropdown extends React.PureComponent {
     const { listArr } = this.props
     this.state = {
       listArr,
-      toggle: `Dropdown__dropdownMenu_hide`,
+      toggle: 'Dropdown__dropdownMenu_hide',
     }
   }
 
-  getDropdownItems = arr => arr.map((item, i) => {
-    const { capture, classNameArr, active } = item
+  getDropdownItems = listArr => listArr.map((item, i) => {
+    const { capture, iconFa, active, general, sourceClass, spritePosition } = item
     
-    let icons = this.getFontAwsomeIcons(classNameArr)
+    let icons
+    if (iconFa) {
+      icons = this.getFontAwsomeIcons(iconFa)
+    }
+    else if (sourceClass && spritePosition) {
+      icons = this.getSpriteElement(sourceClass, spritePosition, 'Dropdown__spriteImgItem')
+    }
 
-    if (i === 0) {
+    if (general && general === true) {
       icons = null
     }
 
@@ -39,6 +45,16 @@ class Dropdown extends React.PureComponent {
       </div>
     )
   })
+
+  getSpriteElement = (sourceClass, spritePosition, elementClass) => {
+
+    return (
+      <div
+        className={`${elementClass} ${sourceClass}`}
+        style={{ backgroundPosition: spritePosition }}
+      />
+    )
+  }
 
   getFontAwsomeIcons = arr => {
     let iconHtml = null
@@ -64,7 +80,7 @@ class Dropdown extends React.PureComponent {
 
       case 'selectDataItem': {
         // console.info( 'Dropdown->handleEvent() [1]', action)
-
+        const { delay } = this.props
         const { listArr } = this.state
         const { capture: capturePayload } = action
 
@@ -81,7 +97,7 @@ class Dropdown extends React.PureComponent {
 
         setTimeout(() => {
           this.setState({ toggle: 'Dropdown__dropdownMenu_hide' })
-        }, 1000)
+        }, delay)
       } break
 
       case 'toggleDropdownMenu': {
@@ -104,9 +120,16 @@ class Dropdown extends React.PureComponent {
     const { cid, sid, displayBtnType } = this.props
     const { listArr, toggle } = this.state
     const activeItem = listArr.filter(item => item.active === true)[0]
-    const { classNameArr } = activeItem
+    const { iconFa, sourceClass, spritePosition } = activeItem
 
-    const icons = this.getFontAwsomeIcons(classNameArr)
+    let icons
+    if (iconFa) {
+      icons = this.getFontAwsomeIcons(iconFa)
+    }
+    else if (sourceClass && spritePosition) {
+      icons = this.getSpriteElement(sourceClass, spritePosition, 'Dropdown__spriteImgButtonFace')
+    }
+
     const { capture } = activeItem
     const buttonFace = this.getButtonFace(displayBtnType, icons, capture)
 
@@ -119,7 +142,7 @@ class Dropdown extends React.PureComponent {
       <div id={cid} className={`Dropdown dropdown ${sid}`}>
         <button
           type='button'
-          className='btn btn-success dropdown-toggle Dropdown__button'
+          className='btn dropdown-toggle Dropdown__button'
           onClickCapture={e => this.handleEvent(e, action)}
         >
           {buttonFace}
@@ -135,6 +158,7 @@ class Dropdown extends React.PureComponent {
 Dropdown.defaultProps = {
   cid: '',
   displayBtnType: 'icon',
+  delay: 0,
 }
 
 /* eslint-disable indent */
@@ -148,10 +172,11 @@ Dropdown.propTypes = {
   listArr: PropTypes.arrayOf(PropTypes.object).isRequired,
     /* Example
       [ 
-        { capture: 'Все виды', classNameArr: ['fas fa-video'], active: true },
+        { capture: 'Все виды', iconFa: ['fas fa-video'], active: true },
         ...
       ],
     */
+   delay: PropTypes.number,
 }
 
 export default Dropdown

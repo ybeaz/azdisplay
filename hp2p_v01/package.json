@@ -38,6 +38,7 @@
     "dev": "webpack-dev-server --config webpack.dev.js --color",
     "build": "webpack -p --config webpack.prod.js",
     "jest": "jest",
+    "ba": "webpack-bundle-analyzer --port 4200 dist/stats.json",
     "eject": "react-scripts eject"
   },
   "browserslist": [

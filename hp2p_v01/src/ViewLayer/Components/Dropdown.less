@@ -7,6 +7,10 @@
     .hoverFocusActive;
     min-width+: 8rem;
     .buttonColor;
+
+    .Dropdown__spriteImgButtonFace {
+      .d_i_b;
+    }
   }
 
   .Dropdown__button > span {
@@ -35,6 +39,10 @@
 
   .Dropdown__item {
     cursor+: pointer;
+
+    .Dropdown__spriteImgItem {
+      .d_i_b;
+    }
   }
 
   .Dropdown__item_selected {
@@ -59,21 +67,65 @@
     .p_l_2_rem;
   }
 
+  @media @large {
+
+  }
+  @media @desktop, @desktop-strict {
+  
+  }
+  @media @tablet, @tablet-strict {
+  
+  
+  }
+  @media @phone, @phone-strict {
+
+  }
+
 }
 
 
-@media @large {
+.Dropdown_typeMedia {
+  
+  @media @large {
 
-}
-@media @desktop, @desktop-strict {
-
-}
-@media @tablet, @tablet-strict {
-
-
-}
-@media @phone, @phone-strict {
-  .Dropdown_typeMedia {
+  }
+  @media @desktop, @desktop-strict {
+  
+  }
+  @media @tablet, @tablet-strict {
+  
+  
+  }
+  @media @phone, @phone-strict {
     .d_n;
+  }
+}
+
+
+.Dropdown_langSelect {
+
+  .Dropdown__button {
+    &:extend(.m_r_0p5_rem);
+    .buttonColorReverse;
+    min-width+: 4rem;
+    .hoverFocusActiveReset;
+  }
+
+  .Dropdown__item:first-of-type > span {
+    .p_l_1_rem
+  }
+
+
+  @media @large {
+
+  }
+  @media @desktop, @desktop-strict {
+  
+  }
+  @media @tablet, @tablet-strict {
+    
+  }
+  @media @phone, @phone-strict {
+
   }
 }
