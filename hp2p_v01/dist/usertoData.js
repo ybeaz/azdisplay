@@ -12,10 +12,20 @@ var USERTO = {
       navBar: {
         sid: 'NavBar',
         login: 'Вход',
+        langs: {
+          sid: 'Dropdown_langSelect',
+          listArr: [
+            { capture: 'Russian', active: true, spritePosition: '-324px -252px', nameShort: 'Ru', sourceClass: 'spriteFlag' },
+            { capture: 'English US', active: false, spritePosition: '-378px -228px', nameShort: 'En', sourceClass: 'spriteFlag' },
+            { capture: 'Espaniol', active: false, spritePosition: '-90px -228px', nameShort: 'Es', sourceClass: 'spriteFlag' },
+            { capture: 'Deutch', active: false, spritePosition: '-72px -60px', nameShort: 'De', sourceClass: 'spriteFlag' },
+          ],
+          delay: 500,
+        },
       },
       descriptors: {
         sid: 'Descriptors',
-        h1: 'Решим ваш вопрос вместе',
+        h1: 'Выберите специалиста<br />решите ваш вопрос онлайн',
         h2: 'Получите необходимые знания уже сейчас<br />через чат, аудио или видеосвязь', 
       },
       carousel: {
@@ -72,11 +82,12 @@ var USERTO = {
         typeMedia: {
           sid: 'Dropdown_typeMedia',
           listArr: [
-            { capture: 'Все виды', classNameArr: ['fas fa-video', 'fas fa-phone', 'fas fa-comments'], active: true },
-            { capture: 'Видео', classNameArr: ['fas fa-video'], active: false },
-            { capture: 'Аудио', classNameArr: ['fas fa-phone'], active: false },
-            { capture: 'Мессенджер', classNameArr: ['fas fa-comments'], active: false },
+            { capture: 'Все виды', iconFa: ['fas fa-video', 'fas fa-phone', 'fas fa-comments'], active: true, general: true },
+            { capture: 'Видео', iconFa: ['fas fa-video'], active: false, general: false },
+            { capture: 'Аудио', iconFa: ['fas fa-phone'], active: false, general: false },
+            { capture: 'Мессенджер', iconFa: ['fas fa-comments'], active: false, general: false },
           ],
+          delay: 500,
         },
       },
       catatogTags: {
@@ -92,12 +103,12 @@ var USERTO = {
           { capture: 'Здоровье', iconClass: '', num: 3166, iconFa: 'fas fa-heartbeat' },
           { capture: 'Дети', iconClass: '', num: 1607, iconFa: 'fas fa-child' },
           { capture: 'Репетиторы и обучение', iconClass: '', num: 460, iconFa: 'fas fa-graduation-cap' },
-          { capture: 'Работа, карьера', iconClass: '', num: 1307, iconFa: 'fas fa-briefcase' },
+          { capture: 'Работа и карьера', iconClass: '', num: 1307, iconFa: 'fas fa-briefcase' },
           { capture: 'ЗОЖ', iconClass: '', num: 3166, iconFa: 'fas fa-dumbbell' },
           { capture: 'Животные', iconClass: '', num: 401, iconFa: 'fas fa-paw' },
-          { capture: 'Ремонт и установка техники', iconClass: '', num: 160, iconFa: 'fas fa-blender-phone' },
+          { capture: 'Ремонт и установка техники', iconClass: '', num: 160, iconFa: 'fas fa-blender"></i>' },
           { capture: 'Мистика', iconClass: 'iconFire', num: 263, iconFa: 'fas fa-hat-wizard' },
-          { capture: 'Ремонт и строительство', iconClass: 'iconFire', num: 319, iconFa: 'fas fa-hard-hat' },
+          { capture: 'Ремонт и строительство', iconClass: 'iconFire', num: 319, iconFa: 'fas fa-hammer' },
           { capture: 'Красота', iconClass: '', num: 711, iconFa: 'far fa-grin-hearts' },
           { capture: 'Саморазвитие', iconClass: 'iconFire', num: 452, iconFa: 'fas fa-rocket' },
           { capture: 'Фото', iconClass: '', num: 447, iconFa: 'fas fa-camera-retro' },
