@@ -29,7 +29,8 @@ export const handleActions = (e, action) => {
 
     case 'closeModalRegistrationNavBar': {
       actions.CLOSE_MODAL_REGISTRATION()
-      console.info(`handleActions.js type: ${action.type}`, { e, action, })
+      actions.OPEN_MODAL_FAREWELL()
+      // console.info(`handleActions.js type: ${action.type}`, { e, action })
     } break
 
     case 'openModalRegistrationNavBar': {

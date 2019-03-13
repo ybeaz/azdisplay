@@ -40,11 +40,10 @@ class FacePage326 extends React.PureComponent {
       footer,
       modals,
     } = treeDefault
-    const { modalWindow } = reduxState
 
-    navBar = {...navBar, handleActions}
-    modals = { ...modals, modalWindow, handleActions } 
-    const modalBackdropProps = { modalWindow }
+    navBar = {...navBar, handleActions }
+    modals = { ...modals, reduxState, handleActions } 
+    const modalBackdropProps = { ...modals, reduxState }
 
     const { sid: carouselSid } = carousel
     const carouselCid = `${carouselSid}-${uuidv4()}`
@@ -54,7 +53,7 @@ class FacePage326 extends React.PureComponent {
     const action = { type: 'openModalRegistrationQuick' }
     registrationButton = { ...registrationButton, handleFunction: handleActions, action }
 
-    console.info('FacePage326->render() [10]', { props: this.props })
+    // console.info('FacePage326->render() [10]', { props: this.props })
     return (
       <div className='FacePage326 globalStyle'>
         <header><NavBar {...navBar} /></header>

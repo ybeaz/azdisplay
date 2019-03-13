@@ -1,5 +1,16 @@
 
 
+/* Function to return data to render for modal window according to the scenario */
+export const getModalKeyToRender = (actionLog) => {
+  let modalKeyToRender = 'registration'
+  const { length } = actionLog
+  if (length !== 0 &&
+    actionLog[length - 1].type === 'OPEN_MODAL_FAREWELL') {
+    modalKeyToRender = 'farewell'
+  }
+  return modalKeyToRender
+}
+
 
 /* Function to return width of the DOM object's in crossbrowser style */
 export const mediaSizeCrossBrowser = w => {

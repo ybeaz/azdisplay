@@ -1,9 +1,24 @@
+import { DISPATCH_ACTION } from './actions/index'
 
 //import Raven from 'raven';
 //Raven.config('https://9eaeabf6f2484b84acfee9fab5e44cf0@sentry.io/106530').install();
 //import Sentry from '@sentry/node';
 //Sentry.init({ dsn: 'https://eb0e20ea36a9426882da8efb7cf98390@sentry.io/1292020' });
 
+
+
+
+/* My custom middleware to keep history of user actions and build scenarious */
+export const loggerDispatch = store => next => action => {
+  if (action.type !== DISPATCH_ACTION().type) {
+    const payload = action
+    setTimeout(() => store.dispatch(DISPATCH_ACTION({ payload })), 0)
+  }
+  // console.log('dispatching', action)
+  let result = next(action)
+  // console.log('next state', store.getState())
+  return result
+}
 
 /**
  * Logs all actions and states after they are dispatched.

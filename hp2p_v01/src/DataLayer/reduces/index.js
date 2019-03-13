@@ -21,6 +21,7 @@ const modalWindow = (state = false, action) => {
 
   switch (action.type) {
 
+    case 'OPEN_MODAL_FAREWELL':
     case 'OPEN_MODAL_REGISTRATION_NAV_BAR':
     case 'OPEN_MODAL_REGISTRATION_QUICK': {
       return true
@@ -41,8 +42,9 @@ const actionLog = (state = [], action) => {
   switch (action.type) {
 
     case 'DISPATCH_ACTION': {
-      const stateNext = [...state, action]
-      console.info('actionLog->statePrev', { statePrev: state, stateNext })
+      const { payload } = action
+      const stateNext = [...state, payload]
+      // console.info('actionLog->statePrev', { action, statePrev: state, stateNext })
       return stateNext
     }
 
