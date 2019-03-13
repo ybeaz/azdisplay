@@ -26,20 +26,30 @@
       display: flex;
 
       .IconCaptDesc__itemCell {
-        .p_x_2_rem;
         
-        .IconCaptDesc__itemIcon {
-          .p_b_1_rem;
-          padding-left: 15%;
-          i {
-            color: @color2;
-            font-size: 3rem;
+        .IconCaptDesc__itemTopBlock {
+          .IconCaptDesc__itemIcon {
+            &:extend(.p_b_1_rem);
+            padding-left: 15%;
+            i {
+              color: @color1;
+              font-size: 3rem;
+            }
           }
-        }
+          .IconCaptDesc__itemCaptNumRatingWrapper {
+            
+            .IconCaptDesc__itemCapture {
+              &:extend(.p_b_1_rem);
+              color: @color2;
+            }
+            .IconCaptDesc__itemNum {
+              color: @color2;
+              font-size: @fontSize_f;
+            }
+            .IconCaptDesc__itemRating {
 
-        .IconCaptDesc__itemCapture {
-          .p_b_1_rem;
-          color: @color2;
+            }
+          }
         }
 
         .IconCaptDesc__itemDetails {
@@ -71,7 +81,7 @@
     }
 
     .IconCaptDesc__itemRow {
-      .p_l_1_rem;
+      &:extend(.p_l_1_rem);
 
       .IconCaptDesc__itemCol{
         display: block;
@@ -80,18 +90,28 @@
         -moz-column-count: 2;
     
         .IconCaptDesc__itemCell {
-          .p_x_0;
+          &:extend(.p_x_0);
           min-height: 16rem;
           
-          .IconCaptDesc__itemIcon {
-
-            i {
-              font-size: 3rem;
+          .IconCaptDesc__itemTopBlock {
+            
+            .IconCaptDesc__itemIcon {
+              i {
+                font-size: 3rem;
+              }
             }
-          }
-    
-          .IconCaptDesc__itemCapture {
-            .titleSection;
+            .IconCaptDesc__itemCaptNumRatingWrapper {
+              
+              .IconCaptDesc__itemCapture {
+
+              }
+              .IconCaptDesc__itemNum {
+                
+              }
+              .IconCaptDesc__itemRating {
+                
+              }
+            }
           }
     
           .IconCaptDesc__itemDetails {
@@ -103,21 +123,91 @@
   }
 }
 
+.IconCaptDesc_WorkFlow {
+  .IconCaptDesc__img {
+  }
+  .IconCaptDesc__captureRow {
+    .IconCaptDesc__captureCol {
+      .IconCaptDesc__capture {
+      }
+    }
+  }
+  .IconCaptDesc__itemRow {
+    .IconCaptDesc__itemCol {
+      .IconCaptDesc__itemCell {
+        .p_x_0;
+        .IconCaptDesc__itemTopBlock {
+            height: 8rem;
+          .IconCaptDesc__itemIcon {
+            i {
+            }
+          }
+          .IconCaptDesc__itemCaptNumRatingWrapper {
+            .IconCaptDesc__itemCapture {
+            }
+            .IconCaptDesc__itemNum {
+              .d_n;
+            }
+            .IconCaptDesc__itemRating {
+              .d_n;
+            }
+          }
+        }
+        .IconCaptDesc__itemCapture {
+        }
+        .IconCaptDesc__itemDetails {
+
+        }
+      }
+    }
+  }
+
+  @media @large {
+      
+  }
+  @media @desktop, @desktop-strict {
+    
+  }
+  @media @tablet, @tablet-strict {
+    
+  }
+  @media @phone, @phone-strict {
+  
+  }
+}
+
 .IconCaptDesc_ShortAdvantages {
 
   .IconCaptDesc__itemRow {
 
     .IconCaptDesc__itemCol {
+      &:extend(.p_l_2_rem);
       column-count: 3;
       -webkit-column-count: 3;
       -moz-column-count: 3;
 
 
       .IconCaptDesc__itemCell {
-        .p_r_6_rem;
+        &:extend(.p_r_6_rem);
+        padding-right: 10rem;
 
-        .IconCaptDesc__itemCapture {
-          .hyphenation;
+        .IconCaptDesc__itemTopBlock {
+            
+          .IconCaptDesc__itemIcon {
+            &:extend(.p_b_1_rem);
+          }
+          .IconCaptDesc__itemCaptNumRatingWrapper {
+            
+            .IconCaptDesc__itemCapture {
+              .hyphenation;
+            }
+            .IconCaptDesc__itemNum {
+
+            }
+            .IconCaptDesc__itemRating {
+
+            }
+          }
         }
       }
     }
@@ -145,8 +235,24 @@
         .IconCaptDesc__itemCell {
           .p_r_0;
           min-height: unset;
-          .IconCaptDesc__itemCapture {
-            font-size: 3.5vw;
+
+          .IconCaptDesc__itemTopBlock {
+            
+            .IconCaptDesc__itemIcon {
+  
+            }
+            .IconCaptDesc__itemCaptNumRatingWrapper {
+              
+              .IconCaptDesc__itemCapture {
+                font-size: 3.5vw;
+              }
+              .IconCaptDesc__itemNum {
+  
+              }
+              .IconCaptDesc__itemRating {
+  
+              }
+            }
           }
         }
       }
@@ -154,7 +260,6 @@
   }
 
 }
-
 
 .IconCaptDesc_UserReviews {
 
@@ -166,26 +271,36 @@
       -moz-column-count: 4;
 
       .IconCaptDesc__itemCell {
-        .p_l_1_rem;
-        .p_r_1_rem;
+        &:extend(.p_l_1_rem, .p_r_1_rem);
         width: 15rem;
 
-        .IconCaptDesc__itemIcon {
-          .d_i_b;
-          .p_l_0;
-          img {
-            height: 3.5rem;
+        .IconCaptDesc__itemTopBlock {
+          &:extend(.d_f, .p_l_0);
+          .IconCaptDesc__itemIcon {
+            &:extend(.d_f);
+            padding-left: 1%;
+            img {
+              height: 3.5rem;
+            }
+          }
+          .IconCaptDesc__itemCaptNumRatingWrapper {
+            &:extend(.p_l_1_rem, .p_b_1_rem);
+            
+            .IconCaptDesc__itemCapture {
+              &:extend(.t_tr_i);
+              .p_b_0;
+            }
+            .IconCaptDesc__itemNum {
+              padding-bottom: 0.3rem;
+            }
+            .IconCaptDesc__itemRating {
+
+            }
           }
         }
 
-        .IconCaptDesc__itemCapture {
-          .d_i_b;
-          .t_tr_i;
-          .p_l_1_rem;
-        }
-
         .IconCaptDesc__itemDetails {
-          .p_t_1_rem;
+          &:extend(.p_t_1_rem);
           border-top: 1px solid;
           border-top-color: #b3b3b3;
         }
@@ -219,7 +334,24 @@
           &:not(:first-child) {
             .p_t_2_rem;
           }
+          .IconCaptDesc__itemTopBlock {
 
+            .IconCaptDesc__itemIcon {
+
+            }
+            .IconCaptDesc__itemCaptNumRatingWrapper {
+              
+              .IconCaptDesc__itemCapture {
+  
+              }
+              .IconCaptDesc__itemNum {
+  
+              }
+              .IconCaptDesc__itemRating {
+  
+              }
+            }
+          }
           .IconCaptDesc__itemCapture {
 
           }

@@ -1,6 +1,7 @@
 
 
 .SearchForm {
+  &:extend(.p_l_1_rem, .hoverFocusActive);
 
   .transitionPrevSearch {
     opacity: 0;
@@ -27,38 +28,38 @@
     transform: none;
   }
 
-  .form-control {
-    .hoverFocusActive;
-  }
-
   .SearchForm__searchRow {
-    &:extend(.p_b_2_rem);
+    &:extend(.p_b_2_rem, .d_f);
     
-    .SearchForm__inputCol {
-      &:extend(.p_l_0p5_rem, .p_r_0);
+    .SearchForm__searchInputCol {
+      &:extend(.p_r_0);
+      width: 60%;
+
+      input {
+        &:extend(.b_r_0, .h_100);
+        font-size: @fontSize_d;
+        background-color: @color0;
+        padding: 20px 30px;
+        &:focus, &:hover {
+          background-color: @color0;
+        }
+      }
     }
  
     .SearchForm__searchButtonCol {
       &:extend(.p_l_0);
-    }
-    input {
-      &:extend(.b_r_0, .h_100);
-      font-size: @fontSize_d;
-      background-color: @color0;
-      padding: 20px 30px;
-      &:focus, &:hover {
-        background-color: @color0;
+      width: 15%;
+      .SearchForm__searchButton {
+        &:extend(.b_r_0, .h_100, .w_100);
+        .buttonColor;
       }
     }
-    .SearchForm__searchButton {
-      &:extend(.b_r_0, .h_100, .w_100);
-      .buttonColor;
-    }
+
   }
 
   .SearchForm__categoryRow {
     .SearchForm__typeRequestCol {
-      &:extend(.p_r_0, .p_l_0p5_rem);
+      &:extend(.p_r_0);
     }
     .SearchForm__typeMediaCol {
       .p_l_0;
@@ -66,14 +67,20 @@
   }
 
   @media @phone, @phone-strict {
-    
+    .p_l_0;
+
     .SearchForm__searchRow {
       &:extend(.p_l_1_rem, .p_r_1_rem);
       padding-bottom+: 1rem;
 
-      .SearchForm__inputCol, .SearchForm__searchButtonCol {
-        .p_l_0;
-        .p_r_0;
+      .SearchForm__searchInputCol {
+        &:extend(.p_l_0, .p_r_0);
+        width: 75%;
+      }
+
+      .SearchForm__searchButtonCol {
+        &:extend(.p_l_0, .p_r_0);
+        width: 25%;
       }
 
       input {
@@ -91,11 +98,56 @@
     .SearchForm__dropdownsRow {
       .p_t_1_rem;
     }
-
-
-
   }
-
 }
 
+.SearchForm_bottom {
+  .SearchForm__searchRow {
+    .SearchForm__searchInputCol {
+      width: 70%;
+      input {
+      }
+    }
+  }
+  .SearchForm__searchButtonCol {
+    .SearchForm__searchButton {
+    }
+  }
+
+  @media @phone, @phone-strict {
+    .p_l_0;
+
+    .SearchForm__searchRow {
+      &:extend(.p_l_1_rem, .p_r_1_rem);
+      padding-bottom+: 1rem;
+
+      .SearchForm__searchInputCol {
+        &:extend(.p_l_0, .p_r_0);
+        width: 75%;
+      }
+
+      .SearchForm__searchButtonCol {
+        &:extend(.p_l_0, .p_r_0);
+        width: 25%;
+      }
+
+      input {
+        .p_a_1_rem;
+        font-size+: @fontSize_origin;
+      }
+    }
+
+    .SearchForm__categoryRow {
+      .SearchForm__typeRequestCol {
+        text-align: center;
+      }
+    }
+
+    .SearchForm__dropdownsRow {
+      .p_t_1_rem;
+    }
+  }
+
+
+}
 

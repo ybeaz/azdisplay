@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import IconsFa from './IconsFa.react'
+
 
 // eslint-disable-next-line react/prefer-stateless-function
 class IconCaptDesc extends React.PureComponent {
@@ -7,27 +9,42 @@ class IconCaptDesc extends React.PureComponent {
   getIconCaptDesc = listArr => {
 
     return listArr.map((item, i) => {
-      const { imgSrc, iconFa, capture, details } = item
+      const { imgSrc, iconFa, capture, details, reviewNum, reviewName, ratingNum, ratingIconFa } = item
+      const iconsFaProps = {
+        num: ratingNum,
+        iconFa: ratingIconFa,
+      }
+      
       return (
         <div key={i} className='IconCaptDesc__itemCell'>  
-          <div className='IconCaptDesc__itemIcon'>
-            { imgSrc
-              ? <img src={imgSrc} alt={capture} />
-              : null
-            }
-            { iconFa
-              ? <i className={iconFa} />
-              : null
-            }
-          </div>
-          {capture
-            ? (
-              <div className='IconCaptDesc__itemCapture'>
-                {capture}
+          <div className='IconCaptDesc__itemTopBlock'>
+            <div className='IconCaptDesc__itemIcon'>
+              { imgSrc
+                ? <img src={imgSrc} alt={capture} />
+                : null
+              }
+              { iconFa
+                ? <i className={iconFa} />
+                : null
+              }
+            </div>
+            <div className='IconCaptDesc__itemCaptNumRatingWrapper'>
+              {capture
+                ? (
+                  <div className='IconCaptDesc__itemCapture'>
+                    {capture}
+                  </div>
+                )
+                : null
+              }
+              <div className='IconCaptDesc__itemNum'>
+                {`${reviewNum} ${reviewName}`}
               </div>
-            )
-            : null
-          }
+              <div className='IconCaptDesc__itemRating'>
+                <IconsFa {...iconsFaProps} />
+              </div>
+            </div>
+          </div>
           { details
             ? (
               <div className='IconCaptDesc__itemDetails'>
