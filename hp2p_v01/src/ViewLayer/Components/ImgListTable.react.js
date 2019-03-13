@@ -45,7 +45,7 @@ class ImgListTable extends React.PureComponent {
     const imgBlock = this.getImgBlock(imgSrc)
 
     return (
-      <div id={sid} className={`container-fluid form-group ImgList ${sid}`}>
+      <div id={sid} className={`container-fluid form-group ImgList ImgList_${sid}`}>
         <div className='row'>
           {sequence.a === 'img' ? imgBlock : listBlock}
           {sequence.b === 'list' ? listBlock : imgBlock}

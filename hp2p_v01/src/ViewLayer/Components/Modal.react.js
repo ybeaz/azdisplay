@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { getModalKeyToRender } from '../../Shared/serviceFunc'
+
+
 // eslint-disable-next-line react/prefer-stateless-function
 class Modal extends React.PureComponent {
   constructor(props) {
@@ -9,10 +12,21 @@ class Modal extends React.PureComponent {
   }
 
   render() {
-    const { modalWindow, registration, farewell, handleActions } = this.props
-    console.info('Modal [0]', { registration, farewell, props: this.props })
+    const { reduxState, registration, farewell, handleActions } = this.props
+    const { modalWindow, actionLog } = reduxState
+    // console.info('Modal [0]', { actionLog, registration, farewell, props: this.props })
     const actionClose = { type: 'closeModalRegistrationNavBar' }
 
+    const modalKeyToRender = getModalKeyToRender(actionLog)
+    const modalDataToRender = this.props[modalKeyToRender]
+
+    const {
+      sid,
+      capture,
+      message,
+      inputPlaceHolder,
+      buttonCapture,
+    } = modalDataToRender
 
     let modalClass
     if (modalWindow) {
@@ -23,49 +37,57 @@ class Modal extends React.PureComponent {
     }
 
     return (
-      <div className={`Modal modal ${modalClass}`}>
+      <div className={`modal Modal Modal_${sid} ${modalClass}`}>
         <div className='modal-dialog'>
           <div className='modal-content'>
           
             {/* <!-- Modal Header --> */}
             <div className='modal-header'>
               <h4 className='modal-title'>
-                Приносим извинения
+                {capture}
               </h4>
-              <button
-                type='button'
-                className='close'
-                onClickCapture={e => handleActions(e, actionClose)}
-              >
-                &times;
-              </button>
+              { modalKeyToRender === 'registration'
+                ? (
+                  <button
+                    type='button'
+                    className='close'
+                    onClickCapture={e => handleActions(e, actionClose)}
+                  >
+                    &times;
+                  </button>
+                )
+                : null
+              }
+
             </div>
             
             {/* <!-- Modal body --> */}
             <div className='Modal__body modal-body'>
               <div className='Modal__message'>
-                Сервис сейчас находится в разработке.
-                Но вы можете оставить ваш email и
-                получить бонус 500 руб. в момент запуска.
-                Ждите новостей в ближайшем будущем
+                {message}
               </div>
-              <div className='Modal__actionInputButtonRow'>
-                <div className='Modal__actionInputCol'>
-                  <input
-                    className='Modal_actionInput'
-                    placeholder='mail'
-                  />
-                </div>
-                <div className='Modal__actionButtonCol'>
-                  <button
-                    type='button'
-                    className='Modal_actionButton btn'
-                    onClickCapture={e => handleActions(e, actionClose)}
-                  >
-                    Послать
-                  </button>
-                </div>
-              </div>
+              { modalKeyToRender === 'registration'
+                ? (
+                  <div className='Modal__actionInputButtonRow'>
+                    <div className='Modal__actionInputCol'>
+                      <input
+                        className='Modal_actionInput'
+                        placeholder={inputPlaceHolder}
+                      />
+                    </div>
+                    <div className='Modal__actionButtonCol'>
+                      <button
+                        type='button'
+                        className='Modal_actionButton btn'
+                        onClickCapture={e => handleActions(e, actionClose)}
+                      >
+                        {buttonCapture}
+                      </button>
+                    </div>
+                  </div>
+                )
+                : null
+              }
             </div>
 
             {/* <!-- Modal footer --> */}

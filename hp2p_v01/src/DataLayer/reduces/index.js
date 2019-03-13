@@ -21,6 +21,7 @@ const modalWindow = (state = false, action) => {
 
   switch (action.type) {
 
+    case 'OPEN_MODAL_FAREWELL':
     case 'OPEN_MODAL_REGISTRATION_NAV_BAR':
     case 'OPEN_MODAL_REGISTRATION_QUICK': {
       return true
@@ -36,7 +37,22 @@ const modalWindow = (state = false, action) => {
   }
 }
 
+const actionLog = (state = [], action) => {
 
+  switch (action.type) {
+
+    case 'DISPATCH_ACTION': {
+      const { payload } = action
+      const stateNext = [...state, payload]
+      // console.info('actionLog->statePrev', { action, statePrev: state, stateNext })
+      return stateNext
+    }
+
+    default: {
+      return state
+    }
+  }
+}
 
 
 //Main application reducers
@@ -44,6 +60,7 @@ const appCombineReducers = combineReducers(
   {
     user,
     modalWindow,
+    actionLog,
   },
 )
 
