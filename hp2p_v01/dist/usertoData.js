@@ -258,7 +258,7 @@ var USERTO = {
         farewell: {
           sid: 'FarewellDev',
           capture: 'Рады были узнать в Вашем интересе',
-          message: 'О запуске сервиса дадим знать в ближайшем будущем',
+          message: 'Если вы поделились email, мы дадим знать о запуске сервиса в ближайшем будущем',
           inputPlaceHolder: '',
           buttonCapture: '',
         }
