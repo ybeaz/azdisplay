@@ -21,6 +21,7 @@ export const getActionAsync = (type, stage, data) => {
 
 
 // Get synchroneours actions
+export const DISPATCH_ACTION = data => action(actionTypes.DISPATCH_ACTION, data)
 export const CLOSE_MODAL_REGISTRATION = data => action(actionTypes.CLOSE_MODAL_REGISTRATION, data)
 export const OPEN_MODAL_REGISTRATION_NAV_BAR = data => action(actionTypes.OPEN_MODAL_REGISTRATION_NAV_BAR, data)
 export const OPEN_MODAL_REGISTRATION_QUICK = data => action(actionTypes.OPEN_MODAL_REGISTRATION_QUICK, data)

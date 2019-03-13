@@ -4,7 +4,6 @@ import * as middleware from './middleware'
 import appCombineReducers from './reduces/index'
 import indexSaga from '../SideEffectsLayer/index.saga'
 
-
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware()
   const middlewares = [sagaMiddleware, middleware.crashReporter]

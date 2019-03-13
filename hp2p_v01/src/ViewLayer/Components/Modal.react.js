@@ -10,7 +10,7 @@ class Modal extends React.PureComponent {
 
   render() {
     const { modalWindow, registration, farewell, handleActions } = this.props
-    console.info('Modal [0]', { registration, farewell, props: this.props })
+    // console.info('Modal [0]', { registration, farewell, props: this.props })
     const actionClose = { type: 'closeModalRegistrationNavBar' }
 
 

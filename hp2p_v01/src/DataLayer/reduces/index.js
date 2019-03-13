@@ -36,7 +36,21 @@ const modalWindow = (state = false, action) => {
   }
 }
 
+const actionLog = (state = [], action) => {
 
+  switch (action.type) {
+
+    case 'DISPATCH_ACTION': {
+      const stateNext = [...state, action]
+      console.info('actionLog->statePrev', { statePrev: state, stateNext })
+      return stateNext
+    }
+
+    default: {
+      return state
+    }
+  }
+}
 
 
 //Main application reducers
@@ -44,6 +58,7 @@ const appCombineReducers = combineReducers(
   {
     user,
     modalWindow,
+    actionLog,
   },
 )
 

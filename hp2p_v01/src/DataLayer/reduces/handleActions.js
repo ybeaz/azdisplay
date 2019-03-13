@@ -4,7 +4,23 @@ import store from '../store'
 import * as serviceFunc from '../../Shared/serviceFunc'
 
 const { dispatch } = store
-const actions = bindActionCreators(actionSet, dispatch)
+let actions = bindActionCreators(actionSet, dispatch)
+
+/*
+const loggerDispatch = bindActionCreators => next => actionSet => {
+    store.dispatch(actionSet.DISPATCH_ACTION())
+    return bindActionCreators(actionSet, dispatch)
+}
+let actions = loggerDispatch(actionSet)
+
+export const logger = store => next => action => {
+  console.log('dispatching', action)
+  let result = next(action)
+  console.log('next state', store.getState())
+  return result;
+}
+*/
+
 
 export const handleActions = (e, action) => {
   // console.info(`handleActions.js type->${action.type}`, { e, action })
