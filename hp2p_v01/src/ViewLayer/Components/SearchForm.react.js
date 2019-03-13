@@ -17,9 +17,9 @@ class SearchForm extends React.PureComponent {
 
   componentDidMount() {
     setTimeout(() => {
-      let selector = `#${this.cid} > div.row.SearchForm__searchRow.transitionPrevSearch`
+      let selector = `#${this.cid} > div.SearchForm__searchRow.transitionPrevSearch`
       serviceFunc.updateTransition(selector, 'transitionNextSearch')
-      selector = `#${this.cid} > div.row.SearchForm__categoryRow.transitionPrevSearch`
+      selector = `#${this.cid} > div.SearchForm__categoryRow.transitionPrevSearch`
       serviceFunc.updateTransition(selector, 'transitionNextSearch')
     }, 0)
 
@@ -48,21 +48,24 @@ class SearchForm extends React.PureComponent {
 
     // console.info('SearchForm->render() [10]',{ });
     return (
-      <div id={this.cid} className={`container-fluid form-group ${sid}`}>
-        <div className='row SearchForm__searchRow transitionPrevSearch'>
-          <div className='col-lg-8 col-md-8 col-sm-8 col-9 SearchForm__inputCol'>
-            <input id={searchInputId} type='text' className='form-control' 
-              placeholder={searchPlaceholder} />
+      <div id={this.cid} className={`SearchForm ${sid}`}>
+        <div className='SearchForm__searchRow transitionPrevSearch'>
+          <div className='SearchForm__searchInputCol'>
+            <input
+              id={searchInputId}
+              type='text'
+              className='form-control'
+              placeholder={searchPlaceholder}
+            />
           </div>
-          <div className='col-lg-2 col-md-2 col-sm-2 col-3 SearchForm__searchButtonCol'>
+          <div className='SearchForm__searchButtonCol'>
             <button id={buttonInputId} type='submit' className='btn SearchForm__searchButton'>
               {searchButton}
             </button>
           </div>
-          <div className='col-lg-2 col-md-2 col-sm-2 col-0' />
         </div>
-        <div className='row SearchForm__categoryRow transitionPrevSearch'>
-          <div className='col-lg-12 col-md-12 col-sm-12 col-12 SearchForm__typeRequestCol'>
+        <div className='SearchForm__categoryRow transitionPrevSearch'>
+          <div className='SearchForm__typeRequestCol'>
             <FieldButtons {...typeRequestProps1} />
             <Dropdown {...typeMediaProps3} />
           </div>

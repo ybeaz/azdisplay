@@ -50,6 +50,10 @@ class FacePage326 extends React.PureComponent {
     const carouselPrefix = 'CarouselDesc'
     carousel = { ...carousel, cid: carouselCid, prefix: carouselPrefix }
 
+    const searchFormTop = {...searchForm, sid: 'SearchForm_top'}
+    const searchFormBottom = {...searchForm, sid: 'SearchForm_bottom'}
+
+
     const action = { type: 'openModalRegistrationQuick' }
     registrationButton = { ...registrationButton, handleFunction: handleActions, action }
 
@@ -65,8 +69,8 @@ class FacePage326 extends React.PureComponent {
             <SectionWrapper classStyle='SectionWrapper_mobileImage'>
               <Carousel {...carousel} />
             </SectionWrapper>
-            <SectionWrapper classStyle='SectionWrapper_searchFormSection'>
-              <SearchForm {...searchForm} />
+            <SectionWrapper classStyle='SectionWrapper_searchForm'>
+              <SearchForm {...searchFormTop} />
             </SectionWrapper>
           </CombineWrapper>
           <CombineWrapper classStyle='CombineWrapper'>
@@ -87,7 +91,7 @@ class FacePage326 extends React.PureComponent {
                 <IconCaptDesc {...shortAdvantages} />
               </SectionWrapper>
               <SectionWrapper classStyle='SectionWrapper_searchForm'>
-                <SearchForm {...searchForm} />
+                <SearchForm {...searchFormBottom} />
               </SectionWrapper>
             </CombineWrapper>
             <SectionWrapper classStyle='SectionWrapper_userReviews'>
