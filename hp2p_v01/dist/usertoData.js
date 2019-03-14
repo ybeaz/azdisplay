@@ -32,28 +32,18 @@ var USERTO = {
         sid: 'CarouselDesc',
         listArr: [
           {
-            capture: 'background01.jpg',
-            src: 'https://userto.com/img/background01.jpg',
+            capture: 'Быстро, удобно через чат, аудио или видеосвязь',
+            src: 'https://userto.com/img/background05.jpg',
             active: true,
           },
           {
-            capture: 'background02.jpg',
+            capture: 'Расскажите о ваших компетенциях. Делитесь опытом и зарабатывайте',
             src: 'https://userto.com/img/background02.jpg',
             active: false,
           },
           {
-            capture: 'background03.jpg',
+            capture: 'Сохраните время и деньги. Для решения многих вопросов не требуется присутствие специалиста',
             src: 'https://userto.com/img/background03.jpg',
-            active: false,
-          },
-          {
-            capture: 'background04.jpg',
-            src: 'https://userto.com/img/background04.jpg',
-            active: false,
-          },
-          {
-            capture: 'background05.jpg',
-            src: 'https://userto.com/img/background05.jpg',
             active: false,
           },
         ],
