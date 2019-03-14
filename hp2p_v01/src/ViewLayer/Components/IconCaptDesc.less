@@ -299,11 +299,10 @@
         width: 15rem;
 
         .IconCaptDesc__itemTopBlock {
-          &:extend(.d_f, .p_l_0);
+          &:extend(.d_f, .p_l_0, .cur_p);
           .IconCaptDesc__itemIcon {
             &:extend(.d_f);
             padding-left: 1%;
-            cursor: pointer;
             img {
               height: 3.5rem;
             }
@@ -312,8 +311,7 @@
             &:extend(.p_l_1_rem, .p_b_1_rem);
             
             .IconCaptDesc__itemCapture {
-              &:extend(.t_tr_i, .p_b_0);
-              cursor: pointer;
+              &:extend(.t_tr_i, .p_b_0, .cur_p);
             }
             .IconCaptDesc__itemNum {
               padding-bottom: 0.3rem;

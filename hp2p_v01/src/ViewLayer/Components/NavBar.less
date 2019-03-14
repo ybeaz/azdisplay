@@ -7,11 +7,10 @@
   }
   a {
     color: @color2;
-    .f_s_0p9_rem;
+    &:extend(.f_s_0p9_rem, .cur_p);
     line-height: 30px;
     text-transform: capitalize;
     text-decoration: none;
-    cursor: pointer;
     transition: opacity .25s ease;
     i {
       font-size: 30px;
@@ -30,7 +29,7 @@
     display: flex;
 
     .NavBar__loginLink {
-      cursor+: pointer;
+      &:extend(.cur_p);
       padding-top: 0.8rem;
     }
     a {

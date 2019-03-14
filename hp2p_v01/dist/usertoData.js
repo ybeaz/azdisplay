@@ -229,28 +229,28 @@ var USERTO = {
         listArr: [
           {
             imgClass: '',
-            capture: 'About',
+            capture: 'О нас',
+            /*
             level01: [
               {capture: 'Business model', href: '#Footer'},
               {capture: 'Out team', href: '#Footer'},
             ],
+            */
           },
           {
             imgClass: '',
-            capture: 'Products',
-            level01: [
-              {capture: 'Search', href: '#Footer'},
-            ],
+            capture: 'Контакты',
           },
           {
             imgClass: '',
-            capture: 'Support',
-            level01: [
-              {capture: 'FAQ', href: '#Footer'},
-              {capture: 'Contact us', href: '#Footer'},
-            ],
+            capture: 'Обратная связь',
+          },
+          {
+            imgClass: '',
+            capture: 'Вход',
           },
         ],
+        copyRight: '&copy; 2019 userto.com. Все права защищены',
       },
       modals: {
         sid: 'Modal',

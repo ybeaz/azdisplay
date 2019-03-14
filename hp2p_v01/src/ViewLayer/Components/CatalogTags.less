@@ -18,14 +18,13 @@
     column-count: 5;
 
       .CatalogTags__item { 
-        &:extend(.p_l_1_rem, .pos_u);
+        &:extend(.p_l_1_rem, .pos_u, .cur_p);
         padding-top: 0.3rem;
         -webkit-column-break-inside: avoid;
         page-break-inside: avoid;
         break-inside: avoid-column;
         text-decoration: none;
         color: @color1;
-        cursor: pointer;
         .name {
           .f_s_1_rem
         }

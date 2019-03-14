@@ -2,23 +2,33 @@
 .Footer {
   color: @color7;
 
-  .Footer__logoCol {
-    .p_b_1_rem;
-  }
+  .Footer__rowMain {
+    &:extend(.d_f);
 
-  ul {
-    &:extend(.p_t_0p8_rem, .p_l_0);
-    padding-inline-start: 0;
-    li {
-      list-style-type: none;
-      a {
-        .f_s_0p9_rem;
-        text-decoration: none;
-        color: white;
+    .Footer__colLogo {
+      &:extend(.p_b_1_rem);
+    }
+    .Footer__colItems {
+      &:extend(.d_f, .p_t_1_rem, .w_100);
+      justify-content: space-evenly;
+
+      .Footer__colItem {
+        .Footer__capture {
+          &:extend(.p_l_2_rem, .cur_p);
+        }
+        .Footer__colItemLevel1 {
+          &:extend(.p_t_0p8_rem, .p_l_0);
+          .Footer__cellItemLevel1 {
+          }
+        }
       }
     }
   }
-  .Footer__capture {
-   font-weight: 700;   
+  .Footer__rowCopyRight {
+    &:extend(.d_f, .f_s_0p75_rem);
+    justify-content: space-evenly;
+    .Footer_colCopyRight {
+      
+    }
   }
 }
