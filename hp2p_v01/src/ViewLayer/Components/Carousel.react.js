@@ -65,6 +65,9 @@ class Carousel extends React.Component {
         key={i}
         className={itemClass}
       >
+        <div className='Carousel__itemCapture'>
+          {capture}
+        </div>
         <img
           src={src}
           className='Carousel__item-img img-fluid'

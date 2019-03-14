@@ -37,12 +37,22 @@ class IconCaptDesc extends React.PureComponent {
                 )
                 : null
               }
-              <div className='IconCaptDesc__itemNum'>
-                {`${reviewNum} ${reviewName}`}
-              </div>
-              <div className='IconCaptDesc__itemRating'>
-                <IconsFa {...iconsFaProps} />
-              </div>
+              {reviewNum
+                ? (
+                  <div className='IconCaptDesc__itemNum'>
+                    {`${reviewNum} ${reviewName}`}
+                  </div>
+                )
+                : null
+              }
+              {ratingNum && ratingIconFa
+                ? (
+                  <div className='IconCaptDesc__itemRating'>
+                    <IconsFa {...iconsFaProps} />
+                  </div>
+                )
+                : null
+              }
             </div>
           </div>
           { details
