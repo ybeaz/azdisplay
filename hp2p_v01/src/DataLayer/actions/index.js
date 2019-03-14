@@ -21,8 +21,12 @@ export const getActionAsync = (type, stage, data) => {
 
 
 // Get synchroneours actions
+// Template export const  = data => action(actionTypes., data)
 export const OPEN_MODAL_FAREWELL = data => action(actionTypes.OPEN_MODAL_FAREWELL, data)
 export const CLOSE_MODAL_REGISTRATION = data => action(actionTypes.CLOSE_MODAL_REGISTRATION, data)
+export const PRESS_SEARCH_BUTTON = data => action(actionTypes.PRESS_SEARCH_BUTTON, data)
+export const CLICK_USER_PROFILE = data => action(actionTypes.CLICK_USER_PROFILE, data)
+export const SELECT_CATALOG_CATEGORY = data => action(actionTypes.SELECT_CATALOG_CATEGORY, data)
 export const OPEN_MODAL_REGISTRATION_NAV_BAR = data => action(actionTypes.OPEN_MODAL_REGISTRATION_NAV_BAR, data)
 export const OPEN_MODAL_REGISTRATION_QUICK = data => action(actionTypes.OPEN_MODAL_REGISTRATION_QUICK, data)
 export const DISPATCH_ACTION = data => action(actionTypes.DISPATCH_ACTION, data)

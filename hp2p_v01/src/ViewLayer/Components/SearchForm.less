@@ -1,7 +1,7 @@
 
 
 .SearchForm {
-  &:extend(.p_l_1_rem, .hoverFocusActive);
+  &:extend(.p_l_1_rem);
 
   .transitionPrevSearch {
     opacity: 0;
@@ -36,8 +36,9 @@
       width: 60%;
 
       input {
+        .hoverFocusActive;
         &:extend(.b_r_0, .h_100);
-        font-size: @fontSize_d;
+        .f_s_1p2_rem;
         background-color: @color0;
         padding: 20px 30px;
         &:focus, &:hover {
@@ -85,7 +86,7 @@
 
       input {
         .p_a_1_rem;
-        font-size+: @fontSize_origin;
+        .f_s_1_rem;
       }
     }
 
@@ -133,7 +134,7 @@
 
       input {
         .p_a_1_rem;
-        font-size+: @fontSize_origin;
+        .f_s_1_rem;
       }
     }
 

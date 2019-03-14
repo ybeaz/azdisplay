@@ -22,6 +22,9 @@ const modalWindow = (state = false, action) => {
   switch (action.type) {
 
     case 'OPEN_MODAL_FAREWELL':
+    case 'PRESS_SEARCH_BUTTON':
+    case 'CLICK_USER_PROFILE':
+    case 'SELECT_CATALOG_CATEGORY':
     case 'OPEN_MODAL_REGISTRATION_NAV_BAR':
     case 'OPEN_MODAL_REGISTRATION_QUICK': {
       return true

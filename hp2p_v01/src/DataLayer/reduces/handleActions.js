@@ -33,6 +33,21 @@ export const handleActions = (e, action) => {
       // console.info(`handleActions.js type: ${action.type}`, { e, action })
     } break
 
+    case 'pressSearchButton': {
+      actions.PRESS_SEARCH_BUTTON()
+      // console.info(`handleActions.js type: ${action.type}`, { e, action })
+    } break
+
+    case 'clickUserProfile': {
+      actions.CLICK_USER_PROFILE()
+      // console.info(`handleActions.js type: ${action.type}`, { e, action })
+    } break
+
+    case 'selectCatalogCategory': {
+      actions.SELECT_CATALOG_CATEGORY()
+      // console.info(`handleActions.js type: ${action.type}`, { e, action })
+    } break
+
     case 'openModalRegistrationNavBar': {
       actions.OPEN_MODAL_REGISTRATION_NAV_BAR()
       // console.info(`handleActions.js type: ${action.type}`, { e, action })

@@ -31,7 +31,10 @@ class SearchForm extends React.PureComponent {
   }
 
   render() {
-    const { sid, searchPlaceholder, searchButton, typeRequest, typeMedia } = this.props
+    const {
+      sid, searchPlaceholder, searchButton,
+      typeRequest, typeMedia, handleActions,
+    } = this.props
 
     const { sid: typeRequestSid } = typeRequest
     let cid = `${typeRequestSid}-${uuidv4()}`
@@ -46,6 +49,8 @@ class SearchForm extends React.PureComponent {
     const searchInputId = `${this.cid}-searchInput`
     const buttonInputId = `${this.cid}-buttonInput`
 
+    const action = { type: 'pressSearchButton' }
+
     // console.info('SearchForm->render() [10]',{ });
     return (
       <div id={this.cid} className={`SearchForm ${sid}`}>
@@ -59,7 +64,12 @@ class SearchForm extends React.PureComponent {
             />
           </div>
           <div className='SearchForm__searchButtonCol'>
-            <button id={buttonInputId} type='submit' className='btn SearchForm__searchButton'>
+            <button 
+              id={buttonInputId}
+              type='submit'
+              className='btn SearchForm__searchButton'
+              onClickCapture={e => handleActions(e, action)}
+            >
               {searchButton}
             </button>
           </div>
