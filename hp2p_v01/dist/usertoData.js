@@ -250,10 +250,19 @@ var USERTO = {
             capture: 'Вход',
           },
         ],
-        copyRight: '&copy; 2019 userto.com. Все права защищены',
+        copyRight: '\u00A9 2019 userto.com. Все права защищены',
       },
       modals: {
         sid: 'Modal',
+        selectRole: {
+          sid: 'SelectRole',
+          capture: 'Выберите один или оба варианта',
+          button1: 'Мне нужен специалист',
+          button2: 'Я сам специалист. Окажу услуги',
+          button3: 'Ok',
+          message: '',
+          inputPlaceHolder: 'Ваш эл. адрес',
+        },
         registration: {
           sid: 'RegistrationDev',
           capture: 'Приносим извинение',
@@ -267,8 +276,8 @@ var USERTO = {
           message: 'Если вы поделились email, мы дадим знать о запуске сервиса в ближайшем будущем',
           inputPlaceHolder: '',
           buttonCapture: '',
-        }
-      }
+        },
+      },
     },
     router: {
       routes: [

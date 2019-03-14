@@ -13,8 +13,8 @@ import ImgListTable from '../Components/ImgListTable.react'
 import IconCaptDesc from '../Components/IconCaptDesc.react'
 import ButtonCommon from '../Components/ButtonCommon.react'
 import Footer from '../Components/Footer.react'
-import Modal from '../Components/Modal.react'
-import ModalBackdrop from '../Components/ModalBackdrop.react'
+import Modal from '../Modals/Modal.react'
+import ModalBackdrop from '../Modals/ModalBackdrop.react'
 
 // eslint-disable-next-line react/prefer-stateless-function
 class FacePage326 extends React.PureComponent {
