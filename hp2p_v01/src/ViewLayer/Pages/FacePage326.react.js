@@ -33,7 +33,6 @@ class FacePage326 extends React.PureComponent {
     super(props)
   }
 
-
   getModals = ({ ...props }) => {
     const { modalWindows, handleActions, modals } = { ...props }
     // console.info('FacePage326->getModals [0]', { modalWindows, handleActions, modals })

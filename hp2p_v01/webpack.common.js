@@ -11,6 +11,7 @@ var  path    = require('path');
 var  webpack = require('webpack');
 var  glob    = require("glob");
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -24,7 +25,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js[\S]{0,1}|ts[\S]{0,1})$/i,
+        test: /\.(js[\S]{0,2})$/i,
         exclude: /node_modules/,
         use: [
           {
@@ -34,7 +35,19 @@ module.exports = {
               plugins: ['@babel/proposal-class-properties']
             },
           },
-          { loader: 'ts-loader' },
+        ],
+      },
+      {
+        test: /\.(ts[\S]{0,2})$/i,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              // disable type checker - we will use it in fork plugin
+              transpileOnly: true,
+            },
+          },
         ],
       },
       {
@@ -116,6 +129,7 @@ module.exports = {
       template: 'template.html',
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new ForkTsCheckerWebpackPlugin({ checkSyntacticErrors: true }),
   ],  
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.es6', '.jsx', 'less', 'css', 'config', 'variables', 'overrides']
