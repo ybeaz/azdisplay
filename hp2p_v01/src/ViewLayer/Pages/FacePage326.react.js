@@ -42,7 +42,7 @@ class FacePage326 extends React.PureComponent {
         const componentDataProp = getFirstCharLowerCase(item.component)
         let propsScope = modals[componentDataProp]
         propsScope = { ...propsScope, handleActions }
-        console.info('FacePage326->getModals [10]', { ...props, item, propsScope, modals })
+        // console.info('FacePage326->getModals [10]', { ...props, item, propsScope, modals })
 
         const Modal = MODALS[item.component]
         return <Modal key={i} {...propsScope} />
@@ -89,7 +89,7 @@ class FacePage326 extends React.PureComponent {
 
     const modalWindowToReturn = this.getModals({ modalWindows, handleActions, modals })
 
-    console.info('FacePage326->render() [10]', { modalWindows, reduxState, modals, props: this.props })
+    // console.info('FacePage326->render() [10]', { modalWindows, reduxState, modals, props: this.props })
     return (
       <div className='FacePage326 globalStyle'>
         <header><NavBar {...navBar} /></header>

@@ -31,40 +31,27 @@ const modalWindows = (state = [], action) => {
     }
 
     case 'CLOSE_COMMENTFORM':
-    case 'SEND_COMMENTFORM': {
-      let stateNext = state
-      const { length } = state
-      let index
-      if (length === 0) {
-        stateNext = [
-          { component: 'ThankYou', display: true },
-        ]
-      }
-      else {
-        index = state.map(item => item.type).indexOf(action.type)
-        stateNext = [
-          ...state.slice(0, index),
-          { component: 'ThankYou', display: true },
-          ...state.slice(index + 1),
-        ]
-      }
-      console.info(`reducer->modalWindows type: ${action.type}`, { stateNext, state, action })
-      return state
-    }
-
+    case 'SEND_COMMENTFORM':
     case 'PRESS_OK_IN_SELECT_ROLE': {
+      const { modalNext } = action
       let stateNext = state
       const { length } = state
-      const index = state.map(item => item.type).indexOf(action.modalNext)
+      const index = state.map(item => item.component).indexOf(modalNext)
       if (length === 0) {
         stateNext = [
-          { component: action.modalNext, display: true },
+          { component: modalNext, display: true },
+        ]
+      }
+      else if (index === -1) {
+        stateNext = [
+          ...state,
+          { component: modalNext, display: true },
         ]
       }
       else {
         stateNext = [
           ...state.slice(0, index),
-          { component: action.modalNext, display: true },
+          { component: modalNext, display: true },
           ...state.slice(index + 1),
         ]
       }
@@ -73,30 +60,32 @@ const modalWindows = (state = [], action) => {
       return stateNext
     }
 
-    case 'OPEN_MODAL_FAREWELL':
+    
     case 'PRESS_SEARCH_BUTTON':
     case 'CLICK_USER_PROFILE':
     case 'SELECT_CATALOG_CATEGORY':
     case 'OPEN_MODAL_REGISTRATION_NAV_BAR':
-    case 'OPEN_MODAL_REGISTRATION_QUICK': {
+    case 'OPEN_MODAL_REGISTRATION_QUICK':
+    case 'OPEN_MODAL_FAREWELL': {
+      const { modalNext } = action
       let stateNext = state
       const { length } = state
       let index
       if (length === 0) {
         stateNext = [
-          { component: 'SelectRole', display: true },
+          { component: modalNext, display: true },
         ]
       }
       else {
-        index = state.map(item => item.type).indexOf(action.type)
+        index = state.map(item => item.component).indexOf(modalNext)
         stateNext = [
           ...state.slice(0, index),
-          { component: 'SelectRole', display: true },
+          { component: modalNext, display: true },
           ...state.slice(index + 1),
         ]
       }
 
-      console.info(`reducer->modalWindows type: ${action.type}`, { stateNext, state, action })
+      // console.info(`reducer->modalWindows type: ${action.type}`, { stateNext, state, action })
       return stateNext
     }
 

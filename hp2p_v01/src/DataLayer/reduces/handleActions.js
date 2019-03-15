@@ -40,47 +40,52 @@ export const handleActions = (e, action) => {
 
     case 'closeCommentForm': {
       actions.CLOSE_ALL_MODALS()
-      const { modalNext } = action
+      const modalNext = 'ThankYou'
       actions.CLOSE_COMMENTFORM({ modalNext })
       // console.info(`handleActions.js type: ${action.type}`, { e, action })
     } break
 
     case 'sendCommentForm': {
       actions.CLOSE_ALL_MODALS()
-      const { modalNext } = action
+      const modalNext = 'ThankYou'
       actions.SEND_COMMENTFORM({ modalNext })
       // console.info(`handleActions.js type: ${action.type}`, { e, action })
     } break
 
     case 'pressOkInSelectRole': {
       actions.CLOSE_ALL_MODALS()
-      const { modalNext } = action
+      const modalNext = 'CommentForm'
       actions.PRESS_OK_IN_SELECT_ROLE({ modalNext })
       // console.info(`handleActions.js type: ${action.type}`, { e, action })
     } break
 
     case 'pressSearchButton': {
-      actions.PRESS_SEARCH_BUTTON()
+      const modalNext = 'SelectRole'
+      actions.PRESS_SEARCH_BUTTON({ modalNext })
       // console.info(`handleActions.js type: ${action.type}`, { e, action })
     } break
 
     case 'clickUserProfile': {
-      actions.CLICK_USER_PROFILE()
+      const modalNext = 'SelectRole'
+      actions.CLICK_USER_PROFILE({ modalNext })
       // console.info(`handleActions.js type: ${action.type}`, { e, action })
     } break
 
     case 'selectCatalogCategory': {
-      actions.SELECT_CATALOG_CATEGORY()
+      const modalNext = 'SelectRole'
+      actions.SELECT_CATALOG_CATEGORY({ modalNext })
       // console.info(`handleActions.js type: ${action.type}`, { e, action })
     } break
 
     case 'openModalRegistrationNavBar': {
-      actions.OPEN_MODAL_REGISTRATION_NAV_BAR()
+      const modalNext = 'SelectRole'
+      actions.OPEN_MODAL_REGISTRATION_NAV_BAR({ modalNext })
       // console.info(`handleActions.js type: ${action.type}`, { e, action })
     } break
 
     case 'openModalRegistrationQuick': {
-      actions.OPEN_MODAL_REGISTRATION_QUICK()
+      const modalNext = 'SelectRole'
+      actions.OPEN_MODAL_REGISTRATION_QUICK({ modalNext })
       // console.info(`handleActions.js type: ${action.type}`, { e, action })
     } break
 
