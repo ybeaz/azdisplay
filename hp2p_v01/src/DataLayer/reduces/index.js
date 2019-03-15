@@ -17,9 +17,61 @@ const user = (state = {}, action) => {
   }
 }
 
-const modalWindow = (state = false, action) => {
+const modalWindows = (state = [], action) => {
 
   switch (action.type) {
+
+
+    case 'CLOSE_ALL_MODALS': {
+      const stateNext = state.map(item => {
+        return { ...item, display: false }
+      })
+      console.info(`reducer->modalWindows type: ${action.type}`, { stateNext, state, action })
+      return stateNext
+    }
+
+    case 'CLOSE_COMMENTFORM':
+    case 'SEND_COMMENTFORM': {
+      let stateNext = state
+      const { length } = state
+      let index
+      if (length === 0) {
+        stateNext = [
+          { component: 'ThankYou', display: true },
+        ]
+      }
+      else {
+        index = state.map(item => item.type).indexOf(action.type)
+        stateNext = [
+          ...state.slice(0, index),
+          { component: 'ThankYou', display: true },
+          ...state.slice(index + 1),
+        ]
+      }
+      console.info(`reducer->modalWindows type: ${action.type}`, { stateNext, state, action })
+      return state
+    }
+
+    case 'PRESS_OK_IN_SELECT_ROLE': {
+      let stateNext = state
+      const { length } = state
+      const index = state.map(item => item.type).indexOf(action.modalNext)
+      if (length === 0) {
+        stateNext = [
+          { component: action.modalNext, display: true },
+        ]
+      }
+      else {
+        stateNext = [
+          ...state.slice(0, index),
+          { component: action.modalNext, display: true },
+          ...state.slice(index + 1),
+        ]
+      }
+
+      console.info(`reducer->modalWindows type: ${action.type}`, { index, stateNext, state, action })
+      return stateNext
+    }
 
     case 'OPEN_MODAL_FAREWELL':
     case 'PRESS_SEARCH_BUTTON':
@@ -27,7 +79,25 @@ const modalWindow = (state = false, action) => {
     case 'SELECT_CATALOG_CATEGORY':
     case 'OPEN_MODAL_REGISTRATION_NAV_BAR':
     case 'OPEN_MODAL_REGISTRATION_QUICK': {
-      return true
+      let stateNext = state
+      const { length } = state
+      let index
+      if (length === 0) {
+        stateNext = [
+          { component: 'SelectRole', display: true },
+        ]
+      }
+      else {
+        index = state.map(item => item.type).indexOf(action.type)
+        stateNext = [
+          ...state.slice(0, index),
+          { component: 'SelectRole', display: true },
+          ...state.slice(index + 1),
+        ]
+      }
+
+      console.info(`reducer->modalWindows type: ${action.type}`, { stateNext, state, action })
+      return stateNext
     }
 
     case 'CLOSE_MODAL_REGISTRATION': {
@@ -62,7 +132,7 @@ const actionLog = (state = [], action) => {
 const appCombineReducers = combineReducers(
   {
     user,
-    modalWindow,
+    modalWindows,
     actionLog,
   },
 )

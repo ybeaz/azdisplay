@@ -8,14 +8,14 @@ const ModalBackdrop = ({ ...props }) => {
   // console.info('ModalBackdrop [0]', { ...props })
 
   const { reduxState, registration, farewell } = { ...props }
-  const { modalWindow, actionLog } = reduxState
+  const { modalWindows, actionLog } = reduxState
 
   const modalKeyToRender = getModalKeyToRender(actionLog)
   const modalDataToRender = { ...props }[modalKeyToRender]
   const { sid } = modalDataToRender
 
   let modalBackdropClass
-  if (modalWindow) {
+  if (modalWindows) {
     modalBackdropClass = 'ModalBackdrop__show'
   }
   else {

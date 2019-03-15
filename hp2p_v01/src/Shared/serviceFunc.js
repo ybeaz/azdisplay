@@ -1,16 +1,26 @@
 
 
+
+/* Function to capitalize (make uppercase) first letter of the string */
+export const getFirstCharLowerCase = string => {
+  return string.charAt(0).toLowerCase() + string.slice(1)
+}
+
+/* Function to capitalize (make uppercase) first letter of the string */
+export const getFirstCharUpperCase = string => {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
 /* Function to return data to render for modal window according to the scenario */
-export const getModalKeyToRender = (actionLog) => {
+export const getModalKeyToRender = actionLog => {
   let modalKeyToRender = 'registration'
   const { length } = actionLog
-  if (length !== 0 &&
-    actionLog[length - 1].type === 'OPEN_MODAL_FAREWELL') {
+  if (length !== 0
+    && actionLog[length - 1].type === 'OPEN_MODAL_FAREWELL') {
     modalKeyToRender = 'farewell'
   }
   return modalKeyToRender
 }
-
 
 /* Function to return width of the DOM object's in crossbrowser style */
 export const mediaSizeCrossBrowser = w => {

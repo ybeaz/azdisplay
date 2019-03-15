@@ -26,10 +26,36 @@ export const handleActions = (e, action) => {
   // console.info(`handleActions.js type->${action.type}`, { e, action })
 
   switch (action.type) {
+/*  'CLOSE_ALL_MODALS'
+    'CLOSE_MODAL_THANKYOU':
+    'CLOSE_COMMENTFORM'
+    'SEND_COMMENTFORM'
+    'PRESS_OK_IN_SELECT_ROLE'
+*/
 
-    case 'closeModalRegistrationNavBar': {
-      actions.CLOSE_MODAL_REGISTRATION()
-      actions.OPEN_MODAL_FAREWELL()
+    case 'closeModalThankYou': {
+      actions.CLOSE_ALL_MODALS()
+      // console.info(`handleActions.js type: ${action.type}`, { e, action })
+    } break
+
+    case 'closeCommentForm': {
+      actions.CLOSE_ALL_MODALS()
+      const { modalNext } = action
+      actions.CLOSE_COMMENTFORM({ modalNext })
+      // console.info(`handleActions.js type: ${action.type}`, { e, action })
+    } break
+
+    case 'sendCommentForm': {
+      actions.CLOSE_ALL_MODALS()
+      const { modalNext } = action
+      actions.SEND_COMMENTFORM({ modalNext })
+      // console.info(`handleActions.js type: ${action.type}`, { e, action })
+    } break
+
+    case 'pressOkInSelectRole': {
+      actions.CLOSE_ALL_MODALS()
+      const { modalNext } = action
+      actions.PRESS_OK_IN_SELECT_ROLE({ modalNext })
       // console.info(`handleActions.js type: ${action.type}`, { e, action })
     } break
 
@@ -55,6 +81,12 @@ export const handleActions = (e, action) => {
 
     case 'openModalRegistrationQuick': {
       actions.OPEN_MODAL_REGISTRATION_QUICK()
+      // console.info(`handleActions.js type: ${action.type}`, { e, action })
+    } break
+
+    case 'closeModalRegistrationNavBar': {
+      actions.CLOSE_MODAL_REGISTRATION()
+      actions.OPEN_MODAL_FAREWELL()
       // console.info(`handleActions.js type: ${action.type}`, { e, action })
     } break
 

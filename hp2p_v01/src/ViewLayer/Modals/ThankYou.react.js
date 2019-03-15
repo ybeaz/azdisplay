@@ -5,7 +5,7 @@ import { getModalKeyToRender } from '../../Shared/serviceFunc'
 
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Modal extends React.PureComponent {
+class ThankYou extends React.PureComponent {
   constructor(props) {
     super(props)
 
@@ -37,61 +37,51 @@ class Modal extends React.PureComponent {
     }
 
     return (
-      <div className={`modal Modal Modal_${sid} ${modalClass}`}>
+      <div className={`modal ${sid} ${modalClass}`}>
         <div className='modal-dialog'>
           <div className='modal-content'>
           
             {/* <!-- Modal Header --> */}
             <div className='modal-header'>
               <h4 className='modal-title'>
-                {capture}
+                Thank you {'capture'}
               </h4>
-              { modalKeyToRender === 'registration'
-                ? (
-                  <button
-                    type='button'
-                    className='close'
-                    onClickCapture={e => handleActions(e, actionClose)}
-                  >
-                    &times;
-                  </button>
-                )
-                : null
-              }
+                <button
+                  type='button'
+                  className='close'
+                  onClickCapture={e => handleActions(e, actionClose)}
+                >
+                  &times;
+                </button>
 
             </div>
             
             {/* <!-- Modal body --> */}
-            <div className='Modal__body modal-body'>
-              <div className='Modal__message'>
-                {message}
+            <div className='ThankYou__body modal-body'>
+              <div className='ThankYou__message'>
+                {'message'}
               </div>
-              { modalKeyToRender === 'registration'
-                ? (
-                  <div className='Modal__actionInputButtonRow'>
-                    <div className='Modal__actionInputCol'>
-                      <input
-                        className='Modal__actionInput'
-                        placeholder={inputPlaceHolder}
-                      />
-                    </div>
-                    <div className='Modal__actionButtonCol'>
-                      <button
-                        type='button'
-                        className='Modal__actionButton btn'
-                        onClickCapture={e => handleActions(e, actionClose)}
-                      >
-                        {buttonCapture}
-                      </button>
-                    </div>
+                <div className='ThankYou__actionInputButtonRow'>
+                  <div className='ThankYou__actionInputCol'>
+                    <input
+                      className='ThankYou__actionInput'
+                      placeholder={'inputPlaceHolder'}
+                    />
                   </div>
-                )
-                : null
-              }
+                  <div className='ThankYou__actionButtonCol'>
+                    <button
+                      type='button'
+                      className='ThankYou__actionButton btn'
+                      onClickCapture={e => handleActions(e, actionClose)}
+                    >
+                      {'buttonCapture'}
+                    </button>
+                  </div>
+                </div>
             </div>
 
             {/* <!-- Modal footer --> */}
-            <div className='Modal__footer modal-footer'>
+            <div className='ThankYou__footer modal-footer'>
               <button
                 type='button'
                 className='btn'
@@ -108,12 +98,12 @@ class Modal extends React.PureComponent {
   }
 }
 
-Modal.defaultProps = {
+ThankYou.defaultProps = {
 
 }
 
-Modal.propTypes = {
+ThankYou.propTypes = {
 
 }
 
-export default Modal
+export default ThankYou
