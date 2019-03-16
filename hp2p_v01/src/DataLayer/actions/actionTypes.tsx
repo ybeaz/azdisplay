@@ -9,7 +9,7 @@ export const createRequestTypes = base =>
   }, {})
 
 // Asynchroneous actions for saga
-// export const REMOVED_DOC_NAMED = createRequestTypes('REMOVED_DOC_NAMED')
+export const SAVE_ACTIONS = createRequestTypes('SAVE_ACTIONS')
 // export const LOADED_DOC_NAMED = createRequestTypes('LOADED_DOC_NAMED')
 
 // Synchroneours actions
@@ -26,5 +26,6 @@ export const OPEN_MODAL_REGISTRATION_QUICK = 'OPEN_MODAL_REGISTRATION_QUICK'
 export const CLOSE_MODAL_REGISTRATION = 'CLOSE_MODAL_REGISTRATION'  
 export const OPEN_MODAL_FAREWELL = 'OPEN_MODAL_FAREWELL'
 export const DISPATCH_ACTION = 'DISPATCH_ACTION'
+export const UPLOAD_TREE_DATA = 'UPLOAD_TREE_DATA'
 // export const SELECTED_PROJECT_TO_MERGE = 'SELECTED_PROJECT_TO_MERGE'
 // export const UPDATED_NAMECOM_WIT_APPTOPTARGET = 'UPDATED_NAMECOM_WIT_APPTOPTARGET'

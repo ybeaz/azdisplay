@@ -30,6 +30,8 @@
     "less-loader": "4.1.0",
     "styles-loader": "1.0.0",
     "ts-loader": "^5.3.3",
+    "tslint": "^5.14.0",
+    "tslint-loader": "^3.5.4",
     "typescript": "3.3.3333",
     "webpack": "4.29.5",
     "webpack-bundle-analyzer": "^3.0.4",

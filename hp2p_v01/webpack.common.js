@@ -25,6 +25,17 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(ts[\S]{0,2})$/i,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        use: [
+          {
+            loader: 'tslint-loader',
+            options: { /* Loader options go here */ },
+          },
+        ],
+      },
+      {
         test: /\.(js[\S]{0,2})$/i,
         exclude: /node_modules/,
         use: [
@@ -83,7 +94,7 @@ module.exports = {
       {
         test: /\.json$/,
         exclude: /node_modules/,
-        loader: 'json-loader'
+        loader: 'json-loader',
       },
       // the following 3 rules handle font extraction
       {

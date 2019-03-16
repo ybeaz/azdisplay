@@ -1,6 +1,25 @@
 import { combineReducers } from 'redux'
 
-const user = (state = {}, action) => {
+interface LanguageAction {
+  type: string,
+  lang: string,
+} 
+
+const language = (state: string = 'rus', action: LanguageAction) => {
+
+  switch (action.type) {
+    case 'SELECT_LANGUAGE': {
+      return action.lang
+    }
+
+    default: {
+      return state
+    }
+  }
+}
+
+
+const user = (state: {} = {}, action: any) => {
 
   switch (action.type) {
     case 'REG_LOGIN_CHECK_USER': {
@@ -17,16 +36,23 @@ const user = (state = {}, action) => {
   }
 }
 
-const modalWindows = (state = [], action) => {
+interface ModalWindowStateItem { 
+  component?: string;
+  display?: boolean;
+}
+
+type ModalWindowState = [ModalWindowStateItem]
+
+const modalWindows = (state: ModalWindowState | any = [], action: any) => {
 
   switch (action.type) {
 
 
     case 'CLOSE_ALL_MODALS': {
-      const stateNext = state.map(item => {
+      const stateNext = state.map((item: ModalWindowStateItem) => {
         return { ...item, display: false }
       })
-      console.info(`reducer->modalWindows type: ${action.type}`, { stateNext, state, action })
+      // console.info(`reducer->modalWindows type: ${action.type}`, { stateNext, state, action })
       return stateNext
     }
 
@@ -34,15 +60,11 @@ const modalWindows = (state = [], action) => {
     case 'SEND_COMMENTFORM':
     case 'PRESS_OK_IN_SELECT_ROLE': {
       const { modalNext } = action
-      let stateNext = state
-      const { length } = state
+      let stateNext: ModalWindowState | any = state
+      //const { length } = state
       const index = state.map(item => item.component).indexOf(modalNext)
-      if (length === 0) {
-        stateNext = [
-          { component: modalNext, display: true },
-        ]
-      }
-      else if (index === -1) {
+
+      if (index === -1) {
         stateNext = [
           ...state,
           { component: modalNext, display: true },
@@ -56,11 +78,10 @@ const modalWindows = (state = [], action) => {
         ]
       }
 
-      console.info(`reducer->modalWindows type: ${action.type}`, { index, stateNext, state, action })
+      // console.info(`reducer->modalWindows type: ${action.type}`, { index, stateNext, state, action })
       return stateNext
     }
 
-    
     case 'PRESS_SEARCH_BUTTON':
     case 'CLICK_USER_PROFILE':
     case 'SELECT_CATALOG_CATEGORY':
@@ -117,12 +138,36 @@ const actionLog = (state = [], action) => {
 }
 
 
+interface TreeDataAction {
+  type: string,
+  treeData: any,
+}
+
+const treeData = (state: any = {}, action: TreeDataAction) => {
+
+  switch (action.type) {
+    case 'UPLOAD_TREE_DATA': {
+      const stateNext = action.treeData
+      // console.info(`reducer->treeData type: ${action.type}`, { stateNext, state, action })
+      return stateNext
+    }
+
+    default: {
+      return state
+    }
+  }
+}
+
+
+
 //Main application reducers
 const appCombineReducers = combineReducers(
   {
+    language,
     user,
     modalWindows,
     actionLog,
+    treeData,
   },
 )
 

@@ -33,6 +33,15 @@ class FacePage326 extends React.PureComponent {
     super(props)
   }
 
+  getStatusModalBackdrop = modalWindows => {
+    const displayArr = modalWindows.filter(item => item.display === true)
+    let statusClass = 'ModalBackdrop__hide'
+    if (displayArr.length > 0) {
+      statusClass = 'ModalBackdrop__show'
+    }
+    return statusClass
+  }
+
   getModals = ({ ...props }) => {
     const { modalWindows, handleActions, modals } = { ...props }
     // console.info('FacePage326->getModals [0]', { modalWindows, handleActions, modals })
@@ -45,14 +54,18 @@ class FacePage326 extends React.PureComponent {
         // console.info('FacePage326->getModals [10]', { ...props, item, propsScope, modals })
 
         const Modal = MODALS[item.component]
-        return <Modal key={i} {...propsScope} />
+        return (
+          <div key={i}>
+            <Modal {...propsScope} />
+          </div>
+        )
       })
   }
 
   render() {
-    
-    const { treeDefault, reduxState, handleActions } = this.props
-    const { modalWindows } = reduxState
+    const { reduxState, handleActions } = this.props
+    const { modalWindows, treeData, language } = reduxState
+    // console.info('FacePage326->render() [5]', { treeData, reduxState })
     let {
       navBar,
       descriptors,
@@ -67,13 +80,15 @@ class FacePage326 extends React.PureComponent {
       registrationButton,
       footer,
       modals,
-    } = treeDefault
+    } = treeData[language]
 
     searchForm = { ...searchForm, handleActions }
     userReviews = { ...userReviews, handleActions }
     catatogTags = { ...catatogTags, handleActions }
     navBar = { ...navBar, handleActions }
-    const modalBackdropProps = { ...modals, reduxState }
+
+    const statusClass = this.getStatusModalBackdrop(modalWindows)
+    const modalBackdropProps = { statusClass }
 
     const { sid: carouselSid } = carousel
     const carouselCid = `${carouselSid}-${uuidv4()}`
@@ -89,7 +104,7 @@ class FacePage326 extends React.PureComponent {
 
     const modalWindowToReturn = this.getModals({ modalWindows, handleActions, modals })
 
-    // console.info('FacePage326->render() [10]', { modalWindows, reduxState, modals, props: this.props })
+    console.info('FacePage326->render() [10]', { modalWindows, reduxState, modals, props: this.props })
     return (
       <div className='FacePage326 globalStyle'>
         <header><NavBar {...navBar} /></header>
@@ -140,10 +155,7 @@ class FacePage326 extends React.PureComponent {
           </SectionWrapper>
         </footer>
         {modalWindowToReturn}
-        {/*
-          <Modal {...modals} /> 
-          <ModalBackdrop {...modalBackdropProps} />
-        */}
+        <ModalBackdrop {...modalBackdropProps}/>
       </div>
     )
   }

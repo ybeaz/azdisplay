@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import './ViewLayer/CssStyles/index.less'
 // import './Shared/styles.less' 
 
+import * as actions from './DataLayer/actions/index'
 import store from './DataLayer/store'
 import FacePage326 from './ViewLayer/Pages/FacePage326.react'
 import Error404 from './ViewLayer/Pages/Error404.react'
@@ -21,7 +22,12 @@ const { routes, redirects } = router
 
 // console.info('index.js->treeDefault', { USERTO })
 
-function App() {
+
+
+const App = () => {
+
+  
+  store.dispatch(actions.UPLOAD_TREE_DATA({ treeData: USERTO }))
 
   // console.info('index->app [10] ', { routes })
   // https://github.com/ReactTraining/react-router/issues/4551

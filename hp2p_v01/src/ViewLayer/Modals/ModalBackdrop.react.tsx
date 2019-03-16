@@ -2,19 +2,27 @@ import React from 'react'
 
 interface Props {
   readonly sid: string,
+  readonly statusClass: string,
 }
 
-const ModalBackdrop: React.DetailedReactHTMLElement<any, HTMLElement> = (props: Props) => {
-  this.defaultProps = {
+interface State {
+
+}
+
+// eslint-disable-next-line react/prefer-stateless-function
+class ModalBackdrop extends React.PureComponent<Props, State> {
+  public static defaultProps = {
     sid: '',
+    statusClass: 'ModalBackdrop__hide',
   }
-  // console.info('ModalBackdrop [0]', { ...props })
 
-  const { sid } = { ...props }
-
-  return (
-    <div className={`ModalBackdrop ModalBackdrop_${sid}`} />
-  )
+  render(){
+    const { sid, statusClass } = this.props
+    const modalClass = 'ModalBackdrop__show'
+    return (
+      <div className={`ModalBackdrop ModalBackdrop_${sid} ${statusClass}`} />
+    )
+  }
 }
 
 export default ModalBackdrop
