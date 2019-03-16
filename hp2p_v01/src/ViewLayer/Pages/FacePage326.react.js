@@ -33,13 +33,29 @@ class FacePage326 extends React.PureComponent {
     super(props)
   }
 
+  componentDidMount() {
+    const { reduxState } = this.props
+    const { modalWindows } = reduxState
+    this.getStatusModalBackdrop(modalWindows)
+  }
+
+  componentDidUpdate() {
+    const { reduxState } = this.props
+    const { modalWindows } = reduxState
+    this.getStatusModalBackdrop(modalWindows)
+  }
+
   getStatusModalBackdrop = modalWindows => {
     const displayArr = modalWindows.filter(item => item.display === true)
-    let statusClass = 'ModalBackdrop__hide'
+    const elem = document.querySelectorAll('.ModalBackdrop ')[0]
     if (displayArr.length > 0) {
-      statusClass = 'ModalBackdrop__show'
+      elem.classList.remove('ModalBackdrop__hide')
+      elem.classList.add('ModalBackdrop__show')
     }
-    return statusClass
+    else {
+      elem.classList.remove('ModalBackdrop__show')
+      elem.classList.add('ModalBackdrop__hide')
+    }
   }
 
   getModals = ({ ...props }) => {
@@ -87,9 +103,6 @@ class FacePage326 extends React.PureComponent {
     catatogTags = { ...catatogTags, handleActions }
     navBar = { ...navBar, handleActions }
 
-    const statusClass = this.getStatusModalBackdrop(modalWindows)
-    const modalBackdropProps = { statusClass }
-
     const { sid: carouselSid } = carousel
     const carouselCid = `${carouselSid}-${uuidv4()}`
     const carouselPrefix = 'CarouselDesc'
@@ -104,7 +117,7 @@ class FacePage326 extends React.PureComponent {
 
     const modalWindowToReturn = this.getModals({ modalWindows, handleActions, modals })
 
-    console.info('FacePage326->render() [10]', { modalWindows, reduxState, modals, props: this.props })
+    // console.info('FacePage326->render() [10]', { modalWindows, reduxState, modals, props: this.props })
     return (
       <div className='FacePage326 globalStyle'>
         <header><NavBar {...navBar} /></header>
@@ -155,7 +168,7 @@ class FacePage326 extends React.PureComponent {
           </SectionWrapper>
         </footer>
         {modalWindowToReturn}
-        <ModalBackdrop {...modalBackdropProps}/>
+        <ModalBackdrop />
       </div>
     )
   }
