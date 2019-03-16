@@ -159,8 +159,8 @@ class FacePage326 extends React.PureComponent {
             <Footer {...footer} />
           </SectionWrapper>
         </footer>
-         {/*{modalWindowToReturn}
-        <ModalBackdrop {...modalBackdropProps} /> */}
+        {modalWindowToReturn}
+        <ModalBackdrop {...modalBackdropProps} />
       </div>
     )
   }

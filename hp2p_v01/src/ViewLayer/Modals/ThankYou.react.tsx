@@ -26,7 +26,7 @@ class ThankYou extends React.PureComponent<Props, State> {
     } = this.props
 
     // console.info('ThankYou-render() [0]', { props: this.props })
-    const modalClass = 'Modal__show'
+    const modalClass: string = 'Modal__show'
     const action = { type: 'closeModalThankYou' }
 
     return (

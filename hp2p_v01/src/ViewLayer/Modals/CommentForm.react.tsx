@@ -11,15 +11,15 @@ interface State {
 
 // eslint-disable-next-line react/prefer-stateless-function
 class CommentForm extends React.PureComponent<Props, State> {
-  public static defaultProps = {
+  public static defaultProps: any = {
   }
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props)
 
   }
 
-  render() {
+  public render(): JSX.Element {
     const {
       sid, capture, handleActions,
     } = this.props

@@ -6,10 +6,10 @@ export const action = (type, payload = {}) => {
 }
 
 // Not used now
-export const getAction = (type: string) => ({
-  'request': (data: any) => action(actionTypes[type].REQUEST, data),
-  'success': (data: any) => action(actionTypes[type].SUCCESS, data),
-  'failure': (data: any) => action(actionTypes[type].FAILURE, data),
+export const getAction: any = (type: string): any => ({
+  request: (data: any): any => action(actionTypes[type].REQUEST, data),
+  success: (data: any): any => action(actionTypes[type].SUCCESS, data),
+  failure: (data: any): any => action(actionTypes[type].FAILURE, data),
 })
 
 

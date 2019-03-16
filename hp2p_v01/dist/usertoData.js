@@ -259,7 +259,7 @@ var USERTO = {
         message02: 'Мы сообщим, как только сервис будет готов',
         message03: 'Первых пользователей ждут приятные бонусы',
         button: 'Закрыть',
-        delay: 0,
+        delay: 100,
       },
       commentForm: {
         sid: 'CommentForm',
@@ -274,9 +274,8 @@ var USERTO = {
         button01: 'Мне нужен специалист',
         button02: 'Я сам специалист. Окажу услуги',
         button03: 'Ok',
-        message: '',
         inputPlaceHolder: 'Ваш эл. адрес',
-        delay: 0,
+        delay: 100,
       },
       registration: {
         sid: 'RegistrationDev',

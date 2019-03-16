@@ -12,6 +12,7 @@ var  webpack = require('webpack');
 var  glob    = require("glob");
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+var TSLintPlugin = require('tslint-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -31,7 +32,9 @@ module.exports = {
         use: [
           {
             loader: 'tslint-loader',
-            options: { /* Loader options go here */ },
+            options: {
+              configFile: 'tslint.json',
+            },
           },
         ],
       },
@@ -42,7 +45,6 @@ module.exports = {
           {
             loader: 'babel-loader',
             query: {
-              presets: ['@babel/preset-react', '@babel/preset-env'],
               plugins: ['@babel/proposal-class-properties']
             },
           },
@@ -141,7 +143,13 @@ module.exports = {
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new ForkTsCheckerWebpackPlugin({ checkSyntacticErrors: true }),
-  ],  
+    new TSLintPlugin({
+      files: ['./src/**/*.ts', './src/**/*.tsx'],
+      config: './tslint.json',
+      warningsAsError: true,
+      silent: true,
+    }),
+  ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.es6', '.jsx', 'less', 'css', 'config', 'variables', 'overrides']
   },
