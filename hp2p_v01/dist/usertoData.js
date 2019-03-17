@@ -315,7 +315,15 @@ var USERTO = {
 })(USERTO);
 
 
-// Set page title
+// Set page title and metatags
 (function(USERTO) {
   document.title = USERTO.rus.titleTag;
+
+  var _desc = USERTO.rus.metaTags['description'];
+  var meta = document.createElement('meta');
+  meta.setAttribute('name', 'description');
+  meta.setAttribute('content', _desc);
+  document.getElementsByTagName('head')[0].appendChild(meta);
+
+  //document.querySelector('meta[name="description"]').setAttribute("content", _desc);
 })(USERTO);
