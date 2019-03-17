@@ -58,7 +58,7 @@ class ThankYou extends React.PureComponent<Props, State> {
             {/* <!-- Modal body --> */}
             <div className='modal-body Modal__body'>
               <div className='Modal__bodyRow'>
-                <img src='imgSrc' className='Modal__bodyRow01Img' />
+                <img src={imgSrc} className='Modal__bodyRow01Img' />
               </div>
               <div className='Modal__bodyRow01'>
                 {message01}

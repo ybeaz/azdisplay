@@ -33,6 +33,12 @@ class FacePage326 extends React.PureComponent {
     super(props)
   }
 
+  componentDidMount() {
+    const { reduxState } = this.props
+    const { modalWindows } = reduxState
+    this.getStatusModalBackdrop(modalWindows)
+  }
+
   componentDidUpdate() {
     const { reduxState } = this.props
     const { modalWindows } = reduxState

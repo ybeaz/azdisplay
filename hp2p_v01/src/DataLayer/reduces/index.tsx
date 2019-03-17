@@ -33,7 +33,10 @@ const user: any = (state: {} = {}, action: Interfaces.Action): any => {
   }
 }
 
-const modalWindows: any = (state: Interfaces.ModalWindowState | any = [], action: Interfaces.Action): any => {
+const modalWindows: any = (
+    state: Interfaces.ModalWindowState | any = [],
+    action: Interfaces.Action,
+  ): any => {
 
   switch (action.type) {
 

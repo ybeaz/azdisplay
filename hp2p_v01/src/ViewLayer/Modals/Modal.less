@@ -1,50 +1,59 @@
 
 .Modal {
-  .Modal__header {    
-    .Modal__headerColLeft {
-      .Modal__headerEmailInput {
-      }
-      .Modal__headerCellLeft {
-      }
-    }
-    .Modal__headerColRight {
-      .Modal_headerButtonUpperLeft {
-      }
-    }
-  }
-  .Modal__body {
-    .Modal__bodyRow {
-      .Modal__bodyRowColLeft {
-        // SelectRole
-        .Modal__bodyRowColLeftButton {
+  .Modal__dialog {
+    max-width: 25rem;
 
+    .Modal__content {
+
+      .Modal__header {    
+        .Modal__headerColLeft {
+          .Modal__headerEmailInput {
+          }
+          .Modal__headerCellLeft {
+          }
         }
-        // ThankYou
-        .Modal__bodyRow01Img {
-
+        .Modal__headerColRight {
+          .Modal_headerButtonUpperLeft {
+          }
         }
       }
-      .Modal__bodyRowColRight {
-        // SelectRole
-        .Modal__bodyRowColRightButton {
-          
+
+      .Modal__body {
+        .Modal__bodyRow {
+          .Modal__bodyRowColLeft {
+            // SelectRole
+            .Modal__bodyRowColLeftButton {
+
+            }
+            // ThankYou
+            .Modal__bodyRow01Img {
+
+            }
+          }
+          .Modal__bodyRowColRight {
+            // SelectRole
+            .Modal__bodyRowColRightButton {
+              
+            }
+          }
+          //CommentForm
+          .Modal__bodyTextArea {
+
+          }
+        }
+        .Modal__bodyRow01 {
+        }
+        .Modal__bodyRow02 {
+        }
+        .Modal__bodyRow03 {
         }
       }
-      //CommentForm
-      .Modal__bodyTextArea {
 
+      .Modal__footer {
+        .Modal__footerButton {
+        }
       }
-    }
-    .Modal__bodyRow01 {
-    }
-    .Modal__bodyRow02 {
-    }
-    .Modal__bodyRow03 {
-    }
-  }
 
-  .Modal__footer {
-    .Modal__footerButton {
     }
   }
 
@@ -63,51 +72,79 @@
 }
 
 .Modal_SelectRole {
-  .Modal__header {    
-    .Modal__headerColLeft {
-      .Modal__headerEmailInput {
-      }
-      .Modal__headerCellLeft {
-      }
-    }
-    .Modal__headerColRight {
-      .Modal_headerButtonUpperLeft {
-      }
-    }
-  }
-  .Modal__body {
-    .Modal__bodyRow {
-      .Modal__bodyRowColLeft {
-        // SelectRole
-        .Modal__bodyRowColLeftButton {
-
+  .Modal__dialog {
+    .Modal__content { 
+      .Modal__header {
+        &:extend(.p_b_0);
+        .Modal__headerColLeft {
+          &:extend(.w_100);
+          .Modal__headerEmailInput {
+            border: @color0;
+            &:extend(.h_3_rem, .p_l_1_rem, .w_100, .b_r_0);
+            outline: 0px !important;
+            -webkit-appearance: none;
+          }
+          .Modal__headerCellLeft {
+          }
         }
-        // ThankYou
-        .Modal__bodyRow01Img {
-
+        .Modal__headerColRight {
+          &:extend(.d_n);
+          .Modal_headerButtonUpperLeft {
+          }
         }
       }
-      .Modal__bodyRowColRight {
-        // SelectRole
-        .Modal__bodyRowColRightButton {
-          
+
+      .Modal__body {
+        .Modal__bodyRow {
+          &:extend(.p_b_1_rem);
+          padding-left: 0.8rem;
+        }
+        .Modal__bodyRow01 {
+          &:extend(.d_f);
+          justify-content: space-around;
+
+          .Modal__bodyRowColLeft {
+            // SelectRole
+            .Modal__bodyRowColLeftButton {
+              &:extend(.w_10_rem, .h_4_rem);
+              border: none;
+            }
+            // ThankYou
+            .Modal__bodyRow01Img {
+
+            }
+          }
+          .Modal__bodyRowColRight {
+            // SelectRole
+            .Modal__bodyRowColRightButton {
+              &:extend(.w_10_rem, .h_4_rem);
+              border: none;
+            }
+          }
+          //CommentForm
+          .Modal__bodyTextArea {
+
+          }
+        }
+        .Modal__bodyRow01 {
+        }
+        .Modal__bodyRow02 {
+        }
+        .Modal__bodyRow03 {
         }
       }
-      //CommentForm
-      .Modal__bodyTextArea {
 
+      .Modal__footer {
+        &:extend(.p_t_0);
+        padding-left: 1.7rem;
+        padding-right: 1.7rem;
+        border-top: none;
+        .Modal__footerButton {
+          &:extend(.b_r_0, .w_100);
+          .buttonColor;
+          height: 2.8rem;
+        }
       }
-    }
-    .Modal__bodyRow01 {
-    }
-    .Modal__bodyRow02 {
-    }
-    .Modal__bodyRow03 {
-    }
-  }
-
-  .Modal__footer {
-    .Modal__footerButton {
     }
   }
 
