@@ -4,8 +4,9 @@
     max-width: 25rem;
 
     .Modal__content {
-
-      .Modal__header {    
+      &:extend(.d_f, .f_d_c, .p_x_3_rem);
+      .Modal__header {
+        &:extend(.p_x_0);
         .Modal__headerColLeft {
           .Modal__headerEmailInput {
           }
@@ -13,6 +14,227 @@
           }
         }
         .Modal__headerColRight {
+          .Modal_headerButtonUpperLeft {
+          }
+        }
+      }
+
+      .Modal__body {
+        &:extend(.p_x_0);
+        .Modal__bodyRow {
+          &:extend(.p_x_0);
+          .Modal__bodyRowColLeft {
+            // SelectRole
+            .Modal__bodyRowColLeftButton {
+
+            }
+            // ThankYou
+            .Modal__bodyRow01Img {
+
+            }
+          }
+          .Modal__bodyRowColRight {
+            // SelectRole
+            .Modal__bodyRowColRightButton {
+              
+            }
+          }
+          //CommentForm
+          .Modal__bodyTextArea {
+
+          }
+        }
+        .Modal__bodyRow01 {
+          &:extend(.p_x_0);
+        }
+        .Modal__bodyRow02 {
+          &:extend(.p_x_0);
+        }
+        .Modal__bodyRow03 {
+          &:extend(.p_x_0);
+        }
+      }
+
+      .Modal__footer {
+        &:extend(.p_x_0, .p_b_2_rem);
+        .Modal__footerButton {
+          &:extend(.p_x_0);
+        }
+      }
+
+    }
+  }
+
+  @media @large {
+
+  }
+  @media @desktop, @desktop-strict {
+
+  }
+  @media @tablet, @tablet-strict {
+
+  }
+  @media @phone, @phone-strict {
+  
+  }
+}
+
+.Modal_SelectRole {
+  .Modal__dialog {
+    .Modal__content {
+      &:extend(.d_f, .f_d_c);
+      .Modal__header {
+        &:extend(.p_b_0);
+        .Modal__headerColLeft {
+          &:extend(.w_100);
+          .Modal__headerEmailInput {
+            border: @color0;
+            &:extend(.h_3_rem, .w_100, .b_r_0);
+            outline: 0px !important;
+            -webkit-appearance: none;
+          }
+          .Modal__headerCellLeft {
+          }
+        }
+        .Modal__headerColRight {
+          &:extend(.d_n);
+          .Modal_headerButtonUpperLeft {
+          }
+        }
+      }
+
+      .Modal__body {
+        &:extend(.d_f, .f_d_c);
+        .Modal__bodyRow {
+          &:extend(.p_b_1_rem);
+        }
+        .Modal__bodyRow01 {
+          &:extend(.d_f, .j_c_sb);
+
+          .Modal__bodyRowColLeft {
+            // SelectRole
+            .Modal__bodyRowColLeftButton {
+              &:extend(.w_9_rem, .h_5_rem);
+              border: none;
+            }
+            // ThankYou
+            .Modal__bodyRow01Img {
+
+            }
+          }
+          .Modal__bodyRowColRight {
+            // SelectRole
+            .Modal__bodyRowColRightButton {
+              &:extend(.w_8_rem, .h_5_rem);
+              border: none;
+            }
+          }
+          //CommentForm
+          .Modal__bodyTextArea {
+
+          }
+        }
+        .Modal__bodyRow01 {
+        }
+        .Modal__bodyRow02 {
+        }
+        .Modal__bodyRow03 {
+        }
+      }
+
+      .Modal__footer {
+        &:extend(.p_t_0);
+        border-top: none;
+        .Modal__footerButton {
+          &:extend(.b_r_0, .w_100);
+          .buttonColor;
+          height: 2.8rem;
+        }
+      }
+    }
+  }
+
+  @media @large {
+
+  }
+  @media @desktop, @desktop-strict {
+
+  }
+  @media @tablet, @tablet-strict {
+
+  }
+  @media @phone, @phone-strict {
+    .Modal__dialog {
+      .Modal__content {
+        .Modal__header {
+          .Modal__headerColLeft {
+            .Modal__headerEmailInput {
+            }
+            .Modal__headerCellLeft {
+            }
+          }
+          .Modal__headerColRight {
+            .Modal_headerButtonUpperLeft {
+            }
+          }
+        }
+  
+        .Modal__body {
+          .Modal__bodyRow {
+          }
+          .Modal__bodyRow01 {
+            .Modal__bodyRowColLeft {
+              // SelectRole
+              .Modal__bodyRowColLeftButton {
+                width: 33vw;
+                height: 25vw;
+              }
+              // ThankYou
+              .Modal__bodyRow01Img {
+              }
+            }
+            .Modal__bodyRowColRight {
+              // SelectRole
+              .Modal__bodyRowColRightButton {
+                width: 33vw;
+                height: 25vw;
+              }
+            }
+            //CommentForm
+            .Modal__bodyTextArea {
+  
+            }
+          }
+          .Modal__bodyRow01 {
+          }
+          .Modal__bodyRow02 {
+          }
+          .Modal__bodyRow03 {
+          }
+        }
+  
+        .Modal__footer {
+          .Modal__footerButton {
+          }
+        }
+      }
+    }  
+  }
+}
+
+.Modal_CommentForm {
+  .Modal__dialog {
+    .Modal__content {
+      .Modal__header {
+        border-bottom: 0;  
+        .Modal__headerColLeft {
+          .Modal__headerEmailInput {
+          }
+          .Modal__headerCellLeft {
+          }
+        }
+        .Modal__headerColRight {
+          &:extend(.d_n);
           .Modal_headerButtonUpperLeft {
           }
         }
@@ -38,91 +260,10 @@
           }
           //CommentForm
           .Modal__bodyTextArea {
-
-          }
-        }
-        .Modal__bodyRow01 {
-        }
-        .Modal__bodyRow02 {
-        }
-        .Modal__bodyRow03 {
-        }
-      }
-
-      .Modal__footer {
-        .Modal__footerButton {
-        }
-      }
-
-    }
-  }
-
-  @media @large {
-
-  }
-  @media @desktop, @desktop-strict {
-
-  }
-  @media @tablet, @tablet-strict {
-
-  }
-  @media @phone, @phone-strict {
-  
-  }
-}
-
-.Modal_SelectRole {
-  .Modal__dialog {
-    .Modal__content { 
-      .Modal__header {
-        &:extend(.p_b_0);
-        .Modal__headerColLeft {
-          &:extend(.w_100);
-          .Modal__headerEmailInput {
-            border: @color0;
-            &:extend(.h_3_rem, .p_l_1_rem, .w_100, .b_r_0);
-            outline: 0px !important;
-            -webkit-appearance: none;
-          }
-          .Modal__headerCellLeft {
-          }
-        }
-        .Modal__headerColRight {
-          &:extend(.d_n);
-          .Modal_headerButtonUpperLeft {
-          }
-        }
-      }
-
-      .Modal__body {
-        .Modal__bodyRow {
-          &:extend(.p_b_1_rem);
-          padding-left: 0.8rem;
-        }
-        .Modal__bodyRow01 {
-          &:extend(.d_f);
-          justify-content: space-around;
-
-          .Modal__bodyRowColLeft {
-            // SelectRole
-            .Modal__bodyRowColLeftButton {
-              &:extend(.w_10_rem, .h_4_rem);
-              border: none;
-            }
-            // ThankYou
-            .Modal__bodyRow01Img {
-
-            }
-          }
-          .Modal__bodyRowColRight {
-            // SelectRole
-            .Modal__bodyRowColRightButton {
-              &:extend(.w_10_rem, .h_4_rem);
-              border: none;
-            }
-          }
-          //CommentForm
-          .Modal__bodyTextArea {
+            &:extend(.h_8_rem);
+            resize: both;
+            overflow: auto;
+            width: -webkit-fill-available;
 
           }
         }
@@ -136,8 +277,75 @@
 
       .Modal__footer {
         &:extend(.p_t_0);
-        padding-left: 1.7rem;
-        padding-right: 1.7rem;
+        border-top: 0;
+        .Modal__footerButton {
+          &:extend(.b_r_0, .w_100);
+          .buttonColor;
+          height: 2.8rem;
+        }
+      }
+
+    }
+  }
+}
+
+.Modal_ThankYou {
+  .Modal__dialog {
+    .Modal__content {
+      .Modal__header {
+        border-bottom: 0;
+        .Modal__headerColLeft {
+          &:extend(.d_f, .j_c_c, .w_100, .f_w_700);
+          .Modal__headerEmailInput {
+          }
+          .Modal__headerCellLeft {
+          }
+        }
+        .Modal__headerColRight {
+          .Modal_headerButtonUpperLeft {
+          }
+        }
+      }
+
+      .Modal__body {
+        &:extend(.d_f, .f_d_c, .p_r_2_rem, .p_l_2_rem);
+        .Modal__bodyRow {
+          &:extend(.j_c_c);
+          .Modal__bodyRowColLeft {
+            // SelectRole
+            .Modal__bodyRowColLeftButton {
+
+            }
+            // ThankYou
+            .Modal__bodyRow01Img {
+
+            }
+          }
+          .Modal__bodyRowColRight {
+            // SelectRole
+            .Modal__bodyRowColRightButton {
+              
+            }
+          }
+          //CommentForm
+          .Modal__bodyTextArea {
+
+          }
+        }
+        .Modal__bodyRow01 {
+          &:extend(.p_b_1_rem);
+        }
+        .Modal__bodyRow02 {
+          &:extend(.p_b_1_rem);
+        }
+        .Modal__bodyRow03 {
+          &:extend(.p_b_1_rem);
+        }
+      }
+
+      .Modal__footer {
+        //&:extend(.d_n);
+        &:extend(.p_t_0);
         border-top: none;
         .Modal__footerButton {
           &:extend(.b_r_0, .w_100);
@@ -145,27 +353,7 @@
           height: 2.8rem;
         }
       }
+
     }
   }
-
-  @media @large {
-
-  }
-  @media @desktop, @desktop-strict {
-
-  }
-  @media @tablet, @tablet-strict {
-
-  }
-  @media @phone, @phone-strict {
-  
-  }
-}
-
-.Modal_CommentForm {
-
-}
-
-.Modal_ThankYou {
-
 }

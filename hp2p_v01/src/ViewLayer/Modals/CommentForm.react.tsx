@@ -1,11 +1,12 @@
 import React from 'react'
-import * as interfaces from '../../Shared/interfaces'
+
+import * as Interfaces from '../../Shared/interfaces'
 
 interface Props {
   readonly sid: string,
   readonly message: string,
   readonly placeholder: string,
-  readonly button: string,
+  readonly buttonFooter: string,
   readonly handleActions: Function,
 }
 interface State {}
@@ -22,18 +23,18 @@ class CommentForm extends React.PureComponent<Props, State> {
 
   public render(): JSX.Element {
     const {
-      sid, message, placeholder, button, handleActions,
+      sid, message, placeholder, buttonFooter, handleActions,
     } = this.props
 
     // console.info('CommentForm->render() [0]', { props: this.props })
     const modalClass: string = 'Modal__show'
-    const actionSend: interfaces.Action = { type: 'sendCommentForm' }
-    const actionClose: interfaces.Action = { type: 'closeCommentForm' }
+    const actionSend: Interfaces.Action = { type: 'sendCommentForm' }
+    const actionClose: Interfaces.Action = { type: 'closeCommentForm' }
 
     return (
       <div className={`modal Modal Modal_${sid} ${modalClass}`}>
-        <div className='modal-dialog'>
-          <div className='modal-content'>
+        <div className='modal-dialog Modal__dialog'>
+          <div className='modal-content Modal__content'>
 
             {/* <!-- Modal Header --> */}
             <div className='modal-header Modal__header'>
@@ -67,7 +68,7 @@ class CommentForm extends React.PureComponent<Props, State> {
                 className='btn Modal__footerButton'
                 onClickCapture={e => handleActions(e, actionSend)}
               >
-                Ok
+                {buttonFooter}
               </button>
             </div>
             

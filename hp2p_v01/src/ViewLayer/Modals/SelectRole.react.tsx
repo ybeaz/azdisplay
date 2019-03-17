@@ -1,11 +1,13 @@
 import React from 'react'
 
+import * as Interfaces from '../../Shared/interfaces'
+
 interface Props {
   readonly sid: string,
   readonly capture: string,
   readonly button01: string,
   readonly button02: string,
-  readonly button03: string,
+  readonly buttonFooter: string,
   readonly inputPlaceHolder: string,
   readonly handleActions: Function,
 }
@@ -27,8 +29,10 @@ class SelectRole extends React.PureComponent<Props, State> {
   public componentDidMount(): void {
     setTimeout(
       () => {
-        this.inputRef01.current.focus()
-        this.inputRef01.current.select()
+        if (this.inputRef01.current !== null) {
+          this.inputRef01.current.focus()
+          this.inputRef01.current.select()
+        }
       },
       1000,
     )
@@ -36,13 +40,13 @@ class SelectRole extends React.PureComponent<Props, State> {
 
   public render(): JSX.Element {
     const {
-      sid, capture, button01, button02, button03, inputPlaceHolder,
+      sid, capture, button01, button02, buttonFooter, inputPlaceHolder,
       handleActions,
     } = this.props
 
     // console.info('SelectRole->render() [0]', { props: this.props })
-    const modalClass = 'Modal__show'
-    const action = { type: 'pressOkInSelectRole' }
+    const modalClass: string = 'Modal__show'
+    const action: Interfaces.Action = { type: 'pressOkInSelectRole' }
 
     return (
       <div className={`modal Modal Modal_${sid} ${modalClass}`}>
@@ -88,7 +92,7 @@ class SelectRole extends React.PureComponent<Props, State> {
                 className='btn Modal__footerButton'
                 onClickCapture={e => handleActions(e, action)}
               >
-                {button03}
+                {buttonFooter}
               </button>
             </div>
             

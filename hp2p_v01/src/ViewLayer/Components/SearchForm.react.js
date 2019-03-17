@@ -26,7 +26,7 @@ class SearchForm extends React.PureComponent {
 
     if (this.inputRef.current.className.includes('SearchForm__SearchForm_top')) {
       setTimeout(() => {
-        console.info('SearchForm->componentDidMount()', this.inputRef.current.className)
+        // console.info('SearchForm->componentDidMount()', this.inputRef.current.className)
         this.inputRef.current.focus()
         this.inputRef.current.select()
       }, 1500)
