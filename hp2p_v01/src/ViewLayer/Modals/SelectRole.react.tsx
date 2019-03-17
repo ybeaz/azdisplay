@@ -39,17 +39,17 @@ class SelectRole extends React.PureComponent<Props, State> {
 
             {/* <!-- Modal Header --> */}
             <div className='modal-header Modal__header'>
-              <div className='Modal__headerLeftCol'>
+              <div className='Modal__headerColLeft'>
                 <input className='Modal__headerEmailInput'
                   placeholder={inputPlaceHolder} />
-                <h4 className='modal-title Modal__title'>
+                <div className='modal-title Modal__headerCellLeft'>
                   {capture}
-                </h4>
+                </div>
               </div>
-              <div className='Modal__headerRightCol'>
+              <div className='Modal__headerColRight'>
                 <button
                   type='button'
-                  className='close Modal_upperLeftCloseButton'
+                  className='close Modal_headerButtonUpperLeft'
                   onClickCapture={e => handleActions(e, action)}
                 >
                   &times;
@@ -59,12 +59,12 @@ class SelectRole extends React.PureComponent<Props, State> {
             
             {/* <!-- Modal body --> */}
             <div className='modal-body Modal__body'>
-              <div className='Modal__bodyFirstRow'>
-                <div className='Modal__bodyLeftCol'>
-                  <button>{button01}</button>
+              <div className='Modal__bodyRow'>
+                <div className='Modal__bodyRowColLeft'>
+                  <button className='Modal__bodyRowColLeftButton'>{button01}</button>
                 </div>
-                <div className='Modal__bodyRightCol'>
-                <button>{button02}</button>
+                <div className='Modal__bodyRowColRight'>
+                <button className='Modal__bodyRowColRightButton'>{button02}</button>
                 </div>
               </div>
             </div>

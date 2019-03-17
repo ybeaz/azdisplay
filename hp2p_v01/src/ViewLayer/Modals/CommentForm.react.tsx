@@ -22,7 +22,7 @@ class CommentForm extends React.PureComponent<Props, State> {
 
   public render(): JSX.Element {
     const {
-      sid, handleActions,
+      sid, message, placeholder, button, handleActions,
     } = this.props
 
     // console.info('CommentForm->render() [0]', { props: this.props })
@@ -37,24 +37,27 @@ class CommentForm extends React.PureComponent<Props, State> {
 
             {/* <!-- Modal Header --> */}
             <div className='modal-header Modal__header'>
-              <div className='modal-title Modal__title'>
-  
+              <div className='Modal__headerColLeft'>
+                <div className='modal-title Modal__headerCellLeft'>
+                  {message}
+                </div>
               </div>
-              <button
-                type='button'
-                className='close Modal_upperLeftCloseButton'
-                onClickCapture={e => handleActions(e, actionClose)}
-              >
-                &times;
-              </button>
+              <div className='Modal__headerColRight'>
+                <button
+                  type='button'
+                  className='close Modal_headerButtonUpperLeft'
+                  onClickCapture={e => handleActions(e, actionClose)}
+                >
+                  &times;
+                </button>
+              </div>
             </div>
             
             {/* <!-- Modal body --> */}
             <div className='modal-body Modal__body'>
-              <div className='Modal__message'>
-                {'CommentForm'}
+              <div className='Modal__bodyRow'>
+                <textarea className='Modal__bodyTextArea' />
               </div>
-
             </div>
 
             {/* <!-- Modal footer --> */}

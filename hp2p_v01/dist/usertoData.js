@@ -255,6 +255,7 @@ var USERTO = {
       thankYou: {
         sid: 'ThankYou',
         capture: 'Сайт пока не работает',
+        imgSrc: 'https://userto.com/img/illustration06.jpg',
         message01: 'Сайт пока не работает',
         message02: 'Мы сообщим, как только сервис будет готов',
         message03: 'Первых пользователей ждут приятные бонусы',
