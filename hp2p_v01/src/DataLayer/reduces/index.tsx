@@ -1,11 +1,8 @@
 import { combineReducers } from 'redux'
+import * as Interfaces from '../../Shared/interfaces'
 
-interface LanguageAction {
-  type: string,
-  lang: string,
-} 
 
-const language = (state: string = 'rus', action: LanguageAction) => {
+const language = (state: string = 'rus', action: Interfaces.Action): any => {
 
   switch (action.type) {
     case 'SELECT_LANGUAGE': {
@@ -19,7 +16,7 @@ const language = (state: string = 'rus', action: LanguageAction) => {
 }
 
 
-const user = (state: {} = {}, action: any) => {
+const user: any = (state: {} = {}, action: Interfaces.Action): any => {
 
   switch (action.type) {
     case 'REG_LOGIN_CHECK_USER': {
@@ -36,20 +33,13 @@ const user = (state: {} = {}, action: any) => {
   }
 }
 
-interface ModalWindowStateItem { 
-  component?: string;
-  display?: boolean;
-}
-
-type ModalWindowState = [ModalWindowStateItem]
-
-const modalWindows = (state: ModalWindowState | any = [], action: any) => {
+const modalWindows: any = (state: Interfaces.ModalWindowState | any = [], action: Interfaces.Action): any => {
 
   switch (action.type) {
 
 
     case 'CLOSE_ALL_MODALS': {
-      const stateNext = state.map((item: ModalWindowStateItem) => {
+      const stateNext = state.map((item: Interfaces.ModalWindowStateItem) => {
         return { ...item, display: false }
       })
       // console.info(`reducer->modalWindows type: ${action.type}`, { stateNext, state, action })
@@ -60,7 +50,7 @@ const modalWindows = (state: ModalWindowState | any = [], action: any) => {
     case 'SEND_COMMENTFORM':
     case 'PRESS_OK_IN_SELECT_ROLE': {
       const { modalNext } = action
-      let stateNext: ModalWindowState | any = state
+      let stateNext: Interfaces.ModalWindowState | any = state
       //const { length } = state
       const index = state.map(item => item.component).indexOf(modalNext)
 
@@ -120,7 +110,7 @@ const modalWindows = (state: ModalWindowState | any = [], action: any) => {
   }
 }
 
-const actionLog = (state = [], action) => {
+const actionLog: any = (state: any = [], action: Interfaces.Action): any => {
 
   switch (action.type) {
 
@@ -137,19 +127,12 @@ const actionLog = (state = [], action) => {
   }
 }
 
-
-interface TreeDataAction {
-  type: string,
-  treeData: any,
-}
-
-const treeData = (state: any = {}, action: TreeDataAction) => {
+const treeData: any = (state: any = {}, action: Interfaces.Action): any => {
 
   switch (action.type) {
     case 'UPLOAD_TREE_DATA': {
-      const stateNext = action.treeData
       // console.info(`reducer->treeData type: ${action.type}`, { stateNext, state, action })
-      return stateNext
+      return action.treeData
     }
 
     default: {

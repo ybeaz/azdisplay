@@ -15,20 +15,20 @@ interface State {
 
 // eslint-disable-next-line react/prefer-stateless-function
 class SelectRole extends React.PureComponent<Props, State> {
-  public static defaultProps = {
+  public static defaultProps: any = {
   }
 
-  constructor(props) {
+  constructor(props: any) {
     super(props)
   }
 
-  render() {
+  public render(): JSX.Element {
     const {
       sid, capture, button01, button02, button03, inputPlaceHolder,
       handleActions,
     } = this.props
 
-    console.info('SelectRole->render() [0]', { props: this.props })
+    // console.info('SelectRole->render() [0]', { props: this.props })
     const modalClass = 'Modal__show'
     const action = { type: 'pressOkInSelectRole' }
 

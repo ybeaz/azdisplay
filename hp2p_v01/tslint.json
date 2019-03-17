@@ -116,7 +116,7 @@
     "class-name": true,
     "comment-format": true,
     "completed-docs": [
-        true,
+        false,
         "classes"
     ],
     "export-name": true,
@@ -124,7 +124,7 @@
     "function-name": true,
     "import-name": true,
     "informative-docs": true,
-    "interface-name": true,
+    "interface-name": false,
     "jsdoc-format": true,
     "max-classes-per-file": [
         true,
@@ -164,7 +164,7 @@
     "no-null-keyword": true,
     "no-parameter-properties": true,
     "no-redundant-jsdoc": true,
-    "no-relative-imports": true,
+    "no-relative-imports": false,
     "no-require-imports": true,
     "no-return-await": true,
     "no-shadowed-variable": true,
@@ -254,8 +254,8 @@
     "one-line": [
         true,
         "check-open-brace",
-        "check-catch",
-        "check-else",
+        // "check-catch",
+        // "check-else",
         "check-whitespace"
     ],
     "quotemark": [

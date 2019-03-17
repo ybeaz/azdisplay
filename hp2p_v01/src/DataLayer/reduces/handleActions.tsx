@@ -1,17 +1,15 @@
 import { bindActionCreators } from 'redux'
 import * as actionSet from '../actions/index'
 import store from '../store'
+import * as Interface from '../../Shared/interfaces'
 
 import { getFirstCharLowerCase } from '../../Shared/serviceFunc'
 
 const { dispatch } = store
 const actions = bindActionCreators(actionSet, dispatch)
 
-interface Action {
-  type: string,
-}
 
-export const handleActions = (e: {}, action: Action) => {
+export const handleActions = (e: {}, action: Interface.Action) => {
   // console.info(`handleActions.js type->${action.type}`, { e, action })
 
   switch (action.type) {
@@ -44,7 +42,7 @@ export const handleActions = (e: {}, action: Action) => {
       const prop = getFirstCharLowerCase(modalNext)
       const { delay } = treeData[language].modals[prop]
       setTimeout(() => actions.SEND_COMMENTFORM({ modalNext }), delay)
-      // console.info(`handleActions.js type: ${action.type}`, { e, action })
+      // console.info(`handleActions.js : ${action.type}`, { e, action })
     } break
 
     case 'pressOkInSelectRole': {

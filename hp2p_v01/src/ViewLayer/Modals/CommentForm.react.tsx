@@ -1,13 +1,14 @@
 import React from 'react'
+import * as interfaces from '../../Shared/interfaces'
 
 interface Props {
-  readonly sid: string, 
-  readonly capture: string,
-  readonly handleActions: Function, 
+  readonly sid: string,
+  readonly message: string,
+  readonly placeholder: string,
+  readonly button: string,
+  readonly handleActions: Function,
 }
-interface State {
-
-}
+interface State {}
 
 // eslint-disable-next-line react/prefer-stateless-function
 class CommentForm extends React.PureComponent<Props, State> {
@@ -21,13 +22,13 @@ class CommentForm extends React.PureComponent<Props, State> {
 
   public render(): JSX.Element {
     const {
-      sid, capture, handleActions,
+      sid, handleActions,
     } = this.props
 
     // console.info('CommentForm->render() [0]', { props: this.props })
-    const modalClass = 'Modal__show'
-    const actionSend = { type: 'sendCommentForm' }
-    const actionClose = { type: 'closeCommentForm' }
+    const modalClass: string = 'Modal__show'
+    const actionSend: interfaces.Action = { type: 'sendCommentForm' }
+    const actionClose: interfaces.Action = { type: 'closeCommentForm' }
 
     return (
       <div className={`modal Modal Modal_${sid} ${modalClass}`}>
@@ -36,9 +37,9 @@ class CommentForm extends React.PureComponent<Props, State> {
 
             {/* <!-- Modal Header --> */}
             <div className='modal-header Modal__header'>
-              <h4 className='modal-title Modal__title'>
-                {capture}
-              </h4>
+              <div className='modal-title Modal__title'>
+  
+              </div>
               <button
                 type='button'
                 className='close Modal_upperLeftCloseButton'

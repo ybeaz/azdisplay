@@ -1,26 +1,28 @@
 import React from 'react'
+import { Any } from 'typescript-compare';
 
 interface Props {
-  readonly sid: string, 
+  readonly sid: string,
   readonly capture: string,
-  readonly handleActions: Function, 
+  readonly message01: string,
+  readonly message02: string,
+  readonly message03: string,
+  readonly button: string,
+  readonly handleActions: Function,
 }
-interface State {
+interface State {}
 
-}
-
-// eslint-disable-next-line react/prefer-stateless-function
 class ThankYou extends React.PureComponent<Props, State> {
-  public static defaultProps = {
+  public static defaultProps: any = {
 
   }
 
-  constructor(props) {
+  constructor(props: any) {
     super(props)
 
   }
 
-  render() {
+  public render(): JSX.Element {
     const {
       sid, capture, handleActions,
     } = this.props
