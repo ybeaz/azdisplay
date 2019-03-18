@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
 import * as Interfaces from '../../Shared/interfaces'
 
-
 const language = (state: string = 'rus', action: Interfaces.Action): any => {
 
   switch (action.type) {
@@ -14,7 +13,6 @@ const language = (state: string = 'rus', action: Interfaces.Action): any => {
     }
   }
 }
-
 
 const user: any = (state: {} = {}, action: Interfaces.Action): any => {
 
@@ -70,7 +68,6 @@ const modalWindows: any = (
           ...state.slice(index + 1),
         ]
       }
-
       // console.info(`reducer->modalWindows type: ${action.type}`, { index, stateNext, state, action })
       return stateNext
     }

@@ -88,10 +88,9 @@
         .Modal__headerColLeft {
           &:extend(.w_100);
           .Modal__headerEmailInput {
+            .hoverFocusActiveReset;
             border: @color0;
             &:extend(.h_3_rem, .w_100, .b_r_0);
-            outline: 0px !important;
-            -webkit-appearance: none;
           }
           .Modal__headerCellLeft {
           }
@@ -112,10 +111,22 @@
           &:extend(.d_f, .j_c_sb);
 
           .Modal__bodyRowColLeft {
+            &:extend(.pos_r);
             // SelectRole
             .Modal__bodyRowColLeftButton {
+              .hoverFocusActive;
+              .buttonColorLess;
               &:extend(.w_9_rem, .h_5_rem);
-              border: none;
+            }
+            .Modal__bodyRowColLeftFaCheck {
+              &:extend(.pos_a);
+              right: -0.7rem;
+              top: -0.7rem;
+              font-size: 2rem;
+              color: @color4;
+            }
+            .Modal__button_active {
+              .buttonColorFull;
             }
             // ThankYou
             .Modal__bodyRow01Img {
@@ -123,10 +134,22 @@
             }
           }
           .Modal__bodyRowColRight {
+            &:extend(.pos_r);
             // SelectRole
             .Modal__bodyRowColRightButton {
+              .hoverFocusActive;
+              .buttonColorLess;
               &:extend(.w_8_rem, .h_5_rem);
-              border: none;
+            }
+            .Modal__bodyRowColRightFaCheck {
+              &:extend(.pos_a);
+              right: -0.7rem;
+              top: -0.7rem;
+              font-size: 2rem;
+              color: @color4;
+            }
+            .Modal__button_active {
+              .buttonColorFull;
             }
           }
           //CommentForm
@@ -147,7 +170,7 @@
         border-top: none;
         .Modal__footerButton {
           &:extend(.b_r_0, .w_100);
-          .buttonColor;
+          .buttonColorFull;
           height: 2.8rem;
         }
       }
@@ -187,7 +210,7 @@
               // SelectRole
               .Modal__bodyRowColLeftButton {
                 width: 33vw;
-                height: 25vw;
+                height: 28vw;
               }
               // ThankYou
               .Modal__bodyRow01Img {
@@ -197,7 +220,7 @@
               // SelectRole
               .Modal__bodyRowColRightButton {
                 width: 33vw;
-                height: 25vw;
+                height: 28vw;
               }
             }
             //CommentForm
@@ -280,7 +303,7 @@
         border-top: 0;
         .Modal__footerButton {
           &:extend(.b_r_0, .w_100);
-          .buttonColor;
+          .buttonColorFull;
           height: 2.8rem;
         }
       }
@@ -349,7 +372,7 @@
         border-top: none;
         .Modal__footerButton {
           &:extend(.b_r_0, .w_100);
-          .buttonColor;
+          .buttonColorFull;
           height: 2.8rem;
         }
       }

@@ -31,7 +31,7 @@ export const handleActions = (e: {}, action: Interface.Action) => {
       actions.CLOSE_ALL_MODALS(data)
       const modalNext = 'ThankYou'
       actions.CLOSE_COMMENTFORM({ modalNext })
-      // console.info(`handleActions.js type: ${action.type}`, { e, action })
+      // console.info(`handleActions.js type: ${action.type}`, { action, e })
     } break
 
     case 'sendCommentForm': {
@@ -42,7 +42,8 @@ export const handleActions = (e: {}, action: Interface.Action) => {
       const prop = getFirstCharLowerCase(modalNext)
       const { delay } = treeData[language].modals[prop]
       setTimeout(() => actions.SEND_COMMENTFORM({ modalNext }), delay)
-      // console.info(`handleActions.js : ${action.type}`, { e, action })
+      // const reduxState: any = store.getState()
+      // console.info(`handleActions.js : ${action.type}`, { action, e })
     } break
 
     case 'pressOkInSelectRole': {

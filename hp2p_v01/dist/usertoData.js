@@ -109,7 +109,7 @@ var USERTO = {
         { capture: 'Путешествия', iconClass: '', num: 401, iconFa: 'fas fa-plane-departure' },
         { capture: 'Религия', iconClass: '', num: 838, iconFa: 'fas fa-praying-hands' },
         { capture: 'Искусство', iconClass: '', num: 2162, iconFa: 'fas fa-square-full' },
-        { capture: 'Недвижи- мость', iconClass: '', num: 4304, iconFa: 'fas fa-city'},
+        { capture: 'Недвижимость', iconClass: '', num: 4304, iconFa: 'fas fa-city'},
         { capture: 'Покупка авто', iconClass: '', num: 579, iconFa: 'fas fa-car-side' },
         { capture: 'Работа с текстом', iconClass: '', num: 431, iconFa: 'fas fa-align-left' },
         { capture: 'Реклама', iconClass: '', num: 211, iconFa: 'fas fa-bullhorn' },
@@ -269,16 +269,18 @@ var USERTO = {
         sid: 'CommentForm',
         message: 'Оставьте пару слов о ситуации, в которой вам понадобился сервис. Помогите сделать нам сервис лучше',
         placeholder: 'Ваше сообщение',
-        buttonFooter: 'Отправить',
+        buttonFooter: 'Вперед',
         delay: 0,
       },
       selectRole: {
         sid: 'SelectRole',
-        capture: 'Выберите варианты для регистрации',
+        capture: 'Выберите варианты регистрации',
         button01: 'Мне нужен специалист',
-        button02: 'Я специалист. Окажу услуги',
-        buttonFooter: 'Ok',
+        button02: 'Готов быть полезным как специалист',
+        buttonFooter: 'Вперед',
         inputPlaceHolder: ' Ваш эл. адрес',
+        warnNotCheckingRole: 'Выберите роль',
+        warnNotCorrectEmail: 'Проверьте эл. адрес',
         delay: 100,
       },
     },
@@ -320,10 +322,10 @@ var USERTO = {
   document.title = USERTO.rus.titleTag;
 
   var _desc = USERTO.rus.metaTags['description'];
-  var meta = document.createElement('meta');
-  meta.setAttribute('name', 'description');
-  meta.setAttribute('content', _desc);
-  document.getElementsByTagName('head')[0].appendChild(meta);
+    var meta = document.createElement('meta');
+    meta.setAttribute('name', 'description');
+    meta.setAttribute('content', _desc);
+    document.getElementsByTagName('head')[0].appendChild(meta);
 
   //document.querySelector('meta[name="description"]').setAttribute("content", _desc);
 })(USERTO);
