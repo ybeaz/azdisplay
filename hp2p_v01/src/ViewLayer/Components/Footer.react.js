@@ -12,34 +12,53 @@ class Footer extends React.PureComponent {
 
     const { capture, level01 } = item
 
-    const listItems = level01.map((item, i) => {
-      const { capture, href } = item
-      return <li key={i} className=''><a className='' href={href}>{capture}</a></li>
-    })
+    let listItemslevel01 = null
+    if (level01 && level01.length > 0) {
+      listItemslevel01 = level01.map((itemLevel01, iLevel01) => {
+        const { capture: captureLevel01 } = itemLevel01
+        return (
+          <div key={iLevel01} className='Footer__itemLevel1Cell'>
+            {captureLevel01}
+          </div>
+        )
+      })
+    }
 
     return (
-      <div key={i} className='col-lg-3 col-md-3 col-sm-3 col-4'>
+      <div key={i} className='Footer__colItem'>
         <div className='Footer__capture'>{capture}</div>
-        <ul>
-          {listItems}
-        </ul>
+        { level01 && level01.length > 0
+          ? (
+            <div className='Footer__colItemLevel1'>
+              {listItemslevel01}
+            </div>
+          )
+          : null
+        }
       </div>
     )
   })
 
   render() {
-    const { sid, listArr } = this.props
+    const { sid, listArr, copyRight } = this.props
     // console.info('Footer->render() [10]', { captureSection, listArr })
 
     const listItems = this.getListItems(listArr)
 
     return (
-      <div id={sid} className={`container-fluid form-group ${sid}`}>
-        <div className='row'>
-          <div className='col-lg-3 col-md-3 col-sm-3 col-12 Footer__logoCol'>
+      <div id={sid} className={`Footer ${sid}`}>
+        <div className='Footer__rowMain '>
+          <div className='Footer__colLogo'>
             <LogoElem inverted />
           </div>
-          {listItems}
+          <div className='Footer__colItems'>
+            {listItems}
+          </div>
+        </div>
+        <div className='Footer__rowCopyRight'>
+          <div className='Footer_colCopyRight'>
+            {copyRight}
+          </div>
         </div>
       </div>
     )

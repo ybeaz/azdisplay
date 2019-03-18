@@ -10,7 +10,7 @@ class NavBar extends React.PureComponent {
   render() {
     const { sid, login, langs, handleActions } = this.props
     // console.info('NavBar->render() [10]',{});
-    const actionEnter = { type: 'openModalRegistrationNavBar' }
+    const action = { type: 'openModalRegistrationNavBar' }
 
 
     return (
@@ -38,7 +38,7 @@ class NavBar extends React.PureComponent {
           <li className='nav-item has-auth-popup'>
             <div
               className='nav-link NavBar__loginLink'
-              onClickCapture={e => handleActions(e, actionEnter)}
+              onClickCapture={e => handleActions(e, action)}
             >
               {login}
             </div>

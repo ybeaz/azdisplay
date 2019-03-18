@@ -7,7 +7,7 @@ const Markup = ({ ...props }) => {
   const { el, content, className } = {...props}
   const htmlSanitized  = DOMPurify.sanitize(content)
   return React.createElement(`${el}`,
-      {dangerouslySetInnerHTML: { __html: htmlSanitized },,
+      {dangerouslySetInnerHTML: { __html: htmlSanitized },
       className,
     })
 }

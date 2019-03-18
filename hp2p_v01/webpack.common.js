@@ -11,6 +11,8 @@ var  path    = require('path');
 var  webpack = require('webpack');
 var  glob    = require("glob");
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+var TSLintPlugin = require('tslint-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -24,17 +26,41 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js[\S]{0,1}|ts[\S]{0,1})$/i,
+        test: /\.(ts[\S]{0,2})$/i,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        use: [
+          {
+            loader: 'tslint-loader',
+            options: {
+              configFile: 'tslint.json',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(js[\S]{0,2})$/i,
         exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader',
             query: {
-              presets: ['@babel/preset-react', '@babel/preset-env'],
               plugins: ['@babel/proposal-class-properties']
             },
           },
-          { loader: 'ts-loader' },
+        ],
+      },
+      {
+        test: /\.(ts[\S]{0,2})$/i,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              // disable type checker - we will use it in fork plugin
+              transpileOnly: true,
+            },
+          },
         ],
       },
       {
@@ -70,7 +96,7 @@ module.exports = {
       {
         test: /\.json$/,
         exclude: /node_modules/,
-        loader: 'json-loader'
+        loader: 'json-loader',
       },
       // the following 3 rules handle font extraction
       {
@@ -116,7 +142,14 @@ module.exports = {
       template: 'template.html',
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-  ],  
+    new ForkTsCheckerWebpackPlugin({ checkSyntacticErrors: true }),
+    new TSLintPlugin({
+      files: ['./src/**/*.ts', './src/**/*.tsx'],
+      config: './tslint.json',
+      warningsAsError: true,
+      silent: true,
+    }),
+  ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.es6', '.jsx', 'less', 'css', 'config', 'variables', 'overrides']
   },

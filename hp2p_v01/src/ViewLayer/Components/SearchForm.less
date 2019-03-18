@@ -1,7 +1,7 @@
 
 
 .SearchForm {
-  &:extend(.p_l_1_rem, .hoverFocusActive);
+  &:extend(.p_l_1_rem);
 
   .transitionPrevSearch {
     opacity: 0;
@@ -35,14 +35,14 @@
       &:extend(.p_r_0);
       width: 60%;
 
-      input {
-        &:extend(.b_r_0, .h_100);
-        font-size: @fontSize_d;
-        background-color: @color0;
+      .SearchForm__searchInput {
+        .buttonColorLess;
+        .hoverFocusActive;
+        &:extend(.b_r_0, .h_100, .w_100);
+        .f_s_1p2_rem;
         padding: 20px 30px;
-        &:focus, &:hover {
-          background-color: @color0;
-        }
+        outline: 0px !important;
+
       }
     }
  
@@ -51,7 +51,7 @@
       width: 15%;
       .SearchForm__searchButton {
         &:extend(.b_r_0, .h_100, .w_100);
-        .buttonColor;
+        .buttonColorFull;
       }
     }
 
@@ -85,7 +85,7 @@
 
       input {
         .p_a_1_rem;
-        font-size+: @fontSize_origin;
+        .f_s_1_rem;
       }
     }
 
@@ -133,7 +133,7 @@
 
       input {
         .p_a_1_rem;
-        font-size+: @fontSize_origin;
+        .f_s_1_rem;
       }
     }
 

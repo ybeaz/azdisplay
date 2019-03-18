@@ -11,7 +11,7 @@ class ButtonCommon extends React.PureComponent {
 
     return (
       <div id={sid} className={`ButtonCommon ${sid}`}>
-        <button 
+        <button
           type='button'
           className='btn'
           onClick={e => handleFunction(e, action)}

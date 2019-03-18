@@ -72,14 +72,18 @@ class CatalogTags extends React.PureComponent {
   }
 
   getTagsListData = (arr, id) => {
+    const { handleActions } = this.props
+    const action = { type: 'selectCatalogCategory' }
 
     return arr.map((item, i) => {
       const { iconClass, capture, num } = item
       return (
-        <div key={i} className={`CatalogTags__item ${iconClass}`}>
-          <a href={`#${id}`}>
-            <span className='name'>{capture}</span>
-          </a>
+        <div
+          key={i}
+          className={`CatalogTags__item ${iconClass}`}
+          onClickCapture={e => handleActions(e, action)}
+        >
+          <span className='name'>{capture}</span>
           <span className='num'>{num}</span>
         </div>
       )
@@ -88,16 +92,20 @@ class CatalogTags extends React.PureComponent {
 
   getTagsIconsFa = (arr, id, numItemsBeforeButton) => {
     // console.info('CatalogTags->getTags', { arr, id, numItemsBeforeButton })
+    const { handleActions } = this.props
+    const action = { type: 'selectCatalogCategory' }
     return arr
       .filter((item, i) => i < numItemsBeforeButton)
       .map((item, i) => {
-        const { iconClass, capture, num, iconFa } = item
+        const { capture, iconFa } = item
         return (
-          <div key={i} className='CatalogTags__item'>
-            <a href={`#${id}`}>
-              <div className='CatalogTags__itemIcon'><i className={iconFa} /></div>
-              <div className='CatalogTags__itemCapture'>{capture}</div>
-            </a>
+          <div
+            key={i}
+            className='CatalogTags__item'
+            onClickCapture={e => handleActions(e, action)}
+          >
+            <div className='CatalogTags__itemIcon'><i className={iconFa} /></div>
+            <div className='CatalogTags__itemCapture'>{capture}</div>
           </div>
         )
       })
@@ -168,7 +176,7 @@ class CatalogTags extends React.PureComponent {
     }
 
     // const tags = this.getTags(listArr, sid, numItemsBeforeButton)
-
+    // console.info('CatalogTags->render()', { props: this.props })
     return (
       <div id={sid} className={sid}>
         <h2 className='CatalogTags__title titleSection'>{captureSection}</h2>

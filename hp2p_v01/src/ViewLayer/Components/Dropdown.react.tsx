@@ -1,21 +1,49 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
+interface ListObj {
+  capture: string, iconFa?: [], active: boolean, general?: boolean,
+  sourceClass?: string, spritePosition?: [], 
+}
+
+/* eslint-disable indent */
+interface Props {
+  sid: string,
+    // section class for Less(css)
+  cid: string,
+    // component id
+  displayBtnType: string,
+    // Possible values: 'icon', 'text'
+  readonly listArr: ListObj[],
+  delay: number,
+    // Delay for assigning value to the button after option clicked
+}
+interface State {
+  listArr: ListObj[],
+  toggle: string,
+}
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Dropdown extends React.PureComponent {
-  constructor(props) {
+class Dropdown extends React.PureComponent<Props, State> {
+  public static defaultProps = {
+    cid: '',
+    displayBtnType: 'icon',
+    delay: 0,
+  }
+  
+  constructor(props: any) {
     super(props)
     const { listArr } = this.props
+    // console.info('Dropdown->constructor()', { props: this.props })
     this.state = {
       listArr,
       toggle: 'Dropdown__dropdownMenu_hide',
     }
   }
 
-  getDropdownItems = listArr => listArr.map((item, i) => {
+  getDropdownItems = (listArr: ListObj[]) => listArr.map((item: ListObj, i: number) => {
     const { capture, iconFa, active, general, sourceClass, spritePosition } = item
     
-    let icons
+    let icons: any
     if (iconFa) {
       icons = this.getFontAwsomeIcons(iconFa)
     }
@@ -56,10 +84,10 @@ class Dropdown extends React.PureComponent {
     )
   }
 
-  getFontAwsomeIcons = arr => {
+  getFontAwsomeIcons = (arr: []) => {
     let iconHtml = null
     if (arr) {
-      const icons = arr.map((item, i) => {
+      const icons = arr.map((item: string, i) => {
         return <i key={i} className={`iconFa ${item}`} />
       })
       iconHtml = <div className='d_i_b'>{icons}</div>
@@ -67,7 +95,7 @@ class Dropdown extends React.PureComponent {
     return iconHtml
   }
 
-  getButtonFace = (displayBtnType, icons, capture) => {
+  getButtonFace = (displayBtnType: string, icons, capture: string) => {
     let buttonFace = icons
     if (displayBtnType === 'text') {
       buttonFace = <span>{capture}</span>
@@ -75,16 +103,16 @@ class Dropdown extends React.PureComponent {
     return buttonFace
   }
 
-  handleEvent = (e, action) => {
+  handleEvent = (e: {}, action: { type: string, capture?: string }) => {
     switch (action.type) {
 
       case 'selectDataItem': {
         // console.info( 'Dropdown->handleEvent() [1]', action)
         const { delay } = this.props
-        const { listArr } = this.state
+        let { listArr } = this.state
         const { capture: capturePayload } = action
 
-        const listArrNext = listArr.map(item => {
+        listArr = listArr.map((item: ListObj) => {
           const { capture } = item
           let active = false
           if (capture === capturePayload) {
@@ -93,7 +121,7 @@ class Dropdown extends React.PureComponent {
           return { ...item, active }
         })
 
-        this.setState({ listArr: listArrNext })
+        this.setState({ listArr })
 
         setTimeout(() => {
           this.setState({ toggle: 'Dropdown__dropdownMenu_hide' })
@@ -122,7 +150,7 @@ class Dropdown extends React.PureComponent {
     const activeItem = listArr.filter(item => item.active === true)[0]
     const { iconFa, sourceClass, spritePosition } = activeItem
 
-    let icons
+    let icons: any
     if (iconFa) {
       icons = this.getFontAwsomeIcons(iconFa)
     }
@@ -153,30 +181,6 @@ class Dropdown extends React.PureComponent {
       </div>
     )
   }
-}
-
-Dropdown.defaultProps = {
-  cid: '',
-  displayBtnType: 'icon',
-  delay: 0,
-}
-
-/* eslint-disable indent */
-Dropdown.propTypes = {
-  sid: PropTypes.string.isRequired,
-    // section class for Less(css)
-  cid: PropTypes.string,
-    // component id
-  displayBtnType: PropTypes.string,
-    // Possible values: 'icon', 'text'
-  listArr: PropTypes.arrayOf(PropTypes.object).isRequired,
-    /* Example
-      [ 
-        { capture: 'Все виды', iconFa: ['fas fa-video'], active: true },
-        ...
-      ],
-    */
-   delay: PropTypes.number,
 }
 
 export default Dropdown

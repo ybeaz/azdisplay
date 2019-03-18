@@ -11,6 +11,7 @@ import Dropdown from './Dropdown.react'
 class SearchForm extends React.PureComponent {
   constructor(props) {
     super(props)
+    this.inputRef = React.createRef()
     const { sid } = this.props
     this.cid = `${sid}-${uuidv4()}`
   }
@@ -23,28 +24,39 @@ class SearchForm extends React.PureComponent {
       serviceFunc.updateTransition(selector, 'transitionNextSearch')
     }, 0)
 
-    setTimeout(() => {
-      const elementsInput = document.querySelectorAll('input')
-      elementsInput[0].focus()
-      elementsInput[0].select()
-    }, 1500)
+    if (this.inputRef.current.className.includes('SearchForm__SearchForm_top')) {
+      setTimeout(() => {
+        // console.info('SearchForm->componentDidMount()', this.inputRef.current.className)
+        this.inputRef.current.focus()
+        this.inputRef.current.select()
+      }, 1500)
+    }
   }
 
   render() {
-    const { sid, searchPlaceholder, searchButton, typeRequest, typeMedia } = this.props
+    const {
+      sid, searchPlaceholder, searchButton,
+      typeRequest, typeMedia, handleActions,
+    } = this.props
 
     const { sid: typeRequestSid } = typeRequest
     let cid = `${typeRequestSid}-${uuidv4()}`
     const classNames1 = 'Dropdown_typeRequestFirstRow'
-    const typeRequestProps1 = { ...typeRequest, cid, displayBtnType: 'text', classNames: classNames1 }
+    const typeRequestProps1 = {
+      ...typeRequest, cid, displayBtnType: 'text', classNames: classNames1,
+    }
 
     const { sid: typeMediaSid } = typeMedia
     cid = `${typeMediaSid}-${uuidv4()}`
     const classNames3 = 'Dropdown_typeMediaFirstRow'
-    const typeMediaProps3 = { ...typeMedia, cid, displayBtnType: 'icon', classNames: classNames3 }
+    const typeMediaProps3 = {
+      ...typeMedia, cid, displayBtnType: 'icon', classNames: classNames3,
+    }
 
     const searchInputId = `${this.cid}-searchInput`
     const buttonInputId = `${this.cid}-buttonInput`
+
+    const action = { type: 'pressSearchButton' }
 
     // console.info('SearchForm->render() [10]',{ });
     return (
@@ -54,12 +66,18 @@ class SearchForm extends React.PureComponent {
             <input
               id={searchInputId}
               type='text'
-              className='form-control'
+              className={`SearchForm__searchInput SearchForm__${sid}`}
               placeholder={searchPlaceholder}
+              ref={this.inputRef}
             />
           </div>
           <div className='SearchForm__searchButtonCol'>
-            <button id={buttonInputId} type='submit' className='btn SearchForm__searchButton'>
+            <button
+              id={buttonInputId}
+              type='submit'
+              className='btn SearchForm__searchButton'
+              onClickCapture={e => handleActions(e, action)}
+            >
               {searchButton}
             </button>
           </div>

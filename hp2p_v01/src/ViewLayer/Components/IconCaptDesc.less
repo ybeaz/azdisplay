@@ -12,7 +12,7 @@
     .p_b_2_rem;
     .IconCaptDesc__captureCol {
       .IconCaptDesc__capture {
-        font-size: @fontSize_h2;
+        .f_s_2_rem;
       }
     }  
   }
@@ -44,7 +44,7 @@
             }
             .IconCaptDesc__itemNum {
               color: @color2;
-              font-size: @fontSize_f;
+              .f_s_0p75_rem;
             }
             .IconCaptDesc__itemRating {
 
@@ -53,7 +53,7 @@
         }
 
         .IconCaptDesc__itemDetails {
-          font-size: @fontSize_b;
+          .f_s_0p9_rem;
           color: @color8;
           line-height: 1.3rem;
         }
@@ -75,7 +75,7 @@
       .p_b_1_rem;
         .IconCaptDesc__captureCol {
         .IconCaptDesc__capture {
-          font-size: @fontSize_h2_phone;
+          .f_s_6p5_vw;
         }
       }
     }
@@ -299,7 +299,7 @@
         width: 15rem;
 
         .IconCaptDesc__itemTopBlock {
-          &:extend(.d_f, .p_l_0);
+          &:extend(.d_f, .p_l_0, .cur_p);
           .IconCaptDesc__itemIcon {
             &:extend(.d_f);
             padding-left: 1%;
@@ -311,8 +311,7 @@
             &:extend(.p_l_1_rem, .p_b_1_rem);
             
             .IconCaptDesc__itemCapture {
-              &:extend(.t_tr_i);
-              .p_b_0;
+              &:extend(.t_tr_i, .p_b_0, .cur_p);
             }
             .IconCaptDesc__itemNum {
               padding-bottom: 0.3rem;

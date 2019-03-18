@@ -6,10 +6,20 @@ import IconsFa from './IconsFa.react'
 // eslint-disable-next-line react/prefer-stateless-function
 class IconCaptDesc extends React.PureComponent {
 
-  getIconCaptDesc = listArr => {
+  getIconCaptDesc = (listArr, sid) => {
+
+    let onClickCapture = null
+    if (sid === 'UserReviews') {
+      const { handleActions } = this.props
+      const action = { type: 'clickUserProfile' }
+      onClickCapture = e => handleActions(e, action)
+    }
 
     return listArr.map((item, i) => {
-      const { imgSrc, iconFa, capture, details, reviewNum, reviewName, ratingNum, ratingIconFa } = item
+      const {
+        imgSrc, iconFa, capture, details, reviewNum,
+        reviewName, ratingNum, ratingIconFa,
+      } = item
       const iconsFaProps = {
         num: ratingNum,
         iconFa: ratingIconFa,
@@ -31,7 +41,10 @@ class IconCaptDesc extends React.PureComponent {
             <div className='IconCaptDesc__itemCaptNumRatingWrapper'>
               {capture
                 ? (
-                  <div className='IconCaptDesc__itemCapture'>
+                  <div
+                    className='IconCaptDesc__itemCapture'
+                    onClickCapture={onClickCapture}
+                  >
                     {capture}
                   </div>
                 )
@@ -70,7 +83,7 @@ class IconCaptDesc extends React.PureComponent {
 
   render() {
     const { sid, captureSection, listArr } = this.props
-    const iconCaptDesc = this.getIconCaptDesc(listArr)
+    const iconCaptDesc = this.getIconCaptDesc(listArr, sid)
 
     return (
       <div id={sid} className={`container-fluid IconCaptDesc IconCaptDesc_${sid}`}>

@@ -1,0 +1,187 @@
+import React from 'react'
+
+import * as Interfaces from '../../Shared/interfaces'
+
+interface Props {
+  readonly sid: string,
+  readonly capture: string,
+  readonly button01: string,
+  readonly button02: string,
+  readonly buttonFooter: string,
+  readonly inputPlaceHolder: string,
+  readonly warnNotCheckingRole: string,
+  readonly warnNotCorrectEmail: string,
+  readonly handleActions: Function,
+}
+interface State {
+  readonly user: boolean,
+  readonly specialist: boolean,
+}
+
+class SelectRole extends React.PureComponent<Props, State> {
+  public static defaultProps: any = {
+  }
+
+  private readonly inputRef01: React.RefObject<HTMLInputElement>
+
+  constructor(props: any) {
+    super(props)
+    this.inputRef01 = React.createRef()
+    this.state = {
+      user: false,
+      specialist: false,
+    }
+  }
+
+  public componentDidMount(): void {
+    setTimeout(
+      () => {
+        if (this.inputRef01.current !== null) {
+          this.inputRef01.current.focus()
+          this.inputRef01.current.select()
+        }
+      },
+      1000,
+    )
+  }
+
+  getDisplayClass = status => {
+
+    let displayClass = 'd_n'
+    if (status) {
+      displayClass = 'd_i_f'
+    }
+    return displayClass
+  }
+
+  public handleEvent = (e: any, action: Interfaces.Action) => {
+    switch (action.type) {
+      case 'nextModal':
+      {
+        const {
+          warnNotCheckingRole, warnNotCorrectEmail, handleActions,
+        } = this.props
+        const { user, specialist } = this.state
+        // console.info('SelectRole->handleEvent', { email: this.inputRef01.current.value })
+        if ( user === false && specialist === false) {
+          alert(warnNotCheckingRole)
+
+          return
+        }
+        else if (
+          this.inputRef01.current.value.match(/^([\S]{1,})@([\S]{1,})([\.]{1,1})([^.]{2,})$/gi) === null
+        ) {
+          alert(warnNotCorrectEmail)
+
+          return
+        }
+        const action01: Interfaces.Action = { type: 'pressOkInSelectRole' }
+        handleActions(e, action01)
+      }
+      break
+      case 'togglekUser':
+      {
+        let { user } = this.state
+        user = !user
+        this.setState({ user })
+      }
+      break
+      case 'toggleSpecialist':
+      {
+        let { specialist } = this.state
+        specialist = !specialist
+        this.setState({ specialist })
+      }
+      break
+      default:
+      {
+        console.info('SelectRole->handleEvents unexpected action', { action })
+      }
+    }
+
+
+
+  }
+
+  public render(): JSX.Element {
+    const {
+      sid, capture, button01, button02, buttonFooter, inputPlaceHolder,
+    } = this.props
+    const { user, specialist } = this.state
+
+    // console.info('SelectRole->render() [0]', { user, specialist, props: this.props })
+    const modalClass: string = 'Modal__show'
+    
+    const userCheck = this.getDisplayClass(user)
+    const specialistCheck = this.getDisplayClass(specialist)
+
+
+
+    return (
+      <div className={`modal Modal Modal_${sid} ${modalClass}`}>
+        <div className='modal-dialog Modal__dialog'>
+          <div className='modal-content Modal__content'>
+
+            {/* <!-- Modal Header --> */}
+            <div className='modal-header Modal__header'>
+              <div className='Modal__headerColLeft'>
+                <input type='email' className='Modal__headerEmailInput'
+                  placeholder={inputPlaceHolder} ref={this.inputRef01} />
+              </div>
+              <div className='Modal__headerColRight'>
+                <button
+                  type='button'
+                  className='close Modal_headerButtonUpperLeft'
+                  onClickCapture={e => this.handleEvent(e, {type: 'nextModal'})}
+                >
+                  &times;
+                </button>
+              </div>
+            </div>
+            
+            {/* <!-- Modal body --> */}
+            <div className='modal-body Modal__body'>
+              <div className='Modal__bodyRow'>
+                {capture}
+              </div>
+              <div className='Modal__bodyRow01'>
+                <div className='Modal__bodyRowColLeft'>
+                  <button
+                    className='Modal__bodyRowColLeftButton'
+                    onClickCapture={e => this.handleEvent(e, {type: 'togglekUser'})}
+                  >
+                    {button01}
+                  </button>
+                  <i className={`fas fa-check-circle Modal__bodyRowColLeftFaCheck ${userCheck}`} />
+                </div>
+                <div className='Modal__bodyRowColRight'>
+                  <button
+                    className='Modal__bodyRowColRightButton'
+                    onClickCapture={e => this.handleEvent(e, {type: 'toggleSpecialist'})}
+                  >
+                    {button02}
+                  </button>
+                  <i className={`fas fa-check-circle Modal__bodyRowColRightFaCheck ${specialistCheck}`} />
+                </div>
+              </div>
+            </div>
+
+            {/* <!-- Modal footer --> */}
+            <div className='modal-footer Modal__footer'>
+              <button
+                type='button'
+                className='btn Modal__footerButton'
+                onClickCapture={e => this.handleEvent(e, {type: 'nextModal'})}
+              >
+                {buttonFooter}
+              </button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+export default SelectRole

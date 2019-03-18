@@ -9,8 +9,9 @@ import { DISPATCH_ACTION } from './actions/index'
 
 
 /* My custom middleware to keep history of user actions and build scenarious */
-export const loggerDispatch = store => next => action => {
-  if (action.type !== DISPATCH_ACTION().type) {
+export const loggerDispatch = (store: any) => (next: any) => (action: any) => {
+  const data: any = {}
+  if (action.type !== DISPATCH_ACTION(data).type) {
     const payload = action
     setTimeout(() => store.dispatch(DISPATCH_ACTION({ payload })), 0)
   }
@@ -24,7 +25,7 @@ export const loggerDispatch = store => next => action => {
  * Logs all actions and states after they are dispatched.
  */
 //https://redux.js.org/advanced/middleware
-export const logger = store => next => action => {
+export const logger = (store: any) => (next: any) => (action: any) => {
   console.log('dispatching', action)
   let result = next(action)
   console.log('next state', store.getState())
@@ -33,9 +34,8 @@ export const logger = store => next => action => {
 
 /**
  * Sends crash reports as state is updated and listeners are notified.
- */
 //https://redux.js.org/advanced/middleware
-export const crashReporter = store => next => action => {
+export const crashReporter = (store: any) => (next: any) => (action: any) => {
   try {
     return next(action)
   } catch (err) {
@@ -49,12 +49,13 @@ export const crashReporter = store => next => action => {
     throw err;
   }
 }
+*/
 
 /**
  * Schedules actions with { meta: { delay: N } } to be delayed by N milliseconds.
  * Makes `dispatch` return a function to cancel the timeout in this case.
  */
-export const timeoutScheduler = store => next => action => {
+export const timeoutScheduler = (store: any) => (next: any) => (action: any) => {
   if (!action.meta || !action.meta.delay) {
     return next(action);
   }
@@ -74,7 +75,7 @@ export const timeoutScheduler = store => next => action => {
  * frame.  Makes `dispatch` return a function to remove the action from the queue in
  * this case.
  */
-export const rafScheduler = store => next => {
+export const rafScheduler = (store: any) => (next: any) => {
   let queuedActions = [];
   let frame = null;
   
@@ -114,11 +115,11 @@ export const rafScheduler = store => next => {
  * If the promise is resolved, its result will be dispatched as an action.
  * The promise is returned from `dispatch` so the caller may handle rejection.
  */
-export const vanillaPromise = store => next => action => {
+export const vanillaPromise = (store: any) => (next: any) => (action: any) => {
   if (typeof action.then !== 'function') {
     return next(action)
   }
-  
+
   return Promise.resolve(action).then(store.dispatch);
 }
 
@@ -129,8 +130,8 @@ export const vanillaPromise = store => next => action => {
  * and a single success (or failure) action when the `promise` resolves.
  *
  * For convenience, `dispatch` will return the promise so the caller can wait.
- */
-export const readyStatePromise = store => next => action => {
+
+export const readyStatePromise = (store: any) => (next: any) => (action: any) => {
   if (!action.promise) {
     return next(action);
   }
@@ -147,6 +148,7 @@ export const readyStatePromise = store => next => action => {
     error => next(makeAction(true, { error }))
   );
 }
+ */
 
 /**
  * Lets you dispatch a function instead of an action.
@@ -157,7 +159,7 @@ export const readyStatePromise = store => next => action => {
  *
  * `dispatch` will return the return value of the dispatched function.
  */
-export const thunk = store => next => action =>
+export const thunk = (store: any) => (next: any) => (action: any) =>
   typeof action === 'function'
     ? action(store.dispatch, store.getState)
     : next(action);

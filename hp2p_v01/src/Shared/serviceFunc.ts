@@ -1,21 +1,31 @@
 
 
+
+/* Function to capitalize (make uppercase) first letter of the stringT */
+export const getFirstCharLowerCase = (stringT: string) => {
+  return stringT.charAt(0).toLowerCase() + stringT.slice(1)
+}
+
+/* Function to capitalize (make uppercase) first letter of the stringT */
+export const getFirstCharUpperCase = (stringT: string) => {
+  return stringT.charAt(0).toUpperCase() + stringT.slice(1)
+}
+
 /* Function to return data to render for modal window according to the scenario */
-export const getModalKeyToRender = (actionLog) => {
+export const getModalKeyToRender = (actionLog: {type: string}[]) => {
   let modalKeyToRender = 'registration'
   const { length } = actionLog
-  if (length !== 0 &&
-    actionLog[length - 1].type === 'OPEN_MODAL_FAREWELL') {
+  if (length > 0
+    && actionLog[length - 1].type === 'OPEN_MODAL_FAREWELL') {
     modalKeyToRender = 'farewell'
   }
   return modalKeyToRender
 }
 
-
 /* Function to return width of the DOM object's in crossbrowser style */
-export const mediaSizeCrossBrowser = w => {
+export const mediaSizeCrossBrowser = (w: Window) => {
   // Use serviceFunc.mediaSizeCrossBrowser(global)
-  const mediaSize = {}
+  const mediaSize: {width: number, height: number} = {width: 0, height: 0}
   const d = w.document
   const e = d.documentElement
   const g = d.getElementsByTagName('body')[0]
@@ -23,34 +33,35 @@ export const mediaSizeCrossBrowser = w => {
   const y = w.innerHeight || e.clientHeight || g.clientHeight
   // console.info(' mediaSize:', { x, y })
 
-  mediaSize.width = parseInt(x, 10)
-  mediaSize.height = parseInt(y, 10)
+  mediaSize.width = x
+  mediaSize.height = y
 
   //console.info(' mediaSize:', { mediaSize })
   return mediaSize
 }
 
 /* Function to return height of the DOM object's in crossbrowser style */
-function heightCrossBrowser(element) {
+function heightCrossBrowser(element: HTMLElement) {
   /* element - DOM element */
   
-  /* For FireFox & IE */
-  if(    element.height != undefined && element.height != '' && element.height != 0){
-    this.height  =  element.height
+  let height
+  // For FireFox & IE
+  if (element.style.height != undefined) {
+    height  =  element.style.height
   }
-  /* For FireFox & IE */
-  else if(element.clientHeight != undefined && element.clientHeight != '' && element.clientHeight != 0){
-    this.height  =  element.clientHeight
+  // For FireFox & IE
+  else if (element.clientHeight != undefined) {
+    height  =  element.clientHeight
   }
-  /* For Chrome * FireFox */
-  else if(element.naturalHeight != undefined && element.naturalHeight != '' && element.naturalHeight != 0){
-    this.height  =  element.naturalHeight
+  // For FireFox & IE
+  else if (element.offsetHeight != undefined) {
+    height  =  element.offsetHeight
   }
-  /* For FireFox & IE */
-  else if(element.offsetHeight != undefined && element.offsetHeight != '' && element.offsetHeight != 0){
-    this.height  =  element.offsetHeight
-  }    
-    /*  
+  else {
+    height = undefined
+  }
+
+    /*
       console.info(' heightheight height:',    element.height)
       console.info(' clntheight clientheight:',  element.clientheight)
       console.info(' natheight naturalheight:',  element.naturalheight)
@@ -58,12 +69,11 @@ function heightCrossBrowser(element) {
       console.info(' parseInt(this.height):',parseInt(this.height))
     */
   return parseInt('s', this.height)
-  
 }
 
 
-export const updateTransition = (selector: String, classAdd: String) => {
-  const elem = document.querySelector(selector)
+export const updateTransition = (selector: string, classAdd: string) => {
+  const elem: HTMLElement = document.querySelector(selector)
   if (elem) {
     // elem.classList.remove(stylePrev)
     elem.classList.add(classAdd)
@@ -72,7 +82,7 @@ export const updateTransition = (selector: String, classAdd: String) => {
   return elem
 }
 
-export const getElementSize = element => {
+export const getElementSize = (element: HTMLElement) => {
   const width = Math.round(parseFloat(getComputedStyle(element, null).getPropertyValue('width').replace('px', '')))
   const height = Math.round(parseFloat(getComputedStyle(element, null).getPropertyValue('height').replace('px', '')))
   const x = Math.round(element.getBoundingClientRect().left)
