@@ -29,7 +29,7 @@ class CommentForm extends React.PureComponent<Props, State> {
     // console.info('CommentForm->render() [0]', { props: this.props })
     const modalClass: string = 'Modal__show'
     const actionSend: Interfaces.Action = { type: 'sendCommentForm' }
-    const actionClose: Interfaces.Action = { type: 'closeCommentForm' }
+    const actionClose: Interfaces.Action = { type: 'closeModalCommentForm' }
 
     return (
       <div className={`modal Modal Modal_${sid} ${modalClass}`}>

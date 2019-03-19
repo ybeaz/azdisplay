@@ -113,6 +113,7 @@ class FacePage326 extends React.PureComponent {
 
 
     const action = { type: 'openModalRegistrationQuick' }
+    const sidButton = ``
     registrationButton = { ...registrationButton, handleFunction: handleActions, action }
     const modalBackdropProps = { sid: 'bd'}
     const modalWindowToReturn = this.getModals({ modalWindows, handleActions, modals })

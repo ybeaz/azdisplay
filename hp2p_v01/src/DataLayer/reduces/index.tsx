@@ -38,7 +38,8 @@ const modalWindows: any = (
 
   switch (action.type) {
 
-
+    case 'CLOSE_MODAL_THANK_YOU':
+    case 'CLOSE_ALL_MODALS':
     case 'CLOSE_ALL_MODALS': {
       const stateNext = state.map((item: Interfaces.ModalWindowStateItem) => {
         return { ...item, display: false }
@@ -47,8 +48,8 @@ const modalWindows: any = (
       return stateNext
     }
 
-    case 'CLOSE_COMMENTFORM':
-    case 'SEND_COMMENTFORM':
+    case 'CLOSE_COMMENT_FORM':
+    case 'SEND_COMMENT_FORM':
     case 'PRESS_OK_IN_SELECT_ROLE': {
       const { modalNext } = action
       let stateNext: Interfaces.ModalWindowState | any = state
@@ -77,6 +78,7 @@ const modalWindows: any = (
     case 'SELECT_CATALOG_CATEGORY':
     case 'OPEN_MODAL_REGISTRATION_NAV_BAR':
     case 'OPEN_MODAL_REGISTRATION_QUICK':
+    case 'OPEN_MODAL_REGISTRATION_FOOTER':
     case 'OPEN_MODAL_FAREWELL': {
       const { modalNext } = action
       let stateNext = state

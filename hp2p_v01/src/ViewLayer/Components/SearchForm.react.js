@@ -53,9 +53,6 @@ class SearchForm extends React.PureComponent {
       ...typeMedia, cid, displayBtnType: 'icon', classNames: classNames3,
     }
 
-    const searchInputId = `${this.cid}-searchInput`
-    const buttonInputId = `${this.cid}-buttonInput`
-
     const action = { type: 'pressSearchButton' }
 
     // console.info('SearchForm->render() [10]',{ });
@@ -64,7 +61,6 @@ class SearchForm extends React.PureComponent {
         <div className='SearchForm__searchRow transitionPrevSearch'>
           <div className='SearchForm__searchInputCol'>
             <input
-              id={searchInputId}
               type='text'
               className={`SearchForm__searchInput SearchForm__${sid}`}
               placeholder={searchPlaceholder}
@@ -73,7 +69,6 @@ class SearchForm extends React.PureComponent {
           </div>
           <div className='SearchForm__searchButtonCol'>
             <button
-              id={buttonInputId}
               type='submit'
               className='btn SearchForm__searchButton'
               onClickCapture={e => handleActions(e, action)}

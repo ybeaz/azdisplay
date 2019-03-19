@@ -229,6 +229,7 @@ var USERTO = {
       captureSection: '',
       listArr: [
         {
+          sid: 'aboutUs',
           imgClass: '',
           capture: 'О нас',
           /*
@@ -239,16 +240,19 @@ var USERTO = {
           */
         },
         {
+          sid: 'contacts',
           imgClass: '',
           capture: 'Контакты',
         },
         {
+          sid: 'feedback',
           imgClass: '',
           capture: 'Обратная связь',
         },
         {
+          sid: 'enter',
           imgClass: '',
-          capture: 'Вход',
+          capture: 'Регистрация',
         },
       ],
       copyRight: '\u00A9 2019 userto.com. Все права защищены',
@@ -273,6 +277,10 @@ var USERTO = {
         delay: 0,
       },
       selectRole: {
+        modeProdDev: {
+          checkEnterEmail: false,
+          checkSelectRole: false,
+        },
         sid: 'SelectRole',
         capture: 'Выберите варианты регистрации',
         button01: 'Мне нужен специалист',

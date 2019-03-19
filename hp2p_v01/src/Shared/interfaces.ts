@@ -1,5 +1,10 @@
 
 
+export interface ModeProdDev {
+  readonly checkEnterEmail?: boolean,
+  readonly checkSelectRole?: boolean,
+}
+
 export interface Action {
   readonly type: string,
   readonly payload?: any,

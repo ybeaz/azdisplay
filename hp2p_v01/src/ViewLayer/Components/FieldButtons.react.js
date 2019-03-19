@@ -36,14 +36,14 @@ class FieldButtons extends React.PureComponent {
           key={eid}
           type='button'
           className={`btn btn-success FieldButtons__button ${activeClass} ${classDisplayNone}`}
-          onClickCapture={e => this.handleEvent(e, action)}
+          onClickCapture={e => this.handleEvents(e, action)}
         >
           {capture}
         </button>
       )
   })
 
-  handleEvent = (e, action) => {
+  handleEvents = (e, action) => {
     switch (action.type) {
       case 'selectItem': {
 
@@ -77,7 +77,7 @@ class FieldButtons extends React.PureComponent {
       } break
 
       default: {
-        console.info( 'FieldButtons->handleEvent() [10]','I have never heard of that ... ', action)
+        console.info( 'FieldButtons->handleEvents() [10]','I have never heard of that ... ', action)
       } break
     }
   }

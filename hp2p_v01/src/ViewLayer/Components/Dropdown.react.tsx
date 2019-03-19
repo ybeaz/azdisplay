@@ -66,7 +66,7 @@ class Dropdown extends React.PureComponent<Props, State> {
       <div
         key={i}
         className={`Dropdown__item dropdown-item ${activeClass}`}
-        onClickCapture={e => this.handleEvent(e, action)}
+        onClickCapture={e => this.handleEvents(e, action)}
       >
         {icons}
         <span>{capture}</span>
@@ -103,11 +103,11 @@ class Dropdown extends React.PureComponent<Props, State> {
     return buttonFace
   }
 
-  handleEvent = (e: {}, action: { type: string, capture?: string }) => {
+  handleEvents = (e: {}, action: { type: string, capture?: string }) => {
     switch (action.type) {
 
       case 'selectDataItem': {
-        // console.info( 'Dropdown->handleEvent() [1]', action)
+        // console.info( 'Dropdown->handleEvents() [1]', action)
         const { delay } = this.props
         let { listArr } = this.state
         const { capture: capturePayload } = action
@@ -138,7 +138,7 @@ class Dropdown extends React.PureComponent<Props, State> {
       } break
 
       default: {
-        console.info( 'Dropdown->handleEvent() [10]','I have never heard of that ... ', action)
+        console.info( 'Dropdown->handleEvents() [10]','I have never heard of that ... ', action)
       } break
     }
   }
@@ -171,7 +171,7 @@ class Dropdown extends React.PureComponent<Props, State> {
         <button
           type='button'
           className='btn dropdown-toggle Dropdown__button'
-          onClickCapture={e => this.handleEvent(e, action)}
+          onClickCapture={e => this.handleEvents(e, action)}
         >
           {buttonFace}
         </button>

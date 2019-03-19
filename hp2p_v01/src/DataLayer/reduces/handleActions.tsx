@@ -15,23 +15,29 @@ export const handleActions = (e: {}, action: Interface.Action) => {
   switch (action.type) {
 /*  'CLOSE_ALL_MODALS'
     'CLOSE_MODAL_THANKYOU':
-    'CLOSE_COMMENTFORM'
-    'SEND_COMMENTFORM'
+    'CLOSE_COMMENT_FORM'
+    'SEND_COMMENT_FORM'
     'PRESS_OK_IN_SELECT_ROLE'
 */
 
     case 'closeModalThankYou': {
       const data: any = {}
-      actions.CLOSE_ALL_MODALS(data)
+      actions.CLOSE_MODAL_THANK_YOU(data)
       // console.info(`handleActions.js type: ${action.type}`, { e, action })
     } break
 
-    case 'closeCommentForm': {
+    case 'closeModalCommentForm': {
       const data: any = {}
       actions.CLOSE_ALL_MODALS(data)
       const modalNext = 'ThankYou'
-      actions.CLOSE_COMMENTFORM({ modalNext })
+      actions.CLOSE_COMMENT_FORM({ modalNext })
       // console.info(`handleActions.js type: ${action.type}`, { action, e })
+    } break
+
+    case 'closeModalSelectRole': {
+      const data: any = {}
+      actions.CLOSE_MODAL_SELECT_ROLE(data)
+      // console.info(`handleActions.js type: ${action.type}`, { e, action })
     } break
 
     case 'sendCommentForm': {
@@ -41,9 +47,15 @@ export const handleActions = (e: {}, action: Interface.Action) => {
       const { treeData, language } = store.getState()
       const prop = getFirstCharLowerCase(modalNext)
       const { delay } = treeData[language].modals[prop]
-      setTimeout(() => actions.SEND_COMMENTFORM({ modalNext }), delay)
+      setTimeout(() => actions.SEND_COMMENT_FORM({ modalNext }), delay)
       // const reduxState: any = store.getState()
       // console.info(`handleActions.js : ${action.type}`, { action, e })
+    } break
+
+    case 'closeModalSelectRole': {
+      const data: any = {}
+      actions.CLOSE_ALL_MODALS(data)
+      // console.info(`handleActions.js type: ${action.type}`, { e, action })
     } break
 
     case 'pressOkInSelectRole': {
@@ -60,8 +72,9 @@ export const handleActions = (e: {}, action: Interface.Action) => {
     case 'pressSearchButton':
     case 'clickUserProfile':
     case 'selectCatalogCategory':
-    case 'openModalRegistrationNavBar': 
-    case 'openModalRegistrationQuick': {
+    case 'openModalRegistrationNavBar':
+    case 'openModalRegistrationQuick':
+    case 'openModalRegistrationFooter': {
       const modalNext = 'SelectRole'
       const { treeData, language } = store.getState()
       const prop = getFirstCharLowerCase(modalNext)
@@ -83,6 +96,9 @@ export const handleActions = (e: {}, action: Interface.Action) => {
         } break
         case 'openModalRegistrationQuick': {
           setTimeout(() => actions.OPEN_MODAL_REGISTRATION_QUICK({ modalNext }), delay)
+        } break
+        case 'openModalRegistrationFooter': {
+          setTimeout(() => actions.OPEN_MODAL_REGISTRATION_FOOTER({ modalNext }), delay)
         } break
         default: {
           console.info('handleActions.js unexpected action', { action })
