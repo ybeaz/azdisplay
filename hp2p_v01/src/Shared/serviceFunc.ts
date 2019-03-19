@@ -1,14 +1,56 @@
 
 
 
+
+// Function to omit property of array of objects by values of simple array
+export const arrOfObjOmitItemsByPropValArr: any = (arrIn: any, propToFilter: string, arrToOmit: string[]): any => {
+  console.info('serviceFunc->arrOfObjOmitPropArrByArr', { arrIn, propToFilter, arrToOmit })
+  
+  return arrIn.filter((item: any) => {
+    let isTrue: boolean = true
+    if (item[propToFilter]) {
+      arrToOmit.filter((item01: string) => {
+        if (item01 === item[propToFilter]) {
+          isTrue = false
+        }
+      })
+    }
+
+    return isTrue
+  })
+}
+
+// Function to return array of objects composed of the own and inherited 
+// enumerable property paths of object that are not omitted
+export const arrOfObjOmitByPropName: any = (arrIn: any, arrPropName: any): any => {
+
+  return arrIn.filter(item => {
+    let isTrue: boolean = true
+    for (let i = 0; i < arrPropName.length; i += 1) {
+      const prop: any = arrPropName[i].prop
+      const val: any = arrPropName[i].val
+      if (item[prop] === val) {
+        isTrue = false
+      }
+    }
+
+    return isTrue
+  })
+}
+
+
 /* Function to capitalize (make uppercase) first letter of the stringT */
-export const getFirstCharLowerCase = (stringT: string) => {
-  return stringT.charAt(0).toLowerCase() + stringT.slice(1)
+export const getFirstCharLowerCase: Function = (stringT: string): string => {
+  return stringT
+    .charAt(0)
+    .toLowerCase() + stringT.slice(1)
 }
 
 /* Function to capitalize (make uppercase) first letter of the stringT */
-export const getFirstCharUpperCase = (stringT: string) => {
-  return stringT.charAt(0).toUpperCase() + stringT.slice(1)
+export const getFirstCharUpperCase: Function = (stringT: string): string => {
+  return stringT
+    .charAt(0)
+    .toUpperCase() + stringT.slice(1)
 }
 
 /* Function to return data to render for modal window according to the scenario */

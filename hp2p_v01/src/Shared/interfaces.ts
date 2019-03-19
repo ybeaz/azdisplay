@@ -6,6 +6,7 @@ export interface ModeProdDev {
 }
 
 export interface Action {
+  readonly getActionAsync?: Function,
   readonly type: string,
   readonly payload?: any,
   readonly lang?: string,
