@@ -232,6 +232,7 @@ var USERTO = {
           sid: 'aboutUs',
           imgClass: '',
           capture: 'О нас',
+          path: '/326_HP2P_v01/aboutus',
           /*
           level01: [
             {capture: 'Business model', href: '#Footer'},
@@ -243,16 +244,19 @@ var USERTO = {
           sid: 'contacts',
           imgClass: '',
           capture: 'Контакты',
+          path: '/326_HP2P_v01/contacts',
         },
         {
           sid: 'feedback',
           imgClass: '',
           capture: 'Обратная связь',
+          path: '',
         },
         {
           sid: 'enter',
           imgClass: '',
           capture: 'Регистрация',
+          path: '',
         },
       ],
       copyRight: '\u00A9 2019 userto.com. Все права защищены',
@@ -297,6 +301,8 @@ var USERTO = {
         { path: '/', exact: true, page: 'FacePage326' },
         { path: '/analytics-c7b094941e7e11c6bf93d5736673881e', exact: true, page: 'Analytics' },
         { path: '/326_HP2P_v01/enter', exact: true, page: 'FacePage326' },
+        { path: '/326_HP2P_v01/aboutus', exact: true, page: 'AboutUs' },
+        { path: '/326_HP2P_v01/contacts', exact: true, page: 'Contacts' },
       ],
       redirects: [
         { from: '/', to: '/326_HP2P_v01/enter', exact: true },

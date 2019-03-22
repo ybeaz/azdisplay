@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+
 
 import { handleActions } from '../../DataLayer/reduces/handleActions'
 import * as serviceFunc from '../../Shared/serviceFunc'
@@ -11,10 +13,12 @@ class Footer extends React.PureComponent {
 
   getListItems = arr => arr.map((item, i) => {
 
-    const { sid, capture, level01 } = item
+    const { sid, capture, path, level01 } = item
     const Sid = serviceFunc.getFirstCharUpperCase(sid)
 
     const action = { type: `clickFooter${Sid}` }
+    // console.info('Footer->getListItems', { ...item, Sid, action })
+
 
     let listItemslevel01 = null
     if (level01 && level01.length > 0) {
@@ -30,12 +34,16 @@ class Footer extends React.PureComponent {
 
     return (
       <div key={i} className='Footer__colItem'>
-        <div
-          className={`Footer__capture Footer__capture${Sid}`}
-          onClickCapture={e => this.handleEvents(e, action)}
-        >
-          {capture}
-        </div>
+        
+        <Link to={path}>
+          <div
+            className={`Footer__capture Footer__capture${Sid}`}
+            onClickCapture={e => this.handleEvents(e, action)}
+          >
+            {capture}
+          </div>
+        </Link>
+
         { level01 && level01.length > 0
           ? (
             <div className='Footer__colItemLevel1'>

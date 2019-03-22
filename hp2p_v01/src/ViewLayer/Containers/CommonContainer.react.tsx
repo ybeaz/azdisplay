@@ -28,7 +28,8 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-//export const CommonContainer = Component => connect(mapStateToProps, mapDispatchToProps, mergeProps)(Component)
-//Look at https://stackoverflow.com/a/48292811/4791116
+// export const CommonContainer = Component => connect(mapStateToProps, mapDispatchToProps, mergeProps)(Component)
+// Look at https://stackoverflow.com/a/48292811/4791116
+// Source of ideas: https://spin.atomicobject.com/2017/04/20/typesafe-container-components/
 const CommonContainer = Component => connect<StateFromProps, DispatchFromProps, void>(mapStateToProps, mapDispatchToProps)(Component)
 export default CommonContainer
