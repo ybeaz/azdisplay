@@ -12,7 +12,7 @@ interface Props {
 interface State {}
 
 // eslint-disable-next-line react/prefer-stateless-function
-class CommentForm extends React.PureComponent<Props, State> {
+export class CommentForm extends React.PureComponent<Props, State> {
   public static defaultProps: any = {
   }
 
@@ -79,4 +79,3 @@ class CommentForm extends React.PureComponent<Props, State> {
   }
 }
 
-export default CommentForm

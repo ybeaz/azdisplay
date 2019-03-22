@@ -9,10 +9,12 @@ import * as actions from './DataLayer/actions/index'
 import store from './DataLayer/store'
 import * as serviceFunc from './Shared/serviceFunc'
 import FacePage326 from './ViewLayer/Pages/FacePage326.react'
+import Analytics from './ViewLayer/Pages/Analytics.react'
 import Error404 from './ViewLayer/Pages/Error404.react'
 
 const PAGES = {
   FacePage326,
+  Analytics,
   Error404,
 }
 

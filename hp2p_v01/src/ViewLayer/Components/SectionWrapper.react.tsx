@@ -1,7 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-const SectionWrapper = props => {
+interface Props {
+  classStyle: string,
+  children: any,
+  
+
+}
+interface State {
+}
+
+const SectionWrapper: React.SFC<Props> = (props: Props) => {
   const { classStyle, children } = props
   return (
     <div className={`SectionWrapper ${classStyle}`}>
@@ -16,7 +24,5 @@ const SectionWrapper = props => {
   )
 }
 
-SectionWrapper.propTypes = {
-}
 
 export default SectionWrapper

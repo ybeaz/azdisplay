@@ -53,7 +53,7 @@ class Footer extends React.PureComponent {
       case 'clickFooterEnter': {
         const action01 = { type: 'openModalRegistrationFooter' }
         handleActions(e, action01)
-        console.info(`Footer->handleEvents type->${action.type}`, { e, action })
+        // console.info(`Footer->handleEvents type->${action.type}`, { e, action })
       } break
 
       default: {

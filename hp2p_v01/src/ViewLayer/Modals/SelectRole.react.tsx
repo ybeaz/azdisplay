@@ -19,7 +19,7 @@ interface State {
   readonly specialist: boolean,
 }
 
-class SelectRole extends React.PureComponent<Props, State> {
+export class SelectRole extends React.PureComponent<Props, State> {
   public static defaultProps: any = {
   }
 
@@ -189,4 +189,3 @@ class SelectRole extends React.PureComponent<Props, State> {
   }
 }
 
-export default SelectRole

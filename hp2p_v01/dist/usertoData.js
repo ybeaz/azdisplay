@@ -295,6 +295,7 @@ var USERTO = {
     router: {
       routes: [
         { path: '/', exact: true, page: 'FacePage326' },
+        { path: '/analytics-c7b094941e7e11c6bf93d5736673881e', exact: true, page: 'Analytics' },
         { path: '/326_HP2P_v01/enter', exact: true, page: 'FacePage326' },
       ],
       redirects: [

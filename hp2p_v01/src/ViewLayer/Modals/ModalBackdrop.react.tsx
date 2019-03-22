@@ -4,11 +4,10 @@ interface Props {
   readonly sid: string,
 }
 
-const ModalBackdrop: React.SFC<Props> = props => {
+export const ModalBackdrop: React.SFC<Props> = (props: Props) => {
   const { sid } = props
   return (
     <div className={`ModalBackdrop ModalBackdrop_${sid} ModalBackdrop__hide`} />
   )
 }
 
-export default ModalBackdrop
