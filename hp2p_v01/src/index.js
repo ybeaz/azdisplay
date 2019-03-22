@@ -7,6 +7,7 @@ import './ViewLayer/CssStyles/index.less'
 
 import * as actions from './DataLayer/actions/index'
 import store from './DataLayer/store'
+import * as serviceFunc from './Shared/serviceFunc'
 import FacePage326 from './ViewLayer/Pages/FacePage326.react'
 import Error404 from './ViewLayer/Pages/Error404.react'
 
@@ -29,7 +30,10 @@ const App = () => {
   
   store.dispatch(actions.UPLOAD_TREE_DATA({ treeData: USERTO }))
 
-  // console.info('index->app [10] ', { routes })
+  const { width, height } = serviceFunc.mediaSizeCrossBrowser(global)
+  const payload = { optGet: 'sus', target: 'startSession', width, height }
+  store.dispatch(actions.getActionAsync('START_USER_SESSION', 'REQUEST', payload))
+  console.info('index->app [10] ', { payload })
   // https://github.com/ReactTraining/react-router/issues/4551
   // https://tylermcginnis.com/react-router-cannot-get-url-refresh/
 

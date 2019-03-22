@@ -1,5 +1,16 @@
 
 
+export interface Payload {
+  readonly optGet?: string,
+  readonly optPost?: string,
+  readonly target?: string,
+  readonly email?: string,
+  readonly msg?: string,
+  readonly actionLog?: string,
+  readonly width?: number,
+  readonly height?: number,
+}
+
 export interface ModeProdDev {
   readonly checkEnterEmail?: boolean,
   readonly checkSelectRole?: boolean,

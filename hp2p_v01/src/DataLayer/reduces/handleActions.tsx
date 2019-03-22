@@ -2,14 +2,14 @@ import { bindActionCreators } from 'redux'
 import * as actionSet from '../actions/index'
 import store from '../store'
 
-import * as Interface from '../../Shared/interfaces'
+import * as Interfaces from '../../Shared/interfaces'
 import * as serviceFunc from '../../Shared/serviceFunc'
 
 const { dispatch } = store
 const actions: any = bindActionCreators(actionSet, dispatch)
 
 
-export const handleActions: void = (e: {}, action: Interface.Action) => {
+export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
   // console.info(`handleActions.js type->${action.type}`, { e, action })
 
   switch (action.type) {
@@ -56,12 +56,21 @@ export const handleActions: void = (e: {}, action: Interface.Action) => {
       const { delay } = treeData[language].modals[prop]
       setTimeout(() => actions.SEND_COMMENT_FORM({ modalNext }), delay)
 
-      const arrToOmit: string[] = ['UPLOAD_TREE_DATA', 'CLOSE_ALL_MODALS', 'PRESS_OK_IN_SELECT_ROLE' ]
+      const arrToOmit: string[] = [
+        'CLOSE_MODAL_THANK_YOU', 'SEND_COMMENT_FORM',
+        'SAVE_USER_VISIT_ACTIONS_REQUEST',
+        'START_USER_SESSION_REQUEST', 'UPLOAD_TREE_DATA',
+        'CLOSE_ALL_MODALS', 'PRESS_OK_IN_SELECT_ROLE' ]
       let actionLogNext: any = serviceFunc.arrOfObjOmitItemsByPropValArr(actionLog, 'type', arrToOmit)
       actionLogNext = actionLogNext.map((item: any) => item.type)
-      const payload: any = { actionLog: JSON.stringify(actionLogNext), optGet: 1 }
+      const payload: Interfaces.Payload  = {
+        optPost: 'suva',
+        target: 'registration',
+        email: 'email',
+        msg: 'msg',
+        actionLog: JSON.stringify(actionLogNext) }
       console.info(`handleActions.js type: ${action.type} [10]`, { payload, actionLogNext, actionLog, action, e })
-      actions.getActionAsync('SAVE_USER_VISIT_ACTIONS','REQUEST', payload)
+      actions.getActionAsync('SAVE_USER_VISIT_ACTIONS', 'REQUEST', payload)
     }
     break
 
