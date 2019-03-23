@@ -1,9 +1,11 @@
 import React from 'react'
 
 import * as Interfaces from '../../Shared/interfaces'
+import * as serviceFunc from '../../Shared/serviceFunc'
 import CommonContainer from '../Containers/CommonContainer.react'
 import SectionWrapper from '../Components/SectionWrapper.react'
 import NavBar from '../Components/NavBar.react'
+import ButtonCommon from '../Components/ButtonCommon.react'
 import Footer from '../Components/Footer.react'
 
 import GetModals from '../Modals/GetModals.react'
@@ -14,6 +16,7 @@ interface Props {
 }
 interface State {
   analytics: any,
+  buttonSortState: boolean,
 }
 
 
@@ -27,6 +30,7 @@ class Analytics extends React.PureComponent<Props, State> {
     const { analytics } = reduxState
     this.state = {
       analytics,
+      buttonSortState: true,
     }
   }
 
@@ -40,6 +44,8 @@ class Analytics extends React.PureComponent<Props, State> {
   public componentDidUpdate(): void {
     const { reduxState } = this.props
     const { analytics } = reduxState
+    //const analyticsSorted: any = analytics.sort(serviceFunc.sortBy('start', true))
+    //console.info('Analytics->componentDidUpdate()', { analyticsSorted, analytics })
     this.setState({ analytics })
   }
 
@@ -125,16 +131,74 @@ class Analytics extends React.PureComponent<Props, State> {
     )
   }
 
+  public controlRow = (): any => {
+
+    const { buttonSortState } = this.state
+    let buttonCapture: string = 'Go straight'
+    let buttonActionType: string = 'sortStraightAnalyticsTable'
+    if (buttonSortState) {
+      buttonCapture = 'Go reverse'
+      buttonActionType = 'sortReverseAnalyticsTable'
+    }
+
+    const sortButton: any = {
+      sid: 'Analytics__sortButton',
+      sidButton: 'Analytics__sortButton',
+      capture: buttonCapture,
+      handleFunction: this.handleEvents,
+      action: { type: buttonActionType }}
+
+    const refreshButton: any = {
+      sid: 'Analytics__refreshButton',
+      sidButton: 'Analytics__refreshButton',
+      capture: 'Refresh',
+      handleFunction: this.handleEvents,
+      action: { type: 'refreshAnalyticsTable' }}
+
+    return (
+      <div>
+        <ButtonCommon {...refreshButton} />
+        <ButtonCommon {...sortButton} />
+      </div>
+    )
+
+  }
+
+
   public handleEvents = (e: any, action: Interfaces.Action): void => {
     switch (action.type) {
+      case 'sortStraightAnalyticsTable': {
+        const { analytics } = this.state
+        const analyticsSorted: any = analytics.sort(serviceFunc.sortBy('start', false))
+        console.info(`handleActions.js type->${action.type}`, { analyticsSorted, analytics, action, e })
+        const { buttonSortState } = this.state
+        this.setState({ analytics: analyticsSorted, buttonSortState: !buttonSortState })
+      } break
+
+      case 'sortReverseAnalyticsTable': {
+        const { analytics } = this.state
+        const analyticsSorted: any = analytics.sort(serviceFunc.sortBy('start', true))
+        console.info(`handleActions.js type->${action.type}`, { analyticsSorted, analytics, action, e })
+        const { buttonSortState } = this.state
+        this.setState({ analytics: analyticsSorted, buttonSortState: !buttonSortState })
+      } break
+
+      case 'refreshAnalyticsTable': {
+        const { handleActions } = this.props
+        const action02: Interfaces.Action = { type: 'getUserAnalyticsData' }
+        console.info(`handleActions.js type->${action.type}`, { action, e })
+        handleActions({}, action02)
+      } break
+
       case 'getUserAnalyticsData': {
         const { handleActions } = this.props
         const action01: Interfaces.Action = { type: 'getUserAnalyticsData' }
+        console.info(`handleActions.js type->${action.type}`, { action, e })
         handleActions({}, action01)
       } break
 
       default: {
-        console.info('CatalogTags->handleEvents unexpected action', { action })
+        console.info('Analytics->handleEvents unexpected action', { action })
       }
     }
   }
@@ -159,6 +223,7 @@ class Analytics extends React.PureComponent<Props, State> {
         <header><NavBar {...navBar} /></header>
         <main>
           <SectionWrapper classStyle='SectionWrapper_Analytics'>
+            {this.controlRow()}
             {this.getAnalyticsTable(analytics)}
           </SectionWrapper>
         </main>
