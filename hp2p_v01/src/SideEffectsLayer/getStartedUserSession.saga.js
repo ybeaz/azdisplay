@@ -1,15 +1,15 @@
 import { takeEvery, call } from 'redux-saga/effects'
 
-import { fetchAsyncAwaitGet } from '../ComminicationLayer/fetch'
+import { fetchGet } from '../ComminicationLayer/fetch'
 
 function* getStartedUserSession(payload) {
   // console.info('getStartedUserSession [0]', { payload })
+  const endpoint = 'https://userto.com/api/apiP2p.php'
   try {
-    yield call(() => {
-      // console.info('getStartedUserSession [5]', { payload })
-      const endpoint = 'https://userto.com/api/apiP2p.php'
-      fetchAsyncAwaitGet(endpoint, payload)
-    })
+    const response = yield fetchGet(endpoint, payload)
+    
+    const data = yield response.json()
+    console.info('getStartedUserSession [7]', { data })
   }
   catch (error) {
     yield call(() => {})
@@ -18,5 +18,6 @@ function* getStartedUserSession(payload) {
 
 export default function* getStartedUserSessionWatcher() {
   // console.info('getSavedUserVisitActionsMdbWatcher START_USER_SESSION', )
-  yield takeEvery('START_USER_SESSION_REQUEST', getStartedUserSession)
+  yield takeEvery(['START_USER_SESSION_REQUEST', 'CANCEL_USER_REGISTRATION_REQUEST'],
+    getStartedUserSession)
 }

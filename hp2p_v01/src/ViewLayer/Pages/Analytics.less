@@ -1,5 +1,27 @@
 .Analytics {
+  .Analytics__tableClass {
+    border-collapse: collapse;
+  }
+  .Analytics__rowClass {
+    font-weight: initial;
+  }
+  .Analytics__cellClass {
+    font-weight: initial;
+    border: 1px solid wheat;
+    padding: 0.5rem;
+  }
 
+  .Analytics__thCellClass {
+    font-weight: bold;
+    border: 1px solid wheat;
+    padding: 0.5rem;
+  }
+
+  .Analytics__itemElem {
+    .Analytics__itemElemCell {
+      &:extend(.p_x_0p5_rem);
+    }
+  }
 
 
   @media @large {

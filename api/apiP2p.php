@@ -63,10 +63,11 @@ $securityFunctions::sessionStart();
 // Reading GET/POST data traditionally from xnr request
 //**********************************************************
 
-  $optGet = securityFunctions::stringSpecCharEscape($_GET['optGet']);
-  $target = securityFunctions::stringSpecCharEscape($_GET['target']);
-  $width  = securityFunctions::stringSpecCharEscape($_GET['width']);
-  $height = securityFunctions::stringSpecCharEscape($_GET['height']);
+  $optGet    = securityFunctions::stringSpecCharEscape($_GET['optGet']);
+  $target    = securityFunctions::stringSpecCharEscape($_GET['target']);
+  $actionLog = securityFunctions::stringSpecCharEscape($_GET['actionLog']);
+  $width     = securityFunctions::stringSpecCharEscape($_GET['width']);
+  $height    = securityFunctions::stringSpecCharEscape($_GET['height']);
  
 //**********************************************************
 // Reading JSON POST using PHP
@@ -83,7 +84,7 @@ $securityFunctions::sessionStart();
   // Убераем лишние пробелы и делаем двойное шифрование. Вариант использовать https://www.php.su/functions/?crypt  
   
   $userIp  = $_SERVER['REMOTE_ADDR'];
-  $dateTime  = date('Y-m-d H:i:s');
+  $dateTime  = date('Y/m/d H:i:s');
 
   //print_r(['$_GET' => $_GET, '$userIp' => $userIp, '$dateTime' => $dateTime]);
 
@@ -93,13 +94,25 @@ $securityFunctions::sessionStart();
 //**********************************************************  
 
 
- // Return report to developers and market analytics GET_USER_ANALYTICS_REPORT
+
+ // Return report to developers and market analytics GET_USER_ANALYTICS_DATA
+ if ($optGet === 'guad') {
+  //print_r($data);
+
+  $dataOutput      = $webAnalytics->getUserAnalyticsData();
+  //print_r($dataOutput);
+  echo json_encode($dataOutput);
+
+}
+
+
+ // Return report to developers and market analytics GET_USER_HTML_ANALYTICS_REPORT
  if ($optGet === 'guar') {
   //print_r($data);
 
-  $dataOutput      = $webAnalytics->getUserAnalyticsReport();
+  $dataOutput      = $webAnalytics->getUserAnalyticsData();
   //print_r($dataOutput);
-  $dataOutput      = $webAnalytics->getArrOfObjToStringCsv($dataOutput);
+  $dataOutput      = $webAnalytics->getArrOfObjToHtmlReport($dataOutput);
   echo $dataOutput;
 
 }
@@ -108,14 +121,14 @@ $securityFunctions::sessionStart();
  // Save user visit actions 'SAVE_USER_VISIT_ACTIONS'
  if ($postDataObj->optPost === 'suva') {
   //print_r($data);
-
+  $data            = new stdClass();
   $data            = $postDataObj;
   unset($data->optPost);
   unset($data->type);
   $data->PHPSESSID = $_SESSION['PHPSESSID'];
-  $data->finish    = $_SESSION['dateTime'];
+  $data->finish    = $dateTime;
   $dataOutput      = $webAnalytics->getUpdatedSession($data);
-  print_r(['$dataOutput' => $dataOutput, '$data' => $data, '$_SESSION' => $_SESSION]);
+  // print_r(['$dataOutput' => $dataOutput, '$data' => $data, '$_SESSION' => $_SESSION]);
   echo json_encode($dataOutput);
   
   //$test = (object) $test;
@@ -128,16 +141,16 @@ $securityFunctions::sessionStart();
     $data            = new stdClass();
     $data->PHPSESSID = $_SESSION['PHPSESSID'];
     $data->start     = $_SESSION['dateTime'];
-    $data->finish    = '';
+    $data->finish    = $dateTime;
     $data->ip        = $userIp;
     $data->target    = $target;
     $data->email     = '';
     $data->msg       = '';
-    $data->actionLog = '';
+    $data->actionLog = $actionLog;
     $data->width     = $width;
     $data->height    = $height;
     $dataOutput      = $webAnalytics->getUpdatedSession($data);
-    print_r(['$dataOutput' => $dataOutput, '$data' => $data, '$_SESSION' => $_SESSION]);
+    // print_r(['$dataOutput' => $dataOutput, '$data' => $data, '$_SESSION' => $_SESSION]);
     echo json_encode($dataOutput);
     return;
   }

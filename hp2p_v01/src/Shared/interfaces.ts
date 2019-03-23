@@ -23,6 +23,7 @@ export interface Action {
   readonly lang?: string,
   readonly treeData?: any,
   readonly modalNext?: string,
+  readonly data?: any,
 }
 
 export interface ModalWindowStateItem {

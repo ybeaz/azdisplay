@@ -9,7 +9,9 @@ export const createRequestTypes = base =>
   }, {})
 
 // Asynchroneous actions for saga
+export const GET_USER_ANALYTICS_DATA: any = createRequestTypes('GET_USER_ANALYTICS_DATA')
 export const SAVE_USER_VISIT_ACTIONS: any = createRequestTypes('SAVE_USER_VISIT_ACTIONS')
+export const CANCEL_USER_REGISTRATION: any = createRequestTypes('CANCEL_USER_REGISTRATION')
 export const START_USER_SESSION: any = createRequestTypes('START_USER_SESSION')
 // export const LOADED_DOC_NAMED = createRequestTypes('LOADED_DOC_NAMED')
 

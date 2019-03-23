@@ -1,6 +1,23 @@
 import { combineReducers } from 'redux'
 import * as Interfaces from '../../Shared/interfaces'
 
+
+
+const analytics: any = (state: any = [], action: Interfaces.Action): any => {
+  switch (action.type) {
+    case 'GET_USER_ANALYTICS_DATA_SUCCESS': {
+      
+      const stateNext = action.data.filter(item => item.PHPSESSID)
+      console.info(`reducer->analytics type: ${action.type}`, { stateNext, state, action })
+      return stateNext
+    }
+
+    default: {
+      return state
+    }
+  }
+}
+
 const language = (state: string = 'rus', action: Interfaces.Action): any => {
 
   switch (action.type) {
@@ -148,6 +165,7 @@ const treeData: any = (state: any = {}, action: Interfaces.Action): any => {
 //Main application reducers
 const appCombineReducers = combineReducers(
   {
+    analytics,
     language,
     user,
     modalWindows,

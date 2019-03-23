@@ -4,6 +4,7 @@ import store from '../store'
 
 import * as Interfaces from '../../Shared/interfaces'
 import * as serviceFunc from '../../Shared/serviceFunc'
+import { ARR_ACTION_TO_OMIT_FOR_LOG } from '../../Constants/CONSTANTS'
 
 const { dispatch } = store
 const actions: any = bindActionCreators(actionSet, dispatch)
@@ -13,12 +14,16 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
   // console.info(`handleActions.js type->${action.type}`, { e, action })
 
   switch (action.type) {
-/*  'CLOSE_ALL_MODALS'
-    'CLOSE_MODAL_THANKYOU':
-    'CLOSE_COMMENT_FORM'
-    'SEND_COMMENT_FORM'
-    'PRESS_OK_IN_SELECT_ROLE'
-*/
+
+    case 'getUserAnalyticsData':
+    {
+      const payload02: Interfaces.Payload  = {
+        optGet: 'guad',
+      }
+      actions.getActionAsync('GET_USER_ANALYTICS_DATA', 'REQUEST', payload02)
+      // console.info(`handleActions.js type: ${action.type}`, { e, payload, action })
+    }
+    break
 
     case 'closeModalThankYou':
     {
@@ -42,7 +47,20 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
     {
       const data: any = {}
       actions.CLOSE_MODAL_SELECT_ROLE(data)
-      // console.info(`handleActions.js type: ${action.type}`, { e, action })
+
+      const { actionLog } = store.getState()
+      let actionLogNext: any = actionLog
+      actionLogNext.push({type: 'CANCEL_USER_REGISTRATION_REQUEST'})
+      actionLogNext = serviceFunc.arrOfObjOmitItemsByPropValArr(actionLog, 'type', ARR_ACTION_TO_OMIT_FOR_LOG)
+      actionLogNext = actionLogNext.map((item: any) => item.type)
+      const payload: Interfaces.Payload  = {
+        optGet: 'sus',
+        target: 'cancelReg',
+        email: '',
+        msg: '',
+        actionLog: JSON.stringify(actionLogNext) }
+      actions.getActionAsync('CANCEL_USER_REGISTRATION', 'REQUEST', payload)
+      // console.info(`handleActions.js type: ${action.type}`, { e, payload, action })
     }
     break
 
@@ -56,21 +74,16 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
       const { delay } = treeData[language].modals[prop]
       setTimeout(() => actions.SEND_COMMENT_FORM({ modalNext }), delay)
 
-      const arrToOmit: string[] = [
-        'CLOSE_MODAL_THANK_YOU', 'SEND_COMMENT_FORM',
-        'SAVE_USER_VISIT_ACTIONS_REQUEST',
-        'START_USER_SESSION_REQUEST', 'UPLOAD_TREE_DATA',
-        'CLOSE_ALL_MODALS', 'PRESS_OK_IN_SELECT_ROLE' ]
-      let actionLogNext: any = serviceFunc.arrOfObjOmitItemsByPropValArr(actionLog, 'type', arrToOmit)
+      let actionLogNext: any = serviceFunc.arrOfObjOmitItemsByPropValArr(actionLog, 'type', ARR_ACTION_TO_OMIT_FOR_LOG)
       actionLogNext = actionLogNext.map((item: any) => item.type)
-      const payload: Interfaces.Payload  = {
+      const payload01: Interfaces.Payload  = {
         optPost: 'suva',
         target: 'registration',
         email: 'email',
         msg: 'msg',
         actionLog: JSON.stringify(actionLogNext) }
-      console.info(`handleActions.js type: ${action.type} [10]`, { payload, actionLogNext, actionLog, action, e })
-      actions.getActionAsync('SAVE_USER_VISIT_ACTIONS', 'REQUEST', payload)
+      // console.info(`handleActions.js type: ${action.type} [10]`, { payload01, actionLogNext, actionLog, action, e })
+      actions.getActionAsync('SAVE_USER_VISIT_ACTIONS', 'REQUEST', payload01)
     }
     break
 
