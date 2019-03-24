@@ -9,7 +9,7 @@ function* getStartedUserSession(payload) {
     const response = yield fetchGet(endpoint, payload)
     
     const data = yield response.json()
-    console.info('getStartedUserSession [7]', { data })
+    // console.info('getStartedUserSession.saga.js [7]', { data })
   }
   catch (error) {
     yield call(() => {})

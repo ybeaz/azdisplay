@@ -8,7 +8,7 @@ const analytics: any = (state: any = [], action: Interfaces.Action): any => {
     case 'GET_USER_ANALYTICS_DATA_SUCCESS': {
       
       const stateNext = action.data.filter(item => item.PHPSESSID)
-      console.info(`reducer->analytics type: ${action.type}`, { stateNext, state, action })
+      // console.info(`reducer->analytics type: ${action.type}`, { stateNext, state, action })
       return stateNext
     }
 
@@ -18,7 +18,7 @@ const analytics: any = (state: any = [], action: Interfaces.Action): any => {
   }
 }
 
-const language = (state: string = 'rus', action: Interfaces.Action): any => {
+const language: any = (state: string = 'rus', action: Interfaces.Action): any => {
 
   switch (action.type) {
     case 'SELECT_LANGUAGE': {
@@ -163,7 +163,7 @@ const treeData: any = (state: any = {}, action: Interfaces.Action): any => {
 
 
 //Main application reducers
-const appCombineReducers = combineReducers(
+const appCombineReducers: Function = combineReducers(
   {
     analytics,
     language,

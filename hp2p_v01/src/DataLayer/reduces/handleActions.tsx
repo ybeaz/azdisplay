@@ -116,22 +116,22 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
 
         case 'pressSearchButton': {
           setTimeout(() => actions.PRESS_SEARCH_BUTTON({ modalNext }), delay)
-        } break
+        }                         break
         case 'clickUserProfile': {
           setTimeout(() => actions.CLICK_USER_PROFILE({ modalNext }), delay)
-        } break
+        }                        break
         case 'selectCatalogCategory': {
           setTimeout(() => actions.SELECT_CATALOG_CATEGORY({ modalNext }), delay)
-        } break
+        }                             break
         case 'openModalRegistrationNavBar': {
           setTimeout(() => actions.OPEN_MODAL_REGISTRATION_NAV_BAR({ modalNext }), delay)
-        } break
+        }                                   break
         case 'openModalRegistrationQuick': {
           setTimeout(() => actions.OPEN_MODAL_REGISTRATION_QUICK({ modalNext }), delay)
-        } break
+        }                                  break
         case 'openModalRegistrationFooter': {
           setTimeout(() => actions.OPEN_MODAL_REGISTRATION_FOOTER({ modalNext }), delay)
-        } break
+        }                                   break
         default: {
           console.info('handleActions.js unexpected action', { action })
         }

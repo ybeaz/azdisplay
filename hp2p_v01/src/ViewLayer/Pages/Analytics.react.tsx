@@ -16,6 +16,7 @@ interface Props {
 }
 interface State {
   analytics: any,
+  analyticsSrc: any,
   buttonSortState: boolean,
 }
 
@@ -26,11 +27,10 @@ class Analytics extends React.PureComponent<Props, State> {
 
   constructor(props) {
     super(props)
-    const { reduxState } = this.props
-    const { analytics } = reduxState
     this.state = {
-      analytics,
-      buttonSortState: true,
+      analytics: [],
+      analyticsSrc: [],
+      buttonSortState: false,
     }
   }
 
@@ -41,20 +41,26 @@ class Analytics extends React.PureComponent<Props, State> {
     this.handleEvents({}, action)
   }
 
-  public componentDidUpdate(): void {
+  public componentDidUpdate(prevProps: any, prevState: any, snapshot: any): void {
     const { reduxState } = this.props
     const { analytics } = reduxState
-    //const analyticsSorted: any = analytics.sort(serviceFunc.sortBy('start', true))
-    //console.info('Analytics->componentDidUpdate()', { analyticsSorted, analytics })
-    this.setState({ analytics })
+    if (JSON.stringify(prevState.analyticsSrc) !== JSON.stringify(analytics)) {
+      const action: Interfaces.Action = {
+        type: 'setStateWithAnalyticsData',
+        data: analytics,
+      }
+      this.handleEvents({}, action)
+    }
   }
 
   public getActionLog = (actionLogJson: any): any => {
-    const output = actionLogJson.map(item => {
-        const itemElem = item.map(item01 => <div className='Analytics__itemElemCell'>{item}</div>)
+    const output: any = actionLogJson.map(item => {
+        const itemElem: any = item.map((item01: any) => <div className='Analytics__itemElemCell'>{item01}</div>)
+
         return <div className='Analytics__itemElem'>{itemElem}</div>
       }
     )
+
     return <div>{output}</div>
   }
 
@@ -168,34 +174,42 @@ class Analytics extends React.PureComponent<Props, State> {
   public handleEvents = (e: any, action: Interfaces.Action): void => {
     switch (action.type) {
       case 'sortStraightAnalyticsTable': {
-        const { analytics } = this.state
+        const { analytics, buttonSortState } = this.state
         const analyticsSorted: any = analytics.sort(serviceFunc.sortBy('start', false))
-        console.info(`handleActions.js type->${action.type}`, { analyticsSorted, analytics, action, e })
-        const { buttonSortState } = this.state
+        // console.info(`Analytics->handleEvents() type->${action.type}`, { analyticsSorted, analytics, action, e })
         this.setState({ analytics: analyticsSorted, buttonSortState: !buttonSortState })
-      } break
+      }                                  break
 
       case 'sortReverseAnalyticsTable': {
-        const { analytics } = this.state
+        const { analytics, buttonSortState } = this.state
         const analyticsSorted: any = analytics.sort(serviceFunc.sortBy('start', true))
-        console.info(`handleActions.js type->${action.type}`, { analyticsSorted, analytics, action, e })
-        const { buttonSortState } = this.state
+        // console.info(`handleActions.js type->${action.type}`, { analyticsSorted, analytics, action, e })
         this.setState({ analytics: analyticsSorted, buttonSortState: !buttonSortState })
-      } break
+      }                                 break
 
       case 'refreshAnalyticsTable': {
         const { handleActions } = this.props
         const action02: Interfaces.Action = { type: 'getUserAnalyticsData' }
-        console.info(`handleActions.js type->${action.type}`, { action, e })
+        // console.info(`handleActions.js type->${action.type}`, { action, e })
         handleActions({}, action02)
-      } break
+      }                             break
+
+      case 'setStateWithAnalyticsData': {
+        const { buttonSortState } = this.state
+        const { data } = action
+        const analytics: any = data.slice()
+          .reverse()
+        //analytics.sort(serviceFunc.sortBy('start', false))
+        //console.info('Analytics->handleEvents()', { analyticsSorted, analytics })
+        this.setState({ analytics, analyticsSrc: data, buttonSortState: !buttonSortState })
+      }
 
       case 'getUserAnalyticsData': {
         const { handleActions } = this.props
         const action01: Interfaces.Action = { type: 'getUserAnalyticsData' }
-        console.info(`handleActions.js type->${action.type}`, { action, e })
+        // console.info(`Analytics->handleEvents() type->${action.type}`, { action, e })
         handleActions({}, action01)
-      } break
+      }                            break
 
       default: {
         console.info('Analytics->handleEvents unexpected action', { action })
