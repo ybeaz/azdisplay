@@ -44,7 +44,7 @@
     "no-console": [
         true,
         "debug",
-        "info",
+        //"info",
         "error",
         "log",
         "time",
@@ -120,7 +120,11 @@
         "classes"
     ],
     "export-name": true,
-    "file-name-casing": true,
+    "file-name-casing": [
+      true,
+      "camel-case",
+      "pascal-case"
+    ],
     "function-name": true,
     "import-name": true,
     "informative-docs": true,
@@ -207,7 +211,10 @@
     "underscore-consistent-invocation": true,
     "unified-signatures": true,
     "use-default-type-parameter": true,
-    "variable-name": true,
+    "variable-name": [
+      true,
+      "allow-pascal-case"
+    ],
     "react-a11y-anchors": true,
     "react-a11y-aria-unsupported-elements": true,
     "react-a11y-event-has-role": true,

@@ -2,12 +2,12 @@ import React from 'react'
 
 import * as Interfaces from '../../Shared/interfaces'
 import * as serviceFunc from '../../Shared/serviceFunc'
-import CommonContainer from '../Containers/CommonContainer.react'
-import SectionWrapper from '../Components/SectionWrapper.react'
-import NavBar from '../Components/NavBar.react'
+// tslint:disable: import-name
 import ButtonCommon from '../Components/ButtonCommon.react'
 import Footer from '../Components/Footer.react'
-
+import NavBar from '../Components/NavBar.react'
+import SectionWrapper from '../Components/SectionWrapper.react'
+import CommonContainer from '../Containers/CommonContainer.react'
 import GetModals from '../Modals/GetModals.react'
 
 interface Props {
@@ -20,12 +20,11 @@ interface State {
   buttonSortState: boolean,
 }
 
-
 class Analytics extends React.PureComponent<Props, State> {
   public static defaultProps: any = {
   }
 
-  constructor(props) {
+  constructor(props: any) {
     super(props)
     this.state = {
       analytics: [],
@@ -60,31 +59,29 @@ class Analytics extends React.PureComponent<Props, State> {
           <span className='Analytics__logCellGroupElem'>{itemElem}&nbsp;&nbsp;</span>)
 
         return <div className='Analytics__logCellGroup'>{itemGroup}</div>
-      }
+      },
     )
 
     return <div className='Analytics__logCell'>{output}</div>
   }
 
-
   public getAnalyticsRows = (analytics: any): any => {
     // console.info('Analytics->getAnalyticsRows() [0]', { analytics })
     return analytics
       //.filter(item => item.actionLog !== '')
-      .map(item => {
+      .map((item: any) => {
 
-        const { PHPSESSID, start, finish, ip, target, email, 
+        const { PHPSESSID, start, finish, ip, target, email,
           msg, actionLog, width, height } = item
 
-        let actionLogNext = actionLog
-        let actionLogJson
-        let actionLogElem = null
-        if( actionLogNext !== '' && actionLogNext !== null) {
+        let actionLogNext: string = actionLog
+        let actionLogJson: any
+        let actionLogElem: JSX.Element
+        if (actionLogNext !== '' && actionLogNext !== null) {
 
           let regex: any = /&quot;/gm
           let subst: string = `"`
           actionLogNext = actionLogNext.replace(regex, subst)
-
 
           regex = /^"([\s\S]*?)"$/gm
           subst = `$1`
@@ -117,7 +114,7 @@ class Analytics extends React.PureComponent<Props, State> {
   public getAnalyticsTable = (analytics: any): any => {
 
     return (
-      <table className="Analytics__tableClass">
+      <table className='Analytics__tableClass'>
         <thead>
           <tr className='Analytics__thRowClass'>
               <th className='Analytics__thCellClass'>PHPSESSID</th>
@@ -172,7 +169,6 @@ class Analytics extends React.PureComponent<Props, State> {
 
   }
 
-
   public handleEvents = (e: any, action: Interfaces.Action): void => {
     switch (action.type) {
       case 'sortStraightAnalyticsTable': {
@@ -191,6 +187,9 @@ class Analytics extends React.PureComponent<Props, State> {
 
       case 'refreshAnalyticsTable': {
         const { handleActions } = this.props
+        this.setState({ analyticsSrc: [] })
+        const action03: Interfaces.Action = { type: 'callSpinner' }
+        handleActions({}, action03)
         const action02: Interfaces.Action = { type: 'getUserAnalyticsData' }
         // console.info(`handleActions.js type->${action.type}`, { action, e })
         handleActions({}, action02)
@@ -201,8 +200,8 @@ class Analytics extends React.PureComponent<Props, State> {
         const { data } = action
         const analytics: any = data.slice()
           .reverse()
-        //analytics.sort(serviceFunc.sortBy('start', false))
-        //console.info('Analytics->handleEvents()', { analyticsSorted, analytics })
+        // analytics.sort(serviceFunc.sortBy('start', false))
+        // console.info('Analytics->handleEvents()', { analyticsSorted, analytics })
         this.setState({ analytics, analyticsSrc: data, buttonSortState: !buttonSortState })
       }
 
@@ -219,21 +218,18 @@ class Analytics extends React.PureComponent<Props, State> {
     }
   }
 
-
   public render(): JSX.Element {
     const { reduxState, handleActions } = this.props
     const { modalWindows, treeData, language } = reduxState
-    const { analytics } = this.state
+    const { analytics, analyticsSrc } = this.state
     // console.info('Analytics->render() [5]', { analytics, reduxState })
-    let {
-      navBar,
-      footer,
-      modals,
-    } = treeData[language]
+    const { footer, modals } = treeData[language]
+    let { navBar } = treeData[language]
     navBar = { ...navBar, handleActions }
 
     const modalProps: any = { modalWindows, handleActions, modals }
     // console.info('FacePage326->render() [10]', { modalWindows, reduxState, modals, props: this.props })
+
     return (
       <div className='Analytics globalStyle'>
         <header><NavBar {...navBar} /></header>
@@ -254,4 +250,7 @@ class Analytics extends React.PureComponent<Props, State> {
   }
 }
 
+/* tslint:disable-next-line: no-default-export
+   tslint:disable-next-line: export-name
+*/
 export default CommonContainer(Analytics)

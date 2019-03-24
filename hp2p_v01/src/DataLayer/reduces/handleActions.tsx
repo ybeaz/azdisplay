@@ -15,6 +15,16 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
 
   switch (action.type) {
 
+    case 'callSpinner':
+    {
+      const data: any = {}
+      actions.CLOSE_ALL_MODALS(data)
+      const modalNext: string = 'Spinner'
+      actions.CALL_SPINNER({ modalNext })
+      // console.info(`handleActions.js type: ${action.type}`, { action, e })
+    }
+    break
+
     case 'getUserAnalyticsData':
     {
       const payload02: Interfaces.Payload  = {

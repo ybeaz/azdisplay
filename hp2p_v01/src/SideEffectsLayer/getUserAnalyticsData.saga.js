@@ -13,6 +13,7 @@ function* getUserAnalyticsData(payload) {
     // console.info('getUserAnalyticsData [7]', { data })
 
     yield put(actions.getActionAsync('GET_USER_ANALYTICS_DATA', 'SUCCESS', { data }))
+    yield put(actions.CLOSE_ALL_MODALS(data))
   }
   catch (error) {
     yield call(() => {})

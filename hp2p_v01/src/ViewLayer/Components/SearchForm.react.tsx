@@ -59,7 +59,7 @@ class SearchForm extends React.PureComponent<Props, State> {
       case 'pressSearchButton': {
         const action01: Interfaces.Action = { type: 'pressSearchButton' }
         handleActions(e, action01)
-      }                                  break
+      }                         break
 
       default: {
         console.info('SearchForm->handleEvents unexpected action', { action })

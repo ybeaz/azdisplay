@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import * as Interfaces from '../../Shared/interfaces'
+import { handleActions } from './handleActions'
 
 const userFootprint: any = (state: {} = {}, action: Interfaces.Action): any => {
   switch (action.type) {
@@ -73,8 +74,7 @@ const analytics: any = (state: any = [], action: Interfaces.Action): any => {
   switch (action.type) {
     case 'GET_USER_ANALYTICS_DATA_SUCCESS': {
       const stateNext: any = action.data.filter((item: any) => item.PHPSESSID)
-      //console.info(`reducer->analytics type: ${action.type}`, { stateNext, state, action })
-
+      // console.info(`reducer->analytics type: ${action.type}`, { stateNext, state, action })
       return stateNext
     }
 
@@ -129,6 +129,7 @@ const modalWindows: any = (
       // console.info(`reducer->modalWindows type: ${action.type}`, { stateNext, state, action })
     }
 
+    case 'CALL_SPINNER':
     case 'CLOSE_COMMENT_FORM':
     case 'SEND_COMMENT_FORM':
     case 'PRESS_OK_IN_SELECT_ROLE': {
