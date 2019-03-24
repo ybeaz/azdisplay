@@ -50,7 +50,7 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
 
       const { actionLog } = store.getState()
       let actionLogNext: any = actionLog
-      actionLogNext.push({type: 'CANCEL_USER_REGISTRATION_REQUEST'})
+      // actionLogNext.push({type: 'CANCEL_USER_REGISTRATION_REQUEST'})
       actionLogNext = serviceFunc.arrOfObjOmitItemsByPropValArr(actionLog, 'type', ARR_ACTION_TO_OMIT_FOR_LOG)
       actionLogNext = actionLogNext.map((item: any) => item.type)
       const payload: Interfaces.Payload  = {

@@ -21,6 +21,18 @@ export const getActionAsync: any = (type: string, stage: any, data: any): any =>
 
 // Get synchroneours actions
 // Template export const : any = (data: any): any => action(actionTypes., data)
+
+export const CLICK_FORWARD_2: any = (data: any): any => action(actionTypes.CLICK_FORWARD_2, data)
+export const CLICK_FORWARD_1: any = (data: any): any => action(actionTypes.CLICK_FORWARD_1, data)
+export const CLICK_ROLE: any = (data: any): any => action(actionTypes.CLICK_ROLE, data)
+export const CLICK_PROFILE_REVIEW: any = (data: any): any => action(actionTypes.CLICK_PROFILE_REVIEW, data)
+export const CLICK_CATALOG_CATEGORY: any = (data: any): any => action(actionTypes.CLICK_CATALOG_CATEGORY, data)
+export const CLICK_SEARCH_BUTTON_SECOND: any = (data: any): any => action(actionTypes.CLICK_SEARCH_BUTTON_SECOND, data)
+export const CLICK_SEARCH_BUTTON_FIRST: any = (data: any): any => action(actionTypes.CLICK_SEARCH_BUTTON_FIRST, data)
+export const CLICK_REGISTRATION_QUICK: any = (data: any): any => action(actionTypes.CLICK_REGISTRATION_QUICK, data)
+export const CLICK_REGISTRATION_FOOTER: any = (data: any): any => action(actionTypes.CLICK_REGISTRATION_FOOTER, data)
+export const CLICK_REGISTRATION_NAV_BAR: any = (data: any): any => action(actionTypes.CLICK_REGISTRATION_NAV_BAR, data)
+
 export const CLOSE_ALL_MODALS: any = (data: any): any => action(actionTypes.CLOSE_ALL_MODALS, data)
 export const CLOSE_MODAL_THANK_YOU: any = (data: any): any => action(actionTypes.CLOSE_MODAL_THANK_YOU, data)
 export const CLOSE_COMMENT_FORM: any = (data: any): any => action(actionTypes.CLOSE_COMMENT_FORM, data)

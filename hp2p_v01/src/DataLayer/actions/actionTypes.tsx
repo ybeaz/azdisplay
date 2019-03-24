@@ -17,6 +17,18 @@ export const START_USER_SESSION: any = createRequestTypes('START_USER_SESSION')
 
 // Synchroneours actions
 // Template export const  = ''
+
+export const CLICK_FORWARD_2: string = 'CLICK_FORWARD_2'
+export const CLICK_FORWARD_1: string = 'CLICK_FORWARD_1'
+export const CLICK_ROLE: string = 'CLICK_ROLE'
+export const CLICK_PROFILE_REVIEW: string = 'CLICK_PROFILE_REVIEW'
+export const CLICK_CATALOG_CATEGORY: string = 'CLICK_CATALOG_CATEGORY'
+export const CLICK_SEARCH_BUTTON_SECOND: string = 'CLICK_SEARCH_BUTTON_SECOND'
+export const CLICK_SEARCH_BUTTON_FIRST: string = 'CLICK_SEARCH_BUTTON_FIRST'
+export const CLICK_REGISTRATION_QUICK: string = 'CLICK_REGISTRATION_QUICK'
+export const CLICK_REGISTRATION_FOOTER: string = 'CLICK_REGISTRATION_FOOTER'
+export const CLICK_REGISTRATION_NAV_BAR: string = 'CLICK_REGISTRATION_NAV_BAR'
+
 export const CLOSE_ALL_MODALS: string = 'CLOSE_ALL_MODALS'
 export const CLOSE_MODAL_THANK_YOU: string = 'CLOSE_MODAL_THANK_YOU'
 export const CLOSE_COMMENT_FORM: string = 'CLOSE_COMMENT_FORM'

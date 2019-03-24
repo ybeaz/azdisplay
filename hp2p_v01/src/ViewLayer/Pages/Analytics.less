@@ -1,28 +1,35 @@
 .Analytics {
   .Analytics__tableClass {
     border-collapse: collapse;
-  }
-  .Analytics__rowClass {
-    font-weight: initial;
-  }
-  .Analytics__cellClass {
-    font-weight: initial;
-    border: 1px solid wheat;
-    padding: 0.5rem;
-  }
 
-  .Analytics__thCellClass {
-    font-weight: bold;
-    border: 1px solid wheat;
-    padding: 0.5rem;
-  }
+    .Analytics__thCellClass {
+      font-weight: bold;
+      border: 1px solid wheat;
+      padding: 0.5rem;
+    }
 
-  .Analytics__itemElem {
-    .Analytics__itemElemCell {
-      &:extend(.p_x_0p5_rem);
+    .Analytics__rowClass {
+      font-weight: initial;
+
+      .Analytics__cellClass {
+        font-weight: initial;
+        border: 1px solid wheat;
+        padding: 0.5rem;
+        
+        .Analytics__logCell {
+          
+          .Analytics__logCellGroup {
+            &:extend(.d_f, .f_d_c);
+            flex-direction: column;
+            .Analytics__logCellGroupElem {
+              &:extend(.p_x_0p5_rem);
+              font-size: 0.75rem;
+            }
+          }
+        }
+      }
     }
   }
-
 
   @media @large {
 

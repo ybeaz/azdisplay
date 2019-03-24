@@ -54,14 +54,16 @@ class Analytics extends React.PureComponent<Props, State> {
   }
 
   public getActionLog = (actionLogJson: any): any => {
-    const output: any = actionLogJson.map(item => {
-        const itemElem: any = item.map((item01: any) => <div className='Analytics__itemElemCell'>{item01}</div>)
+    const output: any = actionLogJson.map((item: any) => {
 
-        return <div className='Analytics__itemElem'>{itemElem}</div>
+        const itemGroup: any = item.map((itemElem: string) =>
+          <span className='Analytics__logCellGroupElem'>{itemElem}&nbsp;&nbsp;</span>)
+
+        return <div className='Analytics__logCellGroup'>{itemGroup}</div>
       }
     )
 
-    return <div>{output}</div>
+    return <div className='Analytics__logCell'>{output}</div>
   }
 
 
@@ -125,7 +127,7 @@ class Analytics extends React.PureComponent<Props, State> {
               <th className='Analytics__thCellClass'>target</th>
               <th className='Analytics__thCellClass'>email</th>
               <th className='Analytics__thCellClass'>msg</th>
-              <th className='Analytics__thCellClass'>actionLogElem</th>
+              <th className='Analytics__thCellClass'>actionLog</th>
               <th className='Analytics__thCellClass'>width</th>
               <th className='Analytics__thCellClass'>height</th>
           </tr>
@@ -218,7 +220,7 @@ class Analytics extends React.PureComponent<Props, State> {
   }
 
 
-  render() {
+  public render(): JSX.Element {
     const { reduxState, handleActions } = this.props
     const { modalWindows, treeData, language } = reduxState
     const { analytics } = this.state
