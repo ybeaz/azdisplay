@@ -180,11 +180,13 @@ class CatalogTags extends React.PureComponent {
     return (
       <div id={sid} className={sid}>
         <h2 className='CatalogTags__title titleSection'>{captureSection}</h2>
-        <div className='CatalogTags__columns'>
+        <div className='CatalogTags__rowTag'>
           {tags}
         </div>
         {this.mode === 'tagsIconsFa'
-          ? <ButtonCommon {...buttonProps} />
+          ? <div className='CatalogTags__rowButton'>
+            <ButtonCommon {...buttonProps} />
+          </div>
           : null
         }
       </div>
