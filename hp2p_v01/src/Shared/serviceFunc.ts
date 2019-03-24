@@ -1,18 +1,114 @@
 
+/**
+ * @description Returns true for devMode and false for production
+ */
+export const devModeTrueFalse: Function = (): boolean => {
+  let devMode: boolean = false
+  if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+    devMode = true;
+  }
 
-
-/* Function to capitalize (make uppercase) first letter of the stringT */
-export const getFirstCharLowerCase = (stringT: string) => {
-  return stringT.charAt(0).toLowerCase() + stringT.slice(1)
+  return devMode
 }
 
-/* Function to capitalize (make uppercase) first letter of the stringT */
-export const getFirstCharUpperCase = (stringT: string) => {
-  return stringT.charAt(0).toUpperCase() + stringT.slice(1)
+/**
+ * @description Returns a function which will sort an array of objects by the given key.
+ * @param: string  key
+ * @param: boolean reverse
+ * @return: Function
+ * @example objs.sort(sortBy('last_nom'));
+ */
+export const sortBy: Function = (key: string, reverse: boolean): Function => {
+
+  // Move smaller items towards the front
+  // or back of the array depending on if
+  // we want to sort the array in reverse
+  // order or not.
+  const moveSmaller = reverse ? 1 : -1
+
+  // Move larger items towards the front
+  // or back of the array depending on if
+  // we want to sort the array in reverse
+  // order or not.
+  const moveLarger = reverse ? -1 : 1
+
+  /**
+   * @param  {*} a
+   * @param  {*} b
+   * @return {Number}
+   */
+  return (a, b) => {
+    if (a[key] < b[key]) {
+      return moveSmaller
+    }
+    if (a[key] > b[key]) {
+      return moveLarger
+    }
+    return 0
+  }
 }
 
-/* Function to return data to render for modal window according to the scenario */
-export const getModalKeyToRender = (actionLog: {type: string}[]) => {
+/**
+ * @description Function to omit property of array of objects by values of simple array
+ */
+export const arrOfObjOmitItemsByPropValArr: Function = (arrIn: any, propToFilter: string, arrToOmit: string[]): any => {
+  // console.info('serviceFunc->arrOfObjOmitPropArrByArr', { arrIn, propToFilter, arrToOmit })
+  return arrIn.filter((item: any) => {
+    let isTrue: boolean = true
+    if (item[propToFilter]) {
+      arrToOmit.filter((item01: string) => {
+        if (item01 === item[propToFilter]) {
+          isTrue = false
+        }
+      })
+    }
+
+    return isTrue
+  })
+}
+
+/**
+ * @description Function to return array of objects composed of the own and inherited
+ * enumerable property paths of object that are not omitted
+ */
+export const arrOfObjOmitByPropName: Function = (arrIn: any, arrPropName: any): any => {
+
+  return arrIn.filter(item => {
+    let isTrue: boolean = true
+    for (let i = 0; i < arrPropName.length; i += 1) {
+      const prop: any = arrPropName[i].prop
+      const val: any = arrPropName[i].val
+      if (item[prop] === val) {
+        isTrue = false
+      }
+    }
+
+    return isTrue
+  })
+}
+
+/**
+ * @description Function to capitalize (make uppercase) first letter of the stringT
+ */
+export const getFirstCharLowerCase: Function = (stringT: string): string => {
+  return stringT
+    .charAt(0)
+    .toLowerCase() + stringT.slice(1)
+}
+
+/**
+ * @description Function to capitalize (make uppercase) first letter of the stringT
+ */
+export const getFirstCharUpperCase: Function = (stringT: string): string => {
+  return stringT
+    .charAt(0)
+    .toUpperCase() + stringT.slice(1)
+}
+
+/**
+ * @description Function to return data to render for modal window according to the scenario
+ */
+export const getModalKeyToRender: Function = (actionLog: {type: string}[]) => {
   let modalKeyToRender = 'registration'
   const { length } = actionLog
   if (length > 0
@@ -22,8 +118,10 @@ export const getModalKeyToRender = (actionLog: {type: string}[]) => {
   return modalKeyToRender
 }
 
-/* Function to return width of the DOM object's in crossbrowser style */
-export const mediaSizeCrossBrowser = (w: Window) => {
+/**
+ * @description Function to return width of the DOM object's in crossbrowser style
+ */
+export const mediaSizeCrossBrowser: Function = (w: Window) => {
   // Use serviceFunc.mediaSizeCrossBrowser(global)
   const mediaSize: {width: number, height: number} = {width: 0, height: 0}
   const d = w.document
@@ -40,11 +138,13 @@ export const mediaSizeCrossBrowser = (w: Window) => {
   return mediaSize
 }
 
-/* Function to return height of the DOM object's in crossbrowser style */
-function heightCrossBrowser(element: HTMLElement) {
-  /* element - DOM element */
-  
-  let height
+/**
+ * @description Function to return height of the DOM object's in crossbrowser style
+ * @param: HTMLElement element
+ */
+function heightCrossBrowser(element: HTMLElement): number {
+
+  let height: any
   // For FireFox & IE
   if (element.style.height != undefined) {
     height  =  element.style.height
@@ -68,11 +168,13 @@ function heightCrossBrowser(element: HTMLElement) {
       console.info(' offstheight offsetheight:',  element.offsetheight)    
       console.info(' parseInt(this.height):',parseInt(this.height))
     */
-  return parseInt('s', this.height)
+  return parseInt('s', height)
 }
 
-
-export const updateTransition = (selector: string, classAdd: string) => {
+/**
+ * @description Function to update transition
+ */
+export const updateTransition: Function = (selector: string, classAdd: string): any => {
   const elem: HTMLElement = document.querySelector(selector)
   if (elem) {
     // elem.classList.remove(stylePrev)
@@ -82,7 +184,10 @@ export const updateTransition = (selector: string, classAdd: string) => {
   return elem
 }
 
-export const getElementSize = (element: HTMLElement) => {
+/**
+ * @description Function to get object of the size and positions of the HTMLelement
+ */
+export const getElementSize: Function = (element: HTMLElement): any => {
   const width = Math.round(parseFloat(getComputedStyle(element, null).getPropertyValue('width').replace('px', '')))
   const height = Math.round(parseFloat(getComputedStyle(element, null).getPropertyValue('height').replace('px', '')))
   const x = Math.round(element.getBoundingClientRect().left)
@@ -91,8 +196,10 @@ export const getElementSize = (element: HTMLElement) => {
   return { x, y, width, height }
 }
 
-// Function to override default object properties with new ones
-export const getDefaultOveride = (defaultObj = {}, overideObj = {}) => {
+/**
+ * @description Function to override default object properties with new ones
+ */
+export const getDefaultOveride: Function = (defaultObj: any = {}, overideObj: any = {}): any => {
   return new Proxy(defaultObj, {
     get: function (defaultObj, propName) {
       if (!overideObj) { return defaultObj[propName] }

@@ -77,10 +77,10 @@ class Carousel extends React.Component {
     )
   })
 
-  handleEvent = (e, action) => {
+  handleEvents = (e, action) => {
     const { listArr } = this.state
 
-    // console.info('Carousel->handleEvent', { e, listArr, action })
+    // console.info('Carousel->handleEvents', { e, listArr, action })
     switch (action.type) {
 
       case 'onTouchStart': {
@@ -88,18 +88,18 @@ class Carousel extends React.Component {
         const actionOnTouchStopMove = {
           type: 'onTouchStopMove',
         }
-        this.handleEvent({}, actionOnTouchStopMove)
+        this.handleEvents({}, actionOnTouchStopMove)
       }
 
       case 'onTouchMove': {
-        // console.info( 'Dropdown->handleEvent() [1]', action)
+        // console.info( 'Dropdown->handleEvents() [1]', action)
 
         if (this.preventSwipeTwice === false) {
           const { scrollInterval, scrollPeriodEnd } = action
           const actionNextItem = {
             type: 'nextItem',
           }
-          // console.info( 'Dropdown->handleEvent() [5]', { delay, action })
+          // console.info( 'Dropdown->handleEvents() [5]', { delay, action })
           this.tickID	=	setInterval(() => this.handleEvent({}, actionNextItem), scrollInterval)
           this.preventSwipeTwice = !this.preventSwipeTwice
 
@@ -112,13 +112,13 @@ class Carousel extends React.Component {
       } break
 
       case 'onTouchStopMove': {
-        // console.info( 'Dropdown->handleEvent() [1]', action)
+        // console.info( 'Dropdown->handleEvents() [1]', action)
         clearInterval(this.tickID);
         this.preventSwipeTwice = false
       } break
 
       case 'nextItem': {
-        // console.info( 'Dropdown->handleEvent() [1]', action)
+        // console.info( 'Dropdown->handleEvents() [1]', action)
         const index = listArr.map(item => item.active).indexOf(true)
         const { length } = listArr
         let indexNext = index + 1 
@@ -136,7 +136,7 @@ class Carousel extends React.Component {
       } break
 
       case 'prevItem': {
-        // console.info( 'Dropdown->handleEvent() [1]', action)
+        // console.info( 'Dropdown->handleEvents() [1]', action)
         const index = listArr.map(item => item.active).indexOf(true)
         const { length } = listArr
         let indexNext = index - 1
@@ -166,11 +166,11 @@ class Carousel extends React.Component {
         })
         this.setState({ listArr: listArrNext })
 
-        // console.info('Carousel->handleEvent', { listArr, action })
+        // console.info('Carousel->handleEvents', { listArr, action })
       } break
 
       default: {
-        console.info( 'Carousel->handleEvent() [10]','I have never heard of that ... ', action)
+        console.info( 'Carousel->handleEvents() [10]','I have never heard of that ... ', action)
       } break
     }
   }
@@ -212,8 +212,8 @@ class Carousel extends React.Component {
       trackTouch: true,                      // track touch input
       trackMouse: false,                     // track mouse input
       rotationAngle: 0,
-      onSwipedLeft: () => this.handleEvent({}, actionOnTouchMove),
-      onSwipedRight: () => this.handleEvent({}, actionOnTouchStopMove),
+      onSwipedLeft: () => this.handleEvents({}, actionOnTouchMove),
+      onSwipedRight: () => this.handleEvents({}, actionOnTouchStopMove),
     }
 
     return (
@@ -234,13 +234,13 @@ class Carousel extends React.Component {
           <div>
             <div className='carousel-control-prev'>
               <span className='carousel-control-prev-icon'
-                onClick={e => this.handleEvent(e, actionPrevItem)}
+                onClick={e => this.handleEvents(e, actionPrevItem)}
               />
             </div>
             <div className='carousel-control-next'>
               <span
                 className='carousel-control-next-icon'
-                onClick={e => this.handleEvent(e, actionNextItem)}
+                onClick={e => this.handleEvents(e, actionNextItem)}
               />
             </div>
           </div>

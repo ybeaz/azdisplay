@@ -6,19 +6,17 @@ class ButtonCommon extends React.PureComponent {
 
 
   render() {
-    const { sid, capture, handleFunction, action } = this.props
+    const { sid, sidButton, capture, handleFunction, action } = this.props
     // console.info('RegistrationButton->render() [10]', { })
 
     return (
-      <div id={sid} className={`ButtonCommon ${sid}`}>
-        <button
-          type='button'
-          className='btn'
-          onClick={e => handleFunction(e, action)}
-        >
-          {capture}
-        </button>
-      </div>
+      <button
+        type='button'
+        className={`btn ButtonCommon ${sid}`}
+        onClick={e => handleFunction(e, action)}
+      >
+        {capture}
+      </button>
     )
   }
 }

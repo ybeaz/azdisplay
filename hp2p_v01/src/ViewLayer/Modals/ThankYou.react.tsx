@@ -14,7 +14,7 @@ interface Props {
 }
 interface State {}
 
-class ThankYou extends React.PureComponent<Props, State> {
+export class ThankYou extends React.PureComponent<Props, State> {
   public static defaultProps: any = {
 
   }
@@ -89,5 +89,3 @@ class ThankYou extends React.PureComponent<Props, State> {
     )
   }
 }
-
-export default ThankYou

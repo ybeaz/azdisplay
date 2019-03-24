@@ -3,6 +3,7 @@ import React from 'react'
 import * as Interfaces from '../../Shared/interfaces'
 
 interface Props {
+  readonly modeProdDev: Interfaces.ModeProdDev,
   readonly sid: string,
   readonly capture: string,
   readonly button01: string,
@@ -18,7 +19,7 @@ interface State {
   readonly specialist: boolean,
 }
 
-class SelectRole extends React.PureComponent<Props, State> {
+export class SelectRole extends React.PureComponent<Props, State> {
   public static defaultProps: any = {
   }
 
@@ -54,27 +55,31 @@ class SelectRole extends React.PureComponent<Props, State> {
     return displayClass
   }
 
-  public handleEvent = (e: any, action: Interfaces.Action) => {
+  public handleEvents = (e: any, action: Interfaces.Action) => {
     switch (action.type) {
       case 'nextModal':
       {
         const {
-          warnNotCheckingRole, warnNotCorrectEmail, handleActions,
+          modeProdDev, warnNotCheckingRole, warnNotCorrectEmail, handleActions,
         } = this.props
+        const { checkEnterEmail, checkSelectRole } = modeProdDev
         const { user, specialist } = this.state
-        // console.info('SelectRole->handleEvent', { email: this.inputRef01.current.value })
-        if ( user === false && specialist === false) {
-          alert(warnNotCheckingRole)
-
-          return
-        }
-        else if (
+        // console.info('SelectRole->handleEvents [5]', { email: this.inputRef01.current.value })
+        
+        if (checkEnterEmail === true &&
           this.inputRef01.current.value.match(/^([\S]{1,})@([\S]{1,})([\.]{1,1})([^.]{2,})$/gi) === null
         ) {
           alert(warnNotCorrectEmail)
 
           return
         }
+        else if (checkSelectRole === true && user === false && specialist === false) {
+          alert(warnNotCheckingRole)
+
+          return
+        }
+
+        // console.info('SelectRole->handleEvents [10]', { email: this.inputRef01.current.value })
         const action01: Interfaces.Action = { type: 'pressOkInSelectRole' }
         handleActions(e, action01)
       }
@@ -105,7 +110,7 @@ class SelectRole extends React.PureComponent<Props, State> {
 
   public render(): JSX.Element {
     const {
-      sid, capture, button01, button02, buttonFooter, inputPlaceHolder,
+      sid, capture, button01, button02, buttonFooter, inputPlaceHolder, handleActions,
     } = this.props
     const { user, specialist } = this.state
 
@@ -132,7 +137,7 @@ class SelectRole extends React.PureComponent<Props, State> {
                 <button
                   type='button'
                   className='close Modal_headerButtonUpperLeft'
-                  onClickCapture={e => this.handleEvent(e, {type: 'nextModal'})}
+                  onClickCapture={e => handleActions(e, {type: 'closeModalSelectRole'})}
                 >
                   &times;
                 </button>
@@ -148,7 +153,7 @@ class SelectRole extends React.PureComponent<Props, State> {
                 <div className='Modal__bodyRowColLeft'>
                   <button
                     className='Modal__bodyRowColLeftButton'
-                    onClickCapture={e => this.handleEvent(e, {type: 'togglekUser'})}
+                    onClickCapture={e => this.handleEvents(e, {type: 'togglekUser'})}
                   >
                     {button01}
                   </button>
@@ -157,7 +162,7 @@ class SelectRole extends React.PureComponent<Props, State> {
                 <div className='Modal__bodyRowColRight'>
                   <button
                     className='Modal__bodyRowColRightButton'
-                    onClickCapture={e => this.handleEvent(e, {type: 'toggleSpecialist'})}
+                    onClickCapture={e => this.handleEvents(e, {type: 'toggleSpecialist'})}
                   >
                     {button02}
                   </button>
@@ -171,7 +176,7 @@ class SelectRole extends React.PureComponent<Props, State> {
               <button
                 type='button'
                 className='btn Modal__footerButton'
-                onClickCapture={e => this.handleEvent(e, {type: 'nextModal'})}
+                onClickCapture={e => this.handleEvents(e, {type: 'nextModal'})}
               >
                 {buttonFooter}
               </button>
@@ -184,4 +189,3 @@ class SelectRole extends React.PureComponent<Props, State> {
   }
 }
 
-export default SelectRole

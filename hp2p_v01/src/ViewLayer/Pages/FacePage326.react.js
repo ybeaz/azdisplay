@@ -1,8 +1,6 @@
 import React from 'react'
 import uuidv4 from 'uuid/v4'
 
-import { getFirstCharLowerCase } from '../../Shared/serviceFunc'
-
 import CommonContainer from '../Containers/CommonContainer.react'
 import CombineWrapper from '../Components/CombineWrapper.react'
 import SectionWrapper from '../Components/SectionWrapper.react'
@@ -15,68 +13,11 @@ import ImgListTable from '../Components/ImgListTable.react'
 import IconCaptDesc from '../Components/IconCaptDesc.react'
 import ButtonCommon from '../Components/ButtonCommon.react'
 import Footer from '../Components/Footer.react'
-import SelectRole from '../Modals/SelectRole.react'
-import CommentForm from '../Modals/CommentForm.react'
-import ThankYou from '../Modals/ThankYou.react'
-import ModalBackdrop from '../Modals/ModalBackdrop.react'
 
-
-const MODALS = {
-  'SelectRole': SelectRole,
-  'CommentForm': CommentForm,
-  'ThankYou': ThankYou,
-}
+import GetModals from '../Modals/GetModals.react'
 
 // eslint-disable-next-line react/prefer-stateless-function
 class FacePage326 extends React.PureComponent {
-  constructor(props) {
-    super(props)
-  }
-
-  componentDidMount() {
-    const { reduxState } = this.props
-    const { modalWindows } = reduxState
-    this.getStatusModalBackdrop(modalWindows)
-  }
-
-  componentDidUpdate() {
-    const { reduxState } = this.props
-    const { modalWindows } = reduxState
-    this.getStatusModalBackdrop(modalWindows)
-  }
-
-  getStatusModalBackdrop = modalWindows => {
-    const displayArr = modalWindows.filter(item => item.display === true)
-    const elem = document.querySelectorAll('.ModalBackdrop ')[0]
-    if (elem && displayArr.length > 0) {
-      elem.classList.remove('ModalBackdrop__hide')
-      elem.classList.add('ModalBackdrop__show')
-    }
-    else if (elem) {
-      elem.classList.remove('ModalBackdrop__show')
-      elem.classList.add('ModalBackdrop__hide')
-    }
-  }
-
-  getModals = ({ ...props }) => {
-    const { modalWindows, handleActions, modals } = { ...props }
-    // console.info('FacePage326->getModals [0]', { modalWindows, handleActions, modals })
-    return modalWindows
-      .filter(item => item.display === true)
-      .map((item, i) => {
-        const componentDataProp = getFirstCharLowerCase(item.component)
-        let propsScope = modals[componentDataProp]
-        propsScope = { ...propsScope, handleActions }
-        // console.info('FacePage326->getModals [10]', { ...props, item, propsScope, modals })
-
-        const Modal = MODALS[item.component]
-        return (
-          <div key={i}>
-            <Modal {...propsScope} />
-          </div>
-        )
-      })
-  }
 
   render() {
     const { reduxState, handleActions } = this.props
@@ -114,9 +55,7 @@ class FacePage326 extends React.PureComponent {
 
     const action = { type: 'openModalRegistrationQuick' }
     registrationButton = { ...registrationButton, handleFunction: handleActions, action }
-    const modalBackdropProps = { sid: 'bd'}
-    const modalWindowToReturn = this.getModals({ modalWindows, handleActions, modals })
-
+    
     // console.info('FacePage326->render() [10]', { modalWindows, reduxState, modals, props: this.props })
     return (
       <div className='FacePage326 globalStyle'>
@@ -165,8 +104,7 @@ class FacePage326 extends React.PureComponent {
             <Footer {...footer} />
           </SectionWrapper>
         </footer>
-        {modalWindowToReturn}
-        <ModalBackdrop {...modalBackdropProps} />
+        <GetModals />
       </div>
     )
   }
@@ -174,5 +112,5 @@ class FacePage326 extends React.PureComponent {
 
 FacePage326.propTypes = {
 }
-//export default FacePage326
+// export default FacePage326
 export default CommonContainer(FacePage326)

@@ -1,0 +1,46 @@
+.Analytics {
+  .Analytics__tableClass {
+    border-collapse: collapse;
+
+    .Analytics__thCellClass {
+      font-weight: bold;
+      border: 1px solid wheat;
+      padding: 0.5rem;
+    }
+
+    .Analytics__rowClass {
+      font-weight: initial;
+
+      .Analytics__cellClass {
+        font-weight: initial;
+        border: 1px solid wheat;
+        padding: 0.5rem;
+        
+        .Analytics__logCell {
+          
+          .Analytics__logCellGroup {
+            &:extend(.d_f, .f_d_c);
+            flex-direction: column;
+            .Analytics__logCellGroupElem {
+              &:extend(.p_x_0p5_rem);
+              font-size: 0.75rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media @large {
+
+  }
+  @media @desktop, @desktop-strict {
+  
+  }
+  @media @tablet, @tablet-strict {
+  
+  }
+  @media @phone, @phone-strict {
+  
+  }
+}

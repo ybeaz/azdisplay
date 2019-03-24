@@ -6,6 +6,7 @@
   "main": "src/index.js",
   "dependencies": {
     "@types/babel__core": "^7.1.0",
+    "@types/node": "^11.11.4",
     "dompurify": "^1.0.10",
     "fork-ts-checker-webpack-plugin": "^1.0.0",
     "prop-types": "^15.7.2",

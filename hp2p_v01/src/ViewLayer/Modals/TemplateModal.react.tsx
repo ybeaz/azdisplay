@@ -10,7 +10,7 @@ interface State {
 }
 
 // eslint-disable-next-line react/prefer-stateless-function
-class TemplateModal extends React.PureComponent<Props, State> {
+export class TemplateModal extends React.PureComponent<Props, State> {
   public static defaultProps = {
 
   }
@@ -74,4 +74,3 @@ class TemplateModal extends React.PureComponent<Props, State> {
   }
 }
 
-export default TemplateModal

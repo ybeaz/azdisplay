@@ -41,6 +41,23 @@
 }
 
 
+.SectionWrapper_Analytics {
+  display: flex;
+
+  .SectionWrapper__colLeft {
+    width: 1rem;
+  }
+
+  .SectionWrapper__colMain {
+
+  }
+
+  .SectionWrapper__colRight {
+    width: 0;
+  }
+}
+
+
 .SectionWrapper_desc {
   &:extend(.t_tr_uc);
   padding: 4rem 1.5rem 2rem;
@@ -240,6 +257,10 @@
 
 .SectionWrapper_registrationButton {
   .p_y_3_rem;
+
+  .SectionWrapper__colMain {
+    &:extend(.d_f, .j_c_c);
+  }
 
   @media @large {
     

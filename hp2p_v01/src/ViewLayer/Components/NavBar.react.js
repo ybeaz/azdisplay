@@ -16,9 +16,9 @@ class NavBar extends React.PureComponent {
     return (
       <div id={sid} className={`Navbar ${sid}`}>
         <nav id='navbarNav' className='navbar navbar-expand-sm'>
-          <a className='navbar-brand NavbarBrend' href='#navbar'>
+          <div className='navbar-brand NavbarBrend'>
             <LogoElem />
-          </a>
+          </div>
           {/*
           <ul className='navbar-nav'>
             <li className='nav-item'>

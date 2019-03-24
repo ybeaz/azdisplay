@@ -1,7 +1,90 @@
 import { combineReducers } from 'redux'
 import * as Interfaces from '../../Shared/interfaces'
 
-const language = (state: string = 'rus', action: Interfaces.Action): any => {
+const userFootprint: any = (state: {} = {}, action: Interfaces.Action): any => {
+  switch (action.type) {
+
+    case 'CLICK_FORWARD_2': {
+      //msg: string
+      return state
+    }
+
+
+    case 'CLICK_FORWARD_1': {
+      //email: string
+      return state
+    }
+
+    case 'CLICK_ROLE': {
+      //role: arr
+      return state
+    }
+
+    case 'CLICK_PROFILE_REVIEW': {
+      //inception: string 'userProfile: '
+      //name: string
+      return state
+    }
+
+    case 'CLICK_CATALOG_CATEGORY': {
+      //inception: string 'catalogCategory'
+      //catalogCategory: string
+      return state
+    }
+
+    case 'CLICK_SEARCH_BUTTON_SECOND': {
+      //inception: string 'searchButtonSecond'
+      //searchPhrase: string
+      //searchCategory: string[]
+      //searchMedia: string
+      return state
+    }
+
+    case 'CLICK_SEARCH_BUTTON_FIRST': {
+      //inception: string 'searchButtonFirst'
+      //inputPhrase: string
+      //category: string[]
+      //media: string
+      return state
+    }
+
+    case 'CLICK_REGISTRATION_QUICK': {
+      //inception: string 'registrationQuick'
+      return state
+    }
+
+    case 'CLICK_REGISTRATION_FOOTER': {
+      //inception: string 'registrationFooter'
+      return state
+    }
+
+    case 'CLICK_REGISTRATION_NAV_BAR': {
+      //inception: string 'registrationNavBar'
+      return state
+    }
+
+    default: {
+      return state
+    }
+  }
+}
+
+const analytics: any = (state: any = [], action: Interfaces.Action): any => {
+  switch (action.type) {
+    case 'GET_USER_ANALYTICS_DATA_SUCCESS': {
+      const stateNext: any = action.data.filter((item: any) => item.PHPSESSID)
+      //console.info(`reducer->analytics type: ${action.type}`, { stateNext, state, action })
+
+      return stateNext
+    }
+
+    default: {
+      return state
+    }
+  }
+}
+
+const language: any = (state: string = 'rus', action: Interfaces.Action): any => {
 
   switch (action.type) {
     case 'SELECT_LANGUAGE': {
@@ -38,22 +121,22 @@ const modalWindows: any = (
 
   switch (action.type) {
 
-
+    case 'CLOSE_MODAL_THANK_YOU':
     case 'CLOSE_ALL_MODALS': {
-      const stateNext = state.map((item: Interfaces.ModalWindowStateItem) => {
+      return state.map((item: Interfaces.ModalWindowStateItem) => {
         return { ...item, display: false }
       })
       // console.info(`reducer->modalWindows type: ${action.type}`, { stateNext, state, action })
-      return stateNext
     }
 
-    case 'CLOSE_COMMENTFORM':
-    case 'SEND_COMMENTFORM':
+    case 'CLOSE_COMMENT_FORM':
+    case 'SEND_COMMENT_FORM':
     case 'PRESS_OK_IN_SELECT_ROLE': {
       const { modalNext } = action
       let stateNext: Interfaces.ModalWindowState | any = state
       //const { length } = state
-      const index = state.map(item => item.component).indexOf(modalNext)
+      const index: number = state.map((item: any) => item.component)
+        .indexOf(modalNext)
 
       if (index === -1) {
         stateNext = [
@@ -69,6 +152,7 @@ const modalWindows: any = (
         ]
       }
       // console.info(`reducer->modalWindows type: ${action.type}`, { index, stateNext, state, action })
+
       return stateNext
     }
 
@@ -77,18 +161,20 @@ const modalWindows: any = (
     case 'SELECT_CATALOG_CATEGORY':
     case 'OPEN_MODAL_REGISTRATION_NAV_BAR':
     case 'OPEN_MODAL_REGISTRATION_QUICK':
+    case 'OPEN_MODAL_REGISTRATION_FOOTER':
     case 'OPEN_MODAL_FAREWELL': {
       const { modalNext } = action
-      let stateNext = state
+      let stateNext: any = state
       const { length } = state
-      let index
+      let index: number
       if (length === 0) {
         stateNext = [
           { component: modalNext, display: true },
         ]
       }
       else {
-        index = state.map(item => item.component).indexOf(modalNext)
+        index = state.map((item: any) => item.component)
+          .indexOf(modalNext)
         stateNext = [
           ...state.slice(0, index),
           { component: modalNext, display: true },
@@ -116,9 +202,9 @@ const actionLog: any = (state: any = [], action: Interfaces.Action): any => {
 
     case 'DISPATCH_ACTION': {
       const { payload } = action
-      const stateNext = [...state, payload]
+
+      return [...state, payload]
       // console.info('actionLog->statePrev', { action, statePrev: state, stateNext })
-      return stateNext
     }
 
     default: {
@@ -141,11 +227,11 @@ const treeData: any = (state: any = {}, action: Interfaces.Action): any => {
   }
 }
 
-
-
 //Main application reducers
-const appCombineReducers = combineReducers(
+const appCombineReducers: any = combineReducers(
   {
+    userFootprint,
+    analytics,
     language,
     user,
     modalWindows,
