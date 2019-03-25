@@ -2,7 +2,35 @@ import { combineReducers } from 'redux'
 import * as Interfaces from '../../Shared/interfaces'
 import { handleActions } from './handleActions'
 
+interface UserFootprint {
+  inception: string,
+    /* 'registrationQuick', 'registrationFooter', 'registrationNavBar',
+        'searchButtonFirst', 'searchButtonSecond', 'catalogCategory', 'userProfile'
+    */
+  searchPhrase?: string,
+  searchCategory?: string[],
+  searchMedia?: string[],
+  catalogCategory?: string,
+  userPrifile?: string,
+  email?: string,
+  role?: string[],
+  msg?: string,
+}
+
 const userFootprint: any = (state: object = {}, action: Interfaces.Action): object => {
+
+  let stateNext: UserFootprint = {
+    inception: '',
+    searchPhrase: '',
+    searchCategory: [],
+    searchMedia: [],
+    catalogCategory: '',
+    userPrifile: '',
+    email: '',
+    role: [],
+    msg: '',
+  }
+
   switch (action.type) {
 
     case 'CLICK_FORWARD_2': {
@@ -27,50 +55,60 @@ const userFootprint: any = (state: object = {}, action: Interfaces.Action): obje
     }
 
     case 'CLICK_PROFILE_REVIEW': {
-      //inception: string 'userProfile: '
-      //name: string
+      //-inception: string 'userProfile: '
+      //-userPrifile: string
       console.info(`reducer->userFootprint type: ${action.type}`, { state, action })
 
       return state
     }
 
     case 'CLICK_CATALOG_CATEGORY': {
-      //inception: string 'catalogCategory'
-      //catalogCategory: string
+      //-inception: string 'catalogCategory'
+      //-catalogCategory: string
       console.info(`reducer->userFootprint type: ${action.type}`, { state, action })
 
       return state
     }
 
     case 'CLICK_SEARCH_BUTTON': {
-      //inception: string 'searchButtonFirst', 'searchButtonSecond'
-      //searchPhrase: string
-      //searchCategory: string[]
-      //searchMedia: string[]
+      //- inception: string 'searchButtonFirst', 'searchButtonSecond'
+      //- searchPhrase: string
+      //- searchCategory: string[]
+      //- searchMedia: string[]
       console.info(`reducer->userFootprint type: ${action.type}`, { state, action })
 
       return state
     }
 
     case 'CLICK_REGISTRATION_QUICK': {
-      //inception: string 'registrationQuick'
+      //- inception: string 'registrationQuick' 'registrationFooter' 'registrationNavBar'
       console.info(`reducer->userFootprint type: ${action.type}`, { state, action })
 
       return state
     }
 
     case 'CLICK_REGISTRATION_FOOTER': {
-      //inception: string 'registrationFooter'
+      //- inception: string 'registrationFooter' 'registrationNavBar'
       console.info(`reducer->userFootprint type: ${action.type}`, { state, action })
 
       return state
     }
 
     case 'CLICK_REGISTRATION_NAV_BAR': {
-      //inception: string 'registrationNavBar'
+      //- inception: string 'registrationNavBar'
       console.info(`reducer->userFootprint type: ${action.type}`, { state, action })
 
       return state
+    }
+
+    case 'UPDATE_USER_FOOTPRINT': {
+
+
+      // stateNext = { ...stateNext, ...action }
+      stateNext = { ...stateNext, ...state, ...action }
+      console.info(`reducer->userFootprint type: ${action.type}`, { stateNext, state, action })
+
+      return stateNext
     }
 
     default: {

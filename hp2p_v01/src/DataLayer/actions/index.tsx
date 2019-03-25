@@ -34,6 +34,8 @@ export const CLICK_REGISTRATION_QUICK: any = (data: any): any =>  action(actionT
 export const CLICK_REGISTRATION_FOOTER: any = (data: any): any =>  action(actionTypes.CLICK_REGISTRATION_FOOTER, data)
 export const CLICK_REGISTRATION_NAV_BAR: any = (data: any): any =>  action(actionTypes.CLICK_REGISTRATION_NAV_BAR, data)
 
+export const UPDATE_USER_FOOTPRINT: any = (data: any): any =>  action(actionTypes.UPDATE_USER_FOOTPRINT, data)
+
 export const CALL_SPINNER: any = (data: any): any =>  action(actionTypes.CALL_SPINNER, data)
 export const CLOSE_ALL_MODALS: any = (data: any): any =>  action(actionTypes.CLOSE_ALL_MODALS, data)
 export const CLOSE_MODAL_THANK_YOU: any = (data: any): any =>  action(actionTypes.CLOSE_MODAL_THANK_YOU, data)

@@ -76,7 +76,7 @@ class SearchForm extends React.PureComponent<Props, State> {
         }
         const dataTemp: any = this.state
         data = { ...dataTemp, inception }
-        const action03: Interfaces.Action = { type: 'clickSearchButtonFirst', data }
+        const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
         handleActions(e, action03)
 
         const action01: Interfaces.Action = { type: 'pressSearchButton' }
@@ -96,8 +96,8 @@ class SearchForm extends React.PureComponent<Props, State> {
 
       case 'onClickSearchMedia':
       {
-        const { data } = action
-        const searchMedia: string[]  = data.filter((item: any) => item.active === true)
+        const { data: dataMedia } = action
+        const searchMedia: string[]  = dataMedia.filter((item: any) => item.active === true)
           .map((item: any) => item.capture)
         this.setState({ searchMedia })
         // console.info(`SearchForm->handleEvents() type: ${action.type}`, { action, e })
@@ -106,8 +106,8 @@ class SearchForm extends React.PureComponent<Props, State> {
 
       case 'onClickSearchCategory':
       {
-        const { data } = action
-        const searchCategory: string[] = data.filter((item: any) => item.active === true)
+        const { data: dataCategory } = action
+        const searchCategory: string[] = dataCategory.filter((item: any) => item.active === true)
           .map((item: any) => item.capture)
         this.setState({ searchCategory })
         // console.info(`SearchForm->handleEvents() type: ${action.type}`, { action, e })
@@ -132,7 +132,7 @@ class SearchForm extends React.PureComponent<Props, State> {
     const classNames1: string = 'Dropdown_typeRequestFirstRow'
     const typeRequestProps1: any = {
       ...typeRequest, cid, displayBtnType: 'text', classNames: classNames1,
-      parentHandleEvents: this.handleEvents,
+      parentHandleEvents: this.handleEvents.bind(this),
     }
 
     const { sid: typeMediaSid } = typeMedia
@@ -140,7 +140,7 @@ class SearchForm extends React.PureComponent<Props, State> {
     const classNames3: string = 'Dropdown_typeMediaFirstRow'
     const typeMediaProps3: any = {
       ...typeMedia, cid, displayBtnType: 'icon', classNames: classNames3,
-      parentHandleEvents: this.handleEvents,
+      parentHandleEvents: this.handleEvents.bind(this),
     }
 
     const action: Interfaces.Action = {type: 'pressSearchButton'}

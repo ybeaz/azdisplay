@@ -29,6 +29,7 @@ class Dropdown extends React.PureComponent<Props, State> {
     cid: '',
     displayBtnType: 'icon',
     delay: 0,
+    parentHandleEvents: (): void => {},
   }
 
   constructor(props: any) {
@@ -41,7 +42,16 @@ class Dropdown extends React.PureComponent<Props, State> {
     }
   }
 
-  getDropdownItems = (listArr: ListObj[]) => listArr.map((item: ListObj, i: number) => {
+  public componentDidMount(): void {
+    const { listArr } = this.state
+    const item: any = listArr.filter((itemFilter: any) => itemFilter.active === true)[0]
+    const { capture } = item
+    // console.info('Dropdown->componentDidMount()', { capture, item })
+    const action: Interfaces.Action = { type: 'selectItem', capture }
+    this.handleEvents({}, action)
+  }
+
+  public getDropdownItems = (listArr: ListObj[]) => listArr.map((item: ListObj, i: number) => {
     const { capture, iconFa, active, general, sourceClass, spritePosition } = item
 
     let icons: any
@@ -61,7 +71,7 @@ class Dropdown extends React.PureComponent<Props, State> {
       activeClass = 'Dropdown__item_selected'
     }
 
-    const action: Interfaces.Action = { type: 'selectDataItem', capture }
+    const action: Interfaces.Action = { type: 'selectItem', capture }
 
     return (
       <div
@@ -75,7 +85,7 @@ class Dropdown extends React.PureComponent<Props, State> {
     )
   })
 
-  getSpriteElement = (sourceClass, spritePosition, elementClass) => {
+  public getSpriteElement = (sourceClass, spritePosition, elementClass) => {
 
     return (
       <div
@@ -85,7 +95,7 @@ class Dropdown extends React.PureComponent<Props, State> {
     )
   }
 
-  getFontAwsomeIcons = (arr: []) => {
+  public getFontAwsomeIcons = (arr: []) => {
     let iconHtml = null
     if (arr) {
       const icons = arr.map((item: string, i) => {
@@ -96,7 +106,7 @@ class Dropdown extends React.PureComponent<Props, State> {
     return iconHtml
   }
 
-  getButtonFace = (displayBtnType: string, icons, capture: string) => {
+  public getButtonFace = (displayBtnType: string, icons, capture: string) => {
     let buttonFace = icons
     if (displayBtnType === 'text') {
       buttonFace = <span>{capture}</span>
@@ -104,10 +114,10 @@ class Dropdown extends React.PureComponent<Props, State> {
     return buttonFace
   }
 
-  handleEvents = (e: object, action: Interfaces.Action) => {
+  public handleEvents = (e: object, action: Interfaces.Action): void => {
     switch (action.type) {
 
-      case 'selectDataItem':
+      case 'selectItem':
       {
         // console.info( 'Dropdown->handleEvents() [1]', action)
         const { delay, parentHandleEvents } = this.props
@@ -123,12 +133,12 @@ class Dropdown extends React.PureComponent<Props, State> {
           return { ...item, active }
         })
 
+        // console.info(`Dropdown->handleEvents() type: ${action.type}`, { parentHandleEvents, listArr, action, e })
         const action01: Interfaces.Action = { type: 'onClickSearchMedia', data: listArr }
         parentHandleEvents({}, action01)
-        this.setState({ listArr })
 
         setTimeout(() => {
-          this.setState({ toggle: 'Dropdown__dropdownMenu_hide' })
+          this.setState({ listArr, toggle: 'Dropdown__dropdownMenu_hide' })
         }, delay)
       }
       break
@@ -148,7 +158,7 @@ class Dropdown extends React.PureComponent<Props, State> {
     }
   }
 
-  render() {
+  public render(): JSX.Element {
 
     const { cid, sid, displayBtnType } = this.props
     const { listArr, toggle } = this.state
@@ -175,7 +185,7 @@ class Dropdown extends React.PureComponent<Props, State> {
       <div id={cid} className={`Dropdown dropdown ${sid}`}>
         <button
           type='button'
-          className='btn dropdown-toggle Dropdown__button'
+          className='btn Dropdown__toggle Dropdown__button'
           onClickCapture={e => this.handleEvents(e, action)}
         >
           {buttonFace}

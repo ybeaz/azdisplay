@@ -91,6 +91,16 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
     }
     break
 
+
+
+    case 'updateUserFootprint':
+    {
+      data = action.data
+      console.info(`handleActions.js type: ${action.type}`, { data, action, e })
+      actions.UPDATE_USER_FOOTPRINT(data)
+    }
+    break
+
     case 'callSpinner':
     {
       data = {}
