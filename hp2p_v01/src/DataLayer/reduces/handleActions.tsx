@@ -2,22 +2,98 @@ import { bindActionCreators } from 'redux'
 import * as actionSet from '../actions/index'
 import store from '../store'
 
+import { ARR_ACTION_TO_OMIT_FOR_LOG } from '../../Constants/CONSTANTS'
 import * as Interfaces from '../../Shared/interfaces'
 import * as serviceFunc from '../../Shared/serviceFunc'
-import { ARR_ACTION_TO_OMIT_FOR_LOG } from '../../Constants/CONSTANTS'
 
 const { dispatch } = store
 const actions: any = bindActionCreators(actionSet, dispatch)
 
-
-export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
+export const handleActions: Function = (e: object, action: Interfaces.Action): void => {
   // console.info(`handleActions.js type->${action.type}`, { e, action })
+  let data: any = {}
 
   switch (action.type) {
 
+    /*
+      CLICK_FORWARD_2
+      CLICK_FORWARD_1
+      CLICK_ROLE
+      CLICK_PROFILE_REVIEW
+      CLICK_CATALOG_CATEGORY
+      CLICK_SEARCH_BUTTON
+      CLICK_REGISTRATION_QUICK
+      CLICK_REGISTRATION_FOOTER
+      CLICK_REGISTRATION_NAV_BAR'
+    */
+
+   case 'clickForward2':
+   {
+      data = {}
+      actions.CLICK_FORWARD_2(data)
+   }
+   break
+
+   case 'clickForward1':
+   {
+      data = {}
+      actions.CLICK_FORWARD_1(data)
+   }
+   break
+
+   case 'clickRole':
+   {
+      data = {}
+      actions.CLICK_ROLE(data)
+   }
+   break
+
+   case 'clickProfileReview':
+   {
+      data = {}
+      actions.CLICK_PROFILE_REVIEW(data)
+   }
+   break
+
+    case 'clickCatalogCategory':
+    {
+      data = {}
+      actions.CLICK_CATALOG_CATEGORY(data)
+    }
+    break
+
+    case 'clickSearchButton':
+    {
+      data = action.data
+      console.info(`handleActions.js type: ${action.type}`, { data, action, e })
+      actions.CLICK_SEARCH_BUTTON(data)
+    }
+    break
+
+    case 'clickRegistrationQuick':
+    {
+      data = {}
+      actions.CLICK_REGISTRATION_QUICK(data)
+    }
+    break
+
+    case 'clickRegistrationFooter':
+    {
+      data = {}
+      actions.CLICK_REGISTRATION_FOOTER(data)
+    }
+    break
+
+    case 'clickRegistrationNavBar':
+    {
+      data = {}
+      actions.CLICK_REGISTRATION_NAV_BAR(data)
+    }
+    break
+
     case 'callSpinner':
     {
-      const data: any = {}
+      data = {}
       actions.CLOSE_ALL_MODALS(data)
       const modalNext: string = 'Spinner'
       actions.CALL_SPINNER({ modalNext })
@@ -37,7 +113,7 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
 
     case 'closeModalThankYou':
     {
-      const data: any = {}
+      data = {}
       actions.CLOSE_MODAL_THANK_YOU(data)
       // console.info(`handleActions.js type: ${action.type}`, { e, action })
     }
@@ -45,9 +121,9 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
 
     case 'closeModalCommentForm':
     {
-      const data: any = {}
+      data = {}
       actions.CLOSE_ALL_MODALS(data)
-      const modalNext = 'ThankYou'
+      const modalNext: string = 'ThankYou'
       actions.CLOSE_COMMENT_FORM({ modalNext })
       // console.info(`handleActions.js type: ${action.type}`, { action, e })
     }
@@ -55,12 +131,12 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
 
     case 'closeModalSelectRole':
     {
-      const data: any = {}
+      data = {}
       actions.CLOSE_MODAL_SELECT_ROLE(data)
 
       const { actionLog } = store.getState()
       let actionLogNext: any = actionLog
-      // actionLogNext.push({type: 'CANCEL_USER_REGISTRATION_REQUEST'})
+      actionLogNext.push({type: 'CANCEL_USER_REGISTRATION_REQUEST'})
       actionLogNext = serviceFunc.arrOfObjOmitItemsByPropValArr(actionLog, 'type', ARR_ACTION_TO_OMIT_FOR_LOG)
       actionLogNext = actionLogNext.map((item: any) => item.type)
       const payload: Interfaces.Payload  = {
@@ -76,7 +152,7 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
 
     case 'sendCommentForm':
     {
-      const data: any = {}
+      data = {}
       actions.CLOSE_ALL_MODALS(data)
       const modalNext: string = 'ThankYou'
       const { treeData, language, actionLog } = store.getState()
@@ -99,11 +175,11 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
 
     case 'pressOkInSelectRole':
     {
-      const data: any = {}
+      data = {}
       actions.CLOSE_ALL_MODALS(data)
-      const modalNext = 'CommentForm'
+      const modalNext: string = 'CommentForm'
       const { treeData, language } = store.getState()
-      const prop = serviceFunc.getFirstCharLowerCase(modalNext)
+      const prop: string = serviceFunc.getFirstCharLowerCase(modalNext)
       const { delay } = treeData[language].modals[prop]
       setTimeout(() => actions.PRESS_OK_IN_SELECT_ROLE({ modalNext }), delay)
       // console.info(`handleActions.js type: ${action.type}`, { action, e })
@@ -151,7 +227,6 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
     }
     break
 
-
     default:
     {
       console.info('handleActions.js unexpected action', { action })
@@ -160,4 +235,5 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
 
 }
 
+// tslint:disable-next-line: no-default-export
 export default handleActions

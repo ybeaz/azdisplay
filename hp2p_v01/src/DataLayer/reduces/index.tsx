@@ -2,65 +2,74 @@ import { combineReducers } from 'redux'
 import * as Interfaces from '../../Shared/interfaces'
 import { handleActions } from './handleActions'
 
-const userFootprint: any = (state: {} = {}, action: Interfaces.Action): any => {
+const userFootprint: any = (state: object = {}, action: Interfaces.Action): object => {
   switch (action.type) {
 
     case 'CLICK_FORWARD_2': {
       //msg: string
+      console.info(`reducer->userFootprint type: ${action.type}`, { state, action })
+
       return state
     }
 
-
     case 'CLICK_FORWARD_1': {
       //email: string
+      console.info(`reducer->userFootprint type: ${action.type}`, { state, action })
+
       return state
     }
 
     case 'CLICK_ROLE': {
       //role: arr
+      console.info(`reducer->userFootprint type: ${action.type}`, { state, action })
+
       return state
     }
 
     case 'CLICK_PROFILE_REVIEW': {
       //inception: string 'userProfile: '
       //name: string
+      console.info(`reducer->userFootprint type: ${action.type}`, { state, action })
+
       return state
     }
 
     case 'CLICK_CATALOG_CATEGORY': {
       //inception: string 'catalogCategory'
       //catalogCategory: string
+      console.info(`reducer->userFootprint type: ${action.type}`, { state, action })
+
       return state
     }
 
-    case 'CLICK_SEARCH_BUTTON_SECOND': {
-      //inception: string 'searchButtonSecond'
+    case 'CLICK_SEARCH_BUTTON': {
+      //inception: string 'searchButtonFirst', 'searchButtonSecond'
       //searchPhrase: string
       //searchCategory: string[]
-      //searchMedia: string
-      return state
-    }
+      //searchMedia: string[]
+      console.info(`reducer->userFootprint type: ${action.type}`, { state, action })
 
-    case 'CLICK_SEARCH_BUTTON_FIRST': {
-      //inception: string 'searchButtonFirst'
-      //inputPhrase: string
-      //category: string[]
-      //media: string
       return state
     }
 
     case 'CLICK_REGISTRATION_QUICK': {
       //inception: string 'registrationQuick'
+      console.info(`reducer->userFootprint type: ${action.type}`, { state, action })
+
       return state
     }
 
     case 'CLICK_REGISTRATION_FOOTER': {
       //inception: string 'registrationFooter'
+      console.info(`reducer->userFootprint type: ${action.type}`, { state, action })
+
       return state
     }
 
     case 'CLICK_REGISTRATION_NAV_BAR': {
       //inception: string 'registrationNavBar'
+      console.info(`reducer->userFootprint type: ${action.type}`, { state, action })
+
       return state
     }
 
@@ -97,7 +106,7 @@ const language: any = (state: string = 'rus', action: Interfaces.Action): any =>
   }
 }
 
-const user: any = (state: {} = {}, action: Interfaces.Action): any => {
+const user: any = (state: object = {}, action: Interfaces.Action): object => {
 
   switch (action.type) {
     case 'REG_LOGIN_CHECK_USER': {

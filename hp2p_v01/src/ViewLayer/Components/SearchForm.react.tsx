@@ -1,13 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import uuidv4 from 'uuid/v4'
-import * as serviceFunc from '../../Shared/serviceFunc'
 import * as Interfaces from '../../Shared/interfaces'
+import * as serviceFunc from '../../Shared/serviceFunc'
 
-import FieldButtons from './FieldButtons.react'
+// tslint:disable: import-name
 import Dropdown from './Dropdown.react'
-
+import FieldButtons from './FieldButtons.react'
 
 interface Props {
   sid: string,
@@ -18,6 +17,9 @@ interface Props {
   handleActions: Function,
 }
 interface State {
+  searchPhrase: string,
+  searchCategory: string[],
+  searchMedia: string[],
 }
 interface SearchForm {
   inputRef: any,
@@ -34,6 +36,11 @@ class SearchForm extends React.PureComponent<Props, State> {
     this.inputRef = React.createRef()
     const { sid } = this.props
     this.cid = `${sid}-${uuidv4()}`
+    this.state = {
+      searchPhrase: '',
+      searchCategory: [],
+      searchMedia: [],
+    }
   }
 
   public componentDidMount(): void {
@@ -42,7 +49,7 @@ class SearchForm extends React.PureComponent<Props, State> {
       serviceFunc.updateTransition(selector, 'transitionNextSearch')
       selector = `#${this.cid} > div.SearchForm__categoryRow.transitionPrevSearch`
       serviceFunc.updateTransition(selector, 'transitionNextSearch')
-    }, 0)
+    },         0)
 
     if (this.inputRef.current.className.includes('SearchForm__SearchForm_top')) {
       setTimeout(() => {
@@ -55,11 +62,57 @@ class SearchForm extends React.PureComponent<Props, State> {
 
   public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
     const { handleActions } = this.props
+    let data: any
+
     switch (action.type) {
-      case 'pressSearchButton': {
+
+      case 'pressSearchButton':
+      {
+
+        const { sid } = this.props
+        let inception: string = 'searchButtonFirst'
+        if (sid === 'SearchForm_bottom') {
+          inception = 'searchButtonSecond'
+        }
+        const dataTemp: any = this.state
+        data = { ...dataTemp, inception }
+        const action03: Interfaces.Action = { type: 'clickSearchButtonFirst', data }
+        handleActions(e, action03)
+
         const action01: Interfaces.Action = { type: 'pressSearchButton' }
         handleActions(e, action01)
-      }                         break
+
+        // console.info(`SearchForm->handleEvents() type: ${action.type}`, { props: this.props, action, e })
+      }
+      break
+
+      case 'onInputSearchPhrase':
+      {
+        const searchPhrase: string = e.target.value
+        this.setState({ searchPhrase })
+        // console.info(`SearchForm->handleEvents() type: ${action.type}`, { searchPhrase, action, e })
+      }
+      break
+
+      case 'onClickSearchMedia':
+      {
+        const { data } = action
+        const searchMedia: string[]  = data.filter((item: any) => item.active === true)
+          .map((item: any) => item.capture)
+        this.setState({ searchMedia })
+        // console.info(`SearchForm->handleEvents() type: ${action.type}`, { action, e })
+      }
+      break
+
+      case 'onClickSearchCategory':
+      {
+        const { data } = action
+        const searchCategory: string[] = data.filter((item: any) => item.active === true)
+          .map((item: any) => item.capture)
+        this.setState({ searchCategory })
+        // console.info(`SearchForm->handleEvents() type: ${action.type}`, { action, e })
+      }
+      break
 
       default: {
         console.info('SearchForm->handleEvents unexpected action', { action })
@@ -67,18 +120,19 @@ class SearchForm extends React.PureComponent<Props, State> {
     }
   }
 
-
   public render(): JSX.Element {
     const {
       sid, searchPlaceholder, searchButton,
       typeRequest, typeMedia, handleActions,
     } = this.props
+    const { searchPhrase } = this.state
 
     const { sid: typeRequestSid } = typeRequest
-    let cid = `${typeRequestSid}-${uuidv4()}`
+    let cid: string = `${typeRequestSid}-${uuidv4()}`
     const classNames1: string = 'Dropdown_typeRequestFirstRow'
     const typeRequestProps1: any = {
       ...typeRequest, cid, displayBtnType: 'text', classNames: classNames1,
+      parentHandleEvents: this.handleEvents,
     }
 
     const { sid: typeMediaSid } = typeMedia
@@ -86,11 +140,13 @@ class SearchForm extends React.PureComponent<Props, State> {
     const classNames3: string = 'Dropdown_typeMediaFirstRow'
     const typeMediaProps3: any = {
       ...typeMedia, cid, displayBtnType: 'icon', classNames: classNames3,
+      parentHandleEvents: this.handleEvents,
     }
 
     const action: Interfaces.Action = {type: 'pressSearchButton'}
 
-    // console.info('SearchForm->render() [10]',{ });
+    // console.info('SearchForm->render() [10]',{ state: this.state })
+
     return (
       <div id={this.cid} className={`SearchForm ${sid}`}>
         <div className='SearchForm__searchRow transitionPrevSearch'>
@@ -100,6 +156,8 @@ class SearchForm extends React.PureComponent<Props, State> {
               className={`SearchForm__searchInput SearchForm__${sid}`}
               placeholder={searchPlaceholder}
               ref={this.inputRef}
+              onInput={e => this.handleEvents(e, {type: 'onInputSearchPhrase'})}
+              value={searchPhrase}
             />
           </div>
           <div className='SearchForm__searchButtonCol'>

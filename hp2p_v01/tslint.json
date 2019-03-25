@@ -292,7 +292,7 @@
     ],
     "ban": false,
     "ban-types": true,
-    "cyclomatic-complexity": true,
+    "cyclomatic-complexity": [true, 50],
     "deprecation": false,
     "file-header": false,
     "import-blacklist": false,

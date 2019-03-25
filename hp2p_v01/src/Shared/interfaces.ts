@@ -23,6 +23,9 @@ export interface Action {
   readonly lang?: string,
   readonly treeData?: any,
   readonly modalNext?: string,
+  readonly capture?: string,
+  readonly eid?: string,
+  readonly general?: boolean,
   readonly data?: any,
 }
 
