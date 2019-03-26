@@ -14,4 +14,5 @@ const configureStore = (): any => {
   sagaMiddleware.run(indexSaga)
   return store
 }
+
 export default configureStore()

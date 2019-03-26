@@ -242,8 +242,4 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
       console.info('handleActions.js unexpected action', { action })
     }
   }
-
 }
-
-// tslint:disable-next-line: no-default-export
-export default handleActions

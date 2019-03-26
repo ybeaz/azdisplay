@@ -1,11 +1,11 @@
 import React from 'react'
 
-import CommonContainer from '../Containers/CommonContainer.react'
-import SectionWrapper from '../Components/SectionWrapper.react'
-import NavBar from '../Components/NavBar.react'
-import Footer from '../Components/Footer.react'
+import { CommonContainer } from '../Containers/CommonContainer.react'
+import { SectionWrapper } from '../Components/SectionWrapper.react'
+import { NavBar } from '../Components/NavBar.react'
+import { Footer } from '../Components/Footer.react'
 
-import GetModals from '../Modals/GetModals.react'
+import { GetModals } from '../Modals/GetModals.react'
 
 interface Props {
   reduxState: any,
@@ -13,7 +13,6 @@ interface Props {
 }
 interface State {
 }
-
 
 class AboutUs extends React.PureComponent<Props, State> {
   public static defaultProps: any = {
@@ -77,4 +76,5 @@ class AboutUs extends React.PureComponent<Props, State> {
   }
 }
 
-export default CommonContainer(AboutUs)
+// tslint:disable-next-line: export-name
+export const AboutUsPage = CommonContainer(AboutUs)

@@ -3,12 +3,12 @@ import React from 'react'
 import * as Interfaces from '../../Shared/interfaces'
 import * as serviceFunc from '../../Shared/serviceFunc'
 // tslint:disable: import-name
-import ButtonCommon from '../Components/ButtonCommon.react'
-import Footer from '../Components/Footer.react'
-import NavBar from '../Components/NavBar.react'
-import SectionWrapper from '../Components/SectionWrapper.react'
-import CommonContainer from '../Containers/CommonContainer.react'
-import GetModals from '../Modals/GetModals.react'
+import { ButtonCommon } from '../Components/ButtonCommon.react'
+import { Footer } from '../Components/Footer.react'
+import { NavBar } from '../Components/NavBar.react'
+import { SectionWrapper } from '../Components/SectionWrapper.react'
+import { CommonContainer } from '../Containers/CommonContainer.react'
+import { GetModals } from '../Modals/GetModals.react'
 
 interface Props {
   reduxState: any,
@@ -250,7 +250,5 @@ class Analytics extends React.PureComponent<Props, State> {
   }
 }
 
-/* tslint:disable-next-line: no-default-export
-   tslint:disable-next-line: export-name
-*/
-export default CommonContainer(Analytics)
+// tslint:disable-next-line: export-name
+export const AnalyticsPage = CommonContainer(Analytics)

@@ -5,8 +5,8 @@ import * as Interfaces from '../../Shared/interfaces'
 import * as serviceFunc from '../../Shared/serviceFunc'
 
 // tslint:disable: import-name
-import Dropdown from './Dropdown.react'
-import FieldButtons from './FieldButtons.react'
+import { Dropdown } from './Dropdown.react'
+import { FieldButtons } from './FieldButtons.react'
 
 interface Props {
   sid: string,
@@ -21,15 +21,12 @@ interface State {
   searchCategory: string[],
   searchMedia: string[],
 }
-interface SearchForm {
-  inputRef: any,
-  cid: string,
 
-}
-
-class SearchForm extends React.PureComponent<Props, State> {
+export class SearchForm extends React.PureComponent<Props, State> {
   public static defaultProps: any = {
   }
+  public inputRef: React.RefObject<HTMLInputElement>;
+  private readonly cid: string;
 
   constructor(props: any) {
     super(props)
@@ -180,5 +177,3 @@ class SearchForm extends React.PureComponent<Props, State> {
     )
   }
 }
-
-export default SearchForm

@@ -3,13 +3,11 @@ import React from 'react'
 interface Props {
   classStyle: string,
   children: any,
-  
-
 }
 interface State {
 }
 
-const SectionWrapper: React.SFC<Props> = (props: Props) => {
+export const SectionWrapper: React.SFC<Props> = (props: Props) => {
   const { classStyle, children } = props
   return (
     <div className={`SectionWrapper ${classStyle}`}>
@@ -23,6 +21,3 @@ const SectionWrapper: React.SFC<Props> = (props: Props) => {
     </div>
   )
 }
-
-
-export default SectionWrapper

@@ -1,15 +1,24 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-import LogoElem from './LogoElem.react'
-import Dropdown from './Dropdown.react'
+import { LogoElem } from './LogoElem.react'
+import { Dropdown } from './Dropdown.react'
 
-// eslint-disable-next-line react/prefer-stateless-function
-class NavBar extends React.PureComponent {
+interface Props {
+  sid: string,
+  login: string,
+  langs: any,
+  handleActions: Function,
+}
+interface State {
+}
+
+export class NavBar extends React.PureComponent<Props, State> {
+  public static defaultProps: any = {
+  }
 
   render() {
     const { sid, login, langs, handleActions } = this.props
-    // console.info('NavBar->render() [10]',{});
+    // console.info('NavBar->render() [10]',{ langs });
     const action = { type: 'openModalRegistrationNavBar' }
 
 
@@ -51,8 +60,3 @@ class NavBar extends React.PureComponent {
     )
   }
 }
-
-NavBar.propTypes = {
-}
-
-export default NavBar

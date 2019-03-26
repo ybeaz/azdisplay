@@ -298,11 +298,11 @@ var USERTO = {
     },
     router: {
       routes: [
-        { path: '/', exact: true, page: 'FacePage326' },
-        { path: '/analytics-c7b094941e7e11c6bf93d5736673881e', exact: true, page: 'Analytics' },
-        { path: '/326_HP2P_v01/enter', exact: true, page: 'FacePage326' },
-        { path: '/326_HP2P_v01/aboutus', exact: true, page: 'AboutUs' },
-        { path: '/326_HP2P_v01/contacts', exact: true, page: 'Contacts' },
+        { path: '/', exact: true, page: 'Face326Page' },
+        { path: '/analytics-c7b094941e7e11c6bf93d5736673881e', exact: true, page: 'AnalyticsPage' },
+        { path: '/326_HP2P_v01/enter', exact: true, page: 'Face326Page' },
+        { path: '/326_HP2P_v01/aboutus', exact: true, page: 'AboutUsPage' },
+        { path: '/326_HP2P_v01/contacts', exact: true, page: 'ContactsPage' },
       ],
       redirects: [
         { from: '/', to: '/326_HP2P_v01/enter', exact: true },

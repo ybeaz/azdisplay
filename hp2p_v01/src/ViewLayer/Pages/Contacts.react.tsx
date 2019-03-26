@@ -1,11 +1,11 @@
 import React from 'react'
 
-import CommonContainer from '../Containers/CommonContainer.react'
-import SectionWrapper from '../Components/SectionWrapper.react'
-import NavBar from '../Components/NavBar.react'
-import Footer from '../Components/Footer.react'
+import { Footer } from '../Components/Footer.react'
+import { NavBar } from '../Components/NavBar.react'
+import { SectionWrapper } from '../Components/SectionWrapper.react'
+import { CommonContainer } from '../Containers/CommonContainer.react'
 
-import GetModals from '../Modals/GetModals.react'
+import { GetModals } from '../Modals/GetModals.react'
 
 interface Props {
   reduxState: any,
@@ -70,4 +70,5 @@ class Contacts extends React.PureComponent<Props, State> {
   }
 }
 
-export default CommonContainer(Contacts)
+// tslint:disable-next-line: export-name
+export const ContactsPage = CommonContainer(Contacts)

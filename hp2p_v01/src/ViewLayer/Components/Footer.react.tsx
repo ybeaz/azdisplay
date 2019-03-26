@@ -2,14 +2,22 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-
 import { handleActions } from '../../DataLayer/reduces/handleActions'
 import * as serviceFunc from '../../Shared/serviceFunc'
 
-import LogoElem from './LogoElem.react'
+import { LogoElem } from './LogoElem.react'
 
-// eslint-disable-next-line react/prefer-stateless-function
-class Footer extends React.PureComponent {
+interface Props {
+  readonly sid: string,
+  readonly listArr: any,
+  readonly copyRight: string,
+}
+interface State {
+}
+
+export class Footer extends React.PureComponent<Props, State> {
+  public static defaultProps: any = {
+  }
 
   getListItems = arr => arr.map((item, i) => {
 
@@ -95,8 +103,3 @@ class Footer extends React.PureComponent {
     )
   }
 }
-
-Footer.propTypes = {
-}
-
-export default Footer

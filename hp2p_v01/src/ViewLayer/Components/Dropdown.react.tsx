@@ -8,23 +8,23 @@ interface ListObj {
 }
 
 interface Props {
-  sid: string,
+  readonly sid: string,
     // section class for Less(css)
-  cid: string,
+  readonly cid: string,
     // component id
-  displayBtnType: string,
+  readonly displayBtnType: string,
     // Possible values: 'icon', 'text'
-  readonly listArr: ListObj[],
-  delay: number,
+  readonly listArr: any,
+  readonly delay: number,
     // Delay for assigning value to the button after option clicked
-  parentHandleEvents: Function,
+  readonly parentHandleEvents: Function,
 }
 interface State {
   listArr: ListObj[],
   toggle: string,
 }
 
-class Dropdown extends React.PureComponent<Props, State> {
+export class Dropdown extends React.PureComponent<Props, State> {
   public static defaultProps = {
     cid: '',
     displayBtnType: 'icon',
@@ -197,5 +197,3 @@ class Dropdown extends React.PureComponent<Props, State> {
     )
   }
 }
-
-export default Dropdown

@@ -1,7 +1,9 @@
 import React from 'react'
 
-// eslint-disable-next-line react/prefer-stateless-function
-const Error404 = () => {
+interface Props {
+}
+
+const Error404: React.SFC<Props> = () => {
 
   return (
     <div className='container'>
@@ -31,4 +33,4 @@ const Error404 = () => {
 
 }
 
-export default Error404
+export const Error404Page = Error404

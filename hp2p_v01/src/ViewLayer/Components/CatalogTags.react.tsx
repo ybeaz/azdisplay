@@ -1,13 +1,48 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-import ButtonCommon from './ButtonCommon.react'
-
+import { ButtonCommon } from './ButtonCommon.react'
 import * as serviceFunc from '../../Shared/serviceFunc'
 
+interface Props {
+  readonly sid: string,
+    // component id
+  readonly captureSection: string,
+    // Section name
+  readonly captureButtonShowAll: string,
+    // Name for button to offer Show all
+  readonly captureButtonCompact: string,
+    // Name for button to offer Show compact
+  readonly listArr: any,
+    // Data for catalog output
+  readonly isCompactAlways: boolean,
+    // Make iconFa for all screen resolutions
+  readonly isCompactPhone: boolean,
+  readonly numItemsBeforeButton: number,
+    // Number output by default
+  readonly handleActions: Function,
+}
+interface State {
+  readonly tags: any,
+  readonly numItemsBeforeButton: number,
+  readonly toggleShowHideButton: boolean,
+}
 
-// eslint-disable-next-line react/prefer-stateless-function
-class CatalogTags extends React.PureComponent {
+export interface CatalogTags {
+  mode: string,
+}
+
+
+export class CatalogTags extends React.PureComponent<Props, State> {
+  public static defaultProps: any = {
+    captureSection: '',
+    captureButtonShowAll: '',
+    captureButtonCompact: '',
+    listArr: [],
+    isCompactAlways: false,
+    isCompactPhone: true,
+    numItemsBeforeButton: 9,
+  }
+
   constructor(props) {
     super(props)
     const {
@@ -39,7 +74,7 @@ class CatalogTags extends React.PureComponent {
     } = this.props
 
     const { width } = serviceFunc.mediaSizeCrossBrowser(global)
-    let mode = 'tagsListData'
+    let mode: string = 'tagsListData'
     if (isCompactAlways) {
       mode = 'tagsIconsFa'
     }
@@ -47,7 +82,7 @@ class CatalogTags extends React.PureComponent {
       mode = 'tagsIconsFa'
     }
     else {
-      let mode = 'tagsListData'
+      mode = 'tagsListData'
     }
 
     return mode
@@ -193,34 +228,3 @@ class CatalogTags extends React.PureComponent {
     )
   }
 }
-
-CatalogTags.defaultProps = {
-  captureSection: '',
-  captureButtonShowAll: '',
-  captureButtonCompact: '',
-  listArr: [],
-  isCompactAlways: false,
-  isCompactPhone: true,
-  numItemsBeforeButton: 9,
-}
-
-/* eslint-disable indent */
-CatalogTags.propTypes = {
-  sid: PropTypes.string.isRequired,
-    // component id
-  captureSection: PropTypes.string,
-    // Section name
-  captureButtonShowAll: PropTypes.string,
-    // Name for button to offer Show all
-  captureButtonCompact: PropTypes.string,
-    // Name for button to offer Show compact
-  listArr: PropTypes.arrayOf(PropTypes.object),
-    // Data for catalog output
-  isCompactAlways: PropTypes.bool,
-    // Make iconFa for all screen resolutions
-  isCompactPhone: PropTypes.bool,
-  numItemsBeforeButton: PropTypes.number,
-    // Number output by default 
-}
-
-export default CatalogTags

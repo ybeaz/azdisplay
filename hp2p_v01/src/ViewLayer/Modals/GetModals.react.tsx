@@ -2,8 +2,7 @@ import React from 'react'
 
 import { getFirstCharLowerCase } from '../../Shared/serviceFunc'
 
-// tslint:disable-next-line: import-name
-import CommonContainer from '../Containers/CommonContainer.react'
+import { CommonContainer } from '../Containers/CommonContainer.react'
 import { CommentForm } from './CommentForm.react'
 import { ModalBackdrop } from './ModalBackdrop.react'
 import { SelectRole } from './SelectRole.react'
@@ -24,7 +23,7 @@ interface Props {
 interface State {
 }
 
-class GetModals extends React.PureComponent<Props, State> {
+class GetModalsClass extends React.PureComponent<Props, State> {
   public static defaultProps: any = {
   }
 
@@ -75,11 +74,13 @@ class GetModals extends React.PureComponent<Props, State> {
 
   public render(): JSX.Element {
     const { reduxState, handleActions } = this.props
+    // console.info('GetModals->render() [0]', { handleActions, reduxState })
     const { modalWindows, treeData, language } = reduxState
     const { modals } = treeData[language]
+    // console.info('GetModals->render() [5]', { modalWindows, handleActions, modals, reduxState })
 
     const modalBackdropProps = { sid: 'bd'}
-    // console.info('FacePage326->getModals [0]', { modalWindows, handleActions, modals })
+    // console.info('GetModals->render() [5]', { modalWindows, handleActions, modals })
     return (
       <div>
         {this.getModalsToReturn(modalWindows, handleActions, modals)}
@@ -89,4 +90,4 @@ class GetModals extends React.PureComponent<Props, State> {
   }
 }
 
-export default CommonContainer(GetModals)
+export const GetModals = CommonContainer(GetModalsClass)

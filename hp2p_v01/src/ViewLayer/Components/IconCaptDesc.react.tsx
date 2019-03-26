@@ -1,10 +1,18 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import IconsFa from './IconsFa.react'
+import { IconsFa } from './IconsFa.react'
 
+interface Props {
+  readonly sid: string,
+  readonly captureSection: string,
+  readonly listArr: any,
+  readonly handleActions: Function,
+}
+interface State {
+}
 
-// eslint-disable-next-line react/prefer-stateless-function
-class IconCaptDesc extends React.PureComponent {
+export class IconCaptDesc extends React.PureComponent<Props, State> {
+  public static defaultProps: any = {
+  }
 
   getIconCaptDesc = (listArr, sid) => {
 
@@ -24,7 +32,7 @@ class IconCaptDesc extends React.PureComponent {
         num: ratingNum,
         iconFa: ratingIconFa,
       }
-      
+
       return (
         <div key={i} className='IconCaptDesc__itemCell'>  
           <div className='IconCaptDesc__itemTopBlock'>
@@ -106,8 +114,3 @@ class IconCaptDesc extends React.PureComponent {
     )
   }
 }
-
-IconCaptDesc.propTypes = {
-}
-
-export default IconCaptDesc

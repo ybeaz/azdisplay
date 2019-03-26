@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux'
 import * as Interfaces from '../../Shared/interfaces'
-import { handleActions } from './handleActions'
 
 interface UserFootprint {
   inception: string,
@@ -275,8 +274,9 @@ const treeData: any = (state: any = {}, action: Interfaces.Action): any => {
   }
 }
 
-//Main application reducers
-const appCombineReducers: any = combineReducers(
+// Main application reducers
+// tslint:disable-next-line: export-name
+const appCombineReducers = combineReducers(
   {
     userFootprint,
     analytics,
