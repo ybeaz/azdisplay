@@ -91,7 +91,7 @@ export class Footer extends React.PureComponent<Props, State> {
     }
   }
 
-  render() {
+  public render(): JSX.Element {
     const { sid, listArr, copyRight } = this.props
     const inverted: boolean = true
     // console.info('Footer->render() [10]', { captureSection, listArr })

@@ -198,7 +198,7 @@ export class CatalogTags extends React.PureComponent<Props, State> {
     }
   }
 
-  render() {
+  public render(): JSX.Element {
     const {
       sid,
       captureSection,

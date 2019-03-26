@@ -38,7 +38,7 @@ export class NavBar extends React.PureComponent<Props, State> {
     }
   }
 
-  render() {
+  public render(): JSX.Element {
     const { sid, login, langs, handleActions } = this.props
     // console.info('NavBar->render() [10]',{ langs });
     const action: any = { type: 'openModalRegistrationNavBar' }

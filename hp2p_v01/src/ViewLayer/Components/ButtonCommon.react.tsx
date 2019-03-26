@@ -18,7 +18,7 @@ export class ButtonCommon extends React.PureComponent<Props, State> {
     action: {},
   }
 
-  render() {
+  public render(): JSX.Element {
     const { sid, capture, handleFunctions, action } = this.props
     // console.info('RegistrationButton->render() [10]', { })
 

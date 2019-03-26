@@ -42,7 +42,7 @@ export class Pagination extends React.Component<Props, State> {
     )
   }
 
-  render() {
+  public render(): JSX.Element {
     const { itemsSrc, activeItem, handleEvents } = this.props
     // console.info('MenuContent->render()', { source })
 

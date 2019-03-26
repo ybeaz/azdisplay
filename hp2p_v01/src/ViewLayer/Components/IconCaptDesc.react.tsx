@@ -112,7 +112,7 @@ export class IconCaptDesc extends React.PureComponent<Props, State> {
     }
   }
 
-  render() {
+  public render(): JSX.Element {
     const { sid, captureSection, listArr } = this.props
     const iconCaptDesc = this.getIconCaptDesc(listArr, sid)
 

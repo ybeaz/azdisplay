@@ -33,8 +33,7 @@ class Contacts extends React.PureComponent<Props, State> {
 
   }
 
-
-  render() {
+  public render(): JSX.Element {
     const { reduxState, handleActions } = this.props
     const { modalWindows, treeData, language } = reduxState
     // console.info('FacePage326->render() [5]', { treeData, reduxState })

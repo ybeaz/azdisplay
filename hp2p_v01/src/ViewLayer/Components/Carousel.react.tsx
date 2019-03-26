@@ -224,7 +224,7 @@ export class Carousel extends React.PureComponent<Props, State> {
     }
   }
 
-  render() {
+  public render(): JSX.Element {
     const {
       cid,
       prefix,

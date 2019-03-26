@@ -50,7 +50,7 @@ export class Face326 extends React.PureComponent<Props, State> {
     }
   }
 
-  render() {
+  public render(): JSX.Element {
     const { reduxState, handleActions } = this.props
     const { treeData, language } = reduxState
     // console.info('Face326->render() [5]', { treeData, reduxState })

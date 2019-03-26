@@ -49,7 +49,7 @@ export class Descriptors extends React.PureComponent<Props, State> {
     }, 0)
   }
 
-  render() {
+  public render(): JSX.Element {
     const { sid, h2 } = this.props
     const { h1 } = this.state
     // console.info('Descriptors->render() [10]',{});

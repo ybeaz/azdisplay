@@ -47,7 +47,7 @@ export class ImgListTable extends React.PureComponent<Props, State> {
     )
   }
 
-  render() {
+  public render(): JSX.Element {
     // console.info('ImgListTable->render() [10]', { props: this.props })
     const { sid, listArr, captureSection, imgSrc, sequence } = this.props
     const listBlock = this.getListBlock(listArr, captureSection)

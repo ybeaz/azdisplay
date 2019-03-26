@@ -20,7 +20,7 @@ export class TemplateModal extends React.PureComponent<Props, State> {
 
   }
 
-  render() {
+  public render(): JSX.Element {
     const {
       sid, capture, handleActions,
     } = this.props
