@@ -276,7 +276,7 @@ var USERTO = {
       commentForm: {
         sid: 'CommentForm',
         message: 'В какой ситуации вам понадобился сервис? Ваш ответ поможет сделать ресурс лучше:',
-        placeholder: 'Коротко опишите ситуацию.',
+        placeholder: 'два слова о ситуации',
         buttonFooter: 'Вперед',
         delay: 0,
       },

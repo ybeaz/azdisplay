@@ -108,16 +108,17 @@ export class CatalogTags extends React.PureComponent<Props, State> {
   }
 
   getTagsListData = (arr, id) => {
-    const { handleActions } = this.props
-    const action = { type: 'selectCatalogCategory' }
 
     return arr.map((item, i) => {
       const { iconClass, capture, num } = item
+      const data: any = { catalogCategory: capture }
+      const action: Interfaces.Action = { type: 'selectCatalogCategory', data }
+
       return (
         <div
           key={i}
           className={`CatalogTags__item ${iconClass}`}
-          onClickCapture={e => handleActions(e, action)}
+          onClickCapture={e => this.handleEvents(e, action)}
         >
           <span className='name'>{capture}</span>
           <span className='num'>{num}</span>
@@ -149,16 +150,18 @@ export class CatalogTags extends React.PureComponent<Props, State> {
 
   public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
     const { sid, handleActions } = this.props
-    let data: any
 
     switch (action.type) {
 
-      case 'updateUserFootprint':
+      case 'selectCatalogCategory':
       {
-        //data = { ...dataTemp, inception }
-        //const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
-        //handleActions(e, action03)
-        // console.info(`${sid}->handleEvents() type: ${action.type}`, { props: this.props, action, e })
+        let { data } = action
+        data = { ...data, inception: 'catalogCategory' }
+        const action02: Interfaces.Action = { type: 'updateUserFootprint', data }
+        handleActions(e, action02)
+
+        const action03: Interfaces.Action = { type: 'selectCatalogCategory' }
+        handleActions(e, action03)
       }
       break
 

@@ -18,13 +18,6 @@ export class IconCaptDesc extends React.PureComponent<Props, State> {
 
   getIconCaptDesc = (listArr, sid) => {
 
-    let onClickCapture = null
-    if (sid === 'UserReviews') {
-      const { handleActions } = this.props
-      const action = { type: 'clickUserProfile' }
-      onClickCapture = e => handleActions(e, action)
-    }
-
     return listArr.map((item, i) => {
       const {
         imgSrc, iconFa, capture, details, reviewNum,
@@ -33,6 +26,13 @@ export class IconCaptDesc extends React.PureComponent<Props, State> {
       const iconsFaProps = {
         num: ratingNum,
         iconFa: ratingIconFa,
+      }
+
+      let onClickCapture: Function | null
+      if (sid === 'UserReviews') {
+        const data: any = { userPrifile: capture }
+        const action: Interfaces.Action = { type: 'clickUserProfile', data }
+        onClickCapture = (e: any): void => this.handleEvents(e, action)
       }
 
       return (
@@ -93,16 +93,19 @@ export class IconCaptDesc extends React.PureComponent<Props, State> {
 
   public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
     const { sid, handleActions } = this.props
-    let data: any
 
     switch (action.type) {
 
-      case 'updateUserFootprint':
+      case 'clickUserProfile':
       {
-        //data = { ...dataTemp, inception }
-        //const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
-        //handleActions(e, action03)
-        // console.info(`${sid}->handleEvents() type: ${action.type}`, { props: this.props, action, e })
+        let { data } = action
+        data = { ...data, inception:  'userProfile' }
+        const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
+        handleActions(e, action03)
+
+        const action01: Interfaces.Action = { type: 'clickUserProfile' }
+        handleActions(e, action01)
+        // console.info(`${sid}->handleEvents() type: ${action.type}`, { action, e })
       }
       break
 
@@ -114,7 +117,7 @@ export class IconCaptDesc extends React.PureComponent<Props, State> {
 
   public render(): JSX.Element {
     const { sid, captureSection, listArr } = this.props
-    const iconCaptDesc = this.getIconCaptDesc(listArr, sid)
+    const iconCaptDesc: JSX.Element = this.getIconCaptDesc(listArr, sid)
 
     return (
       <div id={sid} className={`container-fluid IconCaptDesc IconCaptDesc_${sid}`}>
