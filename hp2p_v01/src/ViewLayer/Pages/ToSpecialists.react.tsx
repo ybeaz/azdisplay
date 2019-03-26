@@ -8,7 +8,6 @@ import { SectionWrapper } from '../Components/SectionWrapper.react'
 import { CommonContainer } from '../Containers/CommonContainer.react'
 
 import { GetModals } from '../Modals/GetModals.react'
-import { OPEN_MODAL_REGISTRATION_FOOTER } from '../../DataLayer/actions';
 
 interface Props {
   reduxState: any,

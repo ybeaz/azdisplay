@@ -150,18 +150,19 @@ class Analytics extends React.PureComponent<Props, State> {
       sid: 'Analytics__sortButton',
       sidButton: 'Analytics__sortButton',
       capture: buttonCapture,
-      handleFunction: this.handleEvents,
+      classAdd: 'm_l_0p5_rem',
+      handleFunctions: this.handleEvents,
       action: { type: buttonActionType }}
 
     const refreshButton: any = {
       sid: 'Analytics__refreshButton',
       sidButton: 'Analytics__refreshButton',
       capture: 'Refresh',
-      handleFunction: this.handleEvents,
+      handleFunctions: this.handleEvents,
       action: { type: 'refreshAnalyticsTable' }}
 
     return (
-      <div>
+      <div className='Analytics__controlRow'>
         <ButtonCommon {...refreshButton} />
         <ButtonCommon {...sortButton} />
       </div>
