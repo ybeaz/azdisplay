@@ -209,6 +209,7 @@ const modalWindows: any = (
     case 'OPEN_MODAL_REGISTRATION_NAV_BAR':
     case 'OPEN_MODAL_REGISTRATION_QUICK':
     case 'OPEN_MODAL_REGISTRATION_FOOTER':
+    case 'OPEN_MODAL_REGISTRATION_TO_SPEC':
     case 'OPEN_MODAL_FAREWELL': {
       const { modalNext } = action
       let stateNext: any = state

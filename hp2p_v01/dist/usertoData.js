@@ -247,10 +247,10 @@ var USERTO = {
           path: '/326_HP2P_v01/contacts',
         },
         {
-          sid: 'feedback',
+          sid: 'toSpecialists',
           imgClass: '',
-          capture: 'Обратная связь',
-          path: '',
+          capture: 'Специалистам',
+          path: '/326_HP2P_v01/tospecialists',
         },
         {
           sid: 'enter',
@@ -303,6 +303,7 @@ var USERTO = {
         { path: '/326_HP2P_v01/enter', exact: true, page: 'Face326Page' },
         { path: '/326_HP2P_v01/aboutus', exact: true, page: 'AboutUsPage' },
         { path: '/326_HP2P_v01/contacts', exact: true, page: 'ContactsPage' },
+        { path: '/326_HP2P_v01/tospecialists', exact: true, page: 'ToSpecialistsPage' },
       ],
       redirects: [
         { from: '/', to: '/326_HP2P_v01/enter', exact: true },

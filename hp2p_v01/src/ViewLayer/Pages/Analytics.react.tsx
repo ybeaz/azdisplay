@@ -227,7 +227,7 @@ class Analytics extends React.PureComponent<Props, State> {
     const { navBar } = treeData[language]
 
     const modalProps: any = { modalWindows, handleActions, modals }
-    // console.info('FacePage326->render() [10]', { modalWindows, reduxState, modals, props: this.props })
+    // console.info('Analytics->render() [10]', { modalWindows, reduxState, modals, props: this.props })
 
     return (
       <div className='Analytics globalStyle'>

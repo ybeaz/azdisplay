@@ -58,7 +58,7 @@ class GetModalsClass extends React.PureComponent<Props, State> {
       const componentDataProp = getFirstCharLowerCase(item.component)
       let propsScope = modals[componentDataProp]
       propsScope = { ...propsScope, handleActions }
-      // console.info('FacePage326->getModals [10]', { ...props, item, propsScope, modals })
+      // console.info('GetModals->getModals [10]', { ...props, item, propsScope, modals })
 
       if (item.component === 'Spinner') {
         propsScope = { ...propsScope, sid: '00' }

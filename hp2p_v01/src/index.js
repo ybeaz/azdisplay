@@ -8,9 +8,10 @@ import './ViewLayer/CssStyles/index.less'
 import * as actions from './DataLayer/actions/index'
 import store from './DataLayer/store'
 import * as serviceFunc from './Shared/serviceFunc'
-import { Face326Page } from './ViewLayer/Pages/FacePage326.react'
+import { Face326Page } from './ViewLayer/Pages/Face326.react'
 import { AboutUsPage } from './ViewLayer/Pages/AboutUs.react'
 import { ContactsPage } from './ViewLayer/Pages/Contacts.react'
+import { ToSpecialistsPage } from './ViewLayer/Pages/ToSpecialists.react'
 import { AnalyticsPage } from './ViewLayer/Pages/Analytics.react'
 import { Error404Page } from './ViewLayer/Pages/Error404.react'
 
@@ -18,6 +19,7 @@ const PAGES = {
   Face326Page,
   AboutUsPage,
   ContactsPage,
+  ToSpecialistsPage,
   AnalyticsPage,
   Error404Page,
 }
@@ -78,8 +80,6 @@ const App = () => {
     </Provider>
   )
 }
-
-// <Route path='/dist/index_dev.html' component={() => <FacePage326 {...{ treeDefault }} />} />
 
 const rootElement = document.getElementById('root')
 ReactDOM.render(<App {...treeDefault} />, rootElement)

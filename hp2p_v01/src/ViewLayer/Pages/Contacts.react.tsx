@@ -36,7 +36,7 @@ class Contacts extends React.PureComponent<Props, State> {
   public render(): JSX.Element {
     const { reduxState, handleActions } = this.props
     const { modalWindows, treeData, language } = reduxState
-    // console.info('FacePage326->render() [5]', { treeData, reduxState })
+    // console.info('Contacts->render() [5]', { treeData, reduxState })
     let {
       navBar,
       footer,
@@ -44,7 +44,7 @@ class Contacts extends React.PureComponent<Props, State> {
     } = treeData[language]
 
     const modalProps: any = { modalWindows, handleActions, modals }
-    // console.info('FacePage326->render() [10]', { modalWindows, reduxState, modals, props: this.props })
+    // console.info('Contacts->render() [10]', { modalWindows, reduxState, modals, props: this.props })
     return (
       <div className='Contacts globalStyle'>
         <header><NavBar {...navBar} /></header>

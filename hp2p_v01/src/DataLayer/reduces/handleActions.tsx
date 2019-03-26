@@ -202,6 +202,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
     case 'openModalRegistrationNavBar':
     case 'openModalRegistrationQuick':
     case 'openModalRegistrationFooter':
+    case 'openModalRegistrationToSpec':
     {
       const modalNext: string = 'SelectRole'
       const { treeData, language, actionLog } = store.getState()
@@ -227,6 +228,9 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
         }                                  break
         case 'openModalRegistrationFooter': {
           setTimeout(() => actions.OPEN_MODAL_REGISTRATION_FOOTER({ modalNext }), delay)
+        }                                   break
+        case 'openModalRegistrationToSpec': {
+          setTimeout(() => actions.OPEN_MODAL_REGISTRATION_TO_SPEC({ modalNext }), delay)
         }                                   break
         default: {
           console.info('handleActions.js unexpected action', { action })

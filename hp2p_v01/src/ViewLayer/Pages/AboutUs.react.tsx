@@ -35,7 +35,7 @@ class AboutUs extends React.PureComponent<Props, State> {
   public render(): JSX.Element {
     const { reduxState, handleActions } = this.props
     const { modalWindows, treeData, language } = reduxState
-    // console.info('FacePage326->render() [5]', { treeData, reduxState })
+    // console.info('AboutUs->render() [5]', { treeData, reduxState })
     let {
       navBar,
       footer,
@@ -43,7 +43,7 @@ class AboutUs extends React.PureComponent<Props, State> {
     } = treeData[language]
 
     const modalProps: any = { modalWindows, handleActions, modals }
-    // console.info('FacePage326->render() [10]', { modalWindows, reduxState, modals, props: this.props })
+    // console.info('AboutUs->render() [10]', { modalWindows, reduxState, modals, props: this.props })
     return (
       <div className='AboutUs globalStyle'>
         <header><NavBar {...navBar} /></header>

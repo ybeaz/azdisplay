@@ -49,6 +49,7 @@ export const SELECT_CATALOG_CATEGORY: any = (data: any): any => action(actionTyp
 export const OPEN_MODAL_REGISTRATION_NAV_BAR: any = (data: any): any => action(actionTypes.OPEN_MODAL_REGISTRATION_NAV_BAR, data)
 export const OPEN_MODAL_REGISTRATION_QUICK: any = (data: any): any => action(actionTypes.OPEN_MODAL_REGISTRATION_QUICK, data)
 export const OPEN_MODAL_REGISTRATION_FOOTER: any = (data: any): any => action(actionTypes.OPEN_MODAL_REGISTRATION_FOOTER, data)
+export const OPEN_MODAL_REGISTRATION_TO_SPEC: any = (data: any): any => action(actionTypes.OPEN_MODAL_REGISTRATION_TO_SPEC, data)
 export const OPEN_MODAL_FAREWELL: any = (data: any): any => action(actionTypes.OPEN_MODAL_FAREWELL, data)
 export const CLOSE_MODAL_REGISTRATION: any = (data: any): any => action(actionTypes.CLOSE_MODAL_REGISTRATION, data)
 export const DISPATCH_ACTION: any = (data: any): any => action(actionTypes.DISPATCH_ACTION, data)
