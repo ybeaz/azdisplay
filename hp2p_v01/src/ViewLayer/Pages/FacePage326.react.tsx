@@ -32,15 +32,20 @@ export class Face326 extends React.PureComponent<Props, State> {
   public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
     const { handleActions } = this.props
     let data: any
+    // console.info(`Face326->handleEvents() type: ${action.type} [0]`, { handleActions, props: this.props, action, e })
 
     switch (action.type) {
 
-      case 'updateUserFootprint':
+      case 'openModalRegistrationQuick':
       {
-        //data = { ...dataTemp, inception }
-        //const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
-        //handleActions(e, action03)
-        // console.info(`Face326->handleEvents() type: ${action.type}`, { props: this.props, action, e })
+        data = { inception: 'registrationQuick' }
+        const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
+        handleActions(e, action03)
+
+        const action02: Interfaces.Action = { type: 'openModalRegistrationQuick' }
+        handleActions(e, action02)
+
+        // console.info(`Face326->handleEvents() type: ${action.type} [10]`, { props: this.props, action, e })
       }
       break
 
@@ -55,6 +60,7 @@ export class Face326 extends React.PureComponent<Props, State> {
     const { treeData, language } = reduxState
     // console.info('Face326->render() [5]', { treeData, reduxState })
     const {
+      navBar,
       descriptors,
       itHelps,
       workFlow,
@@ -65,7 +71,6 @@ export class Face326 extends React.PureComponent<Props, State> {
     } = treeData[language]
 
     let {
-      navBar,
       searchForm,
       carousel,
       catatogTags,
@@ -76,7 +81,6 @@ export class Face326 extends React.PureComponent<Props, State> {
     searchForm = { ...searchForm, handleActions }
     userReviews = { ...userReviews, handleActions }
     catatogTags = { ...catatogTags, handleActions }
-    navBar = { ...navBar, handleActions }
 
     const { sid: carouselSid } = carousel
     const carouselCid = `${carouselSid}-${uuidv4()}`
@@ -87,9 +91,9 @@ export class Face326 extends React.PureComponent<Props, State> {
     const searchFormBottom = {...searchForm, sid: 'SearchForm_bottom'}
 
 
-    const action = { type: 'openModalRegistrationQuick' }
-    registrationButton = { ...registrationButton, handleFunction: handleActions, action }
-    
+    const action: Interfaces.Action = { type: 'openModalRegistrationQuick' }
+    registrationButton = { ...registrationButton, handleFunctions: this.handleEvents.bind(this), action }
+
     // console.info('Face326->render() [10]', { modalWindows, reduxState, modals, props: this.props })
     return (
       <div className='Face326 globalStyle'>

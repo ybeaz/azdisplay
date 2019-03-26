@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import { handleActions } from '../../DataLayer/reduces/handleActions'
 import * as Interfaces from '../../Shared/interfaces'
 import * as serviceFunc from '../../Shared/serviceFunc'
 
@@ -10,7 +11,6 @@ interface Props {
   readonly sid: string,
   readonly listArr: any,
   readonly copyRight: string,
-  readonly handleActions: Function,
 }
 interface State {
 }
@@ -24,14 +24,14 @@ export class Footer extends React.PureComponent<Props, State> {
     const { sid, capture, path, level01 } = item
     const Sid = serviceFunc.getFirstCharUpperCase(sid)
 
-    const action = { type: `clickFooter${Sid}` }
-    // console.info('Footer->getListItems', { ...item, Sid, action })
-
+    const action: Interfaces.Action = { type: `clickFooter${Sid}` }
+    // console.info('Footer->getListItems', { ...item, type: `clickFooter${Sid}`, Sid, action })
 
     let listItemslevel01 = null
     if (level01 && level01.length > 0) {
       listItemslevel01 = level01.map((itemLevel01, iLevel01) => {
         const { capture: captureLevel01 } = itemLevel01
+
         return (
           <div key={iLevel01} className='Footer__itemLevel1Cell'>
             {captureLevel01}
@@ -42,7 +42,7 @@ export class Footer extends React.PureComponent<Props, State> {
 
     return (
       <div key={i} className='Footer__colItem'>
-        
+
         <Link to={path}>
           <div
             className={`Footer__capture Footer__capture${Sid}`}
@@ -65,24 +65,21 @@ export class Footer extends React.PureComponent<Props, State> {
   })
 
   public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
-    const { sid, handleActions } = this.props
+    const { sid } = this.props
     let data: any
 
     switch (action.type) {
 
-      case 'updateUserFootprint':
-      {
-        //data = { ...dataTemp, inception }
-        //const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
-        //handleActions(e, action03)
-        // console.info(`${sid}->handleEvents() type: ${action.type}`, { props: this.props, action, e })
-      }
-      break
-
       case 'clickFooterEnter': {
-        const action01 = { type: 'openModalRegistrationFooter' }
+        // console.info(`Footer->handleEvents type->${action.type}`, { props: this.props, action, e })
+
+        data = { inception: 'registrationFooter' }
+        const action02: Interfaces.Action = { type: 'updateUserFootprint', data }
+        handleActions(e, action02)
+
+        const action01: Interfaces.Action = { type: 'openModalRegistrationFooter' }
         handleActions(e, action01)
-        // console.info(`Footer->handleEvents type->${action.type}`, { e, action })
+        // console.info(`Footer->handleEvents type->${action.type} [10]`, { props: this.props, action, e })
       } break
 
       default: {

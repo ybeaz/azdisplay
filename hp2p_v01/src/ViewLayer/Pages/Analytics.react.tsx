@@ -221,11 +221,10 @@ class Analytics extends React.PureComponent<Props, State> {
   public render(): JSX.Element {
     const { reduxState, handleActions } = this.props
     const { modalWindows, treeData, language } = reduxState
-    const { analytics, analyticsSrc } = this.state
+    const { analytics } = this.state
     // console.info('Analytics->render() [5]', { analytics, reduxState })
     const { footer, modals } = treeData[language]
-    let { navBar } = treeData[language]
-    navBar = { ...navBar, handleActions }
+    const { navBar } = treeData[language]
 
     const modalProps: any = { modalWindows, handleActions, modals }
     // console.info('FacePage326->render() [10]', { modalWindows, reduxState, modals, props: this.props })

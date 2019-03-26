@@ -41,7 +41,6 @@ class AboutUs extends React.PureComponent<Props, State> {
       footer,
       modals,
     } = treeData[language]
-    navBar = { ...navBar, handleActions }
 
     const modalProps: any = { modalWindows, handleActions, modals }
     // console.info('FacePage326->render() [10]', { modalWindows, reduxState, modals, props: this.props })

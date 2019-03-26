@@ -1,14 +1,14 @@
 import React from 'react'
 
+import { handleActions } from '../../DataLayer/reduces/handleActions'
 import * as Interfaces from '../../Shared/interfaces'
-import { LogoElem } from './LogoElem.react'
 import { Dropdown } from './Dropdown.react'
+import { LogoElem } from './LogoElem.react'
 
 interface Props {
   sid: string,
   login: string,
   langs: any,
-  handleActions: Function,
 }
 interface State {
 }
@@ -18,16 +18,19 @@ export class NavBar extends React.PureComponent<Props, State> {
   }
 
   public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
-    const { sid, handleActions } = this.props
+    const { sid } = this.props
     let data: any
 
     switch (action.type) {
 
-      case 'updateUserFootprint':
+      case 'openModalRegistrationNavBar':
       {
-        //data = { ...dataTemp, inception }
-        //const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
-        //handleActions(e, action03)
+        data = { inception: 'registrationNavBar' }
+        const action01: Interfaces.Action = { type: 'updateUserFootprint', data }
+        handleActions(e, action01)
+
+        const action02: Interfaces.Action = { type: 'openModalRegistrationNavBar' }
+        handleActions(e, action02)
         // console.info(`${sid}->handleEvents() type: ${action.type}`, { props: this.props, action, e })
       }
       break
@@ -39,10 +42,10 @@ export class NavBar extends React.PureComponent<Props, State> {
   }
 
   public render(): JSX.Element {
-    const { sid, login, langs, handleActions } = this.props
+    const { sid, login, langs } = this.props
     // console.info('NavBar->render() [10]',{ langs });
-    const action: any = { type: 'openModalRegistrationNavBar' }
 
+    const action: Interfaces.Action = { type: 'openModalRegistrationNavBar' }
 
     return (
       <div id={sid} className={`Navbar ${sid}`}>
@@ -69,7 +72,7 @@ export class NavBar extends React.PureComponent<Props, State> {
           <li className='nav-item has-auth-popup'>
             <div
               className='nav-link NavBar__loginLink'
-              onClickCapture={e => handleActions(e, action)}
+              onClickCapture={e => this.handleEvents(e, action)}
             >
               {login}
             </div>
