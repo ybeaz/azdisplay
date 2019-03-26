@@ -11,7 +11,6 @@ interface Props {
 }
 interface State {}
 
-// eslint-disable-next-line react/prefer-stateless-function
 export class CommentForm extends React.PureComponent<Props, State> {
   public static defaultProps: any = {
   }
@@ -19,6 +18,27 @@ export class CommentForm extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props)
 
+  }
+
+  public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
+    const { sid, handleActions } = this.props
+    let data: any
+
+    switch (action.type) {
+
+      case 'updateUserFootprint':
+      {
+        //data = { ...dataTemp, inception }
+        //const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
+        //handleActions(e, action03)
+        // console.info(`${sid}->handleEvents() type: ${action.type}`, { props: this.props, action, e })
+      }
+      break
+
+      default: {
+        console.info(`${sid}->handleEvents unexpected action type: ${action.type}`, { action })
+      }
+    }
   }
 
   public render(): JSX.Element {

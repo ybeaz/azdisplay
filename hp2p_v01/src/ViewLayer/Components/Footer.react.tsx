@@ -1,8 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-import { handleActions } from '../../DataLayer/reduces/handleActions'
+import * as Interfaces from '../../Shared/interfaces'
 import * as serviceFunc from '../../Shared/serviceFunc'
 
 import { LogoElem } from './LogoElem.react'
@@ -11,6 +10,7 @@ interface Props {
   readonly sid: string,
   readonly listArr: any,
   readonly copyRight: string,
+  readonly handleActions: Function,
 }
 interface State {
 }
@@ -64,8 +64,21 @@ export class Footer extends React.PureComponent<Props, State> {
     )
   })
 
-  handleEvents = (e, action) => {
+  public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
+    const { sid, handleActions } = this.props
+    let data: any
+
     switch (action.type) {
+
+      case 'updateUserFootprint':
+      {
+        //data = { ...dataTemp, inception }
+        //const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
+        //handleActions(e, action03)
+        // console.info(`${sid}->handleEvents() type: ${action.type}`, { props: this.props, action, e })
+      }
+      break
+
       case 'clickFooterEnter': {
         const action01 = { type: 'openModalRegistrationFooter' }
         handleActions(e, action01)
@@ -73,13 +86,14 @@ export class Footer extends React.PureComponent<Props, State> {
       } break
 
       default: {
-        console.info('Footer->handleEvents unexpected action', { action })
+        console.info(`${sid}->handleEvents unexpected action type: ${action.type}`, { action })
       }
     }
   }
 
   render() {
     const { sid, listArr, copyRight } = this.props
+    const inverted: boolean = true
     // console.info('Footer->render() [10]', { captureSection, listArr })
 
     const listItems = this.getListItems(listArr)
@@ -88,7 +102,7 @@ export class Footer extends React.PureComponent<Props, State> {
       <div id={sid} className={`Footer ${sid}`}>
         <div className='Footer__rowMain '>
           <div className='Footer__colLogo'>
-            <LogoElem inverted />
+            <LogoElem inverted={inverted} />
           </div>
           <div className='Footer__colItems'>
             {listItems}

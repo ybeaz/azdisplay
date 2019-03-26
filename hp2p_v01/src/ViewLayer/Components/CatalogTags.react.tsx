@@ -1,5 +1,6 @@
 import React from 'react'
 
+import * as Interfaces from '../../Shared/interfaces'
 import { ButtonCommon } from './ButtonCommon.react'
 import * as serviceFunc from '../../Shared/serviceFunc'
 
@@ -146,8 +147,21 @@ export class CatalogTags extends React.PureComponent<Props, State> {
       })
   }
 
-  handleEvents = (e, action) => {
+  public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
+    const { sid, handleActions } = this.props
+    let data: any
+
     switch (action.type) {
+
+      case 'updateUserFootprint':
+      {
+        //data = { ...dataTemp, inception }
+        //const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
+        //handleActions(e, action03)
+        // console.info(`${sid}->handleEvents() type: ${action.type}`, { props: this.props, action, e })
+      }
+      break
+
       case 'toggleShowCompact': {
         const { numItemsBeforeButton } = this.props
         const { toggleShowHideButton } = this.state
@@ -179,7 +193,7 @@ export class CatalogTags extends React.PureComponent<Props, State> {
       } break
 
       default: {
-        console.info('CatalogTags->handleEvents unexpected action', { action })
+        console.info(`${sid}->handleEvents unexpected action type: ${action.type}`, { action })
       }
     }
   }

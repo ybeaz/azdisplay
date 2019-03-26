@@ -27,33 +27,33 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
       CLICK_REGISTRATION_NAV_BAR'
     */
 
-   case 'clickForward2':
-   {
-      data = {}
-      actions.CLICK_FORWARD_2(data)
-   }
-   break
+    case 'clickForward2':
+    {
+        data = {}
+        actions.CLICK_FORWARD_2(data)
+    }
+    break
 
-   case 'clickForward1':
-   {
-      data = {}
-      actions.CLICK_FORWARD_1(data)
-   }
-   break
+    case 'clickForward1':
+    {
+        data = {}
+        actions.CLICK_FORWARD_1(data)
+    }
+    break
 
-   case 'clickRole':
-   {
-      data = {}
-      actions.CLICK_ROLE(data)
-   }
-   break
+    case 'clickRole':
+    {
+        data = {}
+        actions.CLICK_ROLE(data)
+    }
+    break
 
-   case 'clickProfileReview':
-   {
-      data = {}
-      actions.CLICK_PROFILE_REVIEW(data)
-   }
-   break
+    case 'clickProfileReview':
+    {
+        data = {}
+        actions.CLICK_PROFILE_REVIEW(data)
+    }
+    break
 
     case 'clickCatalogCategory':
     {
@@ -62,7 +62,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
     }
     break
 
-    case 'clickSearchButton':
+    case '---clickSearchButton':
     {
       data = action.data
       console.info(`handleActions.js type: ${action.type}`, { data, action, e })

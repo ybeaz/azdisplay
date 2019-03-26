@@ -2,18 +2,17 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 interface Props {
-  readonly fontSize?: any,
-  readonly fontSizeArg?: any,
-  readonly inverted?: any,
+  readonly inverted?: boolean,
 }
 
 const defaultProps: any = {
+  inverted: false,
 }
 
 export const LogoElem: React.SFC<Props> = (props: Props): JSX.Element => {
   const propsPrivate: Props = { ...defaultProps, ...props }
-  
-  const { fontSize: inverted } = propsPrivate
+
+  const { inverted } = propsPrivate
 
   let logoElemPart1: string = 'LogoElem__part1'
   let logoElemPart2: string = 'LogoElem__part2'
@@ -23,7 +22,7 @@ export const LogoElem: React.SFC<Props> = (props: Props): JSX.Element => {
     logoElemPart2 = 'LogoElem__part2_inv'
   }
 
-  // console.info('LogoElem [0]', { fontSizeArg, fontSize })
+  // console.info('LogoElem [0]', { logoElemPart1 })
 
   return (
     <Link to='/'>

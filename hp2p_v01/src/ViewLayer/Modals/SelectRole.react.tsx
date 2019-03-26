@@ -52,11 +52,25 @@ export class SelectRole extends React.PureComponent<Props, State> {
     if (status) {
       displayClass = 'd_i_f'
     }
+
     return displayClass
   }
 
   public handleEvents = (e: any, action: Interfaces.Action) => {
+    const { sid, handleActions } = this.props
+    let data: any
+
     switch (action.type) {
+
+      case 'updateUserFootprint':
+      {
+        //data = { ...dataTemp, inception }
+        //const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
+        //handleActions(e, action03)
+        // console.info(`${sid}->handleEvents() type: ${action.type}`, { props: this.props, action, e })
+      }
+      break
+
       case 'nextModal':
       {
         const {
@@ -116,11 +130,9 @@ export class SelectRole extends React.PureComponent<Props, State> {
 
     // console.info('SelectRole->render() [0]', { user, specialist, props: this.props })
     const modalClass: string = 'Modal__show'
-    
+
     const userCheck = this.getDisplayClass(user)
     const specialistCheck = this.getDisplayClass(specialist)
-
-
 
     return (
       <div className={`modal Modal Modal_${sid} ${modalClass}`}>
@@ -143,7 +155,7 @@ export class SelectRole extends React.PureComponent<Props, State> {
                 </button>
               </div>
             </div>
-            
+
             {/* <!-- Modal body --> */}
             <div className='modal-body Modal__body'>
               <div className='Modal__bodyRow'>
@@ -181,7 +193,6 @@ export class SelectRole extends React.PureComponent<Props, State> {
                 {buttonFooter}
               </button>
             </div>
-            
           </div>
         </div>
       </div>

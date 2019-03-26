@@ -1,6 +1,8 @@
 import React from 'react'
 import { IconsFa } from './IconsFa.react'
 
+import * as Interfaces from '../../Shared/interfaces'
+
 interface Props {
   readonly sid: string,
   readonly captureSection: string,
@@ -87,6 +89,27 @@ export class IconCaptDesc extends React.PureComponent<Props, State> {
         </div>
       )
     })
+  }
+
+  public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
+    const { sid, handleActions } = this.props
+    let data: any
+
+    switch (action.type) {
+
+      case 'updateUserFootprint':
+      {
+        //data = { ...dataTemp, inception }
+        //const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
+        //handleActions(e, action03)
+        // console.info(`${sid}->handleEvents() type: ${action.type}`, { props: this.props, action, e })
+      }
+      break
+
+      default: {
+        console.info(`${sid}->handleEvents unexpected action type: ${action.type}`, { action })
+      }
+    }
   }
 
   render() {

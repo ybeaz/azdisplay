@@ -58,15 +58,13 @@ export class SearchForm extends React.PureComponent<Props, State> {
   }
 
   public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
-    const { handleActions } = this.props
+    const { sid, handleActions } = this.props
     let data: any
 
     switch (action.type) {
 
       case 'pressSearchButton':
       {
-
-        const { sid } = this.props
         let inception: string = 'searchButtonFirst'
         if (sid === 'SearchForm_bottom') {
           inception = 'searchButtonSecond'
@@ -79,7 +77,7 @@ export class SearchForm extends React.PureComponent<Props, State> {
         const action01: Interfaces.Action = { type: 'pressSearchButton' }
         handleActions(e, action01)
 
-        // console.info(`SearchForm->handleEvents() type: ${action.type}`, { props: this.props, action, e })
+        // console.info(`${sid}->handleEvents() type: ${action.type}`, { action, e })
       }
       break
 
@@ -87,7 +85,7 @@ export class SearchForm extends React.PureComponent<Props, State> {
       {
         const searchPhrase: string = e.target.value
         this.setState({ searchPhrase })
-        // console.info(`SearchForm->handleEvents() type: ${action.type}`, { searchPhrase, action, e })
+        // console.info(`${sid}->handleEvents() type: ${action.type}`, { action, e })
       }
       break
 
