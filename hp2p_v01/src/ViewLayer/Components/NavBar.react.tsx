@@ -1,24 +1,26 @@
 import React from 'react'
 
-import { handleActions } from '../../DataLayer/reduces/handleActions'
 import * as Interfaces from '../../Shared/interfaces'
+import { CommonContainer } from '../Containers/CommonContainer.react'
 import { Dropdown } from './Dropdown.react'
 import { LogoElem } from './LogoElem.react'
 
 interface Props {
-  sid: string,
-  login: string,
-  langs: any,
+  readonly reduxState: any,
+  readonly handleActions: Function,
 }
 interface State {
 }
 
-export class NavBar extends React.PureComponent<Props, State> {
+class NavBarClass extends React.PureComponent<Props, State> {
   public static defaultProps: any = {
   }
 
   public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
-    const { sid } = this.props
+    const { reduxState, handleActions } = this.props
+    const { treeData, language } = reduxState
+    const { navBar } = treeData[language]
+    const { sid } = navBar
     let data: any
 
     switch (action.type) {
@@ -42,8 +44,12 @@ export class NavBar extends React.PureComponent<Props, State> {
   }
 
   public render(): JSX.Element {
-    const { sid, login, langs } = this.props
-    // console.info('NavBar->render() [10]',{ langs });
+    const { reduxState } = this.props
+    const { treeData, language } = reduxState
+    const { modeProdDev, navBar } = treeData[language]
+    const { languageSelect } = modeProdDev
+    const { sid, login, langs } = navBar
+    // console.info('NavBar->render() [10]',{ props: this.props });
 
     const action: Interfaces.Action = { type: 'openModalRegistrationNavBar' }
 
@@ -77,11 +83,16 @@ export class NavBar extends React.PureComponent<Props, State> {
               {login}
             </div>
           </li>
-          <li className='nav-item has-lang-popup'>
-            <Dropdown {...langs} />
-          </li>
+          { !languageSelect
+            ? (<li className='nav-item has-lang-popup'>
+              <Dropdown {...langs} />
+            </li>)
+            : undefined
+          }
         </ul>
       </div>
     )
   }
 }
+
+export const NavBar = CommonContainer(NavBarClass)

@@ -33,20 +33,11 @@ class AboutUs extends React.PureComponent<Props, State> {
   }
 
   public render(): JSX.Element {
-    const { reduxState, handleActions } = this.props
-    const { modalWindows, treeData, language } = reduxState
-    // console.info('AboutUs->render() [5]', { treeData, reduxState })
-    let {
-      navBar,
-      footer,
-      modals,
-    } = treeData[language]
 
-    const modalProps: any = { modalWindows, handleActions, modals }
     // console.info('AboutUs->render() [10]', { modalWindows, reduxState, modals, props: this.props })
     return (
       <div className='AboutUs globalStyle'>
-        <header><NavBar {...navBar} /></header>
+        <header><NavBar /></header>
         <main>
           <SectionWrapper classStyle='SectionWrapper_AboutUs'>
 
@@ -65,10 +56,10 @@ class AboutUs extends React.PureComponent<Props, State> {
         </main>
         <footer>
           <SectionWrapper classStyle='SectionWrapper_footerSection bg_greyDark'>
-            <Footer {...footer} />
+            <Footer />
           </SectionWrapper>
         </footer>
-        <GetModals {...modalProps} />
+        <GetModals />
       </div>
     )
   }

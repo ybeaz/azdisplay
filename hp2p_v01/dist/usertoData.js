@@ -7,6 +7,7 @@ var USERTO = {
   },
   rus: {
     modeProdDev: {
+      languageSelect: false,
       checkEnterEmail: false,
       checkSelectRole: false,
     },

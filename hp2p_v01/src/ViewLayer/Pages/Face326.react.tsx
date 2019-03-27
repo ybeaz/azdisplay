@@ -59,14 +59,11 @@ export class Face326 extends React.PureComponent<Props, State> {
     const { treeData, language } = reduxState
     // console.info('Face326->render() [5]', { treeData, reduxState })
     const {
-      navBar,
       descriptors,
       itHelps,
       workFlow,
       keyFeatures,
       shortAdvantages,
-      footer,
-      modals,
     } = treeData[language]
 
     let {
@@ -82,12 +79,12 @@ export class Face326 extends React.PureComponent<Props, State> {
     catatogTags = { ...catatogTags, handleActions }
 
     const { sid: carouselSid } = carousel
-    const carouselCid = `${carouselSid}-${uuidv4()}`
-    const carouselPrefix = 'CarouselDesc'
+    const carouselCid: string = `${carouselSid}-${uuidv4()}`
+    const carouselPrefix: string = 'CarouselDesc'
     carousel = { ...carousel, cid: carouselCid, prefix: carouselPrefix }
 
-    const searchFormTop = {...searchForm, sid: 'SearchForm_top'}
-    const searchFormBottom = {...searchForm, sid: 'SearchForm_bottom'}
+    const searchFormTop: {} = {...searchForm, sid: 'SearchForm_top'}
+    const searchFormBottom: {} = {...searchForm, sid: 'SearchForm_bottom'}
 
 
     const action: Interfaces.Action = { type: 'openModalRegistrationQuick' }
@@ -96,7 +93,7 @@ export class Face326 extends React.PureComponent<Props, State> {
     // console.info('Face326->render() [10]', { modalWindows, reduxState, modals, props: this.props })
     return (
       <div className='Face326 globalStyle'>
-        <header><NavBar {...navBar} /></header>
+        <header><NavBar /></header>
         <main>
           <CombineWrapper classStyle='CombineWrapper CombineWrapper_jumbotron'>
             <SectionWrapper classStyle='SectionWrapper_desc'>
@@ -138,7 +135,7 @@ export class Face326 extends React.PureComponent<Props, State> {
         </main>
         <footer>
           <SectionWrapper classStyle='SectionWrapper_footerSection bg_greyDark'>
-            <Footer {...footer} />
+            <Footer />
           </SectionWrapper>
         </footer>
         <GetModals />

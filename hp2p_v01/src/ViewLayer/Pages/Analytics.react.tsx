@@ -220,19 +220,16 @@ class Analytics extends React.PureComponent<Props, State> {
   }
 
   public render(): JSX.Element {
-    const { reduxState, handleActions } = this.props
-    const { modalWindows, treeData, language } = reduxState
     const { analytics } = this.state
     // console.info('Analytics->render() [5]', { analytics, reduxState })
-    const { footer, modals } = treeData[language]
-    const { navBar } = treeData[language]
 
-    const modalProps: any = { modalWindows, handleActions, modals }
+
+
     // console.info('Analytics->render() [10]', { modalWindows, reduxState, modals, props: this.props })
 
     return (
       <div className='Analytics globalStyle'>
-        <header><NavBar {...navBar} /></header>
+        <header><NavBar /></header>
         <main>
           <SectionWrapper classStyle='SectionWrapper_Analytics'>
             {this.controlRow()}
@@ -241,10 +238,10 @@ class Analytics extends React.PureComponent<Props, State> {
         </main>
         <footer>
           <SectionWrapper classStyle='SectionWrapper_footerSection bg_greyDark'>
-            <Footer {...footer} />
+            <Footer />
           </SectionWrapper>
         </footer>
-        <GetModals {...modalProps} />
+        <GetModals />
       </div>
     )
   }

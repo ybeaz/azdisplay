@@ -1,13 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { handleActions } from '../../DataLayer/reduces/handleActions'
 import * as Interfaces from '../../Shared/interfaces'
 import * as serviceFunc from '../../Shared/serviceFunc'
+import { CommonContainer } from '../Containers/CommonContainer.react'
 
 import { LogoElem } from './LogoElem.react'
 
 interface Props {
+  readonly reduxState: any,
+  readonly handleActions: Function,
+
   readonly sid: string,
   readonly listArr: any,
   readonly copyRight: string,
@@ -15,7 +18,7 @@ interface Props {
 interface State {
 }
 
-export class Footer extends React.PureComponent<Props, State> {
+class FooterClass extends React.PureComponent<Props, State> {
   public static defaultProps: any = {
   }
 
@@ -65,7 +68,11 @@ export class Footer extends React.PureComponent<Props, State> {
   })
 
   public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
-    const { sid } = this.props
+    const { reduxState, handleActions } = this.props
+    const { treeData, language } = reduxState
+    const { footer } = treeData[language]
+    const { sid } = footer
+
     let data: any
 
     switch (action.type) {
@@ -89,7 +96,11 @@ export class Footer extends React.PureComponent<Props, State> {
   }
 
   public render(): JSX.Element {
-    const { sid, listArr, copyRight } = this.props
+    const { reduxState } = this.props
+    const { treeData, language } = reduxState
+    const { footer } = treeData[language]
+    const { sid, listArr, copyRight } = footer
+
     const inverted: boolean = true
     // console.info('Footer->render() [10]', { captureSection, listArr })
 
@@ -114,3 +125,5 @@ export class Footer extends React.PureComponent<Props, State> {
     )
   }
 }
+
+export const Footer = CommonContainer(FooterClass)

@@ -61,24 +61,20 @@ class ToSpecialists extends React.PureComponent<Props, State> {
   }
 
   public render(): JSX.Element {
-    const { reduxState, handleActions } = this.props
-    const { modalWindows, treeData, language } = reduxState
+    const { reduxState } = this.props
+    const { treeData, language } = reduxState
     // console.info('ToSpecialists->render() [5]', { treeData, reduxState })
     let {
-      navBar,
-      footer,
-      modals,
       registrationButton,
     } = treeData[language]
 
     const action: Interfaces.Action = { type: 'openModalRegistrationToSpec' }
     registrationButton = { ...registrationButton, handleFunctions: this.handleEvents, action }
 
-    const modalProps: any = { modalWindows, handleActions, modals }
     // console.info('ToSpecialists->render() [10]', { modalWindows, reduxState, modals, props: this.props })
     return (
       <div className='ToSpecialists globalStyle'>
-        <header><NavBar {...navBar} /></header>
+        <header><NavBar /></header>
         <main>
           <SectionWrapper classStyle='SectionWrapper_ToSpecialists'>
 
@@ -99,10 +95,10 @@ class ToSpecialists extends React.PureComponent<Props, State> {
         </main>
         <footer>
           <SectionWrapper classStyle='SectionWrapper_footerSection bg_greyDark'>
-            <Footer {...footer} />
+            <Footer />
           </SectionWrapper>
         </footer>
-        <GetModals {...modalProps} />
+        <GetModals />
       </div>
     )
   }
