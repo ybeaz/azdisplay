@@ -24,16 +24,6 @@ export const getActionAsync: any = (type: string, stage: string, data: any): any
 // Get synchroneours actions
 // Template export const : any = (data: any): any => action(actionTypes., data)
 
-export const CLICK_FORWARD_2: any = (data: any): any => action(actionTypes.CLICK_FORWARD_2, data)
-export const CLICK_FORWARD_1: any = (data: any): any =>  action(actionTypes.CLICK_FORWARD_1, data)
-export const CLICK_ROLE: any = (data: any): any =>  action(actionTypes.CLICK_ROLE, data)
-export const CLICK_PROFILE_REVIEW: any = (data: any): any =>  action(actionTypes.CLICK_PROFILE_REVIEW, data)
-export const CLICK_CATALOG_CATEGORY: any = (data: any): any =>  action(actionTypes.CLICK_CATALOG_CATEGORY, data)
-export const CLICK_SEARCH_BUTTON: any = (data: any): any =>  action(actionTypes.CLICK_SEARCH_BUTTON, data)
-export const CLICK_REGISTRATION_QUICK: any = (data: any): any =>  action(actionTypes.CLICK_REGISTRATION_QUICK, data)
-export const CLICK_REGISTRATION_FOOTER: any = (data: any): any =>  action(actionTypes.CLICK_REGISTRATION_FOOTER, data)
-export const CLICK_REGISTRATION_NAV_BAR: any = (data: any): any =>  action(actionTypes.CLICK_REGISTRATION_NAV_BAR, data)
-
 export const UPDATE_USER_FOOTPRINT: any = (data: any): any =>  action(actionTypes.UPDATE_USER_FOOTPRINT, data)
 
 export const CALL_SPINNER: any = (data: any): any =>  action(actionTypes.CALL_SPINNER, data)

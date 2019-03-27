@@ -52,12 +52,14 @@ class GetModalsClass extends React.PureComponent<Props, State> {
     }
   }
 
-  public getModalsToReturn = (modalWindows: any, handleActions: Function, modals: any) => modalWindows
+  public getModalsToReturn = (
+    modalWindows: any, handleActions: Function, modals: any, modeProdDev: any,
+  ): JSX.Element => modalWindows
     .filter((item: any) => item.display === true)
     .map((item: any, i: number) => {
       const componentDataProp = getFirstCharLowerCase(item.component)
       let propsScope = modals[componentDataProp]
-      propsScope = { ...propsScope, handleActions }
+      propsScope = { ...propsScope, handleActions, modeProdDev }
       // console.info('GetModals->getModals [10]', { ...props, item, propsScope, modals })
 
       if (item.component === 'Spinner') {
@@ -76,14 +78,14 @@ class GetModalsClass extends React.PureComponent<Props, State> {
     const { reduxState, handleActions } = this.props
     // console.info('GetModals->render() [0]', { handleActions, reduxState })
     const { modalWindows, treeData, language } = reduxState
-    const { modals } = treeData[language]
+    const { modals, modeProdDev } = treeData[language]
     // console.info('GetModals->render() [5]', { modalWindows, handleActions, modals, reduxState })
 
     const modalBackdropProps = { sid: 'bd'}
     // console.info('GetModals->render() [5]', { modalWindows, handleActions, modals })
     return (
       <div>
-        {this.getModalsToReturn(modalWindows, handleActions, modals)}
+        {this.getModalsToReturn(modalWindows, handleActions, modals, modeProdDev)}
         <ModalBackdrop {...modalBackdropProps} />
       </div>
     )

@@ -15,84 +15,6 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
 
   switch (action.type) {
 
-    /*
-      CLICK_FORWARD_2
-      CLICK_FORWARD_1
-      CLICK_ROLE
-      CLICK_PROFILE_REVIEW
-      CLICK_CATALOG_CATEGORY
-      CLICK_SEARCH_BUTTON
-      CLICK_REGISTRATION_QUICK
-      CLICK_REGISTRATION_FOOTER
-      CLICK_REGISTRATION_NAV_BAR'
-    */
-
-    case 'clickForward2':
-    {
-        data = {}
-        actions.CLICK_FORWARD_2(data)
-    }
-    break
-
-    case 'clickForward1':
-    {
-        data = {}
-        actions.CLICK_FORWARD_1(data)
-    }
-    break
-
-    case 'clickRole':
-    {
-        data = {}
-        actions.CLICK_ROLE(data)
-    }
-    break
-
-    case 'clickProfileReview':
-    {
-        data = {}
-        actions.CLICK_PROFILE_REVIEW(data)
-    }
-    break
-
-    case 'clickCatalogCategory':
-    {
-      data = {}
-      actions.CLICK_CATALOG_CATEGORY(data)
-    }
-    break
-
-    case '---clickSearchButton':
-    {
-      data = action.data
-      console.info(`handleActions.js type: ${action.type}`, { data, action, e })
-      actions.CLICK_SEARCH_BUTTON(data)
-    }
-    break
-
-    case 'clickRegistrationQuick':
-    {
-      data = {}
-      actions.CLICK_REGISTRATION_QUICK(data)
-    }
-    break
-
-    case 'clickRegistrationFooter':
-    {
-      data = {}
-      actions.CLICK_REGISTRATION_FOOTER(data)
-    }
-    break
-
-    case 'clickRegistrationNavBar':
-    {
-      data = {}
-      actions.CLICK_REGISTRATION_NAV_BAR(data)
-    }
-    break
-
-
-
     case 'updateUserFootprint':
     {
       data = action.data
@@ -165,20 +87,28 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
       data = {}
       actions.CLOSE_ALL_MODALS(data)
       const modalNext: string = 'ThankYou'
-      const { treeData, language, actionLog } = store.getState()
+      const { treeData, language, actionLog, userFootprint } = store.getState()
+      const {
+        catalogCategory, email, inception, msg, role,
+        searchCategory, searchMedia, searchPhrase, userPrifile,
+      } = userFootprint
       const prop: string = serviceFunc.getFirstCharLowerCase(modalNext)
       const { delay } = treeData[language].modals[prop]
       setTimeout(() => actions.SEND_COMMENT_FORM({ modalNext }), delay)
 
       let actionLogNext: any = serviceFunc.arrOfObjOmitItemsByPropValArr(actionLog, 'type', ARR_ACTION_TO_OMIT_FOR_LOG)
       actionLogNext = actionLogNext.map((item: any) => item.type)
+
       const payload01: Interfaces.Payload  = {
         optPost: 'suva',
         target: 'registration',
-        email: 'email',
-        msg: 'msg',
-        actionLog: JSON.stringify(actionLogNext) }
-      // console.info(`handleActions.js type: ${action.type} [10]`, { payload01, actionLogNext, actionLog, action, e })
+        msg, role,
+        actionLog: JSON.stringify(actionLogNext),
+        inception, searchPhrase, searchCategory,
+        searchMedia, catalogCategory, userPrifile, email,
+      }
+
+      console.info(`handleActions.js type: ${action.type} [10]`, { userFootprint, payload01, actionLogNext, actionLog, action, e })
       actions.getActionAsync('SAVE_USER_VISIT_ACTIONS', 'REQUEST', payload01)
     }
     break

@@ -78,9 +78,7 @@ export class SelectRole extends React.PureComponent<Props, State> {
 
       case 'nextModal':
       {
-        const {
-          modeProdDev, warnNotCheckingRole, warnNotCorrectEmail, handleActions,
-        } = this.props
+        const { modeProdDev, warnNotCheckingRole, warnNotCorrectEmail } = this.props
         const { checkEnterEmail, checkSelectRole } = modeProdDev
         const { user, specialist } = this.state
         // console.info('SelectRole->handleEvents [5]', { email: this.inputRef01.current.value })

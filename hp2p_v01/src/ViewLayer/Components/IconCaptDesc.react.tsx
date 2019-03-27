@@ -28,11 +28,11 @@ export class IconCaptDesc extends React.PureComponent<Props, State> {
         iconFa: ratingIconFa,
       }
 
-      let onClickCapture: Function | null
+      let onClickCapture: any
       if (sid === 'UserReviews') {
         const data: any = { userPrifile: capture }
         const action: Interfaces.Action = { type: 'clickUserProfile', data }
-        onClickCapture = (e: any): void => this.handleEvents(e, action)
+        onClickCapture = (e: any): any => this.handleEvents(e, action)
       }
 
       return (
