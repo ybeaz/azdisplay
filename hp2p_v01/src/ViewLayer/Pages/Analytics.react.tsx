@@ -34,8 +34,6 @@ class Analytics extends React.PureComponent<Props, State> {
   }
 
   public componentDidMount(): void {
-    const { reduxState, handleActions } = this.props
-    const { analytics } = reduxState
     const action: Interfaces.Action = { type: 'getUserAnalyticsData' }
     this.handleEvents({}, action)
   }
@@ -52,7 +50,48 @@ class Analytics extends React.PureComponent<Props, State> {
     }
   }
 
-  public getActionLog = (actionLogJson: any): any => {
+  private getItemList: Function = (listArr: string[] | undefined): JSX.Element | undefined => {
+    if(!listArr || typeof listArr[0] === 'undefined') {
+      return undefined
+    }
+    console.info('Analytics->getItemList()', { listArr })
+    const itemCellGroup = listArr.map((itemElem: string) =>
+      <span className='Analytics__itemCellGroup'>{itemElem}&nbsp;&nbsp;</span>)
+    return <div className='Analytics__itemCell'>{itemCellGroup}</div>
+  }
+
+
+  private getActionLog: Function = (actionLog: any): JSX.Element | undefined => {
+
+    let actionLogNext: string
+    if (typeof actionLog === 'string') {
+      actionLogNext = actionLog
+    }
+    else {
+      actionLogNext = JSON.stringify(actionLog)
+    }
+    // console.info('Analytics->getActionLog() [0]', {  actionLogNext, actionLog})
+
+    let actionLogJson: any
+    let actionLogElem: JSX.Element
+    if (actionLogNext) {
+      let regex: any = /&quot;/gm
+      let subst: string = `"`
+      actionLogNext = actionLogNext.replace(regex, subst)
+
+      regex = /^"([\s\S]*?)"$/gm
+      subst = `$1`
+      actionLogNext = actionLogNext.replace(regex, subst)
+      actionLogNext = `[${actionLogNext}]`.toString()
+
+      // console.info('Analytics->getAnalyticsRows() [3]', { actionLogNext })
+      actionLogJson = JSON.parse(actionLogNext)
+    }
+
+    if (!actionLogJson || typeof actionLogJson[0] === 'undefined') {
+      return undefined
+    }
+    // console.info('Analytics->getActionLog() [5]', { listArr })
     const output: any = actionLogJson.map((item: any) => {
 
         const itemGroup: any = item.map((itemElem: string) =>
@@ -65,47 +104,51 @@ class Analytics extends React.PureComponent<Props, State> {
     return <div className='Analytics__logCell'>{output}</div>
   }
 
-  public getAnalyticsRows = (analytics: any): any => {
+  private getAnalyticsRows: Function = (analytics: any): any => {
     // console.info('Analytics->getAnalyticsRows() [0]', { analytics })
     return analytics
       //.filter(item => item.actionLog !== '')
       .map((item: any) => {
 
-        const { PHPSESSID, start, finish, ip, target, email,
-          msg, actionLog, width, height } = item
+        const { PHPSESSID, start, finish, ip, target,
+          msg, role, actionLog, 
+          inception, searchPhrase, searchCategory,
+          searchMedia, catalogCategory, userPrifile,
+          width, height, email, search, pathname, hostname, href,
+        } = item
 
-        let actionLogNext: string = actionLog
-        let actionLogJson: any
-        let actionLogElem: JSX.Element
-        if (actionLogNext !== '' && actionLogNext !== null) {
+        // console.info('Analytics->getAnalyticsRows() [5]', {role, searchCategory, searchMedia, actionLog })
+        const actionLogElem = this.getActionLog(actionLog)
 
-          let regex: any = /&quot;/gm
-          let subst: string = `"`
-          actionLogNext = actionLogNext.replace(regex, subst)
-
-          regex = /^"([\s\S]*?)"$/gm
-          subst = `$1`
-          actionLogNext = actionLogNext.replace(regex, subst)
-          actionLogNext = `[${actionLogNext}]`.toString()
-
-          // console.info('Analytics->getAnalyticsRows() [3]', { actionLogNext })
-          actionLogJson = JSON.parse(actionLogNext)
-          actionLogElem = this.getActionLog(actionLogJson)
-        }
-
-        // console.info('Analytics->getAnalyticsRows() [5]', {actionLogJson, item })
+        let roleElem: JSX.Element | undefined = this.getActionLog(role)
+        let searchMediaElem: JSX.Element | undefined = this.getActionLog(searchMedia)
+        let searchCategoryElem: JSX.Element | undefined = this.getActionLog(searchCategory)
+        const classNameHere: string = 'Analytics__cellClass'
+        const searchElem: string = search ? search.replace(/\?/gim, '') : ''
+        
         return (
           <tr className='Analytics__rowClass'>
-              <th className='Analytics__cellClass'>{PHPSESSID}</th>
-              <th className='Analytics__cellClass'>{start}</th>
-              <th className='Analytics__cellClass'>{finish}</th>
-              <th className='Analytics__cellClass'>{ip}</th>
-              <th className='Analytics__cellClass'>{target}</th>
-              <th className='Analytics__cellClass'>{email}</th>
-              <th className='Analytics__cellClass'>{msg}</th>
-              <th className='Analytics__cellClass'>{actionLogElem}</th>
-              <th className='Analytics__cellClass'>{width}</th>
-              <th className='Analytics__cellClass'>{height}</th>
+              <th className={`${classNameHere} Analytics__cellClass_PHPSESSID`}>{PHPSESSID}</th>
+              <th className={`${classNameHere} Analytics__cellClass_start`}>{start}</th>
+              <th className={`${classNameHere} Analytics__cellClass_finish`}>{finish}</th>
+              <th className={`${classNameHere} Analytics__cellClass_ip`}>{ip}</th>
+              <th className={`${classNameHere} Analytics__cellClass_target`}>{target}</th>
+              <th className={`${classNameHere} Analytics__cellClass_msg`}>{msg}</th>
+              <th className={`${classNameHere} Analytics__cellClass_roleElem`}>{roleElem}</th>
+              <th className={`${classNameHere} Analytics__cellClass_actionLogElem`}>{actionLogElem}</th>
+              <th className={`${classNameHere} Analytics__cellClass_inception`}>{inception}</th>
+              <th className={`${classNameHere} Analytics__cellClass_searchPhrase`}>{searchPhrase}</th>
+              <th className={`${classNameHere} Analytics__cellClass_searchCategory`}>{searchCategoryElem}</th>
+              <th className={`${classNameHere} Analytics__cellClass_searchMedia`}>{searchMediaElem}</th>
+              <th className={`${classNameHere} Analytics__cellClass_catalogCategory`}>{catalogCategory}</th>
+              <th className={`${classNameHere} Analytics__cellClass_userPrifile`}>{userPrifile}</th>
+              <th className={`${classNameHere} Analytics__cellClass_width`}>{width}</th>
+              <th className={`${classNameHere} Analytics__cellClass_height`}>{height}</th>
+              <th className={`${classNameHere} Analytics__cellClass_email`}>{email}</th>
+              <th className={`${classNameHere} Analytics__cellClass_searchElem`}>{searchElem}</th>
+              <th className={`${classNameHere} Analytics__cellClass_{pathname`}>{pathname}</th>
+              <th className={`${classNameHere} Analytics__cellClass_hostname`}>{hostname}</th>
+              <th className={`${classNameHere} Analytics__cellClass_href`}>{href}</th>
           </tr>
         )
     })
@@ -113,20 +156,32 @@ class Analytics extends React.PureComponent<Props, State> {
 
   public getAnalyticsTable = (analytics: any): any => {
 
+    const classNameHere: string ='Analytics__thCellClass'
     return (
       <table className='Analytics__tableClass'>
         <thead>
           <tr className='Analytics__thRowClass'>
-              <th className='Analytics__thCellClass'>PHPSESSID</th>
-              <th className='Analytics__thCellClass'>start</th>
-              <th className='Analytics__thCellClass'>finish</th>
-              <th className='Analytics__thCellClass'>ip</th>
-              <th className='Analytics__thCellClass'>target</th>
-              <th className='Analytics__thCellClass'>email</th>
-              <th className='Analytics__thCellClass'>msg</th>
-              <th className='Analytics__thCellClass'>actionLog</th>
-              <th className='Analytics__thCellClass'>width</th>
-              <th className='Analytics__thCellClass'>height</th>
+          <th className={classNameHere}>PHPSESSID</th>
+              <th className={classNameHere}>start</th>
+              <th className={classNameHere}>finish</th>
+              <th className={classNameHere}>ip</th>
+              <th className={classNameHere}>target</th>
+              <th className={classNameHere}>msg</th>
+              <th className={classNameHere}>role</th>
+              <th className={classNameHere}>actionLog</th>
+              <th className={classNameHere}>inception</th>
+              <th className={classNameHere}>searchPhrase</th>
+              <th className={classNameHere}>searchCategory</th>
+              <th className={classNameHere}>searchMedia</th>
+              <th className={classNameHere}>catalogCategory</th>
+              <th className={classNameHere}>userPrifile</th>
+              <th className={classNameHere}>width</th>
+              <th className={classNameHere}>height</th>
+              <th className={classNameHere}>email</th>
+              <th className={classNameHere}>search</th>
+              <th className={classNameHere}>pathname</th>
+              <th className={classNameHere}>hostname</th>
+              <th className={classNameHere}>href</th>
           </tr>
         </thead>
         <tbody>
@@ -221,11 +276,8 @@ class Analytics extends React.PureComponent<Props, State> {
 
   public render(): JSX.Element {
     const { analytics } = this.state
-    // console.info('Analytics->render() [5]', { analytics, reduxState })
 
-
-
-    // console.info('Analytics->render() [10]', { modalWindows, reduxState, modals, props: this.props })
+    // console.info('Analytics->render() [10]', { analytics, props: this.props })
 
     return (
       <div className='Analytics globalStyle'>

@@ -18,6 +18,6 @@ function* getStartedUserSession(payload) {
 
 export default function* getStartedUserSessionWatcher() {
   // console.info('getSavedUserVisitActionsMdbWatcher START_USER_SESSION', )
-  yield takeEvery(['START_USER_SESSION_REQUEST', 'CANCEL_USER_REGISTRATION_REQUEST'],
+  yield takeEvery(['START_USER_SESSION_REQUEST'],
     getStartedUserSession)
 }

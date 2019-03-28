@@ -41,7 +41,6 @@ export const OPEN_MODAL_REGISTRATION_QUICK: any = (data: any): any => action(act
 export const OPEN_MODAL_REGISTRATION_FOOTER: any = (data: any): any => action(actionTypes.OPEN_MODAL_REGISTRATION_FOOTER, data)
 export const OPEN_MODAL_REGISTRATION_TO_SPEC: any = (data: any): any => action(actionTypes.OPEN_MODAL_REGISTRATION_TO_SPEC, data)
 export const OPEN_MODAL_FAREWELL: any = (data: any): any => action(actionTypes.OPEN_MODAL_FAREWELL, data)
-export const CLOSE_MODAL_REGISTRATION: any = (data: any): any => action(actionTypes.CLOSE_MODAL_REGISTRATION, data)
 export const DISPATCH_ACTION: any = (data: any): any => action(actionTypes.DISPATCH_ACTION, data)
 export const UPLOAD_TREE_DATA: any = (data: any): any => action(actionTypes.UPLOAD_TREE_DATA, data)
 // export const SELECTED_PROJECT_TO_MERGE = data => action(actionTypes.SELECTED_PROJECT_TO_MERGE, data)

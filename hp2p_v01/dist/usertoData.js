@@ -7,6 +7,7 @@ var USERTO = {
   },
   rus: {
     modeProdDev: {
+      // fetchCredentials: 'omit', //for production всегда остается includ
       languageSelect: false,
       checkEnterEmail: false,
       checkSelectRole: false,
@@ -281,7 +282,7 @@ var USERTO = {
       commentForm: {
         sid: 'CommentForm',
         message: 'В какой ситуации вам понадобился сервис? Ваш ответ поможет сделать ресурс лучше:',
-        placeholder: 'два слова о ситуации',
+        placeholder: 'пара фраз о Вашей ситуации',
         buttonFooter: 'Вперед',
         delay: 0,
       },

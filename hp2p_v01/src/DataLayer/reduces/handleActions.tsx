@@ -18,7 +18,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
     case 'updateUserFootprint':
     {
       data = action.data
-      console.info(`handleActions.js type: ${action.type}`, { data, action, e })
+      // console.info(`handleActions.js type: ${action.type}`, { data, action, e })
       actions.UPDATE_USER_FOOTPRINT(data)
     }
     break
@@ -64,21 +64,27 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
     case 'closeModalSelectRole':
     {
       data = {}
+      actions.CLOSE_ALL_MODALS(data)
       actions.CLOSE_MODAL_SELECT_ROLE(data)
 
-      const { actionLog } = store.getState()
-      let actionLogNext: any = actionLog
-      actionLogNext.push({type: 'CANCEL_USER_REGISTRATION_REQUEST'})
-      actionLogNext = serviceFunc.arrOfObjOmitItemsByPropValArr(actionLog, 'type', ARR_ACTION_TO_OMIT_FOR_LOG)
+      const { actionLog, userFootprint } = store.getState()
+      const {
+        catalogCategory, email, inception, msg, role,
+        searchCategory, searchMedia, searchPhrase, userPrifile,
+      } = userFootprint
+      let actionLogNext: any = serviceFunc.arrOfObjOmitItemsByPropValArr(actionLog, 'type', ARR_ACTION_TO_OMIT_FOR_LOG)
       actionLogNext = actionLogNext.map((item: any) => item.type)
-      const payload: Interfaces.Payload  = {
-        optGet: 'sus',
+
+      const payload01: Interfaces.Payload  = {
+        optPost: 'suva',
         target: 'cancelReg',
-        email: '',
-        msg: '',
-        actionLog: JSON.stringify(actionLogNext) }
-      actions.getActionAsync('CANCEL_USER_REGISTRATION', 'REQUEST', payload)
-      // console.info(`handleActions.js type: ${action.type}`, { e, payload, action })
+        msg, role,
+        actionLog: JSON.stringify(actionLogNext),
+        inception, searchPhrase, searchCategory,
+        searchMedia, catalogCategory, userPrifile, email,
+      }
+      // console.info(`handleActions.js type: ${action.type} [10]`, { userFootprint, payload01, actionLogNext, actionLog, action, e })
+      actions.getActionAsync('SAVE_USER_VISIT_ACTIONS', 'REQUEST', payload01)
     }
     break
 
@@ -88,14 +94,14 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
       actions.CLOSE_ALL_MODALS(data)
       const modalNext: string = 'ThankYou'
       const { treeData, language, actionLog, userFootprint } = store.getState()
-      const {
-        catalogCategory, email, inception, msg, role,
-        searchCategory, searchMedia, searchPhrase, userPrifile,
-      } = userFootprint
       const prop: string = serviceFunc.getFirstCharLowerCase(modalNext)
       const { delay } = treeData[language].modals[prop]
       setTimeout(() => actions.SEND_COMMENT_FORM({ modalNext }), delay)
 
+      const {
+        catalogCategory, email, inception, msg, role,
+        searchCategory, searchMedia, searchPhrase, userPrifile,
+      } = userFootprint
       let actionLogNext: any = serviceFunc.arrOfObjOmitItemsByPropValArr(actionLog, 'type', ARR_ACTION_TO_OMIT_FOR_LOG)
       actionLogNext = actionLogNext.map((item: any) => item.type)
 
@@ -107,8 +113,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
         inception, searchPhrase, searchCategory,
         searchMedia, catalogCategory, userPrifile, email,
       }
-
-      console.info(`handleActions.js type: ${action.type} [10]`, { userFootprint, payload01, actionLogNext, actionLog, action, e })
+      // console.info(`handleActions.js type: ${action.type} [10]`, { userFootprint, payload01, actionLogNext, actionLog, action, e })
       actions.getActionAsync('SAVE_USER_VISIT_ACTIONS', 'REQUEST', payload01)
     }
     break
@@ -118,11 +123,28 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
       data = {}
       actions.CLOSE_ALL_MODALS(data)
       const modalNext: string = 'CommentForm'
-      const { treeData, language } = store.getState()
+      const { treeData, language, actionLog, userFootprint } = store.getState()
       const prop: string = serviceFunc.getFirstCharLowerCase(modalNext)
       const { delay } = treeData[language].modals[prop]
-      setTimeout(() => actions.PRESS_OK_IN_SELECT_ROLE({ modalNext }), delay)
-      // console.info(`handleActions.js type: ${action.type}`, { action, e })
+      setTimeout(() => actions.SEND_COMMENT_FORM({ modalNext }), delay)
+
+      const {
+        catalogCategory, email, inception, msg, role,
+        searchCategory, searchMedia, searchPhrase, userPrifile,
+      } = userFootprint
+      let actionLogNext: any = serviceFunc.arrOfObjOmitItemsByPropValArr(actionLog, 'type', ARR_ACTION_TO_OMIT_FOR_LOG)
+      actionLogNext = actionLogNext.map((item: any) => item.type)
+
+      const payload01: Interfaces.Payload  = {
+        optPost: 'suva',
+        target: 'pressOkInSelectRole',
+        msg, role,
+        actionLog: JSON.stringify(actionLogNext),
+        inception, searchPhrase, searchCategory,
+        searchMedia, catalogCategory, userPrifile, email,
+      }
+      // console.info(`handleActions.js type: ${action.type} [10]`, { userFootprint, payload01, actionLogNext, actionLog, action, e })
+      actions.getActionAsync('SAVE_USER_VISIT_ACTIONS', 'REQUEST', payload01)
     }
     break
 
@@ -135,7 +157,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
     case 'openModalRegistrationToSpec':
     {
       const modalNext: string = 'SelectRole'
-      const { treeData, language, actionLog } = store.getState()
+      const { treeData, language, actionLog, userFootprint } = store.getState()
       const prop: any = serviceFunc.getFirstCharLowerCase(modalNext)
       const { delay } = treeData[language].modals[prop]
 
@@ -166,6 +188,23 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
           console.info('handleActions.js unexpected action', { action })
         }
       }
+
+      const {
+        catalogCategory, email, inception, msg, role,
+        searchCategory, searchMedia, searchPhrase, userPrifile,
+      } = userFootprint
+      let actionLogNext: any = serviceFunc.arrOfObjOmitItemsByPropValArr(actionLog, 'type', ARR_ACTION_TO_OMIT_FOR_LOG)
+      actionLogNext = actionLogNext.map((item: any) => item.type)
+
+      const payload01: Interfaces.Payload  = {
+        optPost: 'suva',
+        target: 'registration',
+        msg, role,
+        actionLog: JSON.stringify(actionLogNext),
+        inception, searchPhrase, searchCategory,
+        searchMedia, catalogCategory, userPrifile, email,
+      }
+      actions.getActionAsync('SAVE_USER_VISIT_ACTIONS', 'REQUEST', payload01)
 
       // console.info(`handleActions.js type: ${action.type}`, { delay, treeData, language, prop, action, e })
     }

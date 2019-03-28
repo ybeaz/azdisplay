@@ -5,9 +5,9 @@ export const fetchPost: Function = (endpoint: string, payload: any): any => {
 
   return fetch(endpoint, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    // mode: 'no-cors', // no-cors, cors, *same-origin
+    //mode: 'cors', // no-cors, cors, *same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: (devModeTrueFalse() ? 'omit' : 'include'), // include, *same-origin, omit
+    credentials: 'include', //(devModeTrueFalse() ? 'omit' : 'include'), // include, *same-origin, omit
     headers: {
       'Content-Type': 'text/plain',
       // 'Content-Type': 'application/x-www-form-urlencoded', text/plain, application/json
@@ -31,7 +31,7 @@ export const fetchGet: Function = (endpoint: string, payload: any): any => {
 
   return fetch(endpointPayload, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    // mode: 'no-cors', // no-cors, cors, *same-origin
+    //mode: 'cors', // no-cors, cors, *same-origin
     cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
     credentials: (devModeTrueFalse() ? 'omit' : 'include'), // include, *same-origin, omit  //Should include to preserve PHPSESSID
     headers: {

@@ -68,14 +68,18 @@ $securityFunctions::sessionStart();
   $actionLog = securityFunctions::stringSpecCharEscape($_GET['actionLog']);
   $width     = securityFunctions::stringSpecCharEscape($_GET['width']);
   $height    = securityFunctions::stringSpecCharEscape($_GET['height']);
- 
+  $search    = securityFunctions::stringSpecCharEscape($_GET['search']);
+  $pathname  = securityFunctions::stringSpecCharEscape($_GET['pathname']);
+  $hostname  = securityFunctions::stringSpecCharEscape($_GET['hostname']);
+  $href      = securityFunctions::stringSpecCharEscape($_GET['href']);
+
 //**********************************************************
 // Reading JSON POST using PHP
 //**********************************************************
   
   $json = file_get_contents('php://input');
   $postDataObj = json_decode($json);
-
+  // print_r(['$postDataObj' => $postDataObj]);
 
 //**********************************************************
 // Adding usefull data
@@ -86,7 +90,7 @@ $securityFunctions::sessionStart();
   $userIp  = $_SERVER['REMOTE_ADDR'];
   $dateTime  = date('Y/m/d H:i:s');
 
-  //print_r(['$_GET' => $_GET, '$userIp' => $userIp, '$dateTime' => $dateTime]);
+  // print_r(['$_SERVER' => $_SERVER, '$_GET' => $_GET, '$userIp' => $userIp, '$dateTime' => $dateTime]);
 
 
 //**********************************************************
@@ -130,7 +134,7 @@ $securityFunctions::sessionStart();
   $dataOutput      = $webAnalytics->getUpdatedSession($data);
   // print_r(['$dataOutput' => $dataOutput, '$data' => $data, '$_SESSION' => $_SESSION]);
   echo json_encode($dataOutput);
-  
+
   //$test = (object) $test;
   //echo json_encode($test);
 }
@@ -144,11 +148,13 @@ $securityFunctions::sessionStart();
     $data->finish    = $dateTime;
     $data->ip        = $userIp;
     $data->target    = $target;
-    $data->email     = '';
-    $data->msg       = '';
     $data->actionLog = $actionLog;
     $data->width     = $width;
     $data->height    = $height;
+    $data->search    = $search;
+    $data->pathname  = $pathname;
+    $data->hostname  = $hostname;
+    $data->href      = $href;
     $dataOutput      = $webAnalytics->getUpdatedSession($data);
     // print_r(['$dataOutput' => $dataOutput, '$data' => $data, '$_SESSION' => $_SESSION]);
     echo json_encode($dataOutput);

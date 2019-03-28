@@ -4,12 +4,12 @@ import { fetchPost } from '../ComminicationLayer/fetch'
 
 function* getSavedUserVisitActions(payload) {
   const endpoint = 'https://userto.com/api/apiP2p.php'
-  console.info('getSavedUserVisitActions [0]', { payload })
+  // console.info('getSavedUserVisitActions [0]', { payload })
   try {
     const response = yield fetchPost(endpoint, payload)
 
     const data = yield response.json()
-    console.info('getUserAnalyticsData [7]', { data })
+    // console.info('getUserAnalyticsData [7]', { data })
   }
   catch (error) {
     yield call(() => {})

@@ -34,10 +34,8 @@ const userFootprint: any = (state: object = {}, action: Interfaces.Action): obje
 
     case 'UPDATE_USER_FOOTPRINT': {
 
-
-      // stateNext = { ...stateNext, ...action }
       stateNext = { ...stateNext, ...state, ...action }
-      console.info(`reducer->userFootprint type: ${action.type}`, { stateNext, state, action })
+      //console.info(`reducer->userFootprint type: ${action.type}`, { stateNext, state, action })
 
       return stateNext
     }
@@ -166,8 +164,8 @@ const modalWindows: any = (
       return stateNext
     }
 
-    case 'CLOSE_MODAL_REGISTRATION': {
-      return false
+    case 'CLOSE_MODAL_SELECT_ROLE': {
+      return state
     }
 
     default: {
