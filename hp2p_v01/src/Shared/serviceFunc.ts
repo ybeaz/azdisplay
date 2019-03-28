@@ -1,3 +1,64 @@
+import * as actions from '../DataLayer/actions/index'
+import store from '../DataLayer/store'
+
+import { ARR_ACTION_TO_OMIT_FOR_LOG } from '../Constants/CONSTANTS'
+import * as Interfaces from './interfaces'
+
+/**
+ * @description Function to omit property of array of objects by values of simple array
+ */
+export const arrOfObjOmitItemsByPropValArr: Function = (arrIn: any, propToFilter: string, arrToOmit: string[]): any => {
+  // console.info('serviceFunc->arrOfObjOmitPropArrByArr', { arrIn, propToFilter, arrToOmit })
+  return arrIn.filter((item: any) => {
+    let isTrue: boolean = true
+    if (item[propToFilter]) {
+      arrToOmit.filter((item01: string) => {
+        if (item01 === item[propToFilter]) {
+          isTrue = false
+        }
+      })
+    }
+
+    return isTrue
+  })
+}
+
+/**
+ * @description SAVE_USER_VISIT_ACTIONS
+ */
+export const saveUserVisitActions: Function = (target: string): any => {
+
+  const { actionLog, userFootprint } = store.getState()
+  const {
+    role,
+    msg,
+    inception,
+    searchPhrase,
+    searchCategory,
+    searchMedia,
+    catalogCategory,
+    userPrifile,
+  } = userFootprint
+  let actionLogNext: any = arrOfObjOmitItemsByPropValArr(actionLog, 'type', ARR_ACTION_TO_OMIT_FOR_LOG)
+  actionLogNext = actionLogNext.map((item: any) => item.type)
+
+  const payload: Interfaces.Payload  = {
+    optPost: 'suva',
+    target: target,
+    actionLog: JSON.stringify(actionLogNext),
+    role,
+    msg,
+    inception,
+    searchPhrase,
+    searchCategory,
+    searchMedia,
+    catalogCategory,
+    userPrifile,
+  }
+  // console.info(`serviceFunc.js saveUserVisitActions() [10]`, { store, actions, userFootprint, payload, actionLogNext, actionLog })
+  store.dispatch(actions.getActionAsync('SAVE_USER_VISIT_ACTIONS', 'REQUEST', payload))
+}
+
 
 /**
  * @description Returns true for devMode and false for production
@@ -46,25 +107,6 @@ export const sortBy: Function = (key: string, reverse: boolean): Function => {
     }
     return 0
   }
-}
-
-/**
- * @description Function to omit property of array of objects by values of simple array
- */
-export const arrOfObjOmitItemsByPropValArr: Function = (arrIn: any, propToFilter: string, arrToOmit: string[]): any => {
-  // console.info('serviceFunc->arrOfObjOmitPropArrByArr', { arrIn, propToFilter, arrToOmit })
-  return arrIn.filter((item: any) => {
-    let isTrue: boolean = true
-    if (item[propToFilter]) {
-      arrToOmit.filter((item01: string) => {
-        if (item01 === item[propToFilter]) {
-          isTrue = false
-        }
-      })
-    }
-
-    return isTrue
-  })
 }
 
 /**
