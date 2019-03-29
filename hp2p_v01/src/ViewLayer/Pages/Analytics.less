@@ -1,4 +1,7 @@
 .Analytics {
+  .Analytics__controlRow {
+    &:extend(.d_f, .p_b_0p4_rem);
+  }
   .Analytics__tableClass {
     border-collapse: collapse;
 
@@ -15,7 +18,26 @@
         font-weight: initial;
         border: 1px solid wheat;
         padding: 0.5rem;
+        font-size: 0.9rem;
+        vertical-align: top;
+        /*
+        max-width: 6rem;
+        overflow-x: auto;
+        white-space: nowrap;
         
+        &:nth-child(1) {
+          width: 3rem;
+          max-width: 3rem;
+        }
+        */
+        .Analytics__itemCell {
+          &:extend(.d_f, .f_d_c);
+          .Analytics__itemCellGroup {
+            &:extend(.p_x_0p5_rem);
+          }
+        }
+
+
         .Analytics__logCell {
           
           .Analytics__logCellGroup {
@@ -27,6 +49,9 @@
             }
           }
         }
+      }
+      .Analytics__cellClass_msg {
+        min-width: 10rem;
       }
     }
   }

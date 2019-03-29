@@ -1,10 +1,18 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-// eslint-disable-next-line react/prefer-stateless-function
-class Pagination extends React.Component {
+interface Props {
+  readonly itemsSrc: any,
+  readonly activeItem: any,
+  readonly handleEvents: Function,
+}
+interface State {
+}
 
-  paginationRender = ( source, activeItem, handleEvent ) => {
+export class Pagination extends React.Component<Props, State> {
+  public static defaultProps: any = {
+  }
+
+  paginationRender = ( source, activeItem, handleEvents ) => {
 
     const items = source.map(( item, i ) => {
       let itemClass = 'page-item'
@@ -34,15 +42,10 @@ class Pagination extends React.Component {
     )
   }
 
-  render() {
+  public render(): JSX.Element {
     const { itemsSrc, activeItem, handleEvents } = this.props
     // console.info('MenuContent->render()', { source })
 
     return <div>{this.paginationRender( itemsSrc, activeItem, handleEvents)}</div>
   }
 }
-
-Pagination.propTypes = {
-}
-
-export default Pagination

@@ -8,18 +8,20 @@ import './ViewLayer/CssStyles/index.less'
 import * as actions from './DataLayer/actions/index'
 import store from './DataLayer/store'
 import * as serviceFunc from './Shared/serviceFunc'
-import FacePage326 from './ViewLayer/Pages/FacePage326.react'
-import AboutUs from './ViewLayer/Pages/AboutUs.react'
-import Contacts from './ViewLayer/Pages/Contacts.react'
-import Analytics from './ViewLayer/Pages/Analytics.react'
-import Error404 from './ViewLayer/Pages/Error404.react'
+import { Face326Page } from './ViewLayer/Pages/Face326.react'
+import { AboutUsPage } from './ViewLayer/Pages/AboutUs.react'
+import { ContactsPage } from './ViewLayer/Pages/Contacts.react'
+import { ToSpecialistsPage } from './ViewLayer/Pages/ToSpecialists.react'
+import { AnalyticsPage } from './ViewLayer/Pages/Analytics.react'
+import { Error404Page } from './ViewLayer/Pages/Error404.react'
 
 const PAGES = {
-  FacePage326,
-  AboutUs,
-  Contacts,
-  Analytics,
-  Error404,
+  Face326Page,
+  AboutUsPage,
+  ContactsPage,
+  ToSpecialistsPage,
+  AnalyticsPage,
+  Error404Page,
 }
 
 // Setup language
@@ -27,16 +29,15 @@ const lang = 'rus'
 const { treeDefault, router } = USERTO[lang]
 const { routes, redirects } = router
 
-// console.info('index.js->treeDefault', { USERTO })
-
-
-
 const App = () => {
   
   store.dispatch(actions.UPLOAD_TREE_DATA({ treeData: USERTO }))
+  const { href, hostname, pathname, search } = location
+  // console.info('index.js->treeDefault', { href, hostname: [hostname], pathname, search, USERTO, store: store.getState() })
 
   const { width, height } = serviceFunc.mediaSizeCrossBrowser(global)
-  const payload = { optGet: 'sus', target: 'startSession', width, height }
+  const target = JSON.stringify(['startSession'])
+  const payload = { optGet: 'sus', target, width, height, search, pathname, hostname, href }
   store.dispatch(actions.getActionAsync('START_USER_SESSION', 'REQUEST', payload))
   // console.info('index->app [10] ', { payload })
   // https://github.com/ReactTraining/react-router/issues/4551
@@ -75,14 +76,12 @@ const App = () => {
         <Switch>
           {getRedirects()}
           {getRoutes()}
-          <Route component={Error404} />
+          <Route component={Error404Page} />
         </Switch>
       </BrowserRouter>
     </Provider>
   )
 }
 
-// <Route path='/dist/index_dev.html' component={() => <FacePage326 {...{ treeDefault }} />} />
-
 const rootElement = document.getElementById('root')
-ReactDOM.render(<App {...treeDefault } />, rootElement)
+ReactDOM.render(<App {...treeDefault} />, rootElement)

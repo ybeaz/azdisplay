@@ -42,30 +42,46 @@ export class SelectRole extends React.PureComponent<Props, State> {
           this.inputRef01.current.select()
         }
       },
-      1000,
+      500,
     )
   }
 
-  getDisplayClass = status => {
+  public getDisplayClass = status => {
 
     let displayClass = 'd_n'
     if (status) {
       displayClass = 'd_i_f'
     }
+
     return displayClass
   }
 
+  public getData = (): any => {
+    const email: string = this.inputRef01.current.value
+    const { user, specialist } = this.state
+    let role: string[] = []
+    if (user === true) {
+      role = [...role, 'user']
+    }
+    if (specialist === true) {
+      role = [...role, 'specialist']
+    }
+
+    return { email, role }
+  }
+
   public handleEvents = (e: any, action: Interfaces.Action) => {
+    const { sid, handleActions } = this.props
+    let data: any
+
     switch (action.type) {
+
       case 'nextModal':
       {
-        const {
-          modeProdDev, warnNotCheckingRole, warnNotCorrectEmail, handleActions,
-        } = this.props
+        const { modeProdDev, warnNotCheckingRole, warnNotCorrectEmail } = this.props
         const { checkEnterEmail, checkSelectRole } = modeProdDev
         const { user, specialist } = this.state
         // console.info('SelectRole->handleEvents [5]', { email: this.inputRef01.current.value })
-        
         if (checkEnterEmail === true &&
           this.inputRef01.current.value.match(/^([\S]{1,})@([\S]{1,})([\.]{1,1})([^.]{2,})$/gi) === null
         ) {
@@ -79,11 +95,16 @@ export class SelectRole extends React.PureComponent<Props, State> {
           return
         }
 
+        data = this.getData()
+        const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
+        handleActions(e, action03)
+
         // console.info('SelectRole->handleEvents [10]', { email: this.inputRef01.current.value })
         const action01: Interfaces.Action = { type: 'pressOkInSelectRole' }
         handleActions(e, action01)
       }
       break
+
       case 'togglekUser':
       {
         let { user } = this.state
@@ -91,6 +112,7 @@ export class SelectRole extends React.PureComponent<Props, State> {
         this.setState({ user })
       }
       break
+
       case 'toggleSpecialist':
       {
         let { specialist } = this.state
@@ -98,14 +120,24 @@ export class SelectRole extends React.PureComponent<Props, State> {
         this.setState({ specialist })
       }
       break
+
+      case 'closeModalSelectRole':
+      {
+        data = this.getData()
+        const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
+        handleActions(e, action03)
+
+        // console.info(`${sid}->handleEvents() type: ${action.type}`, { action, e })
+        const action01: Interfaces.Action = { type: 'closeModalSelectRole' }
+        handleActions(e, action01)
+      }
+      break
+
       default:
       {
-        console.info('SelectRole->handleEvents unexpected action', { action })
+        console.info(`${sid}->handleEvents unexpected action type: ${action.type}`, { action })
       }
     }
-
-
-
   }
 
   public render(): JSX.Element {
@@ -116,11 +148,9 @@ export class SelectRole extends React.PureComponent<Props, State> {
 
     // console.info('SelectRole->render() [0]', { user, specialist, props: this.props })
     const modalClass: string = 'Modal__show'
-    
+
     const userCheck = this.getDisplayClass(user)
     const specialistCheck = this.getDisplayClass(specialist)
-
-
 
     return (
       <div className={`modal Modal Modal_${sid} ${modalClass}`}>
@@ -137,13 +167,13 @@ export class SelectRole extends React.PureComponent<Props, State> {
                 <button
                   type='button'
                   className='close Modal_headerButtonUpperLeft'
-                  onClickCapture={e => handleActions(e, {type: 'closeModalSelectRole'})}
+                  onClickCapture={e => this.handleEvents(e, {type: 'closeModalSelectRole'})}
                 >
                   &times;
                 </button>
               </div>
             </div>
-            
+
             {/* <!-- Modal body --> */}
             <div className='modal-body Modal__body'>
               <div className='Modal__bodyRow'>
@@ -181,7 +211,6 @@ export class SelectRole extends React.PureComponent<Props, State> {
                 {buttonFooter}
               </button>
             </div>
-            
           </div>
         </div>
       </div>

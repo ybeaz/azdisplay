@@ -2,16 +2,18 @@ import React from 'react'
 
 import { getFirstCharLowerCase } from '../../Shared/serviceFunc'
 
-import CommonContainer from '../Containers/CommonContainer.react'
+import { CommonContainer } from '../Containers/CommonContainer.react'
+import { CommentForm } from './CommentForm.react'
 import { ModalBackdrop } from './ModalBackdrop.react'
 import { SelectRole } from './SelectRole.react'
-import { CommentForm } from './CommentForm.react'
+import { Spinner } from './Spinner.react'
 import { ThankYou } from './ThankYou.react'
 
-const MODALS = {
-  'SelectRole': SelectRole,
-  'CommentForm': CommentForm,
-  'ThankYou': ThankYou,
+const MODALS: any = {
+  SelectRole: SelectRole,
+  CommentForm: CommentForm,
+  ThankYou: ThankYou,
+  Spinner: Spinner,
 }
 
 interface Props {
@@ -21,23 +23,23 @@ interface Props {
 interface State {
 }
 
-class GetModals extends React.PureComponent<Props, State> {
+class GetModalsClass extends React.PureComponent<Props, State> {
   public static defaultProps: any = {
   }
 
-  componentDidMount() {
+  public componentDidMount(): void {
     const { reduxState } = this.props
     const { modalWindows } = reduxState
     this.getStatusModalBackdrop(modalWindows)
   }
 
-  componentDidUpdate() {
+  public componentDidUpdate(): void {
     const { reduxState } = this.props
     const { modalWindows } = reduxState
     this.getStatusModalBackdrop(modalWindows)
   }
 
-  getStatusModalBackdrop = modalWindows => {
+  public getStatusModalBackdrop = modalWindows => {
     const displayArr = modalWindows.filter(item => item.display === true)
     const elem = document.querySelectorAll('.ModalBackdrop ')[0]
     if (elem && displayArr.length > 0) {
@@ -50,14 +52,19 @@ class GetModals extends React.PureComponent<Props, State> {
     }
   }
 
-  getModalsToReturn = (modalWindows: any, handleActions: Function, modals: any) => modalWindows
+  public getModalsToReturn = (
+    modalWindows: any, handleActions: Function, modals: any, modeProdDev: any,
+  ): JSX.Element => modalWindows
     .filter((item: any) => item.display === true)
     .map((item: any, i: number) => {
       const componentDataProp = getFirstCharLowerCase(item.component)
       let propsScope = modals[componentDataProp]
-      propsScope = { ...propsScope, handleActions }
-      // console.info('FacePage326->getModals [10]', { ...props, item, propsScope, modals })
+      propsScope = { ...propsScope, handleActions, modeProdDev }
+      // console.info('GetModals->getModals [10]', { ...props, item, propsScope, modals })
 
+      if (item.component === 'Spinner') {
+        propsScope = { ...propsScope, sid: '00' }
+      }
       const Modal: any = MODALS[item.component]
 
       return (
@@ -67,20 +74,22 @@ class GetModals extends React.PureComponent<Props, State> {
       )
     })
 
-  render() {
+  public render(): JSX.Element {
     const { reduxState, handleActions } = this.props
+    // console.info('GetModals->render() [0]', { handleActions, reduxState })
     const { modalWindows, treeData, language } = reduxState
-    const { modals } = treeData[language]
+    const { modals, modeProdDev } = treeData[language]
+    // console.info('GetModals->render() [5]', { modalWindows, handleActions, modals, reduxState })
 
     const modalBackdropProps = { sid: 'bd'}
-    // console.info('FacePage326->getModals [0]', { modalWindows, handleActions, modals })
+    // console.info('GetModals->render() [5]', { modalWindows, handleActions, modals })
     return (
       <div>
-        {this.getModalsToReturn(modalWindows, handleActions, modals)}
+        {this.getModalsToReturn(modalWindows, handleActions, modals, modeProdDev)}
         <ModalBackdrop {...modalBackdropProps} />
       </div>
     )
   }
 }
 
-export default CommonContainer(GetModals)
+export const GetModals = CommonContainer(GetModalsClass)

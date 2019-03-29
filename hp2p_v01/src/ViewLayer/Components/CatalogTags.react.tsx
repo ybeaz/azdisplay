@@ -1,13 +1,49 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-import ButtonCommon from './ButtonCommon.react'
-
+import * as Interfaces from '../../Shared/interfaces'
+import { ButtonCommon } from './ButtonCommon.react'
 import * as serviceFunc from '../../Shared/serviceFunc'
 
+interface Props {
+  readonly sid: string,
+    // component id
+  readonly captureSection: string,
+    // Section name
+  readonly captureButtonShowAll: string,
+    // Name for button to offer Show all
+  readonly captureButtonCompact: string,
+    // Name for button to offer Show compact
+  readonly listArr: any,
+    // Data for catalog output
+  readonly isCompactAlways: boolean,
+    // Make iconFa for all screen resolutions
+  readonly isCompactPhone: boolean,
+  readonly numItemsBeforeButton: number,
+    // Number output by default
+  readonly handleActions: Function,
+}
+interface State {
+  readonly tags: any,
+  readonly numItemsBeforeButton: number,
+  readonly toggleShowHideButton: boolean,
+}
 
-// eslint-disable-next-line react/prefer-stateless-function
-class CatalogTags extends React.PureComponent {
+export interface CatalogTags {
+  mode: string,
+}
+
+
+export class CatalogTags extends React.PureComponent<Props, State> {
+  public static defaultProps: any = {
+    captureSection: '',
+    captureButtonShowAll: '',
+    captureButtonCompact: '',
+    listArr: [],
+    isCompactAlways: false,
+    isCompactPhone: true,
+    numItemsBeforeButton: 9,
+  }
+
   constructor(props) {
     super(props)
     const {
@@ -39,7 +75,7 @@ class CatalogTags extends React.PureComponent {
     } = this.props
 
     const { width } = serviceFunc.mediaSizeCrossBrowser(global)
-    let mode = 'tagsListData'
+    let mode: string = 'tagsListData'
     if (isCompactAlways) {
       mode = 'tagsIconsFa'
     }
@@ -47,7 +83,7 @@ class CatalogTags extends React.PureComponent {
       mode = 'tagsIconsFa'
     }
     else {
-      let mode = 'tagsListData'
+      mode = 'tagsListData'
     }
 
     return mode
@@ -72,16 +108,17 @@ class CatalogTags extends React.PureComponent {
   }
 
   getTagsListData = (arr, id) => {
-    const { handleActions } = this.props
-    const action = { type: 'selectCatalogCategory' }
 
     return arr.map((item, i) => {
       const { iconClass, capture, num } = item
+      const data: any = { catalogCategory: capture }
+      const action: Interfaces.Action = { type: 'selectCatalogCategory', data }
+
       return (
         <div
           key={i}
           className={`CatalogTags__item ${iconClass}`}
-          onClickCapture={e => handleActions(e, action)}
+          onClickCapture={e => this.handleEvents(e, action)}
         >
           <span className='name'>{capture}</span>
           <span className='num'>{num}</span>
@@ -111,8 +148,23 @@ class CatalogTags extends React.PureComponent {
       })
   }
 
-  handleEvents = (e, action) => {
+  public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
+    const { sid, handleActions } = this.props
+
     switch (action.type) {
+
+      case 'selectCatalogCategory':
+      {
+        let { data } = action
+        data = { ...data, inception: 'catalogCategory' }
+        const action02: Interfaces.Action = { type: 'updateUserFootprint', data }
+        handleActions(e, action02)
+
+        const action03: Interfaces.Action = { type: 'selectCatalogCategory' }
+        handleActions(e, action03)
+      }
+      break
+
       case 'toggleShowCompact': {
         const { numItemsBeforeButton } = this.props
         const { toggleShowHideButton } = this.state
@@ -144,12 +196,12 @@ class CatalogTags extends React.PureComponent {
       } break
 
       default: {
-        console.info('CatalogTags->handleEvents unexpected action', { action })
+        console.info(`${sid}->handleEvents unexpected action type: ${action.type}`, { action })
       }
     }
   }
 
-  render() {
+  public render(): JSX.Element {
     const {
       sid,
       captureSection,
@@ -180,45 +232,16 @@ class CatalogTags extends React.PureComponent {
     return (
       <div id={sid} className={sid}>
         <h2 className='CatalogTags__title titleSection'>{captureSection}</h2>
-        <div className='CatalogTags__columns'>
+        <div className='CatalogTags__rowTag'>
           {tags}
         </div>
         {this.mode === 'tagsIconsFa'
-          ? <ButtonCommon {...buttonProps} />
+          ? <div className='CatalogTags__rowButton'>
+            <ButtonCommon {...buttonProps} />
+          </div>
           : null
         }
       </div>
     )
   }
 }
-
-CatalogTags.defaultProps = {
-  captureSection: '',
-  captureButtonShowAll: '',
-  captureButtonCompact: '',
-  listArr: [],
-  isCompactAlways: false,
-  isCompactPhone: true,
-  numItemsBeforeButton: 9,
-}
-
-/* eslint-disable indent */
-CatalogTags.propTypes = {
-  sid: PropTypes.string.isRequired,
-    // component id
-  captureSection: PropTypes.string,
-    // Section name
-  captureButtonShowAll: PropTypes.string,
-    // Name for button to offer Show all
-  captureButtonCompact: PropTypes.string,
-    // Name for button to offer Show compact
-  listArr: PropTypes.arrayOf(PropTypes.object),
-    // Data for catalog output
-  isCompactAlways: PropTypes.bool,
-    // Make iconFa for all screen resolutions
-  isCompactPhone: PropTypes.bool,
-  numItemsBeforeButton: PropTypes.number,
-    // Number output by default 
-}
-
-export default CatalogTags

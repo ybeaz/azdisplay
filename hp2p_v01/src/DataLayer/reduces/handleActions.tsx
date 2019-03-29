@@ -1,19 +1,70 @@
 import { bindActionCreators } from 'redux'
 import * as actionSet from '../actions/index'
 import store from '../store'
-
-import * as Interfaces from '../../Shared/interfaces'
-import * as serviceFunc from '../../Shared/serviceFunc'
-import { ARR_ACTION_TO_OMIT_FOR_LOG } from '../../Constants/CONSTANTS'
-
 const { dispatch } = store
 const actions: any = bindActionCreators(actionSet, dispatch)
 
+import { ARR_ACTION_TO_OMIT_FOR_LOG } from '../../Constants/CONSTANTS'
+import * as Interfaces from '../../Shared/interfaces'
+import * as serviceFunc from '../../Shared/serviceFunc'
 
-export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
+export const handleActions: Function = (e: object, action: Interfaces.Action): void => {
   // console.info(`handleActions.js type->${action.type}`, { e, action })
+  let data: any = {}
 
   switch (action.type) {
+
+    case 'updateUserFootprint':
+    {
+      data = action.data
+      // console.info(`handleActions.js type: ${action.type}`, { data, action, e })
+      actions.UPDATE_USER_FOOTPRINT(data)
+    }
+    break
+
+    case 'clickBack':
+    {
+      data = {}
+      setTimeout(() => actions.GO_BACK(data), 0)
+      setTimeout(() => serviceFunc.saveUserVisitActions(''), 0)
+    }
+    break
+
+    case 'clickFooterToSpecialists':
+    {
+      data = {}
+      setTimeout(() => actions.GO_LINK_TO_SPECIALISTS(data), 0)
+      setTimeout(() => serviceFunc.saveUserVisitActions(''), 0)
+    }
+    break
+
+    case 'clickFooterContacts':
+    {
+      data = {}
+      setTimeout(() => actions.GO_LINK_CONTACTS(data), 0)
+      setTimeout(() => serviceFunc.saveUserVisitActions(''), 0)
+    }
+    break
+
+    case 'clickFooterAboutUs':
+    {
+      data = {}
+      setTimeout(() => actions.GO_LINK_ABOUT_US(data), 0)
+      setTimeout(() => serviceFunc.saveUserVisitActions(''), 0)
+    }
+    break
+
+    case 'callSpinner':
+    {
+      data = {}
+      actions.CLOSE_ALL_MODALS(data)
+      const modalNext: string = 'Spinner'
+      actions.CALL_SPINNER({ modalNext })
+
+      setTimeout(() => actions.CLOSE_ALL_MODALS(data), 300)
+      // console.info(`handleActions.js type: ${action.type}`, { action, e })
+    }
+    break
 
     case 'getUserAnalyticsData':
     {
@@ -27,7 +78,7 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
 
     case 'closeModalThankYou':
     {
-      const data: any = {}
+      data = {}
       actions.CLOSE_MODAL_THANK_YOU(data)
       // console.info(`handleActions.js type: ${action.type}`, { e, action })
     }
@@ -35,9 +86,9 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
 
     case 'closeModalCommentForm':
     {
-      const data: any = {}
+      data = {}
       actions.CLOSE_ALL_MODALS(data)
-      const modalNext = 'ThankYou'
+      const modalNext: string = 'ThankYou'
       actions.CLOSE_COMMENT_FORM({ modalNext })
       // console.info(`handleActions.js type: ${action.type}`, { action, e })
     }
@@ -45,58 +96,42 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
 
     case 'closeModalSelectRole':
     {
-      const data: any = {}
+      data = {}
+      actions.CLOSE_ALL_MODALS(data)
       actions.CLOSE_MODAL_SELECT_ROLE(data)
 
-      const { actionLog } = store.getState()
-      let actionLogNext: any = actionLog
-      // actionLogNext.push({type: 'CANCEL_USER_REGISTRATION_REQUEST'})
-      actionLogNext = serviceFunc.arrOfObjOmitItemsByPropValArr(actionLog, 'type', ARR_ACTION_TO_OMIT_FOR_LOG)
-      actionLogNext = actionLogNext.map((item: any) => item.type)
-      const payload: Interfaces.Payload  = {
-        optGet: 'sus',
-        target: 'cancelReg',
-        email: '',
-        msg: '',
-        actionLog: JSON.stringify(actionLogNext) }
-      actions.getActionAsync('CANCEL_USER_REGISTRATION', 'REQUEST', payload)
-      // console.info(`handleActions.js type: ${action.type}`, { e, payload, action })
+      const target: string = 'cancelReg'
+      setTimeout(() => serviceFunc.saveUserVisitActions(target), 0)
     }
     break
 
     case 'sendCommentForm':
     {
-      const data: any = {}
+      data = {}
       actions.CLOSE_ALL_MODALS(data)
       const modalNext: string = 'ThankYou'
-      const { treeData, language, actionLog } = store.getState()
+      const { treeData, language, actionLog, userFootprint } = store.getState()
       const prop: string = serviceFunc.getFirstCharLowerCase(modalNext)
       const { delay } = treeData[language].modals[prop]
       setTimeout(() => actions.SEND_COMMENT_FORM({ modalNext }), delay)
 
-      let actionLogNext: any = serviceFunc.arrOfObjOmitItemsByPropValArr(actionLog, 'type', ARR_ACTION_TO_OMIT_FOR_LOG)
-      actionLogNext = actionLogNext.map((item: any) => item.type)
-      const payload01: Interfaces.Payload  = {
-        optPost: 'suva',
-        target: 'registration',
-        email: 'email',
-        msg: 'msg',
-        actionLog: JSON.stringify(actionLogNext) }
-      // console.info(`handleActions.js type: ${action.type} [10]`, { payload01, actionLogNext, actionLog, action, e })
-      actions.getActionAsync('SAVE_USER_VISIT_ACTIONS', 'REQUEST', payload01)
+      const target: string = 'registration02'
+      setTimeout(() => serviceFunc.saveUserVisitActions(target), 0)
     }
     break
 
     case 'pressOkInSelectRole':
     {
-      const data: any = {}
+      data = {}
       actions.CLOSE_ALL_MODALS(data)
-      const modalNext = 'CommentForm'
-      const { treeData, language } = store.getState()
-      const prop = serviceFunc.getFirstCharLowerCase(modalNext)
+      const modalNext: string = 'CommentForm'
+      const { treeData, language, actionLog, userFootprint } = store.getState()
+      const prop: string = serviceFunc.getFirstCharLowerCase(modalNext)
       const { delay } = treeData[language].modals[prop]
-      setTimeout(() => actions.PRESS_OK_IN_SELECT_ROLE({ modalNext }), delay)
-      // console.info(`handleActions.js type: ${action.type}`, { action, e })
+      setTimeout(() => actions.SEND_COMMENT_FORM({ modalNext }), delay)
+
+      const target: string = 'registration01'
+      setTimeout(() => serviceFunc.saveUserVisitActions(target), 0)
     }
     break
 
@@ -106,9 +141,10 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
     case 'openModalRegistrationNavBar':
     case 'openModalRegistrationQuick':
     case 'openModalRegistrationFooter':
+    case 'openModalRegistrationToSpec':
     {
       const modalNext: string = 'SelectRole'
-      const { treeData, language, actionLog } = store.getState()
+      const { treeData, language, actionLog, userFootprint } = store.getState()
       const prop: any = serviceFunc.getFirstCharLowerCase(modalNext)
       const { delay } = treeData[language].modals[prop]
 
@@ -132,22 +168,23 @@ export const handleActions: any = (e: {}, action: Interfaces.Action): void => {
         case 'openModalRegistrationFooter': {
           setTimeout(() => actions.OPEN_MODAL_REGISTRATION_FOOTER({ modalNext }), delay)
         }                                   break
+        case 'openModalRegistrationToSpec': {
+          setTimeout(() => actions.OPEN_MODAL_REGISTRATION_TO_SPEC({ modalNext }), delay)
+        }                                   break
         default: {
           console.info('handleActions.js unexpected action', { action })
         }
       }
 
+      const target: string = 'inception'
+      setTimeout(() => serviceFunc.saveUserVisitActions(target), 0)
       // console.info(`handleActions.js type: ${action.type}`, { delay, treeData, language, prop, action, e })
     }
     break
-
 
     default:
     {
       console.info('handleActions.js unexpected action', { action })
     }
   }
-
 }
-
-export default handleActions

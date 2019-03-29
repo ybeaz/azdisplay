@@ -1,9 +1,17 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-// eslint-disable-next-line react/prefer-stateless-function
-const IconsFa = ({ ...props }) => {
-  const {iconFa, num} = { ...props }
+interface Props {
+  readonly iconFa: string,
+  readonly num: number,
+}
+
+const defaultProps: any = {
+}
+
+export const IconsFa: React.SFC<Props> = (props: Props): JSX.Element => {
+  const propsPrivate: Props = { ...defaultProps, ...props }
+  const {iconFa, num} = propsPrivate
+
   let listArr = []
   for (let i = 0; i < num; i += 1) {
     listArr.push(iconFa)
@@ -17,13 +25,3 @@ const IconsFa = ({ ...props }) => {
     </div>
   )
 }
-
-IconsFa.defaultProps = {
-
-}
-
-IconsFa.propTypes = {
-
-}
-
-export default IconsFa

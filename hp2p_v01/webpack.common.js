@@ -1,27 +1,34 @@
-//'use strict';
+// 'use strict';
 
-/*  NodeJS server with express.js 
+/*  NodeJS server with express.js
   cd c:/Data/Dev/UserTo/r1.userto.com/
   node server.js
   localhost:3000/demo-js-redux-example.html
 */
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-//var MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
-var  path    = require('path');
-var  webpack = require('webpack');
-var  glob    = require("glob");
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-var ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-var TSLintPlugin = require('tslint-webpack-plugin');
+
+const webpack = require('webpack')
+const glob = require('glob')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const TSLintPlugin = require('tslint-webpack-plugin')
+
+// var MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const path = require('path')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const styledComponentsTransformer = require('typescript-plugin-styled-components').default;
+const keysTransformer = require('ts-transformer-keys/transformer').default;
 
 module.exports = {
   entry: {
-    hp2p01: ['./src/index.js'], //['babel-polyfill', './index.js', './index.tsx']
+    hp2p01: ['./src/index.js'], // ['babel-polyfill', './index.js', './index.tsx']
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].min.js',
     publicPath: '/',
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.es6', 'less', 'css', 'config', 'variables', 'overrides'],
   },
   module: {
     rules: [
@@ -31,9 +38,34 @@ module.exports = {
         enforce: 'pre',
         use: [
           {
-            loader: 'tslint-loader',
+            loader: 'awesome-typescript-loader', // 'tslint-loader',
             options: {
               configFile: 'tslint.json',
+              getCustomTransformers: program => ({
+                before: [
+                  styledComponentsTransformer(),
+                  keysTransformer(program),
+                ],
+              }),
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(ts[\S]{0,2})$/i,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'awesome-typescript-loader', // 'ts-loader',
+            options: {
+              // disable type checker - we will use it in fork plugin
+              transpileOnly: true,
+              getCustomTransformers: program => ({
+                before: [
+                  styledComponentsTransformer(),
+                  keysTransformer(program),
+                ],
+              }),
             },
           },
         ],
@@ -45,20 +77,7 @@ module.exports = {
           {
             loader: 'babel-loader',
             query: {
-              plugins: ['@babel/proposal-class-properties']
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(ts[\S]{0,2})$/i,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'ts-loader',
-            options: {
-              // disable type checker - we will use it in fork plugin
-              transpileOnly: true,
+              plugins: ['@babel/proposal-class-properties'],
             },
           },
         ],
@@ -67,10 +86,10 @@ module.exports = {
         test: /\.(css|less)$/i,
         exclude: [/node_modules/],
         use: [{
-          loader: 'style-loader' // creates style nodes from JS strings
+          loader: 'style-loader', // creates style nodes from JS strings
         },
         {
-          loader: 'css-loader' // translates CSS into CommonJS
+          loader: 'css-loader', // translates CSS into CommonJS
         },
         {
           loader: 'less-loader', // compiles Less to CSS
@@ -90,7 +109,7 @@ module.exports = {
         use: [
           'url-loader?limit=10000',
           'img-loader',
-          'file-loader?name=[name].[ext]?[hash]'
+          'file-loader?name=[name].[ext]?[hash]',
         ],
       },
       {
@@ -109,12 +128,12 @@ module.exports = {
       },
       {
         test: /\.otf(\?.*)?$/,
-        use: 'file-loader?name=/fonts/[name].  [ext]&mimetype=application/font-otf'
+        use: 'file-loader?name=/fonts/[name].  [ext]&mimetype=application/font-otf',
       },
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
     ],
   },
@@ -127,7 +146,7 @@ module.exports = {
     new webpack.HashedModuleIdsPlugin({
       hashFunction: 'sha256',
       hashDigest: 'hex',
-      hashDigestLength: 20
+      hashDigestLength: 20,
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -150,16 +169,13 @@ module.exports = {
       silent: true,
     }),
   ],
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.es6', '.jsx', 'less', 'css', 'config', 'variables', 'overrides']
-  },
   performance: {
     hints: false,
   },
   watch: false,
   target: 'web',
   externals: [
-    { pg: true }
+    { pg: true },
   ],
   node: {
     fs: 'empty',

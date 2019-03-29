@@ -7,14 +7,26 @@
 
     .Footer__colLogo {
       &:extend(.p_b_1_rem);
+      a {
+        text-decoration: none;
+        .LogoElem{
+        }
+      }
     }
     .Footer__colItems {
       &:extend(.d_f, .p_t_1_rem, .w_100, .j_c_se);
 
       .Footer__colItem {
-        .Footer__capture {
-          &:extend(.p_l_2_rem, .cur_p);
+        a {
+          &:extend(.f_s_0p9_rem, .cur_p);
+          color: @color0;
+          text-decoration: none;
+
+          .Footer__capture {
+            &:extend(.p_l_2_rem, .cur_p);
+          }
         }
+
         .Footer__colItemLevel1 {
           &:extend(.p_t_0p8_rem, .p_l_0);
           .Footer__cellItemLevel1 {
@@ -44,6 +56,11 @@
     .Footer__rowMain {
       .p_b_1_rem;
       .Footer__colLogo {
+        a {
+          .LogoElem{
+            .f_s_8p5_vw;
+          }
+        }
       }
       .Footer__colItems {
         .p_t_0;

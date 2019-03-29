@@ -1,66 +1,43 @@
 import { combineReducers } from 'redux'
 import * as Interfaces from '../../Shared/interfaces'
 
-const userFootprint: any = (state: {} = {}, action: Interfaces.Action): any => {
+interface UserFootprint {
+  inception: string,
+    /* 'registrationQuick', 'registrationFooter', 'registrationNavBar',
+        'searchButtonFirst', 'searchButtonSecond', 'catalogCategory', 'userProfile'
+    */
+  searchPhrase?: string,
+  searchCategory?: string[],
+  searchMedia?: string[],
+  catalogCategory?: string,
+  userPrifile?: string,
+  email?: string,
+  role?: string[],
+  msg?: string,
+}
+
+const userFootprint: any = (state: object = {}, action: Interfaces.Action): object => {
+
+  let stateNext: UserFootprint = {
+    role: [],
+    msg: '',
+    inception: '',
+    searchPhrase: '',
+    searchCategory: [],
+    searchMedia: [],
+    catalogCategory: '',
+    userPrifile: '',
+    email: '',
+  }
+
   switch (action.type) {
 
-    case 'CLICK_FORWARD_2': {
-      //msg: string
-      return state
-    }
+    case 'UPDATE_USER_FOOTPRINT': {
 
+      stateNext = { ...stateNext, ...state, ...action }
+      //console.info(`reducer->userFootprint type: ${action.type}`, { stateNext, state, action })
 
-    case 'CLICK_FORWARD_1': {
-      //email: string
-      return state
-    }
-
-    case 'CLICK_ROLE': {
-      //role: arr
-      return state
-    }
-
-    case 'CLICK_PROFILE_REVIEW': {
-      //inception: string 'userProfile: '
-      //name: string
-      return state
-    }
-
-    case 'CLICK_CATALOG_CATEGORY': {
-      //inception: string 'catalogCategory'
-      //catalogCategory: string
-      return state
-    }
-
-    case 'CLICK_SEARCH_BUTTON_SECOND': {
-      //inception: string 'searchButtonSecond'
-      //searchPhrase: string
-      //searchCategory: string[]
-      //searchMedia: string
-      return state
-    }
-
-    case 'CLICK_SEARCH_BUTTON_FIRST': {
-      //inception: string 'searchButtonFirst'
-      //inputPhrase: string
-      //category: string[]
-      //media: string
-      return state
-    }
-
-    case 'CLICK_REGISTRATION_QUICK': {
-      //inception: string 'registrationQuick'
-      return state
-    }
-
-    case 'CLICK_REGISTRATION_FOOTER': {
-      //inception: string 'registrationFooter'
-      return state
-    }
-
-    case 'CLICK_REGISTRATION_NAV_BAR': {
-      //inception: string 'registrationNavBar'
-      return state
+      return stateNext
     }
 
     default: {
@@ -73,8 +50,7 @@ const analytics: any = (state: any = [], action: Interfaces.Action): any => {
   switch (action.type) {
     case 'GET_USER_ANALYTICS_DATA_SUCCESS': {
       const stateNext: any = action.data.filter((item: any) => item.PHPSESSID)
-      //console.info(`reducer->analytics type: ${action.type}`, { stateNext, state, action })
-
+      // console.info(`reducer->analytics type: ${action.type}`, { stateNext, state, action })
       return stateNext
     }
 
@@ -97,7 +73,7 @@ const language: any = (state: string = 'rus', action: Interfaces.Action): any =>
   }
 }
 
-const user: any = (state: {} = {}, action: Interfaces.Action): any => {
+const user: any = (state: object = {}, action: Interfaces.Action): object => {
 
   switch (action.type) {
     case 'REG_LOGIN_CHECK_USER': {
@@ -129,6 +105,7 @@ const modalWindows: any = (
       // console.info(`reducer->modalWindows type: ${action.type}`, { stateNext, state, action })
     }
 
+    case 'CALL_SPINNER':
     case 'CLOSE_COMMENT_FORM':
     case 'SEND_COMMENT_FORM':
     case 'PRESS_OK_IN_SELECT_ROLE': {
@@ -162,6 +139,7 @@ const modalWindows: any = (
     case 'OPEN_MODAL_REGISTRATION_NAV_BAR':
     case 'OPEN_MODAL_REGISTRATION_QUICK':
     case 'OPEN_MODAL_REGISTRATION_FOOTER':
+    case 'OPEN_MODAL_REGISTRATION_TO_SPEC':
     case 'OPEN_MODAL_FAREWELL': {
       const { modalNext } = action
       let stateNext: any = state
@@ -186,8 +164,12 @@ const modalWindows: any = (
       return stateNext
     }
 
-    case 'CLOSE_MODAL_REGISTRATION': {
-      return false
+    case 'GO_BACK':
+    case 'GO_LINK_TO_SPECIALISTS':
+    case 'GO_LINK_CONTACTS':
+    case 'GO_LINK_ABOUT_US':
+    case 'CLOSE_MODAL_SELECT_ROLE': {
+      return state
     }
 
     default: {
@@ -227,8 +209,9 @@ const treeData: any = (state: any = {}, action: Interfaces.Action): any => {
   }
 }
 
-//Main application reducers
-const appCombineReducers: any = combineReducers(
+// Main application reducers
+// tslint:disable-next-line: export-name
+const appCombineReducers = combineReducers(
   {
     userFootprint,
     analytics,

@@ -6,6 +6,13 @@ var USERTO = {
     href: 'https://userto.com/img/favicon.ico',
   },
   rus: {
+    modeProdDev: {
+      // fetchCredentials: 'omit', //for production всегда остается includ
+      checkSearchField: true,
+      languageSelect: false,
+      checkEnterEmail: false,
+      checkSelectRole: false,
+    },
     titleTag: 'Специалисты помогут онлайн разобраться в вашем вопросе',
     metaTags: {
       description: 'Выберите специалиста и вместе с ним решите ваш вопрос в чате, по аудио или видеосвязи. Проконсультируйтесь, пройдите обучение или закажите выполнение работ. Удаленный ремонт компьютера, бытовой техники, автомобиля. Специалисты в сферах: IT, бизнеса, права, психологии, дизайна, здоровья, саморазвития и не только. Посмотрите весь каталог. Персональная связь со специалистом и возможность уже сейчас, без долгих поисков решить ваш вопрос',
@@ -59,6 +66,7 @@ var USERTO = {
       sid: 'SearchForm',
       searchPlaceholder: 'Сфера специалиста...',
       searchButton: 'Найти',
+      alertShortSearchInput: 'Поисковый запрос слишком короткий',
       typeRequest: {
         sid: 'FieldButtons_typeRequest',
         listArr: [
@@ -247,10 +255,10 @@ var USERTO = {
           path: '/326_HP2P_v01/contacts',
         },
         {
-          sid: 'feedback',
+          sid: 'toSpecialists',
           imgClass: '',
-          capture: 'Обратная связь',
-          path: '',
+          capture: 'Специалистам',
+          path: '/326_HP2P_v01/tospecialists',
         },
         {
           sid: 'enter',
@@ -276,15 +284,11 @@ var USERTO = {
       commentForm: {
         sid: 'CommentForm',
         message: 'В какой ситуации вам понадобился сервис? Ваш ответ поможет сделать ресурс лучше:',
-        placeholder: 'Коротко опишите ситуацию.',
+        placeholder: 'пара фраз о Вашей ситуации',
         buttonFooter: 'Вперед',
         delay: 0,
       },
       selectRole: {
-        modeProdDev: {
-          checkEnterEmail: false,
-          checkSelectRole: false,
-        },
         sid: 'SelectRole',
         capture: 'Выберите один или оба варианта:',
         button01: 'Мне нужен специалист',
@@ -298,11 +302,12 @@ var USERTO = {
     },
     router: {
       routes: [
-        { path: '/', exact: true, page: 'FacePage326' },
-        { path: '/analytics-c7b094941e7e11c6bf93d5736673881e', exact: true, page: 'Analytics' },
-        { path: '/326_HP2P_v01/enter', exact: true, page: 'FacePage326' },
-        { path: '/326_HP2P_v01/aboutus', exact: true, page: 'AboutUs' },
-        { path: '/326_HP2P_v01/contacts', exact: true, page: 'Contacts' },
+        { path: '/', exact: true, page: 'Face326Page' },
+        { path: '/analytics-c7b094941e7e11c6bf93d5736673881e', exact: true, page: 'AnalyticsPage' },
+        { path: '/326_HP2P_v01/enter', exact: true, page: 'Face326Page' },
+        { path: '/326_HP2P_v01/aboutus', exact: true, page: 'AboutUsPage' },
+        { path: '/326_HP2P_v01/contacts', exact: true, page: 'ContactsPage' },
+        { path: '/326_HP2P_v01/tospecialists', exact: true, page: 'ToSpecialistsPage' },
       ],
       redirects: [
         { from: '/', to: '/326_HP2P_v01/enter', exact: true },

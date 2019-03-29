@@ -1,19 +1,22 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import IconsFa from './IconsFa.react'
+import { IconsFa } from './IconsFa.react'
 
+import * as Interfaces from '../../Shared/interfaces'
 
-// eslint-disable-next-line react/prefer-stateless-function
-class IconCaptDesc extends React.PureComponent {
+interface Props {
+  readonly sid: string,
+  readonly captureSection: string,
+  readonly listArr: any,
+  readonly handleActions: Function,
+}
+interface State {
+}
+
+export class IconCaptDesc extends React.PureComponent<Props, State> {
+  public static defaultProps: any = {
+  }
 
   getIconCaptDesc = (listArr, sid) => {
-
-    let onClickCapture = null
-    if (sid === 'UserReviews') {
-      const { handleActions } = this.props
-      const action = { type: 'clickUserProfile' }
-      onClickCapture = e => handleActions(e, action)
-    }
 
     return listArr.map((item, i) => {
       const {
@@ -24,7 +27,14 @@ class IconCaptDesc extends React.PureComponent {
         num: ratingNum,
         iconFa: ratingIconFa,
       }
-      
+
+      let onClickCapture: any
+      if (sid === 'UserReviews') {
+        const data: any = { userPrifile: capture }
+        const action: Interfaces.Action = { type: 'clickUserProfile', data }
+        onClickCapture = (e: any): any => this.handleEvents(e, action)
+      }
+
       return (
         <div key={i} className='IconCaptDesc__itemCell'>  
           <div className='IconCaptDesc__itemTopBlock'>
@@ -81,9 +91,33 @@ class IconCaptDesc extends React.PureComponent {
     })
   }
 
-  render() {
+  public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
+    const { sid, handleActions } = this.props
+
+    switch (action.type) {
+
+      case 'clickUserProfile':
+      {
+        let { data } = action
+        data = { ...data, inception:  'userProfile' }
+        const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
+        handleActions(e, action03)
+
+        const action01: Interfaces.Action = { type: 'clickUserProfile' }
+        handleActions(e, action01)
+        // console.info(`${sid}->handleEvents() type: ${action.type}`, { action, e })
+      }
+      break
+
+      default: {
+        console.info(`${sid}->handleEvents unexpected action type: ${action.type}`, { action })
+      }
+    }
+  }
+
+  public render(): JSX.Element {
     const { sid, captureSection, listArr } = this.props
-    const iconCaptDesc = this.getIconCaptDesc(listArr, sid)
+    const iconCaptDesc: JSX.Element = this.getIconCaptDesc(listArr, sid)
 
     return (
       <div id={sid} className={`container-fluid IconCaptDesc IconCaptDesc_${sid}`}>
@@ -106,8 +140,3 @@ class IconCaptDesc extends React.PureComponent {
     )
   }
 }
-
-IconCaptDesc.propTypes = {
-}
-
-export default IconCaptDesc

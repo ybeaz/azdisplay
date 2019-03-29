@@ -1,11 +1,20 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-import Markup from './Markup.react'
-import * as serviceFunc from '../../Shared/serviceFunc'
+import { Markup } from './Markup.react'
 
-// eslint-disable-next-line react/prefer-stateless-function
-class ImgListTable extends React.PureComponent {
+interface Props {
+  readonly sid: string,
+  readonly listArr: any,
+  readonly captureSection: string,
+  readonly imgSrc: string,
+  readonly sequence: any,
+}
+interface State {
+}
+
+export class ImgListTable extends React.PureComponent<Props, State> {
+  public static defaultProps: any = {
+  }
 
   getListBlock = (listArr, listCapture) => {
   
@@ -38,7 +47,7 @@ class ImgListTable extends React.PureComponent {
     )
   }
 
-  render() {
+  public render(): JSX.Element {
     // console.info('ImgListTable->render() [10]', { props: this.props })
     const { sid, listArr, captureSection, imgSrc, sequence } = this.props
     const listBlock = this.getListBlock(listArr, captureSection)
@@ -54,8 +63,3 @@ class ImgListTable extends React.PureComponent {
     )
   }
 }
-
-ImgListTable.propTypes = {
-}
-
-export default ImgListTable

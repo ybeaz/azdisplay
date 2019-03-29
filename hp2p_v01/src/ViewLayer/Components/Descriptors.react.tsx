@@ -1,11 +1,21 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import * as serviceFunc from '../../Shared/serviceFunc'
-import Markup from './Markup.react'
+import { Markup } from './Markup.react'
 
-// eslint-disable-next-line react/prefer-stateless-function
-class Descriptors extends React.PureComponent {
+interface Props {
+  readonly sid: string,
+  readonly h1: string,
+  readonly h2: string,
+}
+interface State {
+  readonly h1: string,
+}
+
+export class Descriptors extends React.PureComponent<Props, State> {
+  public static defaultProps: any = {
+  }
+
   constructor(props) {
     super(props)
     const { h1 } = this.props
@@ -39,7 +49,7 @@ class Descriptors extends React.PureComponent {
     }, 0)
   }
 
-  render() {
+  public render(): JSX.Element {
     const { sid, h2 } = this.props
     const { h1 } = this.state
     // console.info('Descriptors->render() [10]',{});
@@ -61,8 +71,3 @@ class Descriptors extends React.PureComponent {
     )
   }
 }
-
-Descriptors.propTypes = {
-}
-
-export default Descriptors

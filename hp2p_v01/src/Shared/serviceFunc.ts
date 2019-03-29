@@ -1,3 +1,132 @@
+import * as actions from '../DataLayer/actions/index'
+import store from '../DataLayer/store'
+
+import { ARR_ACTION_TO_OMIT_FOR_LOG } from '../Constants/CONSTANTS'
+import * as Interfaces from './interfaces'
+
+/**
+ * @description Function to omit property of array of objects by values of simple array
+ */
+export const arrOfObjOmitItemsByPropValArr: Function = (arrIn: any, propToFilter: string, arrToOmit: string[]): any => {
+  // console.info('serviceFunc->arrOfObjOmitPropArrByArr', { arrIn, propToFilter, arrToOmit })
+  return arrIn.filter((item: any) => {
+    let isTrue: boolean = true
+    if (item[propToFilter]) {
+      arrToOmit.filter((item01: string) => {
+        if (item01 === item[propToFilter]) {
+          isTrue = false
+        }
+      })
+    }
+
+    return isTrue
+  })
+}
+
+
+/**
+ * @description Return array with value or with empty string as a value
+ */
+
+/**
+ * @description Detect "real" array to use for JSX.Element
+ */
+export const isArrGoodForJsx: Function = (variable: any): boolean => {
+  let output: boolean = false
+  if (typeof variable !== undefined
+    && typeof variable !== null
+    && Array.isArray(variable) === true
+    && variable.length > 0
+    && variable[0] !== null
+    && variable[0] !== ''
+  ) {
+    output = true
+  }
+
+  return output
+}
+
+/**
+ * @description Detect a "corrupted" variable
+ */
+export const isVarCorrupted: Function = (variable: any): boolean => {
+  let output: boolean = false
+  if (typeof variable === undefined
+    || typeof variable === null
+    || typeof variable === 'boolean'
+    || (Array.isArray(variable) && variable.length === 0)
+    || (Array.isArray(variable) && variable[0] === null)
+  ) {
+    output = true
+  }
+
+  return output
+}
+
+/**
+ * @description Return array with value or with empty string as a value
+ */
+const arrNotNull: Function = (str: any): string[] => {
+  let output: string[]
+  if (isVarCorrupted(str)) {
+    output = ['']
+  }
+  else if (typeof str === 'string') {
+    output = [str]
+  }
+  else if (Array.isArray(str)) {
+    output = str
+  }
+  else {
+    output = ['strange string, see function arrNotNull']
+  }
+
+  return output
+}
+
+/**
+ * @description SAVE_USER_VISIT_ACTIONS
+ */
+export const saveUserVisitActions: Function = (target: string): any => {
+  setTimeout(() => {
+
+    const { actionLog, userFootprint } = store.getState()
+    const {
+      role,
+      msg,
+      inception,
+      searchPhrase,
+      searchCategory,
+      searchMedia,
+      catalogCategory,
+      userPrifile,
+      email,
+    } = userFootprint
+    let actionLogNext: any = arrOfObjOmitItemsByPropValArr(actionLog, 'type', ARR_ACTION_TO_OMIT_FOR_LOG)
+    actionLogNext = actionLogNext.map((item: any) => item.type)
+
+    // console.info('serviceFunc.ts->saveUserVisitActions()', { actionLogNext, actionLog,  })
+
+    const payload: Interfaces.Payload  = {
+      optPost: 'suva',
+      target: arrNotNull(target),
+      actionLog: arrNotNull(actionLogNext),
+      role: arrNotNull(role),
+      msg: arrNotNull(msg),
+      inception: arrNotNull(inception),
+      searchPhrase: arrNotNull(searchPhrase),
+      searchCategory: arrNotNull(searchCategory),
+      searchMedia: arrNotNull(searchMedia),
+      catalogCategory: arrNotNull(catalogCategory),
+      userPrifile: arrNotNull(userPrifile),
+      email: arrNotNull(email),
+    }
+    // console.info(`serviceFunc.js saveUserVisitActions() [10]`, { payload, userFootprint, actionLogNext, actionLog })
+    store.dispatch(actions.getActionAsync('SAVE_USER_VISIT_ACTIONS', 'REQUEST', payload))
+
+  }, 500)
+}
+
 
 /**
  * @description Returns true for devMode and false for production
@@ -46,25 +175,6 @@ export const sortBy: Function = (key: string, reverse: boolean): Function => {
     }
     return 0
   }
-}
-
-/**
- * @description Function to omit property of array of objects by values of simple array
- */
-export const arrOfObjOmitItemsByPropValArr: Function = (arrIn: any, propToFilter: string, arrToOmit: string[]): any => {
-  // console.info('serviceFunc->arrOfObjOmitPropArrByArr', { arrIn, propToFilter, arrToOmit })
-  return arrIn.filter((item: any) => {
-    let isTrue: boolean = true
-    if (item[propToFilter]) {
-      arrToOmit.filter((item01: string) => {
-        if (item01 === item[propToFilter]) {
-          isTrue = false
-        }
-      })
-    }
-
-    return isTrue
-  })
 }
 
 /**

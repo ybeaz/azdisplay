@@ -1,35 +1,37 @@
 import React from 'react'
 
+import * as Interfaces from '../../Shared/interfaces'
+
 interface ListObj {
   capture: string, iconFa?: [], active: boolean, general?: boolean,
   sourceClass?: string, spritePosition?: [], 
 }
 
-/* eslint-disable indent */
 interface Props {
-  sid: string,
+  readonly sid: string,
     // section class for Less(css)
-  cid: string,
+  readonly cid: string,
     // component id
-  displayBtnType: string,
+  readonly displayBtnType: string,
     // Possible values: 'icon', 'text'
-  readonly listArr: ListObj[],
-  delay: number,
+  readonly listArr: any,
+  readonly delay: number,
     // Delay for assigning value to the button after option clicked
+  readonly parentHandleEvents: Function,
 }
 interface State {
   listArr: ListObj[],
   toggle: string,
 }
 
-// eslint-disable-next-line react/prefer-stateless-function
-class Dropdown extends React.PureComponent<Props, State> {
+export class Dropdown extends React.PureComponent<Props, State> {
   public static defaultProps = {
     cid: '',
     displayBtnType: 'icon',
     delay: 0,
+    parentHandleEvents: (): void => {},
   }
-  
+
   constructor(props: any) {
     super(props)
     const { listArr } = this.props
@@ -40,9 +42,18 @@ class Dropdown extends React.PureComponent<Props, State> {
     }
   }
 
-  getDropdownItems = (listArr: ListObj[]) => listArr.map((item: ListObj, i: number) => {
+  public componentDidMount(): void {
+    const { listArr } = this.state
+    const item: any = listArr.filter((itemFilter: any) => itemFilter.active === true)[0]
+    const { capture } = item
+    // console.info('Dropdown->componentDidMount()', { capture, item })
+    const action: Interfaces.Action = { type: 'selectItem', capture }
+    this.handleEvents({}, action)
+  }
+
+  public getDropdownItems = (listArr: ListObj[]) => listArr.map((item: ListObj, i: number) => {
     const { capture, iconFa, active, general, sourceClass, spritePosition } = item
-    
+
     let icons: any
     if (iconFa) {
       icons = this.getFontAwsomeIcons(iconFa)
@@ -60,7 +71,7 @@ class Dropdown extends React.PureComponent<Props, State> {
       activeClass = 'Dropdown__item_selected'
     }
 
-    const action = { type: 'selectDataItem', capture }
+    const action: Interfaces.Action = { type: 'selectItem', capture }
 
     return (
       <div
@@ -74,7 +85,7 @@ class Dropdown extends React.PureComponent<Props, State> {
     )
   })
 
-  getSpriteElement = (sourceClass, spritePosition, elementClass) => {
+  public getSpriteElement = (sourceClass, spritePosition, elementClass) => {
 
     return (
       <div
@@ -84,7 +95,7 @@ class Dropdown extends React.PureComponent<Props, State> {
     )
   }
 
-  getFontAwsomeIcons = (arr: []) => {
+  public getFontAwsomeIcons = (arr: []) => {
     let iconHtml = null
     if (arr) {
       const icons = arr.map((item: string, i) => {
@@ -95,7 +106,7 @@ class Dropdown extends React.PureComponent<Props, State> {
     return iconHtml
   }
 
-  getButtonFace = (displayBtnType: string, icons, capture: string) => {
+  public getButtonFace = (displayBtnType: string, icons, capture: string) => {
     let buttonFace = icons
     if (displayBtnType === 'text') {
       buttonFace = <span>{capture}</span>
@@ -103,12 +114,13 @@ class Dropdown extends React.PureComponent<Props, State> {
     return buttonFace
   }
 
-  handleEvents = (e: {}, action: { type: string, capture?: string }) => {
+  public handleEvents = (e: object, action: Interfaces.Action): void => {
     switch (action.type) {
 
-      case 'selectDataItem': {
+      case 'selectItem':
+      {
         // console.info( 'Dropdown->handleEvents() [1]', action)
-        const { delay } = this.props
+        const { delay, parentHandleEvents } = this.props
         let { listArr } = this.state
         const { capture: capturePayload } = action
 
@@ -121,12 +133,15 @@ class Dropdown extends React.PureComponent<Props, State> {
           return { ...item, active }
         })
 
-        this.setState({ listArr })
+        // console.info(`Dropdown->handleEvents() type: ${action.type}`, { parentHandleEvents, listArr, action, e })
+        const action01: Interfaces.Action = { type: 'onClickSearchMedia', data: listArr }
+        parentHandleEvents({}, action01)
 
         setTimeout(() => {
-          this.setState({ toggle: 'Dropdown__dropdownMenu_hide' })
+          this.setState({ listArr, toggle: 'Dropdown__dropdownMenu_hide' })
         }, delay)
-      } break
+      }
+      break
 
       case 'toggleDropdownMenu': {
         const { toggle } = this.state
@@ -143,7 +158,7 @@ class Dropdown extends React.PureComponent<Props, State> {
     }
   }
 
-  render() {
+  public render(): JSX.Element {
 
     const { cid, sid, displayBtnType } = this.props
     const { listArr, toggle } = this.state
@@ -164,13 +179,13 @@ class Dropdown extends React.PureComponent<Props, State> {
     // console.info('Dropdown->render()', { cid, activeItem, listArr })
 
     const dropdownItems = this.getDropdownItems(listArr)
-    const action = { type: 'toggleDropdownMenu' }
+    const action: Interfaces.Action = { type: 'toggleDropdownMenu' }
 
     return (
       <div id={cid} className={`Dropdown dropdown ${sid}`}>
         <button
           type='button'
-          className='btn dropdown-toggle Dropdown__button'
+          className='btn Dropdown__toggle Dropdown__button'
           onClickCapture={e => this.handleEvents(e, action)}
         >
           {buttonFace}
@@ -182,5 +197,3 @@ class Dropdown extends React.PureComponent<Props, State> {
     )
   }
 }
-
-export default Dropdown

@@ -1,9 +1,58 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Swipeable } from 'react-swipeable'
 
-// eslint-disable-next-line react/prefer-stateless-function
-class Carousel extends React.Component {
+interface Props {
+  readonly cid: string,
+    // component id
+  readonly prefix: string,
+    // For each prefix styles tree can be created in Dropdown.less file
+  readonly isDisplayArrows: boolean,
+    // Allows or bans right, left arrows for listing items
+  readonly isDisplayIndicators: boolean,
+    // Allows or bans underscore indicators for listing items
+  readonly isAutoCarousel: any,
+    // If it equals number, than it works with number delay automatically
+  readonly autoCarouselInterval: number,
+    // Interval of changing images in miliseconds
+  readonly listArr: any,
+    /* Example
+      listArr: [
+          {
+            capture: 'Los Angeles',
+            src: 'https://www.w3schools.com/bootstrap4/la.jpg',
+            active: true,
+          },
+        ...
+      ]
+    */
+  readonly scrollInterval: number,
+    // Set the interval of changing the img in miliseconds
+  readonly scrollPeriodEnd: number,
+    // Set the period withing the images will be changing in miliseconds
+}
+interface State {
+  readonly listArr: any,
+  readonly date: any,
+}
+
+export interface Carousel {
+  preventSwipeTwice: boolean,
+  totimeZone: any,
+  tickID: any,
+}
+
+export class Carousel extends React.PureComponent<Props, State> {
+  public static defaultProps: any = {
+    cid: '',
+    prefix: '',
+    isDisplayArrows: true,
+    isDisplayIndicators: true,
+    isAutoCarousel: false,
+    autoCarouselInterval: 2000,
+    scrollInterval: 500,
+    scrollPeriodEnd: 1000,
+  }
+
   constructor(props) {
     super(props)
     const { listArr } = this.props
@@ -28,7 +77,7 @@ class Carousel extends React.Component {
     }
 
     if (isAutoCarousel) {
-      this.tickID	=	setInterval(() => this.handleEvent({}, actionNextItem), autoCarouselInterval)
+      this.tickID	=	setInterval(() => this.handleEvents({}, actionNextItem), autoCarouselInterval)
     }
   }
 
@@ -47,7 +96,7 @@ class Carousel extends React.Component {
     // console.info('Carousel->carouselRender [3]', { id: item.id, item, pageItemClass, activeItem: activeItem })
     return (
       <li key={i} className={itemClass}
-        onClick={e => this.handleEvent(e, action)}
+        onClick={e => this.handleEvents(e, action)}
       />
     )
   })
@@ -100,7 +149,7 @@ class Carousel extends React.Component {
             type: 'nextItem',
           }
           // console.info( 'Dropdown->handleEvents() [5]', { delay, action })
-          this.tickID	=	setInterval(() => this.handleEvent({}, actionNextItem), scrollInterval)
+          this.tickID	=	setInterval(() => this.handleEvents({}, actionNextItem), scrollInterval)
           this.preventSwipeTwice = !this.preventSwipeTwice
 
           setTimeout(() => {
@@ -175,7 +224,7 @@ class Carousel extends React.Component {
     }
   }
 
-  render() {
+  public render(): JSX.Element {
     const {
       cid,
       prefix,
@@ -251,47 +300,3 @@ class Carousel extends React.Component {
     )
   }
 }
-
-Carousel.defaultProps = {
-  cid: '',
-  prefix: '',
-  isDisplayArrows: true,
-  isDisplayIndicators: true,
-  isAutoCarousel: false,
-  autoCarouselInterval: 2000,
-  scrollInterval: 500,
-  scrollPeriodEnd: 1000,
-}
-
-/* eslint-disable indent */
-Carousel.propTypes = {
-  cid: PropTypes.string,
-    // component id
-  prefix: PropTypes.string,
-    // For each prefix styles tree can be created in Dropdown.less file
-  isDisplayArrows: PropTypes.bool,
-    // Allows or bans right, left arrows for listing items
-  isDisplayIndicators: PropTypes.bool,
-    // Allows or bans underscore indicators for listing items
-  isAutoCarousel: PropTypes.any,
-    // If it equals number, than it works with number delay automatically
-  autoCarouselInterval: PropTypes.number,
-    // Interval of changing images in miliseconds
-  listArr: PropTypes.arrayOf(PropTypes.object).isRequired,
-    /* Example
-      listArr: [
-          {
-            capture: 'Los Angeles',
-            src: 'https://www.w3schools.com/bootstrap4/la.jpg',
-            active: true,
-          },
-        ...
-      ]
-    */
-   scrollInterval: PropTypes.number,
-    // Set the interval of changing the img in miliseconds
-   scrollPeriodEnd: PropTypes.number,
-    // Set the period withing the images will be changing in miliseconds
-}
-
-export default Carousel

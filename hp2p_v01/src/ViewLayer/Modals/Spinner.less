@@ -1,12 +1,11 @@
 
-.ModalBackdrop {
+.Spinner {
+  display: flex;
+  justify-content: center;
   position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1040;
+  top: 15rem;
+  z-index: 1050;
   width: 100vw;
-  height: 100vh;
-  background-color: darkolivegreen;
 
   @media @large {
 
@@ -37,7 +36,7 @@
 
 .ModalBackdrop__show {
   z-index: 1;
-  opacity: 0.4;
+  opacity: 0.5;
 
   -webkit-transition: 1ms ease-out;
   -moz-transition: 1ms ease-out;
@@ -51,5 +50,5 @@
 
 .ModalBackdrop_FarewellDev.ModalBackdrop__show {
   opacity: 0.9;
-  background-color: black;
+  background-color: darkolivegreen;
 }
