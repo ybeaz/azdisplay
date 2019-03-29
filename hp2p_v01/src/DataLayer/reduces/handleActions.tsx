@@ -26,7 +26,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
     {
       data = {}
       setTimeout(() => actions.GO_BACK(data), 0)
-      setTimeout(() => serviceFunc.saveUserVisitActions(''), 100)
+      setTimeout(() => serviceFunc.saveUserVisitActions(''), 0)
     }
     break
 
@@ -34,7 +34,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
     {
       data = {}
       setTimeout(() => actions.GO_LINK_TO_SPECIALISTS(data), 0)
-      setTimeout(() => serviceFunc.saveUserVisitActions(''), 100)
+      setTimeout(() => serviceFunc.saveUserVisitActions(''), 0)
     }
     break
 
@@ -42,7 +42,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
     {
       data = {}
       setTimeout(() => actions.GO_LINK_CONTACTS(data), 0)
-      setTimeout(() => serviceFunc.saveUserVisitActions(''), 100)
+      setTimeout(() => serviceFunc.saveUserVisitActions(''), 0)
     }
     break
 
@@ -50,7 +50,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
     {
       data = {}
       setTimeout(() => actions.GO_LINK_ABOUT_US(data), 0)
-      setTimeout(() => serviceFunc.saveUserVisitActions(''), 100)
+      setTimeout(() => serviceFunc.saveUserVisitActions(''), 0)
     }
     break
 
@@ -60,6 +60,8 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
       actions.CLOSE_ALL_MODALS(data)
       const modalNext: string = 'Spinner'
       actions.CALL_SPINNER({ modalNext })
+
+      setTimeout(() => actions.CLOSE_ALL_MODALS(data), 300)
       // console.info(`handleActions.js type: ${action.type}`, { action, e })
     }
     break
@@ -99,7 +101,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
       actions.CLOSE_MODAL_SELECT_ROLE(data)
 
       const target: string = 'cancelReg'
-      setTimeout(() => serviceFunc.saveUserVisitActions(target), 100)
+      setTimeout(() => serviceFunc.saveUserVisitActions(target), 0)
     }
     break
 
@@ -114,7 +116,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
       setTimeout(() => actions.SEND_COMMENT_FORM({ modalNext }), delay)
 
       const target: string = 'registration02'
-      setTimeout(() => serviceFunc.saveUserVisitActions(target), 100)
+      setTimeout(() => serviceFunc.saveUserVisitActions(target), 0)
     }
     break
 
@@ -129,7 +131,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
       setTimeout(() => actions.SEND_COMMENT_FORM({ modalNext }), delay)
 
       const target: string = 'registration01'
-      setTimeout(() => serviceFunc.saveUserVisitActions(target), 100)
+      setTimeout(() => serviceFunc.saveUserVisitActions(target), 0)
     }
     break
 
@@ -175,7 +177,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
       }
 
       const target: string = 'inception'
-      setTimeout(() => serviceFunc.saveUserVisitActions(target), 100)
+      setTimeout(() => serviceFunc.saveUserVisitActions(target), 0)
       // console.info(`handleActions.js type: ${action.type}`, { delay, treeData, language, prop, action, e })
     }
     break

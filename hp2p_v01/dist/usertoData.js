@@ -8,6 +8,7 @@ var USERTO = {
   rus: {
     modeProdDev: {
       // fetchCredentials: 'omit', //for production всегда остается includ
+      checkSearchField: true,
       languageSelect: false,
       checkEnterEmail: false,
       checkSelectRole: false,
@@ -65,6 +66,7 @@ var USERTO = {
       sid: 'SearchForm',
       searchPlaceholder: 'Сфера специалиста...',
       searchButton: 'Найти',
+      alertShortSearchInput: 'Поисковый запрос слишком короткий',
       typeRequest: {
         sid: 'FieldButtons_typeRequest',
         listArr: [

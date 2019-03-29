@@ -88,40 +88,43 @@ const arrNotNull: Function = (str: any): string[] => {
  * @description SAVE_USER_VISIT_ACTIONS
  */
 export const saveUserVisitActions: Function = (target: string): any => {
+  setTimeout(() => {
 
-  const { actionLog, userFootprint } = store.getState()
-  const {
-    role,
-    msg,
-    inception,
-    searchPhrase,
-    searchCategory,
-    searchMedia,
-    catalogCategory,
-    userPrifile,
-    email,
-  } = userFootprint
-  let actionLogNext: any = arrOfObjOmitItemsByPropValArr(actionLog, 'type', ARR_ACTION_TO_OMIT_FOR_LOG)
-  actionLogNext = actionLogNext.map((item: any) => item.type)
+    const { actionLog, userFootprint } = store.getState()
+    const {
+      role,
+      msg,
+      inception,
+      searchPhrase,
+      searchCategory,
+      searchMedia,
+      catalogCategory,
+      userPrifile,
+      email,
+    } = userFootprint
+    let actionLogNext: any = arrOfObjOmitItemsByPropValArr(actionLog, 'type', ARR_ACTION_TO_OMIT_FOR_LOG)
+    actionLogNext = actionLogNext.map((item: any) => item.type)
 
-  // console.info('serviceFunc.ts->saveUserVisitActions()', { actionLogNext, actionLog,  })
+    // console.info('serviceFunc.ts->saveUserVisitActions()', { actionLogNext, actionLog,  })
 
-  const payload: Interfaces.Payload  = {
-    optPost: 'suva',
-    target: arrNotNull(target),
-    actionLog: arrNotNull(actionLogNext),
-    role: arrNotNull(role),
-    msg: arrNotNull(msg),
-    inception: arrNotNull(inception),
-    searchPhrase: arrNotNull(searchPhrase),
-    searchCategory: arrNotNull(searchCategory),
-    searchMedia: arrNotNull(searchMedia),
-    catalogCategory: arrNotNull(catalogCategory),
-    userPrifile: arrNotNull(userPrifile),
-    email: arrNotNull(email),
-  }
-  console.info(`serviceFunc.js saveUserVisitActions() [10]`, { payload, userFootprint, actionLogNext, actionLog })
-  store.dispatch(actions.getActionAsync('SAVE_USER_VISIT_ACTIONS', 'REQUEST', payload))
+    const payload: Interfaces.Payload  = {
+      optPost: 'suva',
+      target: arrNotNull(target),
+      actionLog: arrNotNull(actionLogNext),
+      role: arrNotNull(role),
+      msg: arrNotNull(msg),
+      inception: arrNotNull(inception),
+      searchPhrase: arrNotNull(searchPhrase),
+      searchCategory: arrNotNull(searchCategory),
+      searchMedia: arrNotNull(searchMedia),
+      catalogCategory: arrNotNull(catalogCategory),
+      userPrifile: arrNotNull(userPrifile),
+      email: arrNotNull(email),
+    }
+    // console.info(`serviceFunc.js saveUserVisitActions() [10]`, { payload, userFootprint, actionLogNext, actionLog })
+    store.dispatch(actions.getActionAsync('SAVE_USER_VISIT_ACTIONS', 'REQUEST', payload))
+
+  }, 500)
 }
 
 

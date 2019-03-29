@@ -59,6 +59,7 @@ export class Face326 extends React.PureComponent<Props, State> {
     const { treeData, language } = reduxState
     // console.info('Face326->render() [5]', { treeData, reduxState })
     const {
+      modeProdDev,
       descriptors,
       itHelps,
       workFlow,
@@ -83,8 +84,8 @@ export class Face326 extends React.PureComponent<Props, State> {
     const carouselPrefix: string = 'CarouselDesc'
     carousel = { ...carousel, cid: carouselCid, prefix: carouselPrefix }
 
-    const searchFormTop: {} = {...searchForm, sid: 'SearchForm_top'}
-    const searchFormBottom: {} = {...searchForm, sid: 'SearchForm_bottom'}
+    const searchFormTop: {} = {...searchForm, sid: 'SearchForm_top', modeProdDev}
+    const searchFormBottom: {} = {...searchForm, sid: 'SearchForm_bottom', modeProdDev}
 
 
     const action: Interfaces.Action = { type: 'openModalRegistrationQuick' }

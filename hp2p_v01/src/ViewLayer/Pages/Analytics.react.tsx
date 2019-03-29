@@ -253,14 +253,16 @@ class Analytics extends React.PureComponent<Props, State> {
         const analyticsSorted: any = analytics.sort(serviceFunc.sortBy('start', false))
         // console.info(`Analytics->handleEvents() type->${action.type}`, { analyticsSorted, analytics, action, e })
         this.setState({ analytics: analyticsSorted, buttonSortState: !buttonSortState })
-      }                                  break
+      }
+      break
 
       case 'sortReverseAnalyticsTable': {
         const { analytics, buttonSortState } = this.state
         const analyticsSorted: any = analytics.sort(serviceFunc.sortBy('start', true))
         // console.info(`handleActions.js type->${action.type}`, { analyticsSorted, analytics, action, e })
         this.setState({ analytics: analyticsSorted, buttonSortState: !buttonSortState })
-      }                                 break
+      }
+      break
 
       case 'refreshAnalyticsTable': {
         const { handleActions } = this.props
@@ -270,7 +272,8 @@ class Analytics extends React.PureComponent<Props, State> {
         const action02: Interfaces.Action = { type: 'getUserAnalyticsData' }
         // console.info(`handleActions.js type->${action.type}`, { action, e })
         handleActions({}, action02)
-      }                             break
+      }
+      break
 
       case 'setStateWithAnalyticsData': {
         const { buttonSortState } = this.state
@@ -281,13 +284,15 @@ class Analytics extends React.PureComponent<Props, State> {
         // console.info('Analytics->handleEvents()', { analytics })
         this.setState({ analytics, analyticsSrc: data, buttonSortState: !buttonSortState })
       }
+      break
 
       case 'getUserAnalyticsData': {
         const { handleActions } = this.props
         const action01: Interfaces.Action = { type: 'getUserAnalyticsData' }
         // console.info(`Analytics->handleEvents() type->${action.type}`, { action, e })
         handleActions({}, action01)
-      }                            break
+      }
+      break
 
       default: {
         console.info('Analytics->handleEvents unexpected action', { action })

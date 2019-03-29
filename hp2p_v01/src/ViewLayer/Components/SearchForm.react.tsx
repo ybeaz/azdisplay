@@ -14,6 +14,8 @@ interface Props {
   searchButton: string,
   typeRequest: any,
   typeMedia: any,
+  modeProdDev: any, 
+  alertShortSearchInput: string,
   handleActions: Function,
 }
 interface State {
@@ -58,7 +60,9 @@ export class SearchForm extends React.PureComponent<Props, State> {
   }
 
   public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
-    const { sid, handleActions } = this.props
+    const { sid, typeMedia, handleActions, modeProdDev, alertShortSearchInput } = this.props
+    const { listArr } = typeMedia
+    const { checkSearchField } = modeProdDev
     let data: any
 
     switch (action.type) {
@@ -69,8 +73,20 @@ export class SearchForm extends React.PureComponent<Props, State> {
         if (sid === 'SearchForm_bottom') {
           inception = 'searchButtonSecond'
         }
-        const dataTemp: any = this.state
-        data = { ...dataTemp, inception }
+        const { searchPhrase, searchCategory, searchMedia: searchMediaTemp } = this.state
+
+        if ( checkSearchField && searchPhrase.length < 4) {
+          alert(alertShortSearchInput)
+          return
+        }
+
+        let searchMedia = searchMediaTemp
+        if ( searchMediaTemp[0] === listArr[0].capture ) {
+          searchMedia = ['']
+        }
+
+        // console.info('SearchForm->handleEvents()', { listArr, inception, searchPhrase, searchCategory, searchMedia })
+        data = { inception, searchPhrase, searchCategory, searchMedia }
         const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
         handleActions(e, action03)
 
