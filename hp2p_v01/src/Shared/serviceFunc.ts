@@ -52,6 +52,7 @@ export const isArrGoodForJsx: Function = (variable: any): boolean => {
 export const isVarCorrupted: Function = (variable: any): boolean => {
   let output: boolean = false
   if (typeof variable === undefined
+    || variable === undefined
     || typeof variable === null
     || typeof variable === 'boolean'
     || (Array.isArray(variable) && variable.length === 0)
@@ -78,6 +79,7 @@ const arrNotNull: Function = (str: any): string[] => {
     output = str
   }
   else {
+    // console.info('serviceFunc.js->arrNotNull()', { output })
     output = ['strange string, see function arrNotNull']
   }
 
