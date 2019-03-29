@@ -19,6 +19,8 @@ interface UserFootprint {
 const userFootprint: any = (state: object = {}, action: Interfaces.Action): object => {
 
   let stateNext: UserFootprint = {
+    role: [],
+    msg: '',
     inception: '',
     searchPhrase: '',
     searchCategory: [],
@@ -26,8 +28,6 @@ const userFootprint: any = (state: object = {}, action: Interfaces.Action): obje
     catalogCategory: '',
     userPrifile: '',
     email: '',
-    role: [],
-    msg: '',
   }
 
   switch (action.type) {
@@ -164,6 +164,10 @@ const modalWindows: any = (
       return stateNext
     }
 
+    case 'GO_BACK':
+    case 'GO_LINK_TO_SPECIALISTS':
+    case 'GO_LINK_CONTACTS':
+    case 'GO_LINK_ABOUT_US':
     case 'CLOSE_MODAL_SELECT_ROLE': {
       return state
     }

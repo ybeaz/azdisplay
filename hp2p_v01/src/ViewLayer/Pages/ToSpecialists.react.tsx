@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import * as Interfaces from '../../Shared/interfaces'
 import { ButtonCommon } from '../Components/ButtonCommon.react'
@@ -41,6 +42,14 @@ class ToSpecialists extends React.PureComponent<Props, State> {
 
     switch (action.type) {
 
+      case 'clickBack':
+      {
+        const action01: Interfaces.Action = { type: 'clickBack' }
+        handleActions(e, action01)
+        // console.info(`Footer->handleEvents type->${action.type} [10]`, { props: this.props, action, e })
+      }
+      break
+
       case 'openModalRegistrationToSpec':
       {
         data = { inception: 'registrationToSpec' }
@@ -76,8 +85,15 @@ class ToSpecialists extends React.PureComponent<Props, State> {
       <div className='ToSpecialists globalStyle'>
         <header><NavBar /></header>
         <main>
-          <SectionWrapper classStyle='SectionWrapper_ToSpecialists'>
+          <SectionWrapper classStyle='ToSpecialists__linkBack'>
+            <Link to={'/326_HP2P_v01/enter'} onClickCapture={e => this.handleEvents(e, {type: 'clickBack'})}>
+              <div className={`ToSpecialists__linkBackCapture`}>
+                  Назад
+              </div>
+            </Link>
+          </SectionWrapper>
 
+          <SectionWrapper classStyle='ToSpecialists__content'>
             <div>Расскажите о ваших компетенциях на UserTo</div>
             <div>Многим пользователям необходимы  ваши навыки и знания. Поделитесь ими за вознаграждение.</div>
             <div>Где угодно</div>

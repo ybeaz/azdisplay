@@ -50,7 +50,7 @@ class Analytics extends React.PureComponent<Props, State> {
     }
   }
 
-  private getItemList: Function = (listArr: string[] | undefined): JSX.Element | undefined => {
+  public getItemList: Function = (listArr: string[] | undefined): JSX.Element | undefined => {
     if(!listArr || typeof listArr[0] === 'undefined') {
       return undefined
     }
@@ -61,8 +61,8 @@ class Analytics extends React.PureComponent<Props, State> {
   }
 
 
-  private getActionLog: Function = (actionLog: any): JSX.Element | undefined => {
-
+  public getActionLog: Function = (actionLog: any): JSX.Element | undefined => {
+    /*
     let actionLogNext: string
     if (typeof actionLog === 'string') {
       actionLogNext = actionLog
@@ -73,8 +73,7 @@ class Analytics extends React.PureComponent<Props, State> {
     // console.info('Analytics->getActionLog() [0]', {  actionLogNext, actionLog})
 
     let actionLogJson: any
-    let actionLogElem: JSX.Element
-    if (actionLogNext) {
+    if (actionLogNext.length > 0) {
       let regex: any = /&quot;/gm
       let subst: string = `"`
       actionLogNext = actionLogNext.replace(regex, subst)
@@ -87,24 +86,38 @@ class Analytics extends React.PureComponent<Props, State> {
       // console.info('Analytics->getAnalyticsRows() [3]', { actionLogNext })
       actionLogJson = JSON.parse(actionLogNext)
     }
-
-    if (!actionLogJson || typeof actionLogJson[0] === 'undefined') {
+    */
+    let actionLogNext = actionLog
+    let actionLogJson = actionLog
+    if (!actionLogJson || actionLogJson[0] === null || actionLogJson.length === 0 || typeof actionLogJson[0] === 'undefined') {
       return undefined
     }
-    // console.info('Analytics->getActionLog() [5]', { listArr })
+    // console.info('Analytics->getActionLog() [5]', { actionLogNext })
     const output: any = actionLogJson.map((item: any) => {
-
-        const itemGroup: any = item.map((itemElem: string) =>
+      // console.info('Analytics->getActionLog() [7]', { actionLogNext, item })
+      let itemGroup: any
+      if (serviceFunc.isArrGoodForJsx(item)) {
+        // console.info('Analytics->getActionLog() [9-1]', { item, actionLogNext })
+        itemGroup = item.map((itemElem: string) =>
           <span className='Analytics__logCellGroupElem'>{itemElem}&nbsp;&nbsp;</span>)
-
-        return <div className='Analytics__logCellGroup'>{itemGroup}</div>
-      },
-    )
+      }
+      else if (typeof item === 'string' && item.length > 0) {
+        // console.info('Analytics->getActionLog() [9-2]', { item, actionLogNext })
+        itemGroup = item
+      }
+      else {
+        // console.info('Analytics->getActionLog() [9-3]', { item, actionLogNext })
+        itemGroup = <div />
+      }
+      // console.info('Analytics->getActionLog() [9-f]', { item, actionLogNext })
+      return <div className='Analytics__logCellGroup'>{itemGroup}</div>
+    },
+  )
 
     return <div className='Analytics__logCell'>{output}</div>
   }
 
-  private getAnalyticsRows: Function = (analytics: any): any => {
+  public getAnalyticsRows: Function = (analytics: any): any => {
     // console.info('Analytics->getAnalyticsRows() [0]', { analytics })
     return analytics
       //.filter(item => item.actionLog !== '')
@@ -117,34 +130,41 @@ class Analytics extends React.PureComponent<Props, State> {
           width, height, email, search, pathname, hostname, href,
         } = item
 
-        // console.info('Analytics->getAnalyticsRows() [5]', {role, searchCategory, searchMedia, actionLog })
-        const actionLogElem = this.getActionLog(actionLog)
+        // console.info('Analytics->getAnalyticsRows() [5]', {item, role, searchCategory, searchMedia, actionLog })
+        const targetElem: JSX.Element | undefined = this.getActionLog(target)
+        const msgElem: JSX.Element | undefined = this.getActionLog(msg)
+        const roleElem: JSX.Element | undefined = this.getActionLog(role)
+        const actionLogElem: JSX.Element | undefined = this.getActionLog(actionLog)
+        const inceptionElem: JSX.Element | undefined = this.getActionLog(inception)
+        const searchPhraseElem: JSX.Element | undefined = this.getActionLog(searchPhrase)
+        const searchMediaElem: JSX.Element | undefined = this.getActionLog(searchMedia)
+        const searchCategoryElem: JSX.Element | undefined = this.getActionLog(searchCategory)
+        const catalogCategoryElem: JSX.Element | undefined = this.getActionLog(catalogCategory)
+        const userPrifileElem: JSX.Element | undefined = this.getActionLog(userPrifile)
+        const emailElem: JSX.Element | undefined = this.getActionLog(email)
 
-        let roleElem: JSX.Element | undefined = this.getActionLog(role)
-        let searchMediaElem: JSX.Element | undefined = this.getActionLog(searchMedia)
-        let searchCategoryElem: JSX.Element | undefined = this.getActionLog(searchCategory)
         const classNameHere: string = 'Analytics__cellClass'
         const searchElem: string = search ? search.replace(/\?/gim, '') : ''
-        
+
         return (
           <tr className='Analytics__rowClass'>
               <th className={`${classNameHere} Analytics__cellClass_PHPSESSID`}>{PHPSESSID}</th>
               <th className={`${classNameHere} Analytics__cellClass_start`}>{start}</th>
               <th className={`${classNameHere} Analytics__cellClass_finish`}>{finish}</th>
               <th className={`${classNameHere} Analytics__cellClass_ip`}>{ip}</th>
-              <th className={`${classNameHere} Analytics__cellClass_target`}>{target}</th>
-              <th className={`${classNameHere} Analytics__cellClass_msg`}>{msg}</th>
+              <th className={`${classNameHere} Analytics__cellClass_target`}>{targetElem}</th>
+              <th className={`${classNameHere} Analytics__cellClass_msg`}>{msgElem}</th>
               <th className={`${classNameHere} Analytics__cellClass_roleElem`}>{roleElem}</th>
               <th className={`${classNameHere} Analytics__cellClass_actionLogElem`}>{actionLogElem}</th>
-              <th className={`${classNameHere} Analytics__cellClass_inception`}>{inception}</th>
-              <th className={`${classNameHere} Analytics__cellClass_searchPhrase`}>{searchPhrase}</th>
+              <th className={`${classNameHere} Analytics__cellClass_inception`}>{inceptionElem}</th>
+              <th className={`${classNameHere} Analytics__cellClass_searchPhrase`}>{searchPhraseElem}</th>
               <th className={`${classNameHere} Analytics__cellClass_searchCategory`}>{searchCategoryElem}</th>
               <th className={`${classNameHere} Analytics__cellClass_searchMedia`}>{searchMediaElem}</th>
-              <th className={`${classNameHere} Analytics__cellClass_catalogCategory`}>{catalogCategory}</th>
-              <th className={`${classNameHere} Analytics__cellClass_userPrifile`}>{userPrifile}</th>
+              <th className={`${classNameHere} Analytics__cellClass_catalogCategory`}>{catalogCategoryElem}</th>
+              <th className={`${classNameHere} Analytics__cellClass_userPrifile`}>{userPrifileElem}</th>
               <th className={`${classNameHere} Analytics__cellClass_width`}>{width}</th>
               <th className={`${classNameHere} Analytics__cellClass_height`}>{height}</th>
-              <th className={`${classNameHere} Analytics__cellClass_email`}>{email}</th>
+              <th className={`${classNameHere} Analytics__cellClass_email`}>{emailElem}</th>
               <th className={`${classNameHere} Analytics__cellClass_searchElem`}>{searchElem}</th>
               <th className={`${classNameHere} Analytics__cellClass_{pathname`}>{pathname}</th>
               <th className={`${classNameHere} Analytics__cellClass_hostname`}>{hostname}</th>
@@ -157,6 +177,7 @@ class Analytics extends React.PureComponent<Props, State> {
   public getAnalyticsTable = (analytics: any): any => {
 
     const classNameHere: string ='Analytics__thCellClass'
+
     return (
       <table className='Analytics__tableClass'>
         <thead>
@@ -257,7 +278,7 @@ class Analytics extends React.PureComponent<Props, State> {
         const analytics: any = data.slice()
           .reverse()
         // analytics.sort(serviceFunc.sortBy('start', false))
-        // console.info('Analytics->handleEvents()', { analyticsSorted, analytics })
+        // console.info('Analytics->handleEvents()', { analytics })
         this.setState({ analytics, analyticsSrc: data, buttonSortState: !buttonSortState })
       }
 

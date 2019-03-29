@@ -63,15 +63,14 @@ $securityFunctions::sessionStart();
 // Reading GET/POST data traditionally from xnr request
 //**********************************************************
 
-  $optGet    = securityFunctions::stringSpecCharEscape($_GET['optGet']);
-  $target    = securityFunctions::stringSpecCharEscape($_GET['target']);
-  $actionLog = securityFunctions::stringSpecCharEscape($_GET['actionLog']);
-  $width     = securityFunctions::stringSpecCharEscape($_GET['width']);
-  $height    = securityFunctions::stringSpecCharEscape($_GET['height']);
-  $search    = securityFunctions::stringSpecCharEscape($_GET['search']);
-  $pathname  = securityFunctions::stringSpecCharEscape($_GET['pathname']);
-  $hostname  = securityFunctions::stringSpecCharEscape($_GET['hostname']);
-  $href      = securityFunctions::stringSpecCharEscape($_GET['href']);
+  $optGet   = securityFunctions::stringSpecCharEscape($_GET['optGet']);
+  $target   = $_GET['target'];
+  $width    = securityFunctions::stringSpecCharEscape($_GET['width']);
+  $height   = securityFunctions::stringSpecCharEscape($_GET['height']);
+  $search   = securityFunctions::stringSpecCharEscape($_GET['search']);
+  $pathname = securityFunctions::stringSpecCharEscape($_GET['pathname']);
+  $hostname = securityFunctions::stringSpecCharEscape($_GET['hostname']);
+  $href     = securityFunctions::stringSpecCharEscape($_GET['href']);
 
 //**********************************************************
 // Reading JSON POST using PHP
@@ -147,8 +146,7 @@ $securityFunctions::sessionStart();
     $data->start     = $_SESSION['dateTime'];
     $data->finish    = $dateTime;
     $data->ip        = $userIp;
-    $data->target    = $target;
-    $data->actionLog = $actionLog;
+    $data->target    = json_decode($target);
     $data->width     = $width;
     $data->height    = $height;
     $data->search    = $search;

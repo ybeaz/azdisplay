@@ -26,6 +26,10 @@ export const getActionAsync: any = (type: string, stage: string, data: any): any
 
 export const UPDATE_USER_FOOTPRINT: any = (data: any): any =>  action(actionTypes.UPDATE_USER_FOOTPRINT, data)
 
+export const GO_BACK: any = (data: any): any =>  action(actionTypes.GO_BACK, data)
+export const GO_LINK_TO_SPECIALISTS: any = (data: any): any =>  action(actionTypes.GO_LINK_TO_SPECIALISTS, data)
+export const GO_LINK_CONTACTS: any = (data: any): any =>  action(actionTypes.GO_LINK_CONTACTS, data)
+export const GO_LINK_ABOUT_US: any = (data: any): any =>  action(actionTypes.GO_LINK_ABOUT_US, data)
 export const CALL_SPINNER: any = (data: any): any =>  action(actionTypes.CALL_SPINNER, data)
 export const CLOSE_ALL_MODALS: any = (data: any): any =>  action(actionTypes.CLOSE_ALL_MODALS, data)
 export const CLOSE_MODAL_THANK_YOU: any = (data: any): any =>  action(actionTypes.CLOSE_MODAL_THANK_YOU, data)

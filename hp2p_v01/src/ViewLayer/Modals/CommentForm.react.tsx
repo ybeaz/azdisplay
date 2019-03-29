@@ -50,10 +50,10 @@ export class CommentForm extends React.PureComponent<Props, State> {
       {
         data = this.getData()
         const action03: Interfaces.Action = { type: 'updateUserFootprint', data }
-        setTimeout(() => handleActions(e, action03), 0)
+        handleActions(e, action03)
 
         const action01: Interfaces.Action = { type: 'sendCommentForm' }
-        setTimeout(() => handleActions(e, action01), 0)
+        handleActions(e, action01)
         // console.info(`${sid}->handleEvents() type: ${action.type}`, { data, action, e })
       }
       break

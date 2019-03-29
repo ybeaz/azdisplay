@@ -22,6 +22,38 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
     }
     break
 
+    case 'clickBack':
+    {
+      data = {}
+      setTimeout(() => actions.GO_BACK(data), 0)
+      setTimeout(() => serviceFunc.saveUserVisitActions(''), 100)
+    }
+    break
+
+    case 'clickFooterToSpecialists':
+    {
+      data = {}
+      setTimeout(() => actions.GO_LINK_TO_SPECIALISTS(data), 0)
+      setTimeout(() => serviceFunc.saveUserVisitActions(''), 100)
+    }
+    break
+
+    case 'clickFooterContacts':
+    {
+      data = {}
+      setTimeout(() => actions.GO_LINK_CONTACTS(data), 0)
+      setTimeout(() => serviceFunc.saveUserVisitActions(''), 100)
+    }
+    break
+
+    case 'clickFooterAboutUs':
+    {
+      data = {}
+      setTimeout(() => actions.GO_LINK_ABOUT_US(data), 0)
+      setTimeout(() => serviceFunc.saveUserVisitActions(''), 100)
+    }
+    break
+
     case 'callSpinner':
     {
       data = {}
@@ -67,7 +99,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
       actions.CLOSE_MODAL_SELECT_ROLE(data)
 
       const target: string = 'cancelReg'
-      serviceFunc.saveUserVisitActions(target)
+      setTimeout(() => serviceFunc.saveUserVisitActions(target), 100)
     }
     break
 
@@ -82,7 +114,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
       setTimeout(() => actions.SEND_COMMENT_FORM({ modalNext }), delay)
 
       const target: string = 'registration02'
-      serviceFunc.saveUserVisitActions(target)
+      setTimeout(() => serviceFunc.saveUserVisitActions(target), 100)
     }
     break
 
@@ -97,7 +129,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
       setTimeout(() => actions.SEND_COMMENT_FORM({ modalNext }), delay)
 
       const target: string = 'registration01'
-      serviceFunc.saveUserVisitActions(target)
+      setTimeout(() => serviceFunc.saveUserVisitActions(target), 100)
     }
     break
 
@@ -143,7 +175,7 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
       }
 
       const target: string = 'inception'
-      serviceFunc.saveUserVisitActions(target)
+      setTimeout(() => serviceFunc.saveUserVisitActions(target), 100)
       // console.info(`handleActions.js type: ${action.type}`, { delay, treeData, language, prop, action, e })
     }
     break

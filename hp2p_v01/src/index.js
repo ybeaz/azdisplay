@@ -33,10 +33,11 @@ const App = () => {
   
   store.dispatch(actions.UPLOAD_TREE_DATA({ treeData: USERTO }))
   const { href, hostname, pathname, search } = location
-  // console.info('index.js->treeDefault', { href, hostname, pathname, search, USERTO, store: store.getState() })
+  // console.info('index.js->treeDefault', { href, hostname: [hostname], pathname, search, USERTO, store: store.getState() })
 
   const { width, height } = serviceFunc.mediaSizeCrossBrowser(global)
-  const payload = { optGet: 'sus', target: 'startSession', width, height, search, pathname, hostname, href }
+  const target = JSON.stringify(['startSession'])
+  const payload = { optGet: 'sus', target, width, height, search, pathname, hostname, href }
   store.dispatch(actions.getActionAsync('START_USER_SESSION', 'REQUEST', payload))
   // console.info('index->app [10] ', { payload })
   // https://github.com/ReactTraining/react-router/issues/4551

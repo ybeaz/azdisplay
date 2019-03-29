@@ -46,11 +46,8 @@ class FooterClass extends React.PureComponent<Props, State> {
     return (
       <div key={i} className='Footer__colItem'>
 
-        <Link to={path}>
-          <div
-            className={`Footer__capture Footer__capture${Sid}`}
-            onClickCapture={e => this.handleEvents(e, action)}
-          >
+        <Link to={path} onClickCapture={e => this.handleEvents(e, action)}>
+          <div className={`Footer__capture Footer__capture${Sid}`}>
             {capture}
           </div>
         </Link>
@@ -77,7 +74,32 @@ class FooterClass extends React.PureComponent<Props, State> {
 
     switch (action.type) {
 
-      case 'clickFooterEnter': {
+      case 'clickFooterToSpecialists':
+      {
+        const action01: Interfaces.Action = { type: 'clickFooterToSpecialists' }
+        handleActions(e, action01)
+        // console.info(`Footer->handleEvents type->${action.type} [10]`, { props: this.props, action, e })
+      }
+      break
+
+      case 'clickFooterContacts':
+      {
+        const action01: Interfaces.Action = { type: 'clickFooterContacts' }
+        handleActions(e, action01)
+        // console.info(`Footer->handleEvents type->${action.type} [10]`, { props: this.props, action, e })
+      }
+      break
+
+      case 'clickFooterAboutUs':
+      {
+        const action01: Interfaces.Action = { type: 'clickFooterAboutUs' }
+        handleActions(e, action01)
+        // console.info(`Footer->handleEvents type->${action.type} [10]`, { props: this.props, action, e })
+      }
+      break
+
+      case 'clickFooterEnter':
+      {
         // console.info(`Footer->handleEvents type->${action.type}`, { props: this.props, action, e })
 
         data = { inception: 'registrationFooter' }
@@ -87,7 +109,8 @@ class FooterClass extends React.PureComponent<Props, State> {
         const action01: Interfaces.Action = { type: 'openModalRegistrationFooter' }
         handleActions(e, action01)
         // console.info(`Footer->handleEvents type->${action.type} [10]`, { props: this.props, action, e })
-      } break
+      }
+      break
 
       default: {
         console.info(`${sid}->handleEvents unexpected action type: ${action.type}`, { action })
