@@ -1,69 +1,121 @@
-//'use strict';
+// 'use strict';
 
-/*  NodeJS server with express.js 
+/*  NodeJS server with express.js
   cd c:/Data/Dev/UserTo/r1.userto.com/
   node server.js
   localhost:3000/demo-js-redux-example.html
 */
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-//var MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
-var  path    = require('path');
-var  webpack = require('webpack');
-var  glob    = require("glob");
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+const webpack = require('webpack')
+const glob = require('glob')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const TSLintPlugin = require('tslint-webpack-plugin')
+
+// var MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const path = require('path')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const styledComponentsTransformer = require('typescript-plugin-styled-components').default;
+const keysTransformer = require('ts-transformer-keys/transformer').default;
 
 module.exports = {
   entry: {
-    hp2p01:   ['./src/index.tsx'], //['babel-polyfill', './index.js', './index.tsx']
+    hp2p01: ['./src/index.js'], // ['babel-polyfill', './index.js', './index.tsx']
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].min.js'  
+    filename: '[name].min.js',
+    publicPath: '/',
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.es6', 'less', 'css', 'config', 'variables', 'overrides'],
   },
   module: {
     rules: [
       {
-        test: /\.(js[\S]{0,1}|ts[\S]{0,1})$/i,
+        test: /\.(ts[\S]{0,2})$/i,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        use: [
+          {
+            loader: 'awesome-typescript-loader', // 'tslint-loader',
+            options: {
+              configFile: 'tslint.json',
+              getCustomTransformers: program => ({
+                before: [
+                  styledComponentsTransformer(),
+                  keysTransformer(program),
+                ],
+              }),
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(ts[\S]{0,2})$/i,
         exclude: /node_modules/,
         use: [
-          { loader: 'babel-loader',
-            query: {
-              presets: ['@babel/preset-react', '@babel/preset-env'],
-              plugins: ['@babel/proposal-class-properties']
-            }
+          {
+            loader: 'awesome-typescript-loader', // 'ts-loader',
+            options: {
+              // disable type checker - we will use it in fork plugin
+              transpileOnly: true,
+              getCustomTransformers: program => ({
+                before: [
+                  styledComponentsTransformer(),
+                  keysTransformer(program),
+                ],
+              }),
+            },
           },
-          { loader: 'ts-loader' }
-        ]
+        ],
+      },
+      {
+        test: /\.(js[\S]{0,2})$/i,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            query: {
+              plugins: ['@babel/proposal-class-properties'],
+            },
+          },
+        ],
       },
       {
         test: /\.(css|less)$/i,
         exclude: [/node_modules/],
         use: [{
-          loader: 'style-loader' // creates style nodes from JS strings
-        }, 
+          loader: 'style-loader', // creates style nodes from JS strings
+        },
         {
-          loader: 'css-loader' // translates CSS into CommonJS
-        }, 
+          loader: 'css-loader', // translates CSS into CommonJS
+        },
         {
-          loader: 'less-loader' // compiles Less to CSS
+          loader: 'less-loader', // compiles Less to CSS
+          options: {
+            javascriptEnabled: true,
+          },
         }],
       },
       // this rule handles images
-      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff' },
-      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader',
+      },
       {
         test: /\.(jpe?g|png|gif)$/i,
         exclude: /node_modules/,
         use: [
           'url-loader?limit=10000',
           'img-loader',
-          'file-loader?name=[name].[ext]?[hash]'
+          'file-loader?name=[name].[ext]?[hash]',
         ],
       },
       {
         test: /\.json$/,
         exclude: /node_modules/,
-        loader: 'json-loader'
+        loader: 'json-loader',
       },
       // the following 3 rules handle font extraction
       {
@@ -76,12 +128,12 @@ module.exports = {
       },
       {
         test: /\.otf(\?.*)?$/,
-        use: 'file-loader?name=/fonts/[name].  [ext]&mimetype=application/font-otf'
+        use: 'file-loader?name=/fonts/[name].  [ext]&mimetype=application/font-otf',
       },
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
     ],
   },
@@ -94,7 +146,7 @@ module.exports = {
     new webpack.HashedModuleIdsPlugin({
       hashFunction: 'sha256',
       hashDigest: 'hex',
-      hashDigestLength: 20
+      hashDigestLength: 20,
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -102,21 +154,28 @@ module.exports = {
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',
       generateStatsFile: true,
-      statsOptions: { source: false }
+      statsOptions: { source: false },
     }),
-    new HtmlWebpackPlugin(),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),  
-  ],  
-  resolve: {
-     extensions: ['.tsx', '.ts', '.js', '.es6', '.jsx', 'less', 'css', 'config', 'variables', 'overrides']
-  },
+    new HtmlWebpackPlugin({
+      title: 'Production',
+      template: 'template.html',
+    }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new ForkTsCheckerWebpackPlugin({ checkSyntacticErrors: true }),
+    new TSLintPlugin({
+      files: ['./src/**/*.ts', './src/**/*.tsx'],
+      config: './tslint.json',
+      warningsAsError: true,
+      silent: true,
+    }),
+  ],
   performance: {
     hints: false,
-  },   
+  },
   watch: false,
   target: 'web',
   externals: [
-    { pg: true }
+    { pg: true },
   ],
   node: {
     fs: 'empty',

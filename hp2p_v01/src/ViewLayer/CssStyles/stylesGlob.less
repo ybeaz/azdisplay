@@ -1,0 +1,126 @@
+
+/* Import style constants */
+  @import './constants.less';
+
+/* Import stylesLib - standard styles */
+  @import './stylesStd.less';
+
+/* Import stylesImg - used background images */
+  @import './stylesImg.less';
+
+// Testing less @plugin feature
+  @plugin 'lessPlugins';
+  .red {
+    color: red('red !important');
+  }
+
+// Themes
+.globalStyle {
+  .f_s_1_rem;
+  font-family: @font-family;
+  background-color: @color0;
+  color: @color1;
+  box-sizing: border-box;
+}
+
+.bg_greyLight {
+  background-color: @color7;
+}
+.bg_greyDark {
+  background-color: @color2;
+}
+.c_green {
+  color: @color5;
+}
+.c_white {
+  color: @color7;
+}
+
+.hoverFocusActive {
+  &:hover {
+    background-color: @color0;
+    border-color: @color4;
+    box-shadow: 0 0 0 0;
+    outline: 0px !important;
+    -webkit-appearance: none;
+  }
+  &:focus {
+    background-color: @color0;
+    border-color: @color4;
+    box-shadow: 0 0 0 0;
+    outline: 0px !important;
+    -webkit-appearance: none;
+  }
+  &:active {
+    background-color: @color0;
+    border-color: @color4;
+    box-shadow: 0 0 0 0;
+    outline: 0px !important;
+    -webkit-appearance: none;
+  }
+}
+
+.hoverFocusActiveReset {
+  &:hover, &:focus, &:active {
+    background-color: @color0;
+    box-shadow: 0 0 0 0;
+    outline: 0px !important;
+    -webkit-appearance: none;
+    border-color: @color0;
+  }
+}
+
+.buttonColorFull {
+  color: @color0;
+  background: @color6;
+  border: none; //border-color: @color5;
+  box-shadow: 0 0 0 0;
+}
+
+.buttonColorLess {
+  color: @color1;
+  background: @color0;
+  border-style: solid;
+  border-width: 1px;
+  border-color: @color4;
+  box-shadow: 0 0 0 0;
+}
+
+.newSection {
+  &:extend(.p_t_2_rem, .p_b_2_rem);
+  @media @phone, @phone-strict {
+    padding: 0;
+  }
+}
+
+.titleSection {
+  &:extend(.t_tr_uc);
+  font-weight: 400;
+}
+
+.Modal__hide {
+  display: none;
+}
+
+.Modal__show {
+  display: block;
+}
+
+
+@media @large {
+
+}
+@media @desktop, @desktop-strict {
+
+}
+@media @tablet, @tablet-strict {
+
+}
+@media @phone, @phone-strict {
+
+}
+
+
+
+
+

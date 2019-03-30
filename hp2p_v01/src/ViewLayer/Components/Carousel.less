@@ -1,0 +1,71 @@
+
+.CarouselDesc {
+
+  /*
+  .transitionPrevDesc {
+    opacity: 0;
+    -webkit-clip-path: inset(49% 0 50% 0);
+    clip-path: inset(49% 0 50% 0);
+    -webkit-transform: scaleY(.7);
+    transform: scaleY(.7);
+
+    -webkit-transition: .5s ease-out;
+    -moz-transition: .5s ease-out;
+    -o-transition: .5s ease-out;
+    transition: .5s ease-out;
+    transition-timing-function: ease-out;
+    transition-duration: .5s;
+    transform-origin: left;
+    transition-property: all;
+
+    transition-delay: .8s;
+  }
+
+  .transitionNextDesc {
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    transform: none;
+  }
+  */
+
+  
+
+  .transitionPrevDesc {
+    opacity: 0;
+  }
+
+  .transitionNextDesc {
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+
+  .Carousel__item {
+    .d_i_b;
+
+    .Carousel__itemCapture {
+      position: absolute;
+      width: 14rem;
+      top: 1rem;
+      left: 3rem;
+      font-size: 1.2rem;
+      color: @color0;
+    }
+    .Carousel__itemImg {
+      height: 10rem;
+      width: 100%;
+    }
+
+    -webkit-transition: 1s step-start;
+    -moz-transition: 1s step-start;
+    -o-transition: 1s step-start;
+    transition-duration: 1s;
+    transform-origin: right;
+    transition-property: all;
+    transition-timing-function: step-start;
+    transition-delay: 0s;
+  }
+  
+} 

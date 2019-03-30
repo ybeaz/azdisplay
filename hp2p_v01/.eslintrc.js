@@ -7,7 +7,7 @@ module.exports = {
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
-    "ecmaFeatures": { "jsx": true }
+    "ecmaFeatures": { "jsx": true, "js": true, "tsx": true, "ts": true }
   },
   "rules": {
     "valid-jsdoc": 0,
@@ -24,7 +24,7 @@ module.exports = {
     "linebreak-style": 0,
     "global-require": 0,
     "eslint linebreak-style": [0, "error", "windows"],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", "tsx"] }],
   },
   "env": {
     "browser": true,

@@ -7,12 +7,16 @@
     "jsx": "react",
     "allowJs": true,
     "sourceMap": true,
-    "lib": ["es2015", "dom"],
+    "lib": ["dom", "es2015", "es5", "es6"],
     "typeRoots": [
       "./node_modules/@types/"
     ],
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "types": [
+      "node"
+    ],
   },
   "exclude": [
     "./node_modules/**/*"
@@ -23,5 +27,9 @@
        "config/**/*.js",
        "node_modules/**/*.ts"
      ]
-   }
+   },
+   "awesomeTypescriptLoaderOptions": {
+    "errorsAsWarnings": true,
+    "useCache": true,
+  }
 }
