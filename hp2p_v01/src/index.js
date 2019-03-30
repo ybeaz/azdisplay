@@ -65,7 +65,7 @@ const App = () => {
         <Route
           key='path'
           {...{ path, exact }}
-          component={() => <Page {...{ treeDefault }} />}
+          component={() => <Page />}
         />
       )
     })
@@ -84,4 +84,4 @@ const App = () => {
 }
 
 const rootElement = document.getElementById('root')
-ReactDOM.render(<App {...treeDefault} />, rootElement)
+ReactDOM.render(<App />, rootElement)

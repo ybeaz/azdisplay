@@ -28,8 +28,9 @@ export interface ModeProdDev {
 }
 
 export interface Action {
-  readonly getActionAsync?: Function,
+// tslint:disable-next-line: no-reserved-keywords
   readonly type: string,
+  readonly data?: any,
   readonly payload?: any,
   readonly lang?: string,
   readonly treeData?: any,
@@ -37,7 +38,7 @@ export interface Action {
   readonly capture?: string,
   readonly eid?: string,
   readonly general?: boolean,
-  readonly data?: any,
+  readonly getActionAsync?: Function,
 }
 
 export interface ModalWindowStateItem {

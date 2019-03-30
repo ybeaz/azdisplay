@@ -64,6 +64,8 @@ const language: any = (state: string = 'rus', action: Interfaces.Action): any =>
 
   switch (action.type) {
     case 'SELECT_LANGUAGE': {
+      // console.info(`reducer->language type: ${action.type}`, { state, action })
+
       return action.lang
     }
 

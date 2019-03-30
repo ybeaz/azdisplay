@@ -26,32 +26,14 @@ export class Descriptors extends React.PureComponent<Props, State> {
 
   componentDidMount() {
     setTimeout(() => {
-
-      const { width } = serviceFunc.mediaSizeCrossBrowser(global)
-      const { h1 } = this.state
-
-      let h1Next = h1
-      if (width > 768) {
-        const arr = h1.split(' ').slice()
-        const l = arr.length
-        const arr1 = [...arr.slice(0, l - 1),
-          '<br />',
-          ...arr.slice(l - 1, l),
-        ];
-        h1Next = arr1.join(' ')
-      }
-
-      this.setState({ h1: h1Next })
-      // console.info('Descriptors->componentDidMount():', { arr1, arr, width, h1, h1Next })
-
       serviceFunc.updateTransition('.descWrapper1.transitionPrevDesc', 'transitionNextDesc')
       serviceFunc.updateTransition('.descWrapper2.transitionPrevDesc', 'transitionNextDesc')
     }, 0)
   }
 
   public render(): JSX.Element {
-    const { sid, h2 } = this.props
-    const { h1 } = this.state
+    const { sid, h1, h2 } = this.props
+    //const { h1 } = this.state
     // console.info('Descriptors->render() [10]',{});
     return (
       <div id={sid} className={`container-fluid ${sid}`}>

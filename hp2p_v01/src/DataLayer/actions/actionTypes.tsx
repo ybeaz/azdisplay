@@ -19,6 +19,7 @@ export const START_USER_SESSION: any = createRequestTypes('START_USER_SESSION')
 // Template export const  = ''
 export const UPDATE_USER_FOOTPRINT: string = 'UPDATE_USER_FOOTPRINT'
 
+export const SELECT_LANGUAGE: string = 'SELECT_LANGUAGE'
 export const GO_BACK: string = 'GO_BACK'
 export const GO_LINK_TO_SPECIALISTS: string = 'GO_LINK_TO_SPECIALISTS'
 export const GO_LINK_CONTACTS: string = 'GO_LINK_CONTACTS'

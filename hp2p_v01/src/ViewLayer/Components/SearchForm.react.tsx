@@ -16,6 +16,7 @@ interface Props {
   typeMedia: any,
   modeProdDev: any, 
   alertShortSearchInput: string,
+  language: string,
   handleActions: Function,
 }
 interface State {
@@ -134,7 +135,7 @@ export class SearchForm extends React.PureComponent<Props, State> {
   public render(): JSX.Element {
     const {
       sid, searchPlaceholder, searchButton,
-      typeRequest, typeMedia, handleActions,
+      typeRequest, typeMedia, language,
     } = this.props
     const { searchPhrase } = this.state
 
@@ -143,15 +144,16 @@ export class SearchForm extends React.PureComponent<Props, State> {
     const classNames1: string = 'Dropdown_typeRequestFirstRow'
     const typeRequestProps1: any = {
       ...typeRequest, cid, displayBtnType: 'text', classNames: classNames1,
-      parentHandleEvents: this.handleEvents.bind(this),
+      parentHandleEvents: this.handleEvents.bind(this), language,
     }
 
     const { sid: typeMediaSid } = typeMedia
     cid = `${typeMediaSid}-${uuidv4()}`
     const classNames3: string = 'Dropdown_typeMediaFirstRow'
+    const parentActionCase = 'onClickSearchMedia'
     const typeMediaProps3: any = {
       ...typeMedia, cid, displayBtnType: 'icon', classNames: classNames3,
-      parentHandleEvents: this.handleEvents.bind(this),
+      parentHandleEvents: this.handleEvents.bind(this), parentActionCase, language,
     }
 
     const action: Interfaces.Action = {type: 'pressSearchButton'}

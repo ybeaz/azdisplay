@@ -18,6 +18,8 @@ interface Props {
   readonly delay: number,
     // Delay for assigning value to the button after option clicked
   readonly parentHandleEvents: Function,
+  readonly parentActionCase: string,
+  readonly language: string,
 }
 interface State {
   listArr: ListObj[],
@@ -51,6 +53,14 @@ export class Dropdown extends React.PureComponent<Props, State> {
     this.handleEvents({}, action)
   }
 
+  public componentDidUpdate(prevProps: any, prevState: any, snapshot: any): void {
+    const { listArr, language } = this.props
+    // console.info('Dropdown->componentDidUpdate()', { props: this.props, state: this.state })
+    if (JSON.stringify(prevProps.language) !== JSON.stringify(language)) {
+      this.setState({ listArr })
+    }
+  }
+
   public getDropdownItems = (listArr: ListObj[]) => listArr.map((item: ListObj, i: number) => {
     const { capture, iconFa, active, general, sourceClass, spritePosition } = item
 
@@ -77,7 +87,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
       <div
         key={i}
         className={`Dropdown__item dropdown-item ${activeClass}`}
-        onClickCapture={e => this.handleEvents(e, action)}
+        onClickCapture={(e: React.MouseEvent<HTMLDivElement>) => this.handleEvents(e, action)}
       >
         {icons}
         <span>{capture}</span>
@@ -114,13 +124,14 @@ export class Dropdown extends React.PureComponent<Props, State> {
     return buttonFace
   }
 
-  public handleEvents = (e: object, action: Interfaces.Action): void => {
+  public handleEvents = (e: any, action: Interfaces.Action): void => {
+    const { delay, parentHandleEvents, parentActionCase } = this.props
+
     switch (action.type) {
 
       case 'selectItem':
       {
         // console.info( 'Dropdown->handleEvents() [1]', action)
-        const { delay, parentHandleEvents } = this.props
         let { listArr } = this.state
         const { capture: capturePayload } = action
 
@@ -130,12 +141,13 @@ export class Dropdown extends React.PureComponent<Props, State> {
           if (capture === capturePayload) {
             active = true
           }
+
           return { ...item, active }
         })
 
         // console.info(`Dropdown->handleEvents() type: ${action.type}`, { parentHandleEvents, listArr, action, e })
-        const action01: Interfaces.Action = { type: 'onClickSearchMedia', data: listArr }
-        parentHandleEvents({}, action01)
+        const action01: Interfaces.Action = { type: parentActionCase, data: listArr }
+        parentHandleEvents(e, action01)
 
         setTimeout(() => {
           this.setState({ listArr, toggle: 'Dropdown__dropdownMenu_hide' })

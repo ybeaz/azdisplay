@@ -14,6 +14,14 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
 
   switch (action.type) {
 
+    case 'selectLanguage':
+    {
+      data = action.data
+      // console.info(`handleActions.js type: ${action.type}`, { data, action, e })
+      actions.SELECT_LANGUAGE(data)
+    }
+    break
+
     case 'updateUserFootprint':
     {
       data = action.data
