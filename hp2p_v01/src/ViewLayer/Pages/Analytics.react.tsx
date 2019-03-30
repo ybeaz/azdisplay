@@ -62,31 +62,7 @@ class Analytics extends React.PureComponent<Props, State> {
 
 
   public getActionLog: Function = (actionLog: any): JSX.Element | undefined => {
-    /*
-    let actionLogNext: string
-    if (typeof actionLog === 'string') {
-      actionLogNext = actionLog
-    }
-    else {
-      actionLogNext = JSON.stringify(actionLog)
-    }
-    // console.info('Analytics->getActionLog() [0]', {  actionLogNext, actionLog})
 
-    let actionLogJson: any
-    if (actionLogNext.length > 0) {
-      let regex: any = /&quot;/gm
-      let subst: string = `"`
-      actionLogNext = actionLogNext.replace(regex, subst)
-
-      regex = /^"([\s\S]*?)"$/gm
-      subst = `$1`
-      actionLogNext = actionLogNext.replace(regex, subst)
-      actionLogNext = `[${actionLogNext}]`.toString()
-
-      // console.info('Analytics->getAnalyticsRows() [3]', { actionLogNext })
-      actionLogJson = JSON.parse(actionLogNext)
-    }
-    */
     let actionLogNext = actionLog
     let actionLogJson = actionLog
     if (!actionLogJson || actionLogJson[0] === null || actionLogJson.length === 0 || typeof actionLogJson[0] === 'undefined') {

@@ -22,10 +22,30 @@ interface Props {
   readonly handleActions: Function,
 }
 interface State {
+  language: any,
 }
 
 export class Face326 extends React.PureComponent<Props, State> {
   public static defaultProps: any = {
+  }
+
+  constructor(props: any) {
+    super(props)
+    const { reduxState } = this.props
+    const { language } = reduxState
+    this.state = {
+      language,
+    }
+  }
+
+  public componentDidUpdate(): void {
+    const { reduxState } = this.props
+    const { language } = reduxState
+    // console.info('componentDidUpdate()', { language, state: this.state, props: this.props })
+    setTimeout(() =>
+      this.setState({ language }),
+      100
+    )
   }
 
   public handleEvents: Function = (e: any, action: Interfaces.Action): void => {
@@ -55,9 +75,10 @@ export class Face326 extends React.PureComponent<Props, State> {
   }
 
   public render(): JSX.Element {
-    const { reduxState, handleActions } = this.props
-    const { treeData, language } = reduxState
-    // console.info('Face326->render() [5]', { treeData, reduxState })
+    const { handleActions, reduxState } = this.props
+    const { treeData } = reduxState
+    const { language } = this.state
+    // console.info('Face326->render() [5]', { language, treeData })
     const {
       modeProdDev,
       descriptors,
@@ -75,7 +96,7 @@ export class Face326 extends React.PureComponent<Props, State> {
       registrationButton,
     } = treeData[language]
 
-    searchForm = { ...searchForm, handleActions }
+    searchForm = { ...searchForm, handleActions, language }
     userReviews = { ...userReviews, handleActions }
     catatogTags = { ...catatogTags, handleActions }
 
@@ -87,11 +108,10 @@ export class Face326 extends React.PureComponent<Props, State> {
     const searchFormTop: {} = {...searchForm, sid: 'SearchForm_top', modeProdDev}
     const searchFormBottom: {} = {...searchForm, sid: 'SearchForm_bottom', modeProdDev}
 
-
     const action: Interfaces.Action = { type: 'openModalRegistrationQuick' }
     registrationButton = { ...registrationButton, handleFunctions: this.handleEvents.bind(this), action }
 
-    // console.info('Face326->render() [10]', { modalWindows, reduxState, modals, props: this.props })
+    // console.info('Face326->render() [10]', { modalWindows, modals, props: this.props })
     return (
       <div className='Face326 globalStyle'>
         <header><NavBar /></header>

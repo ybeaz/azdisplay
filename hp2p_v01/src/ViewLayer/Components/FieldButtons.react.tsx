@@ -4,24 +4,25 @@ import uuidv4 from 'uuid/v4'
 import * as Interfaces from '../../Shared/interfaces'
 
 interface Props {
-  sid: string,
+  readonly sid: string,
     // section class for Less(css)
-  cid: string,
+  readonly cid: string,
     // component id
-  classNames: string,
+  readonly classNames: string,
     // affect the "main button"
-  displayBtnType: string,
+  readonly displayBtnType: string,
     // Possible values: 'icon', 'text'
-  listArr: object[],
+  readonly listArr: object[],
     /* Example
       [ 
         { capture: 'Все виды', classNameArr: ['fas fa-video'], active: true },
         ...
       ],
     */
-  isGenaralShowAlways: boolean,
-  isGeneralShowPhone: boolean,
-  parentHandleEvents: Function,
+  readonly language: string,
+  readonly isGenaralShowAlways: boolean,
+  readonly isGeneralShowPhone: boolean,
+  readonly parentHandleEvents: Function,
 }
 interface State {
   listArr: object[],
@@ -50,6 +51,14 @@ export class FieldButtons extends React.PureComponent<Props, State> {
     const action: Interfaces.Action = { type: 'selectItem', ...item }
     this.handleEvents({}, action)
     */
+  }
+
+  public componentDidUpdate(prevProps: any, prevState: any, snapshot: any): void {
+    const { listArr, language } = this.props
+    // console.info('FieldButtons->componentDidUpdate()', { props: this.props, state: this.state })
+    if (JSON.stringify(prevProps.language) !== JSON.stringify(language)) {
+      this.setState({ listArr })
+    }
   }
 
   public getFieldButtons: Function = (

@@ -26,6 +26,7 @@ export const getActionAsync: any = (type: string, stage: string, data: any): any
 
 export const UPDATE_USER_FOOTPRINT: any = (data: any): any =>  action(actionTypes.UPDATE_USER_FOOTPRINT, data)
 
+export const SELECT_LANGUAGE: any = (data: any): any =>  action(actionTypes.SELECT_LANGUAGE, data)
 export const GO_BACK: any = (data: any): any =>  action(actionTypes.GO_BACK, data)
 export const GO_LINK_TO_SPECIALISTS: any = (data: any): any =>  action(actionTypes.GO_LINK_TO_SPECIALISTS, data)
 export const GO_LINK_CONTACTS: any = (data: any): any =>  action(actionTypes.GO_LINK_CONTACTS, data)

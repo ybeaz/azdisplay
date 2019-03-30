@@ -25,6 +25,26 @@ class NavBarClass extends React.PureComponent<Props, State> {
 
     switch (action.type) {
 
+      case 'selectLanguage':
+      {
+        /*
+        data = { inception: 'registrationNavBar' }
+        const action01: Interfaces.Action = { type: 'updateUserFootprint', data }
+        handleActions(e, action01)
+        */
+
+        data = action.data
+        const lang: any  = data.filter((item: any) => item.active === true)
+          .map((item: any) => item.nameShort)[0]
+
+        data = { lang }
+        const action03: Interfaces.Action = { type: 'selectLanguage', data }
+        handleActions(e, action03)
+
+        // console.info(`${sid}->handleEvents() type: ${action.type}`, { lang, props: this.props, action, e })
+      }
+      break
+
       case 'openModalRegistrationNavBar':
       {
         data = { inception: 'registrationNavBar' }
@@ -52,6 +72,14 @@ class NavBarClass extends React.PureComponent<Props, State> {
     // console.info('NavBar->render() [10]',{ props: this.props });
 
     const action: Interfaces.Action = { type: 'openModalRegistrationNavBar' }
+
+    const cid: string = ''
+    const classNames: string = ''
+    const parentActionCase: string = 'selectLanguage'
+    const langProps: any = {
+      ...langs, cid, displayBtnType: 'icon', classNames,
+      parentHandleEvents: this.handleEvents, parentActionCase,
+    }
 
     return (
       <div id={sid} className={`Navbar ${sid}`}>
@@ -85,7 +113,7 @@ class NavBarClass extends React.PureComponent<Props, State> {
           </li>
           { !languageSelect
             ? (<li className='nav-item has-lang-popup'>
-              <Dropdown {...langs} />
+              <Dropdown {...langProps} />
             </li>)
             : undefined
           }
