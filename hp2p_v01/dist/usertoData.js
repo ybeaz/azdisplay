@@ -25,8 +25,8 @@ var USERTO = {
         listArr: [
           { capture: 'Russian', active: true, spritePosition: '-324px -252px', nameShort: 'rus', sourceClass: 'spriteFlag' },
           { capture: 'English US', active: false, spritePosition: '-378px -228px', nameShort: 'eng', sourceClass: 'spriteFlag' },
-          { capture: 'Espaniol', active: false, spritePosition: '-90px -228px', nameShort: 'esp', sourceClass: 'spriteFlag' },
-          { capture: 'Deutch', active: false, spritePosition: '-72px -60px', nameShort: 'deu', sourceClass: 'spriteFlag' },
+          { capture: 'Espaniol', active: false, spritePosition: '-90px -228px', nameShort: 'rus', sourceClass: 'spriteFlag' },
+          { capture: 'Deutch', active: false, spritePosition: '-72px -60px', nameShort: 'rus', sourceClass: 'spriteFlag' },
         ],
         delay: 500,
       },
