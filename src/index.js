@@ -23,7 +23,7 @@ const PAGES = {
   Error404Page,
 }
 
-// Setup language
+// Setup language 
 const lang = 'rus'
 const { router } = USERTO
 const { routes, redirects } = router
