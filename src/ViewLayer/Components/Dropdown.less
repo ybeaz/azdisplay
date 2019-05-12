@@ -1,0 +1,145 @@
+
+.Dropdown {
+  &:extend(.d_i_b, .p_l_1p5_rem);
+  
+  .Dropdown__button {
+    &:extend(.m_r_0p5_rem, .b_r_3_rem);
+    .hoverFocusActive;
+    min-width+: 8rem;
+    .buttonColorFull;
+
+    .Dropdown__spriteImgButtonFace {
+      .d_i_b;
+    }
+  }
+
+  .Dropdown__toggle {
+    &:after {
+      display: inline-block;
+      margin-left: .255em;
+      vertical-align: .255em;
+      content: "";
+      border-top: .3em solid;
+      border-right: .3em solid transparent;
+      border-bottom: 0;
+      border-left: .3em solid transparent;
+    }
+  }
+
+  .Dropdown__button > span {
+    padding-right+: 0.2rem;
+  }
+
+  .Dropdown__button >  div .iconFa:not(:first-of-type) {
+    &:extend(.p_l_0p5_rem);
+  }
+
+  .Dropdown__button > div .iconFa:not(:first-of-type) {
+    &:extend(.p_l_0p5_rem);
+  }
+
+  .Dropdown__button >  div .iconFa:last-of-type {
+    &:extend(.p_r_0p5_rem);
+  }
+
+  .Dropdown__dropdownMenu_show {
+    display+: block;
+  }
+
+  .Dropdown__dropdownMenu_hide {
+    display+: none;
+  }
+
+  .Dropdown__item {
+    &:extend(.cur_p);
+
+    .Dropdown__spriteImgItem {
+      .d_i_b;
+    }
+  }
+
+  .Dropdown__item_selected {
+    background-color+: @color2;
+    color+: @color0; 
+  }
+
+  .Dropdown__item_notSelected {
+    background-color+: @color0;
+    color+: @color2;
+  }
+
+  .Dropdown__item > div .iconFa {
+    //color: @color2;
+  }
+
+  .Dropdown__item > span {
+    &:extend(.p_l_1_rem);
+  }
+
+  .Dropdown__item:first-of-type > span {
+    .p_l_2_rem;
+  }
+
+  @media @large {
+
+  }
+  @media @desktop, @desktop-strict {
+  
+  }
+  @media @tablet, @tablet-strict {
+  
+  
+  }
+  @media @phone, @phone-strict {
+
+  }
+
+}
+
+
+.Dropdown_typeMedia {
+  
+  @media @large {
+
+  }
+  @media @desktop, @desktop-strict {
+  
+  }
+  @media @tablet, @tablet-strict {
+  
+  
+  }
+  @media @phone, @phone-strict {
+    .d_n;
+  }
+}
+
+
+.Dropdown_langSelect {
+
+  .Dropdown__button {
+    &:extend(.m_r_0p5_rem);
+    .buttonColorLess;
+    border+: 0;
+    min-width+: 4rem;
+    .hoverFocusActiveReset;
+  }
+
+  .Dropdown__item:first-of-type > span {
+    .p_l_1_rem
+  }
+
+
+  @media @large {
+
+  }
+  @media @desktop, @desktop-strict {
+  
+  }
+  @media @tablet, @tablet-strict {
+    
+  }
+  @media @phone, @phone-strict {
+
+  }
+}
