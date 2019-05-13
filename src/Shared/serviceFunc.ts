@@ -36,6 +36,7 @@ export const isJsonString: Function = (str: any): boolean => {
  * @description Function to check if the entity is object
  */
 export const isObject: Function = (input: any): boolean => {
+  // console.info('serviceFunc.isObject', input)
   let check: boolean = false
   if (typeof input === 'object'
     && typeof input !== 'function'
@@ -46,6 +47,7 @@ export const isObject: Function = (input: any): boolean => {
 
   return check
 }
+
 
 /**
  * @description Function to convert string into Date

@@ -74,6 +74,16 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
     }
     break
 
+    case 'getUserAnalyticsData2':
+    {
+      const payload02: Interfaces.Payload  = {
+        optGet: 'guad',
+      }
+      actions.getActionAsync('GET_USER_ANALYTICS_DATA2', 'REQUEST', payload02)
+      // console.info(`handleActions.js type: ${action.type}`, { e, payload, action })
+    }
+    break
+
     case 'getUserAnalyticsData':
     {
       const payload02: Interfaces.Payload  = {
