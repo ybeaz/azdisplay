@@ -60,7 +60,7 @@
     "webpack-merge": "^4.2.1"
   },
   "scripts": {
-    "start": "opn http://127.0.0.1:3520/analytics-c7b094941e7e11c6bf93d5736673881e & webpack-dev-server --config webpack.dev.js --color",
+    "start": "opn http://127.0.0.1:3520/analytics-c7b094941e7e11c6bf93d57366738802 & webpack-dev-server --config webpack.dev.js --color",
     "dev": "webpack-dev-server --config webpack.dev.js --color",
     "build": "webpack -p --config webpack.prod.js",
     "jest": "jest",

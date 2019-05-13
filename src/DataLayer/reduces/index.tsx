@@ -49,7 +49,7 @@ const userFootprint: any = (state: object = {}, action: Interfaces.Action): obje
 const analytics: any = (state: any = [], action: Interfaces.Action): any => {
   switch (action.type) {
     case 'GET_USER_ANALYTICS_DATA_SUCCESS': {
-      const stateNext: any = action.data.filter((item: any) => item.PHPSESSID)
+      const stateNext: any = action.data.filter((item: any) => item.utAnltSid)
       // console.info(`reducer->analytics type: ${action.type}`, { stateNext, state, action })
       return stateNext
     }

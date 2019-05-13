@@ -1,13 +1,11 @@
 import { all, fork } from 'redux-saga/effects'
 
 import getUserAnalyticsDataWatcher from './getUserAnalyticsData.saga'
-import getSavedUserVisitActionsWatcher from './getSavedUserVisitActions.saga'
-import getStartedUserSessionWatcher from './getStartedUserSession.saga'
+import getUserAnalyticsDataWatcher2 from './getUserAnalyticsData2.saga'
 
 export default function* indexSaga() {
   yield all([
+    fork(getUserAnalyticsDataWatcher2),
     fork(getUserAnalyticsDataWatcher),
-    fork(getSavedUserVisitActionsWatcher),
-    fork(getStartedUserSessionWatcher),
   ])
 }

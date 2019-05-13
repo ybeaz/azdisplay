@@ -44,7 +44,7 @@ class Analytics02 extends React.PureComponent<Props, State> {
 
   public componentDidMount(): void {
     const project: {}[] | [] = serviceFunc.getProject(this.props, this.state)
-    const action: Interfaces.Action = { type: 'getUserAnalyticsData', project }
+    const action: Interfaces.Action = { type: 'getUserAnalyticsData2', project }
     this.handleEvents({}, action)
   }
 
@@ -58,6 +58,7 @@ class Analytics02 extends React.PureComponent<Props, State> {
         data: analytics,
         project,
       }
+      // console.info('Analytics02->componentDidUpdate', { analytics })
       this.handleEvents({}, action)
     }
   }
@@ -94,61 +95,64 @@ class Analytics02 extends React.PureComponent<Props, State> {
     else if (serviceFunc.isVarCorrupted(input[prop])) {
       return undefined
     }
-    else if (typeof input[prop] === 'string' && prop === 'search') {
-      output = input[prop].replace(/\?/gim, '')
-      output = output.replace(/utm_content=/gim, '')
-    }
-    else if (typeof input[prop] === 'string' && prop === 'referrer') {
-      const { domain3 } = serviceFunc.urlComposition(input[prop])
-      output = domain3
-    }
     else if (typeof input[prop] === 'string') {
       output = input[prop]
     }
-    else {
-      const inputArrObj: any = Object.values(input[prop])
-      const inputArr: any[] = []
-      for (let i: number = 0; i < inputArrObj.length; i += 1) {
-        inputArr[i] = inputArrObj[i]
-      }
-      /*
-      if (serviceFunc.isObject(input[prop]) === true) {
-        console.info('Analytics->getCellContent() [5]', { inputProp: input[prop], inputArr, prop, input })
-      }
-      */
-      output = inputArr.map((item: any) => {
-        // console.info('Analytics->getCellContent() [7]', { actionLogNext, item })
-        let itemGroup: any
-        if (serviceFunc.isArrGoodForJsx(item)) {
-          // console.info('Analytics->getCellContent() [9-1]', { item, actionLogNext })
-          itemGroup = item.map((itemElem: string) =>
-            <span className='Analytics__logCellGroupElem'>{itemElem}&nbsp;&nbsp;</span>)
-        }
-        else if (typeof item === 'string' && item.length > 0) {
-          // console.info('Analytics->getCellContent() [9-2]', { item, actionLogNext })
-          itemGroup = item
-        }
-        else {
-          // console.info('Analytics->getCellContent() [9-3]', { item, actionLogNext })
-          itemGroup = <div />
-        }
-        // console.info('Analytics->getCellContent() [9-f]', { item, actionLogNext })
+    else if (serviceFunc.isArrGoodForJsx(input[prop]) === true) {
 
-        return <span className='Analytics__logCellGroup'>{itemGroup}&nbsp;&nbsp;</span>
-      })
+      if (typeof input[prop][0] === 'string') {
+        output = input[prop].map((itemElem: string) =>
+          <span className='Analytics__logCellGroupElem'>{itemElem}&nbsp;&nbsp;</span>)
+      }
+      else if (serviceFunc.isObject(input[prop][0]) === true) {
+
+        let classAnalyticsLogCellGroupEl = 'Analytics__logCellGroupEl'
+        if (input[prop].length === 1) {
+          classAnalyticsLogCellGroupEl = 'Analytics__logCellGroupEl0'
+        }
+
+        output = input[prop].map((itemElem: {}) => {
+
+          const keys: string = Object.keys(itemElem)
+
+          keys = keys.filter((item: string) => (
+               item !== 'class'
+            && item !== 'tag'
+            && item !== 'href'
+            && item !== 'pathname'
+          ))
+
+          const outputObj: JSX.Element = keys.map((itemKey: {}) => {
+
+            return <div className={classAnalyticsLogCellGroupEl}>
+              {itemKey}: {itemElem[itemKey]}
+            </div>
+          })
+
+          return <div className='Analytics__logCellGroupElem'>{outputObj}</div>
+        })
+
+        output = <span className='Analytics__logCellGroup'>{output}</span>
+      }
+      else {
+        output = <span className='Analytics__logCellGroup'>UNKNOWN[]</span>
+      }
+    }
+    else {
+      output = <span className='Analytics__logCellGroup'>Unknown cell type</span>
     }
 
     return <div className='Analytics__logCell'>{output}</div>
   }
 
-  public getCellsForTable: Function = (item: any, columns: any): JSX.Element => {
-    // console.info('Analytics->getCellsForTable()' { item, columns })
+  public getRowForTable: Function = (item: any, columns: any): JSX.Element => {
+    // console.info('Analytics->getRowForTable()' { item, columns })
 
     return columns
       .filter((column: any) => column.active === true)
       .map((column: any) => {
         const itemElem: JSX.Element | undefined = this.getCellContent(column.prop, item)
-        // console.info('Analytics->getCellsForTable()' { itemCol: item[column], column, item, columns })
+        // console.info('Analytics->getRowForTable()' { itemCol: item[column], column, item, columns })
 
         return (
           <th className={`Analytics__thTbody Analytics__thTbody_${column.prop} ${column.widthClass} scrollX`}>
@@ -158,15 +162,15 @@ class Analytics02 extends React.PureComponent<Props, State> {
       })
   }
 
-  public getAnalyticsRows: Function = (analytics: any, columns: any): any => {
-    // console.info('Analytics->getAnalyticsRows() [0]', { analytics, props: this.props })
+  public getAllRowsForTable: Function = (analytics: any, columns: any): any => {
+    // console.info('Analytics->getAllRowsForTable() [0]', { analytics, props: this.props })
     return analytics
       //.filter(item => item.actionLog !== '')
       .map((item: any, i: number) => {
-        // console.info('Analytics->getAnalyticsRows() [5]', { i })
+        // console.info('Analytics->getAllRowsForTable() [5]', { i })
         return (
           <tr className='Analytics__trTbody'>
-           {this.getCellsForTable(item, columns)}
+           {this.getRowForTable(item, columns)}
           </tr>
         )
     })
@@ -196,7 +200,7 @@ class Analytics02 extends React.PureComponent<Props, State> {
         <div className='Analytics__scroll'>
           <table className='Analytics__tableBody'>
             <tbody className='Analytics__tbody'>
-              {this.getAnalyticsRows(analytics, columns)}
+              {this.getAllRowsForTable(analytics, columns)}
             </tbody>
           </table>
         </div>
@@ -320,7 +324,7 @@ class Analytics02 extends React.PureComponent<Props, State> {
         this.setState({ analyticsSrc: [] })
         const action03: Interfaces.Action = { type: 'callSpinner' }
         handleActions({}, action03)
-        const action02: Interfaces.Action = { type: 'getUserAnalyticsData' }
+        const action02: Interfaces.Action = { type: 'getUserAnalyticsData2' }
         // console.info(`handleActions.js type->${action.type}`, { action, e })
         handleActions({}, action02)
       }
@@ -345,10 +349,10 @@ class Analytics02 extends React.PureComponent<Props, State> {
       }
       break
 
-      case 'getUserAnalyticsData':
+      case 'getUserAnalyticsData2':
       {
         const { handleActions } = this.props
-        const action01: Interfaces.Action = { type: 'getUserAnalyticsData' }
+        const action01: Interfaces.Action = { type: 'getUserAnalyticsData2' }
         // console.info(`Analytics->handleEvents() type->${action.type}`, { action, e })
         handleActions({}, action01)
       }
