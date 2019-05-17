@@ -297,7 +297,6 @@ export const saveUserVisitActions: Function = (target: string): any => {
   }, 500)
 }
 
-
 /**
  * @description Returns true for devMode and false for production
  */
@@ -308,6 +307,18 @@ export const devModeTrueFalse: Function = (): boolean => {
   }
 
   return devMode
+}
+
+/**
+ * @description Returns endpoint
+ */
+export const getEndpoint: Function = (): string => {
+  let endpoint: string = 'https://nd.userto.com/api/apiP2p/2.0'
+  if (devModeTrueFalse() === true) {
+    endpoint = 'http://localhost:8081/api/apiP2p/2.0'
+  }
+
+  return endpoint
 }
 
 /**
