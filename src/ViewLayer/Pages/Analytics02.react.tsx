@@ -1,4 +1,4 @@
-import React, { DOMElement } from 'react'
+import React, { DOMElement, ReactElement } from 'react'
 
 import * as Interfaces from '../../Shared/interfaces'
 import * as serviceFunc from '../../Shared/serviceFunc'
@@ -8,6 +8,7 @@ import { Footer } from '../Components/Footer.react'
 import { NavBar } from '../Components/NavBar.react'
 import { SectionWrapper } from '../Components/SectionWrapper.react'
 import { CommonContainer } from '../Containers/CommonContainer.react'
+import { type } from 'os';
 
 interface Props {
   path: string,
@@ -113,7 +114,7 @@ class Analytics02 extends React.PureComponent<Props, State> {
 
         output = input[prop].map((itemElem: {}) => {
 
-          const keys: string = Object.keys(itemElem)
+          let keys: string[] = Object.keys(itemElem)
 
           keys = keys.filter((item: string) => (
                item !== 'class'
@@ -122,7 +123,7 @@ class Analytics02 extends React.PureComponent<Props, State> {
             && item !== 'pathname'
           ))
 
-          const outputObj: JSX.Element = keys.map((itemKey: {}) => {
+          const outputObj: any = keys.map((itemKey: string) => {
 
             return <div className={classAnalyticsLogCellGroupEl}>
               {itemKey}: {itemElem[itemKey]}
