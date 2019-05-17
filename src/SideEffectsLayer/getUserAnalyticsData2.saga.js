@@ -1,14 +1,18 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 
+import * as serviceFunc from '../Shared/serviceFunc'
 import { fetchGet } from '../ComminicationLayer/fetch'
 import * as actions from '../DataLayer/actions/index'
 
 function* getUserAnalyticsData(payload) {
   // console.info('getUserAnalyticsData [0]', { payload })
-  const endpoint = 'http://localhost:8081/api/apiP2p/2.0'
+  const payloadNext = payload
+  delete payloadNext.type
+  const endpoint = serviceFunc.getEndpoint()
+
   // It works with php: const endpoint = 'https://bb.userto.com/api/apiP2p.php'
   try {
-    const response = yield fetchGet(endpoint, payload)
+    const response = yield fetchGet(endpoint, payloadNext)
 
     const data = yield response.json()
     // console.info('getUserAnalyticsData [7]', { data })
