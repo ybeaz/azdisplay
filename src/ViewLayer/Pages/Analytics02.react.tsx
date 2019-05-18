@@ -8,7 +8,6 @@ import { Footer } from '../Components/Footer.react'
 import { NavBar } from '../Components/NavBar.react'
 import { SectionWrapper } from '../Components/SectionWrapper.react'
 import { CommonContainer } from '../Containers/CommonContainer.react'
-import { type } from 'os';
 
 interface Props {
   path: string,
@@ -107,8 +106,10 @@ class Analytics02 extends React.PureComponent<Props, State> {
       }
       else if (serviceFunc.isObject(input[prop][0]) === true) {
 
-        let classAnalyticsLogCellGroupEl = 'Analytics__logCellGroupEl'
-        if (input[prop].length === 1) {
+        let classAnalyticsLogCellGroupElem: string = 'Analytics__logCellGroupElem'
+        let classAnalyticsLogCellGroupEl: string = 'Analytics__logCellGroupEl'
+        if (input[prop].length === 1 && prop !== 'eventData') {
+          classAnalyticsLogCellGroupElem = 'Analytics__logCellGroupElem0'
           classAnalyticsLogCellGroupEl = 'Analytics__logCellGroupEl0'
         }
 
@@ -125,15 +126,17 @@ class Analytics02 extends React.PureComponent<Props, State> {
 
           const outputObj: any = keys.map((itemKey: string) => {
 
-            return <div className={classAnalyticsLogCellGroupEl}>
-              {itemKey}: {itemElem[itemKey]}
-            </div>
+            return <span className={classAnalyticsLogCellGroupEl}>
+              { itemElem[itemKey]
+                ? <span>{itemKey}: {itemElem[itemKey]}&ensp;</span>
+                : undefined
+              }</span>
           })
 
-          return <div className='Analytics__logCellGroupElem'>{outputObj}</div>
+          return <span className={classAnalyticsLogCellGroupElem}>{outputObj}</span>
         })
 
-        output = <span className='Analytics__logCellGroup'>{output}</span>
+        output = <span className='Analytics__logCellGroup'>{output}&ensp;&ensp;</span>
       }
       else {
         output = <span className='Analytics__logCellGroup'>UNKNOWN[]</span>
@@ -292,9 +295,11 @@ class Analytics02 extends React.PureComponent<Props, State> {
       {
         const { analyticsSrc, buttonIpFilterState, buttonSortState } = this.state
 
+        // console.info(`Analytics02.react->handleEvents() type: ${action.type} [10]`, { ipToFilter, analyticsSrc, props: this.props, action, e })
         const buttonIpFilterStateNext: boolean = !buttonIpFilterState
         let analyticsNext: any = serviceFunc
-          .filterArrObjByArr(analyticsSrc, 'ip', ipToFilter, buttonIpFilterStateNext)
+          .filterArrObjByArr2(
+            analyticsSrc, 'initData', 'ip', ipToFilter, buttonIpFilterStateNext)
 
         analyticsNext = analyticsNext.slice()
           .sort(serviceFunc.sortBy('start', buttonSortState))
@@ -312,7 +317,8 @@ class Analytics02 extends React.PureComponent<Props, State> {
           .sort(serviceFunc.sortBy('start', buttonSortStateNext))
 
         analyticsNext = serviceFunc
-          .filterArrObjByArr(analyticsNext, 'ip', ipToFilter, buttonIpFilterState)
+        .filterArrObjByArr2(
+          analyticsSrc, 'initData', 'ip', ipToFilter, buttonIpFilterState)
 
         // console.info(`Analytics->handleEvents() type->${action.type}`, { buttonIpFilterState, action, e })
         this.setState({ analytics: analyticsNext, buttonSortState: buttonSortStateNext })
@@ -342,7 +348,9 @@ class Analytics02 extends React.PureComponent<Props, State> {
           .reverse()
         }
 
-        analyticsNext = serviceFunc.filterArrObjByArr(analyticsNext, 'ip', ipToFilter, buttonIpFilterState)
+        analyticsNext = serviceFunc
+          .filterArrObjByArr2(
+            analyticsSrc, 'initData', 'ip', ipToFilter, buttonIpFilterState)
 
         // analytics.sort(serviceFunc.sortBy('start', false))
         // console.info('Analytics->handleEvents()', { analytics })

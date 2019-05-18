@@ -149,7 +149,8 @@ export const selectElementContents: Function =
     s.removeRange(range)
     alert('Table is copied into the clipboard')
   },
-  1000)
+  250)
+
 
 }
 
@@ -316,6 +317,7 @@ export const getEndpoint: Function = (): string => {
   let endpoint: string = 'https://nd.userto.com/api/apiP2p/2.0'
   if (devModeTrueFalse() === true) {
     endpoint = 'http://localhost:8081/api/apiP2p/2.0'
+    endpoint = 'https://nd.userto.com/api/apiP2p/2.0'
   }
 
   return endpoint
@@ -325,9 +327,34 @@ export const getEndpoint: Function = (): string => {
  * @description Returns the arrObj filtered by array of strings
  * @example const abc = serviceFunc.filterArrObjByArr(arrObj, 'start', ['something']))
  */
+export const filterArrObjByArr2: Function =
+  (arrObj: any[], field: string, fieldInObj: string, arr: string[], filter: boolean): any[] => {
+  let output: any[] = arrObj
+
+  if (filter) {
+    output = arrObj.slice().filter((item: any) => {
+      let isItemToFilter: boolean = true
+      arr.forEach((itemIp: string) => {
+        if (itemIp === item[field][0][fieldInObj]) {
+          isItemToFilter = false
+        }
+      })
+      // console.info('serviceFunc.filterArrObjByArr2() [5]', { isItemToFilter, arr, 'item[field][0]': item[field][0], field, fieldInObj })
+      return isItemToFilter
+    })
+  }
+
+  // console.info('serviceFunc.filterArrObjByArr2() [10]', { filter, output, arrObj, field, arr })
+  return output
+}
+
+/**
+ * @description Returns the arrObj filtered by array of strings
+ * @example const abc = serviceFunc.filterArrObjByArr(arrObj, 'start', ['something']))
+ */
 export const filterArrObjByArr: Function =
-  (arrObj: any, field: string, arr: string[], filter: boolean): any => {
-  let output: any = arrObj
+  (arrObj: any[], field: string, arr: string[], filter: boolean): any => {
+  let output: any[] = arrObj
 
   if (filter) {
     output = arrObj.slice().filter((item: any) => {
