@@ -313,12 +313,13 @@ class Analytics02 extends React.PureComponent<Props, State> {
         const { analyticsSrc, buttonIpFilterState, buttonSortState } = this.state
 
         const buttonSortStateNext: boolean = !buttonSortState
-        let analyticsNext: any = analyticsSrc.slice()
-          .sort(serviceFunc.sortBy('start', buttonSortStateNext))
 
-        analyticsNext = serviceFunc
-        .filterArrObjByArr2(
-          analyticsSrc, 'initData', 'ip', ipToFilter, buttonIpFilterState)
+        let analyticsNext: any[] = serviceFunc
+          .filterArrObjByArr2(
+            analyticsSrc, 'initData', 'ip', ipToFilter, buttonIpFilterState)
+
+        analyticsNext = analyticsNext.slice()
+          .sort(serviceFunc.sortBy('start', buttonSortStateNext))
 
         // console.info(`Analytics->handleEvents() type->${action.type}`, { buttonIpFilterState, action, e })
         this.setState({ analytics: analyticsNext, buttonSortState: buttonSortStateNext })
@@ -343,15 +344,14 @@ class Analytics02 extends React.PureComponent<Props, State> {
         const { analytics, analyticsSrc, buttonIpFilterState, buttonSortState } = this.state
 
         let analyticsNext: any = analyticsSrc
-        if (buttonSortState) {
-        analyticsNext = analyticsNext.slice()
-          .reverse()
-        }
-
+ 
         analyticsNext = serviceFunc
           .filterArrObjByArr2(
             analyticsSrc, 'initData', 'ip', ipToFilter, buttonIpFilterState)
 
+        if (buttonSortState) {
+          analyticsNext = analyticsNext.slice().reverse()
+        }
         // analytics.sort(serviceFunc.sortBy('start', false))
         // console.info('Analytics->handleEvents()', { analytics })
         this.setState({ analytics: analyticsNext, analyticsSrc: data })
