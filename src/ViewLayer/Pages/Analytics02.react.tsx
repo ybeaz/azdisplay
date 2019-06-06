@@ -337,7 +337,7 @@ class Analytics02 extends React.PureComponent<Props, State> {
         const action03: Interfaces.Action = { type: 'callSpinner' }
         handleActions({}, action03)
         const action02: Interfaces.Action = { type: 'getUserAnalyticsData2' }
-        console.info(`handleActions.js type->${action.type}`, { action, e })
+        // console.info(`handleActions.js type->${action.type}`, { action, e })
         handleActions({}, action02)
       }
       break
