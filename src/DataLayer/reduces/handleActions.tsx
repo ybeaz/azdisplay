@@ -69,15 +69,17 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
       const modalNext: string = 'Spinner'
       actions.CALL_SPINNER({ modalNext })
 
-      setTimeout(() => actions.CLOSE_ALL_MODALS(data), 300)
+      setTimeout(() => actions.CLOSE_ALL_MODALS(data), 5000)
       // console.info(`handleActions.js type: ${action.type}`, { action, e })
     }
     break
 
     case 'getUserAnalyticsData2':
     {
-      const payload02: Interfaces.Payload  = {
-        optGet: 'guad',
+      const payload02: Interfaces.PayloadGql  = {
+        operationName: false,
+        variables: { dateFrom: '2000/01/01', dateTo: '2030/01/01' },
+        query: 'query getWebAnalytics2($dateFrom: String, $dateTo: String){getWebAnalytics2(dateFrom:$dateFrom,dateTo:$dateTo){utAnltSid,finish,start,initData{width,height,search,pathname,hostname,href,referrer,ip}target{level,name},topics}}',
       }
       actions.getActionAsync('GET_USER_ANALYTICS_DATA2', 'REQUEST', payload02)
       // console.info(`handleActions.js type: ${action.type}`, { e, payload, action })
@@ -86,10 +88,10 @@ export const handleActions: Function = (e: object, action: Interfaces.Action): v
 
     case 'getUserAnalyticsData':
     {
-      const payload02: Interfaces.Payload  = {
+      const payload01: Interfaces.Payload  = {
         optGet: 'guad',
       }
-      actions.getActionAsync('GET_USER_ANALYTICS_DATA', 'REQUEST', payload02)
+      actions.getActionAsync('GET_USER_ANALYTICS_DATA', 'REQUEST', payload01)
       // console.info(`handleActions.js type: ${action.type}`, { e, payload, action })
     }
     break

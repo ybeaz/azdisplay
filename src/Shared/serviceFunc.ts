@@ -314,10 +314,11 @@ export const devModeTrueFalse: Function = (): boolean => {
  * @description Returns endpoint
  */
 export const getEndpoint: Function = (): string => {
-  let endpoint: string = 'https://nd.userto.com/api/apiP2p/2.0'
+  let endpoint: string = 'https://nd.userto.com/graphql'
   if (devModeTrueFalse() === true) {
-    endpoint = 'http://localhost:8081/api/apiP2p/2.0'
-    endpoint = 'https://nd.userto.com/api/apiP2p/2.0'
+    // endpoint = 'http://localhost:8081/api/apiP2p/2.0'
+    // endpoint = 'https://nd.userto.com/api/apiP2p/2.0'
+    endpoint = 'https://nd.userto.com/graphql'
   }
 
   return endpoint

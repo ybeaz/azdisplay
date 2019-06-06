@@ -71,6 +71,16 @@ var USERTO = {
           },
           modals: {
             sid: 'Modal',
+            spinner: {
+              sid: 'Spinner',
+              capture: '',
+              imgSrc: '',
+              message01: '',
+              message02: '',
+              message03: '',
+              buttonFooter: '',
+              delay: 100,
+            },
             thankYou: {
               sid: 'ThankYou',
               capture: 'Спасибо за ответ',

@@ -8,6 +8,7 @@ import { Footer } from '../Components/Footer.react'
 import { NavBar } from '../Components/NavBar.react'
 import { SectionWrapper } from '../Components/SectionWrapper.react'
 import { CommonContainer } from '../Containers/CommonContainer.react'
+import { GetModals } from '../Modals/GetModals.react'
 
 interface Props {
   path: string,
@@ -44,7 +45,10 @@ class Analytics02 extends React.PureComponent<Props, State> {
 
   public componentDidMount(): void {
     const project: {}[] | [] = serviceFunc.getProject(this.props, this.state)
-    const action: Interfaces.Action = { type: 'getUserAnalyticsData2', project }
+    const action: Interfaces.Action = {
+      type: 'getUserAnalyticsData2',
+      project,
+    }
     this.handleEvents({}, action)
   }
 
@@ -333,7 +337,7 @@ class Analytics02 extends React.PureComponent<Props, State> {
         const action03: Interfaces.Action = { type: 'callSpinner' }
         handleActions({}, action03)
         const action02: Interfaces.Action = { type: 'getUserAnalyticsData2' }
-        // console.info(`handleActions.js type->${action.type}`, { action, e })
+        console.info(`handleActions.js type->${action.type}`, { action, e })
         handleActions({}, action02)
       }
       break
@@ -361,6 +365,8 @@ class Analytics02 extends React.PureComponent<Props, State> {
       case 'getUserAnalyticsData2':
       {
         const { handleActions } = this.props
+        const action04: Interfaces.Action = { type: 'callSpinner' }
+        handleActions({}, action04)
         const action01: Interfaces.Action = { type: 'getUserAnalyticsData2' }
         // console.info(`Analytics->handleEvents() type->${action.type}`, { action, e })
         handleActions({}, action01)
@@ -400,6 +406,7 @@ class Analytics02 extends React.PureComponent<Props, State> {
             <Footer path={path} />
           </SectionWrapper>
         </footer>
+        <GetModals />
       </div>
     )
   }
