@@ -1,3 +1,4 @@
+import { string } from "prop-types";
 
 export interface Url {
   url: string,
@@ -7,6 +8,12 @@ export interface Url {
   domain2: string,
   domain3: string,
   id_tpc: string,
+}
+
+export interface PayloadGql {
+  operationName: boolean,
+  variables: any,
+  query: string,
 }
 
 export interface Payload {

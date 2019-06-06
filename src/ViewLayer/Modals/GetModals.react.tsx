@@ -10,9 +10,6 @@ import { Spinner } from './Spinner.react'
 import { ThankYou } from './ThankYou.react'
 
 const MODALS: any = {
-  SelectRole: SelectRole,
-  CommentForm: CommentForm,
-  ThankYou: ThankYou,
   Spinner: Spinner,
 }
 
@@ -78,8 +75,9 @@ class GetModalsClass extends React.PureComponent<Props, State> {
     const { reduxState, handleActions } = this.props
     // console.info('GetModals->render() [0]', { handleActions, reduxState })
     const { modalWindows, treeData, language } = reduxState
-    const { modals, modeProdDev } = treeData[language]
-    // console.info('GetModals->render() [5]', { modalWindows, handleActions, modals, reduxState })
+    // console.info('GetModals->render() [4]', { treeData, language, reduxState })
+    const { modals, modeProdDev } = treeData.router.routes[0][language]
+    // sconsole.info('GetModals->render() [5]', { modalWindows, modals, reduxState })
 
     const modalBackdropProps = { sid: 'bd'}
     // console.info('GetModals->render() [5]', { modalWindows, handleActions, modals })
